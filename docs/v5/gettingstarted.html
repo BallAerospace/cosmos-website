@@ -191,7 +191,7 @@
     <p>Check out the full <a href="/docs/v5/telemetry">Telemetry</a> documention for more.</p>
   </li>
   <li>
-    <p>COSMOS has defined an example command and telemetry packet for our target. Most targets will obviously have more than one command and telemetry packet and these are simply additional COMMAND and TELEMETRY lines in your text files. This should be modified to match the structure of your command and telemetry.</p>
+    <p>COSMOS has defined an example command and telemetry packet for our target. Most targets will obviously have more than one command and telemetry packet. To add more simply create additional COMMAND and TELEMETRY lines in your text files. Actual packets should match the structure of your command and telemetry. Be sure to add at least one unique <a href="/docs/v5/command#id_parameter">ID_PARAMETER</a> and <a href="/docs/v5/telemetry#id_item">ID_ITEM</a> so your packets can be distinguished from each other.</p>
   </li>
   <li>
     <p>Now we need to tell COSMOS how to connect to our BOB target. Open the cosmos-bob/plugin.txt file:</p>
@@ -222,10 +222,47 @@
 
 <ol>
   <li>
-    <p>Now we need to build our plugin and upload it to COSMOS. Coming soon …</p>
+    <p>Now we need to build our plugin and upload it to COSMOS.</p>
+
+    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial\cosmos<span class="na">-bob</span><span class="o">&gt;</span> <span class="kd">C</span>:\COSMOS\cosmos<span class="na">-control</span>.bat <span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.0
+   <span class="kd">Successfully</span> <span class="kd">built</span> <span class="kd">RubyGem</span>
+   <span class="kd">Name</span>: <span class="kd">cosmos</span><span class="na">-bob
+   </span><span class="kd">Version</span>: <span class="m">1</span>.0.0.20210618174517
+   <span class="kd">File</span>: <span class="kd">cosmos</span><span class="na">-bob</span><span class="o">-</span><span class="m">1</span>.0.0.20210618174517.gem
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Note that the VERSION is required to specify the version to build. We recommend <a href="https://semver.org/">sematic versioning</a> when building your plugin so people using your plugin (including you) know when there are breaking changes.</li>
+    </ul>
   </li>
   <li>
-    <p>The targets/BOB/lib directory contains the target’s library code. This code implements methods specific to this target to make it easier for scripts run in Script Runner to interact with this target. The targets/BOB/procedures directory contains an example script for interacting with the target. For more information about scripting please see the <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a> page and <a href="/docs/v5/scripting">Scripting Guide</a>.</p>
+    <p>Once our plugin is built we need to upload it to COSMOS. Go back to the Admin page and click the Plugins Tab. Click on “Click to Select Plugin” and select the cosmos-bob-1.0.0.20210618174517.gem file. Then click Upload. Go back to the CmdTlmServer and you should see the plugin being deployed at which point the BOB_INT interface should appear and try to connect. Go ahead and click ‘Cancel’ because unless you really have something listening on port 8080 this will never connect. At this point you can explore the other CmdTlmServer tabs and other tools to see your newly defined BOB target.</p>
+  </li>
+  <li>
+    <p>Let’s modify our BOB target and then update the copy in COSMOS. If you open Command Sender in COSMOS to BOB EXAMPLE you should see the VALUE parameter has value 2.5. Open the cosmos-bob/targets/BOB/cmd_tlm/cmd.txt and change the Default value for VALUE to 5 and the description to “New Value”.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> COMMAND BOB COMMAND BIG_ENDIAN <span class="s2">"Packet description"</span>
+   <span class="c"># Keyword           Name  BitSize Type   Min Max  Default  Description</span>
+   APPEND_ID_PARAMETER ID    16      INT    1   1    1        <span class="s2">"Identifier"</span>
+   APPEND_PARAMETER    VALUE 32      FLOAT  0   10.5 5        <span class="s2">"New Value"</span>
+   APPEND_PARAMETER    BOOL  8       UINT   MIN MAX  0        <span class="s2">"Boolean"</span>
+     STATE FALSE 0
+     STATE TRUE 1
+   APPEND_PARAMETER    LABEL 0       STRING          <span class="s2">"COSMOS"</span> <span class="s2">"The label to apply"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Rebuild the plugin with a new VERSION number. Since we didn’t make any breaking changes we simply bump the patch release number:</p>
+
+    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial\cosmos<span class="na">-bob</span><span class="o">&gt;</span> <span class="kd">C</span>:\COSMOS\cosmos<span class="na">-control</span>.bat <span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.1
+   <span class="kd">Successfully</span> <span class="kd">built</span> <span class="kd">RubyGem</span>
+   <span class="kd">Name</span>: <span class="kd">cosmos</span><span class="na">-bob
+   </span><span class="kd">Version</span>: <span class="m">1</span>.0.1.20210618202504
+   <span class="kd">File</span>: <span class="kd">cosmos</span><span class="na">-bob</span><span class="o">-</span><span class="m">1</span>.0.1.20210618202504.gem
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Go back to the Admin page and click the Plugins Tab. This time click the clock icon next to cosmos-bob-1.0.0 to Upgrade the plugin. Browse to the newly built plugin gem and select it. This will re-prompt for the plugin variables (bob_target_name) so don’t change the name and just click OK. You should see a message about the plugin being installed at which point the plugins list will change to cosmos-bob-1.0.1.20210618202504.gem. Go back to Command Sender and you should see the new Default value for VALUE is 5 and the description is “New Value”. We have upgraded our plugin!</p>
   </li>
   <li>
     <p>At this point you can create a new plugin named after your real target and start modifying the interface and command and telemetry definitions to enable COSMOS to connect to and drive your target. If you run into trouble look for solutions on our <a href="https://github.com/BallAerospace/COSMOS/issues">Github Issues</a> page. If you would like to enquire about support contracts or professional COSMOS development please contact us at cosmos@ball.com.</p>
