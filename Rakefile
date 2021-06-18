@@ -3,7 +3,6 @@ require "fileutils"
 "build website"
 task :build do
   puts "## Pulling any updates"
-  sh "git checkout website"
   sh "git pull"
   puts "## Building website"
   sh "bundle exec jekyll build"
