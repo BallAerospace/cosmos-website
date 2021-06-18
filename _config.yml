@@ -1,0 +1,43 @@
+markdown: kramdown
+highlighter: rouge
+permalink: /news/:year/:month/:day/:title/
+excerpt_separator: ""
+
+google_analytics_id: UA-60103689-1
+
+repository: https://github.com/BallAerospace/COSMOS
+
+plugins:
+  - jekyll-toc
+
+# Collections are specified as a name and correspond to a directory
+# that consists of the name prepended with '_', e.g. _docs
+# Collections are accessed in Jekyll via site.docs or site['docs']
+# Note the collection name is available from the page, e.g. page.collection
+# Thus you can do site[page.collection] to access the collection
+collections:
+  docs: # unversioned docs
+    output: true
+    permalink: /docs/:name
+  docs_v5:
+    output: true
+    permalink: /docs/v5/:name
+  docs_v4:
+    output: true
+    permalink: /docs/v4/:name
+
+# Default collection
+default: v4
+
+exclude:
+  - Gemfile
+  - Rakefile
+  - _docs_v4/* # No longer automatically generate v4 content
+keep_files:
+  - docs/v4 # Thus we keep the existing content
+
+# These are used by the COSMOS plugins to generate content
+cosmos_root_v4: ../COSMOS4
+cosmos_root_v5: ../COSMOS/cosmos
+cosmos_meta_path: data/config
+cosmos_tool_path: install/tools
