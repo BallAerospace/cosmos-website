@@ -5,7 +5,6 @@
     - installation
     - gettingstarted
     - upgrading
-    - monitoring
 
 - title: Configuration
   docs:
@@ -35,6 +34,7 @@
   docs:
     - scripting
     - scripting_best_practices
+    - monitoring
 
 - title: Development
   docs:
