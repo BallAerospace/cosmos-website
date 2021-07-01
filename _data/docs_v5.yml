@@ -39,3 +39,4 @@
   docs:
     - json_api
     - logging
+    - testing
