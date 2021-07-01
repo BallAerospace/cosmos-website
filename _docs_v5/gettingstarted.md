@@ -7,9 +7,9 @@ Welcome to the COSMOS system... Let's get started! This guide is a high level ov
 
 1. Get COSMOS Installed onto your computer by following the [Installation Guide](/docs/v5/installation).
    - You should now have COSMOS installed and a Demo project available that we can make changes to.
-2. Browse to http://localhost:2900
+1. Browse to http://localhost:2900
    - The COSMOS Command and Telemetry Server will appear. This tool provides real-time information about each "target" in the system. Targets are external systems that receive commands and generate telemetry, often over ethernet or serial connections.
-3. Experiment with other COSMOS tools. This is a DEMO environment so you can't break anything. Some things to try:
+1. Experiment with other COSMOS tools. This is a DEMO environment so you can't break anything. Some things to try:
    - Use Command Sender to send individual commands.
    - Use Limits Monitor to watch for telemetry limits violations
    - Run some of the example scripts in Script Runner and Test Runner
@@ -44,7 +44,7 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
 1. The plugin generate creates a single target named after the plugin. Best practice is to create a single target per plugin to make it easier to share targets and upgrade them individually. Lets see what the plugin generate created for us. Open the cosmos-bob/targets/BOB/cmd_tlm/cmd.txt:
 
     ```bash
-    COMMAND BOB COMMAND BIG_ENDIAN "Packet description"
+    COMMAND BOB EXAMPLE BIG_ENDIAN "Packet description"
       # Keyword           Name  BitSize Type   Min Max  Default  Description
       APPEND_ID_PARAMETER ID    16      INT    1   1    1        "Identifier"
       APPEND_PARAMETER    VALUE 32      FLOAT  0   10.5 2.5      "Value"
@@ -55,7 +55,7 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
     ```
 
     What does this all mean?
-    - We created a COMMAND for target BOB named COMMAND.
+    - We created a COMMAND for target BOB named EXAMPLE.
     - The command is made up of BIG_ENDIAN parameters and is described by "Packet description". Here we are using the append flavor of defining parameters which stacks them back to back as it builds up the packet and you don't have to worry about defining the bit offset into the packet.
     - First we APPEND_ID_PARAMETER a parameter that is used to identify the packet called ID that is an 16-bit signed integer (INT) with a minimum value of 1, a maximum value of 1, and a default value of 1, that is described as the "Identifier".
     - Next we APPEND_PARAMETER a parameter called VALUE that is a 32-bit float (FLOAT) that has a minimum value of 0, a maximum value of 10.5, and a default value of 2.5.
@@ -108,10 +108,12 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
   <p>In a plugin that you plan to reuse you should make things like hostnames and ports variables</p>
 </div>
 
+## Building Your Plugin
+
 1. Now we need to build our plugin and upload it to COSMOS.
 
     ```batch
-    C:\tutorial\cosmos-bob> C:\COSMOS\cosmos-control.bat rake build VERSION=1.0.0
+    C:\tutorial\cosmos-bob> C:\COSMOS\cosmos-control.bat cosmos rake build VERSION=1.0.0
       Successfully built RubyGem
       Name: cosmos-bob
       Version: 1.0.0.20210618174517
@@ -125,7 +127,7 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
 1. Let's modify our BOB target and then update the copy in COSMOS. If you open Command Sender in COSMOS to BOB EXAMPLE you should see the VALUE parameter has value 2.5. Open the cosmos-bob/targets/BOB/cmd_tlm/cmd.txt and change the Default value for VALUE to 5 and the description to "New Value".
 
     ```bash
-    COMMAND BOB COMMAND BIG_ENDIAN "Packet description"
+    COMMAND BOB EXAMPLE BIG_ENDIAN "Packet description"
       # Keyword           Name  BitSize Type   Min Max  Default  Description
       APPEND_ID_PARAMETER ID    16      INT    1   1    1        "Identifier"
       APPEND_PARAMETER    VALUE 32      FLOAT  0   10.5 5        "New Value"
@@ -138,7 +140,7 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
 1. Rebuild the plugin with a new VERSION number. Since we didn't make any breaking changes we simply bump the patch release number:
 
     ```batch
-    C:\tutorial\cosmos-bob> C:\COSMOS\cosmos-control.bat rake build VERSION=1.0.1
+    C:\tutorial\cosmos-bob> C:\COSMOS\cosmos-control.bat cosmos rake build VERSION=1.0.1
       Successfully built RubyGem
       Name: cosmos-bob
       Version: 1.0.1.20210618202504
