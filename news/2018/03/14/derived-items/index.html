@@ -310,15 +310,15 @@ ITEM RECEIVED_COUNT 0 0 DERIVED "COSMOS packet received count"
 
 <p>We now need to implement average_conversion.rb to take our arguments and generate the average. Put this new file in the target’s lib folder (in the demo this is config/targets/INST/lib).</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos/conversions/conversion'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos/conversions/conversion'</span>
 <span class="k">module</span> <span class="nn">Cosmos</span>
-<span class="k">class</span> <span class="nc">AverageConversion</span> <span class="o">&lt;</span> <span class="no">Conversion</span>
-<span class="k">def</span> <span class="nf">initialize</span><span class="p">(\</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-<span class="k">super</span><span class="p">()</span>
-<span class="vi">@items</span> <span class="o">=</span> <span class="n">args</span>
-<span class="vi">@converted_type</span> <span class="o">=</span> <span class="ss">:FLOAT</span>
-<span class="vi">@converted_bit_size</span> <span class="o">=</span> <span class="mi">32</span>
-<span class="k">end</span>
+  <span class="k">class</span> <span class="nc">AverageConversion</span> <span class="o">&lt;</span> <span class="no">Conversion</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+      <span class="k">super</span><span class="p">()</span>
+      <span class="vi">@items</span> <span class="o">=</span> <span class="n">args</span>
+      <span class="vi">@converted_type</span> <span class="o">=</span> <span class="ss">:FLOAT</span>
+      <span class="vi">@converted_bit_size</span> <span class="o">=</span> <span class="mi">32</span>
+    <span class="k">end</span>
 
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">packet</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
       <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
@@ -327,15 +327,15 @@ ITEM RECEIVED_COUNT 0 0 DERIVED "COSMOS packet received count"
       <span class="k">end</span>
       <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="vi">@items</span><span class="p">.</span><span class="nf">length</span>
     <span class="k">end</span>
-
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>Here I’m using the Ruby splat operator to collect all the arguments passed into initialize and assign them to @items. I also explicitly set the @converted_type and @converted_bit_size variables (part of the Conversion base class) to :FLOAT and 32 to indicate our conversion will return a 32 bit floating point number. The call method is what actually performs the conversion. Note how it defines the same three variables I previously talked about: value, packet and buffer. I use the packet argument to read the items passed in and then divide by the total to average them.</p>
 
 <p>We’re not yet done though as we need to edit the INST/target.txt file to require this new conversion.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>REQUIRE average_conversion.rb
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>REQUIRE average_conversion.rb
 </code></pre></div></div>
 
 <p>Running this in the Demo with Telemetry Grapher shows our new average value pretty clearly.</p>

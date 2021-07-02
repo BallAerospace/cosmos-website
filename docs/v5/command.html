@@ -1262,41 +1262,40 @@ SEG_POLY_WRITE_CONVERSION 100 12 0.5 0.3 # Apply the conversion to all values &g
 <p><strong>Example File: TARGET/cmd_tlm/cmd.txt</strong></p>
 
 <!-- prettier-ignore -->
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">COMMAND TARGET COLLECT_DATA BIG_ENDIAN <span class="s2">"Commands my target to collect data"</span>
-  PARAMETER CCSDSVER 0 3 UINT 0 0 0 <span class="s2">"CCSDS PRIMARY HEADER VERSION NUMBER"</span>
-  PARAMETER CCSDSTYPE 3 1 UINT 1 1 1 <span class="s2">"CCSDS PRIMARY HEADER PACKET TYPE"</span>
-  PARAMETER CCSDSSHF 4 1 UINT 0 0 0 <span class="s2">"CCSDS PRIMARY HEADER SECONDARY HEADER FLAG"</span>
-  ID_PARAMETER CCSDSAPID 5 11 UINT 0 2047 100 <span class="s2">"CCSDS PRIMARY HEADER APPLICATION ID"</span>
-  PARAMETER CCSDSSEQFLAGS 16 2 UINT 3 3 3 <span class="s2">"CCSDS PRIMARY HEADER SEQUENCE FLAGS"</span>
-  PARAMETER CCSDSSEQCNT 18 14 UINT 0 16383 0 <span class="s2">"CCSDS PRIMARY HEADER SEQUENCE COUNT"</span>
-  PARAMETER CCSDSLENGTH 32 16 UINT 4 4 4 <span class="s2">"CCSDS PRIMARY HEADER PACKET LENGTH"</span>
-  PARAMETER ANGLE 48 32 FLOAT <span class="nt">-180</span>.0 180.0 0.0 <span class="s2">"ANGLE OF INSTRUMENT IN DEGREES"</span>
-  POLY_WRITE_CONVERSION 0 0.01745 0 0
-  PARAMETER MODE 80 8 UINT 0 1 0 <span class="s2">"DATA COLLECTION MODE"</span>
-    STATE NORMAL 0
-    STATE DIAG 1
-COMMAND TARGET NOOP BIG_ENDIAN <span class="s2">"Do Nothing"</span>
-  PARAMETER CCSDSVER 0 3 UINT 0 0 0 <span class="s2">"CCSDS PRIMARY HEADER VERSION NUMBER"</span>
-  PARAMETER CCSDSTYPE 3 1 UINT 1 1 1 <span class="s2">"CCSDS PRIMARY HEADER PACKET TYPE"</span>
-  PARAMETER CCSDSSHF 4 1 UINT 0 0 0 <span class="s2">"CCSDS PRIMARY HEADER SECONDARY HEADER FLAG"</span>
-  ID_PARAMETER CCSDSAPID 5 11 UINT 0 2047 101 <span class="s2">"CCSDS PRIMARY HEADER APPLICATION ID"</span>
-  PARAMETER CCSDSSEQFLAGS 16 2 UINT 3 3 3 <span class="s2">"CCSDS PRIMARY HEADER SEQUENCE FLAGS"</span>
-  PARAMETER CCSDSSEQCNT 18 14 UINT 0 16383 0 <span class="s2">"CCSDS PRIMARY HEADER SEQUENCE COUNT"</span>
-  PARAMETER CCSDSLENGTH 32 16 UINT 0 0 0 <span class="s2">"CCSDS PRIMARY HEADER PACKET LENGTH"</span>
-  PARAMETER DUMMY 48 8 UINT 0 0 0 <span class="s2">"DUMMY PARAMETER BECAUSE CCSDS REQUIRES 1 BYTE OF DATA"</span>
-COMMAND TARGET SETTINGS BIG_ENDIAN <span class="s2">"Set the Settings"</span>
-  PARAMETER CCSDSVER 0 3 UINT 0 0 0 <span class="s2">"CCSDS PRIMARY HEADER VERSION NUMBER"</span>
-  PARAMETER CCSDSTYPE 3 1 UINT 1 1 1 <span class="s2">"CCSDS PRIMARY HEADER PACKET TYPE"</span>
-  PARAMETER CCSDSSHF 4 1 UINT 0 0 0 <span class="s2">"CCSDS PRIMARY HEADER SECONDARY HEADER FLAG"</span>
-  ID_PARAMETER CCSDSAPID 5 11 UINT 0 2047 102 <span class="s2">"CCSDS PRIMARY HEADER APPLICATION ID"</span>
-  PARAMETER CCSDSSEQFLAGS 16 2 UINT 3 3 3 <span class="s2">"CCSDS PRIMARY HEADER SEQUENCE FLAGS"</span>
-  PARAMETER CCSDSSEQCNT 18 14 UINT 0 16383 0 <span class="s2">"CCSDS PRIMARY HEADER SEQUENCE COUNT"</span>
-  PARAMETER CCSDSLENGTH 32 16 UINT 0 0 0 <span class="s2">"CCSDS PRIMARY HEADER PACKET LENGTH"</span>
-  &lt;% 5.times <span class="k">do</span> |x| %&gt;
-  APPEND_PARAMETER SETTING&lt;%<span class="o">=</span> x %&gt; 16 UINT 0 5 0 <span class="s2">"Setting &lt;%= x %&gt;"</span>
-  &lt;% end %&gt;</code></pre></figure>
-
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">COMMAND</span> <span class="no">TARGET</span> <span class="no">COLLECT_DATA</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Commands my target to collect data"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSVER</span> <span class="mi">0</span> <span class="mi">3</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s2">"CCSDS PRIMARY HEADER VERSION NUMBER"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSTYPE</span> <span class="mi">3</span> <span class="mi">1</span> <span class="no">UINT</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="s2">"CCSDS PRIMARY HEADER PACKET TYPE"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSSHF</span> <span class="mi">4</span> <span class="mi">1</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s2">"CCSDS PRIMARY HEADER SECONDARY HEADER FLAG"</span>
+  <span class="no">ID_PARAMETER</span> <span class="no">CCSDSAPID</span> <span class="mi">5</span> <span class="mi">11</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">2047</span> <span class="mi">100</span> <span class="s2">"CCSDS PRIMARY HEADER APPLICATION ID"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSSEQFLAGS</span> <span class="mi">16</span> <span class="mi">2</span> <span class="no">UINT</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span> <span class="s2">"CCSDS PRIMARY HEADER SEQUENCE FLAGS"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSSEQCNT</span> <span class="mi">18</span> <span class="mi">14</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">16383</span> <span class="mi">0</span> <span class="s2">"CCSDS PRIMARY HEADER SEQUENCE COUNT"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSLENGTH</span> <span class="mi">32</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="mi">4</span> <span class="mi">4</span> <span class="mi">4</span> <span class="s2">"CCSDS PRIMARY HEADER PACKET LENGTH"</span>
+  <span class="no">PARAMETER</span> <span class="no">ANGLE</span> <span class="mi">48</span> <span class="mi">32</span> <span class="no">FLOAT</span> <span class="o">-</span><span class="mf">180.0</span> <span class="mf">180.0</span> <span class="mf">0.0</span> <span class="s2">"ANGLE OF INSTRUMENT IN DEGREES"</span>
+  <span class="no">POLY_WRITE_CONVERSION</span> <span class="mi">0</span> <span class="mf">0.01745</span> <span class="mi">0</span> <span class="mi">0</span>
+  <span class="no">PARAMETER</span> <span class="no">MODE</span> <span class="mi">80</span> <span class="mi">8</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="s2">"DATA COLLECTION MODE"</span>
+    <span class="no">STATE</span> <span class="no">NORMAL</span> <span class="mi">0</span>
+    <span class="no">STATE</span> <span class="no">DIAG</span> <span class="mi">1</span>
+<span class="no">COMMAND</span> <span class="no">TARGET</span> <span class="no">NOOP</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Do Nothing"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSVER</span> <span class="mi">0</span> <span class="mi">3</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s2">"CCSDS PRIMARY HEADER VERSION NUMBER"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSTYPE</span> <span class="mi">3</span> <span class="mi">1</span> <span class="no">UINT</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="s2">"CCSDS PRIMARY HEADER PACKET TYPE"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSSHF</span> <span class="mi">4</span> <span class="mi">1</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s2">"CCSDS PRIMARY HEADER SECONDARY HEADER FLAG"</span>
+  <span class="no">ID_PARAMETER</span> <span class="no">CCSDSAPID</span> <span class="mi">5</span> <span class="mi">11</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">2047</span> <span class="mi">101</span> <span class="s2">"CCSDS PRIMARY HEADER APPLICATION ID"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSSEQFLAGS</span> <span class="mi">16</span> <span class="mi">2</span> <span class="no">UINT</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span> <span class="s2">"CCSDS PRIMARY HEADER SEQUENCE FLAGS"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSSEQCNT</span> <span class="mi">18</span> <span class="mi">14</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">16383</span> <span class="mi">0</span> <span class="s2">"CCSDS PRIMARY HEADER SEQUENCE COUNT"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSLENGTH</span> <span class="mi">32</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s2">"CCSDS PRIMARY HEADER PACKET LENGTH"</span>
+  <span class="no">PARAMETER</span> <span class="no">DUMMY</span> <span class="mi">48</span> <span class="mi">8</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s2">"DUMMY PARAMETER BECAUSE CCSDS REQUIRES 1 BYTE OF DATA"</span>
+<span class="no">COMMAND</span> <span class="no">TARGET</span> <span class="no">SETTINGS</span> <span class="no">BIG_ENDIAN</span> <span class="s2">"Set the Settings"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSVER</span> <span class="mi">0</span> <span class="mi">3</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s2">"CCSDS PRIMARY HEADER VERSION NUMBER"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSTYPE</span> <span class="mi">3</span> <span class="mi">1</span> <span class="no">UINT</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="s2">"CCSDS PRIMARY HEADER PACKET TYPE"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSSHF</span> <span class="mi">4</span> <span class="mi">1</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s2">"CCSDS PRIMARY HEADER SECONDARY HEADER FLAG"</span>
+  <span class="no">ID_PARAMETER</span> <span class="no">CCSDSAPID</span> <span class="mi">5</span> <span class="mi">11</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">2047</span> <span class="mi">102</span> <span class="s2">"CCSDS PRIMARY HEADER APPLICATION ID"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSSEQFLAGS</span> <span class="mi">16</span> <span class="mi">2</span> <span class="no">UINT</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span> <span class="s2">"CCSDS PRIMARY HEADER SEQUENCE FLAGS"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSSEQCNT</span> <span class="mi">18</span> <span class="mi">14</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">16383</span> <span class="mi">0</span> <span class="s2">"CCSDS PRIMARY HEADER SEQUENCE COUNT"</span>
+  <span class="no">PARAMETER</span> <span class="no">CCSDSLENGTH</span> <span class="mi">32</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="s2">"CCSDS PRIMARY HEADER PACKET LENGTH"</span>
+  <span class="o">&lt;</span><span class="sx">% 5.times </span><span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="sx">%&gt;
+  APPEND_PARAMETER SETTING&lt;%= x %&gt;</span> <span class="mi">16</span> <span class="no">UINT</span> <span class="mi">0</span> <span class="mi">5</span> <span class="mi">0</span> <span class="s2">"Setting &lt;%= x %&gt;"</span>
+  <span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span>
+</code></pre></div></div>
 
       </article>
     </div>

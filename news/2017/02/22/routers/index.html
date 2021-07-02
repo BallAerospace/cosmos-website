@@ -294,18 +294,20 @@ PORT CTS_PREIDENTIFIED 7779
 
 <p>To connect to the INST_ROUTER that we created we can write a little Ruby code using existing COSMOS interface classes and streams.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos'</span>
 <span class="nb">require</span> <span class="s1">'cosmos/interfaces/tcpip_client_interface'</span>
+
 <span class="n">i</span> <span class="o">=</span> <span class="no">Cosmos</span><span class="o">::</span><span class="no">TcpipClientInterface</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'localhost'</span><span class="p">,</span><span class="mi">2055</span><span class="p">,</span><span class="mi">2055</span><span class="p">,</span><span class="kp">nil</span><span class="p">,</span><span class="kp">nil</span><span class="p">,</span><span class="s1">'LENGTH'</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
 <span class="n">i</span><span class="p">.</span><span class="nf">connect</span>
 <span class="kp">loop</span> <span class="k">do</span>
-<span class="n">pkt</span> <span class="o">=</span> <span class="no">Cosmos</span><span class="o">::</span><span class="no">System</span><span class="p">.</span><span class="nf">telemetry</span><span class="p">.</span><span class="nf">identify!</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="nf">read</span><span class="p">.</span><span class="nf">buffer</span><span class="p">,</span> <span class="p">[</span><span class="s1">'INST'</span><span class="p">])</span>
-<span class="nb">puts</span> <span class="n">pkt</span><span class="p">.</span><span class="nf">packet_name</span>
-<span class="k">end</span></code></pre></figure>
+  <span class="n">pkt</span> <span class="o">=</span> <span class="no">Cosmos</span><span class="o">::</span><span class="no">System</span><span class="p">.</span><span class="nf">telemetry</span><span class="p">.</span><span class="nf">identify!</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="nf">read</span><span class="p">.</span><span class="nf">buffer</span><span class="p">,</span> <span class="p">[</span><span class="s1">'INST'</span><span class="p">])</span>
+  <span class="nb">puts</span> <span class="n">pkt</span><span class="p">.</span><span class="nf">packet_name</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>Obviously we need the TCPIP Client Interface to match the port number of the TCPIP Server and we also need to match the LENGTH protocol options. Notice how we have to call the System.telemetry.identify! method to identify the raw packet stream. When I run this from a command prompt after starting the Server I see a stream of packet names similar to this:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MECH
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MECH
 ADCS
 MECH
 IMAGE
@@ -321,14 +323,16 @@ ADCS
 
 <p>We can also write some code to connect to the PREIDENTIFIED router. It looks very similar to the previous code except we do not need to identify the packets as they are pre-identified!</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos'</span>
 <span class="nb">require</span> <span class="s1">'cosmos/interfaces/tcpip_client_interface'</span>
+
 <span class="n">i</span> <span class="o">=</span> <span class="no">Cosmos</span><span class="o">::</span><span class="no">TcpipClientInterface</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'localhost'</span><span class="p">,</span><span class="mi">7779</span><span class="p">,</span><span class="mi">7779</span><span class="p">,</span><span class="kp">nil</span><span class="p">,</span><span class="kp">nil</span><span class="p">,</span><span class="s1">'PREIDENTIFIED'</span><span class="p">)</span>
 <span class="n">i</span><span class="p">.</span><span class="nf">connect</span>
 <span class="kp">loop</span> <span class="k">do</span>
-<span class="n">pkt</span> <span class="o">=</span> <span class="n">i</span><span class="p">.</span><span class="nf">read</span>
-<span class="nb">puts</span> <span class="n">pkt</span><span class="p">.</span><span class="nf">packet_name</span>
-<span class="k">end</span></code></pre></figure>
+  <span class="n">pkt</span> <span class="o">=</span> <span class="n">i</span><span class="p">.</span><span class="nf">read</span>
+  <span class="nb">puts</span> <span class="n">pkt</span><span class="p">.</span><span class="nf">packet_name</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>This time you should see some LIMITS_CHANGE packet names sprinkled in with the output from before. That’s because we’re accessing the ENTIRE COSMOS telemetry stream and not just the stream from the INST interface. Keep this in mind if you have performance issues when trying to process the entire telemetry stream.</p>
 

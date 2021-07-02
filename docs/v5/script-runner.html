@@ -212,7 +212,8 @@
 
 <p>All suite files should start with the following line:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">load</span> <span class="s1">'cosmos/script/suite.rb'</span></code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">load</span> <span class="s1">'cosmos/script/suite.rb'</span>
+</code></pre></div></div>
 
 <h3 id="cosmosgroup">
 <a class="anchor" href="#cosmosgroup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cosmos::Group</h3>
@@ -220,8 +221,7 @@
 <p>This pulls in the COSMOS suite framework including the Cosmos::Suite and Cosmos::Group classes. Any methods starting with ‘script’, ‘op’, or ‘test’ which are implemented inside a Cosmos::Group class are automatically included as scripts to run. For example, in the above image, you’ll notice the ‘script_1_method_with_long_name’ is in the Script drop down menu. Here’s another simple example:</p>
 
 <!-- prettier-ignore -->
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">ExampleGroup</span> <span class="o">&lt;</span> <span class="no">Cosmos</span><span class="o">::</span><span class="no">Group</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ExampleGroup</span> <span class="o">&lt;</span> <span class="no">Cosmos</span><span class="o">::</span><span class="no">Group</span>
   <span class="k">def</span> <span class="nf">setup</span>
     <span class="nb">puts</span> <span class="s2">"setup"</span>
   <span class="k">end</span>
@@ -231,7 +231,8 @@
   <span class="k">def</span> <span class="nf">teardown</span>
     <span class="nb">puts</span> <span class="s2">"teardown"</span>
   <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>The setup and teardown methods are special methods which enable the Setup and Teardown buttons next to the Group drop down menu. Clicking these buttons runs the associated method.</p>
 
@@ -241,8 +242,7 @@
 <p>Groups are added to Suites by creating a class inheriting from Cosmos::Suite and then calling the add_group method. For example:</p>
 
 <!-- prettier-ignore -->
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">MySuite</span> <span class="o">&lt;</span> <span class="no">Cosmos</span><span class="o">::</span><span class="no">Suite</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MySuite</span> <span class="o">&lt;</span> <span class="no">Cosmos</span><span class="o">::</span><span class="no">Suite</span>
   <span class="k">def</span> <span class="nf">initialize</span>
     <span class="k">super</span><span class="p">()</span>
     <span class="n">add_group</span><span class="p">(</span><span class="s1">'ExampleGroup'</span><span class="p">)</span>
@@ -253,7 +253,8 @@
   <span class="k">def</span> <span class="nf">teardown</span>
     <span class="nb">puts</span> <span class="s2">"Suite teardown"</span>
   <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>Again there are setup and teardown methods which enable the Setup and Teardown buttons next to the Suite drop down menu.</p>
 

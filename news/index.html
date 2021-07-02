@@ -1800,15 +1800,15 @@ ITEM RECEIVED_COUNT 0 0 DERIVED "COSMOS packet received count"
 
 <p>We now need to implement average_conversion.rb to take our arguments and generate the average. Put this new file in the target’s lib folder (in the demo this is config/targets/INST/lib).</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos/conversions/conversion'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos/conversions/conversion'</span>
 <span class="k">module</span> <span class="nn">Cosmos</span>
-<span class="k">class</span> <span class="nc">AverageConversion</span> <span class="o">&lt;</span> <span class="no">Conversion</span>
-<span class="k">def</span> <span class="nf">initialize</span><span class="p">(\</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-<span class="k">super</span><span class="p">()</span>
-<span class="vi">@items</span> <span class="o">=</span> <span class="n">args</span>
-<span class="vi">@converted_type</span> <span class="o">=</span> <span class="ss">:FLOAT</span>
-<span class="vi">@converted_bit_size</span> <span class="o">=</span> <span class="mi">32</span>
-<span class="k">end</span>
+  <span class="k">class</span> <span class="nc">AverageConversion</span> <span class="o">&lt;</span> <span class="no">Conversion</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+      <span class="k">super</span><span class="p">()</span>
+      <span class="vi">@items</span> <span class="o">=</span> <span class="n">args</span>
+      <span class="vi">@converted_type</span> <span class="o">=</span> <span class="ss">:FLOAT</span>
+      <span class="vi">@converted_bit_size</span> <span class="o">=</span> <span class="mi">32</span>
+    <span class="k">end</span>
 
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">packet</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
       <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1817,15 +1817,15 @@ ITEM RECEIVED_COUNT 0 0 DERIVED "COSMOS packet received count"
       <span class="k">end</span>
       <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="vi">@items</span><span class="p">.</span><span class="nf">length</span>
     <span class="k">end</span>
-
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>Here I’m using the Ruby splat operator to collect all the arguments passed into initialize and assign them to @items. I also explicitly set the @converted_type and @converted_bit_size variables (part of the Conversion base class) to :FLOAT and 32 to indicate our conversion will return a 32 bit floating point number. The call method is what actually performs the conversion. Note how it defines the same three variables I previously talked about: value, packet and buffer. I use the packet argument to read the items passed in and then divide by the total to average them.</p>
 
 <p>We’re not yet done though as we need to edit the INST/target.txt file to require this new conversion.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>REQUIRE average_conversion.rb
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>REQUIRE average_conversion.rb
 </code></pre></div></div>
 
 <p>Running this in the Demo with Telemetry Grapher shows our new average value pretty clearly.</p>
@@ -1879,22 +1879,24 @@ ITEM RECEIVED_COUNT 0 0 DERIVED "COSMOS packet received count"
 
 <p>You can get this same information from a script by executing the following script in Script Runner.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">puts</span> <span class="s2">"Overall limits state: </span><span class="si">#{</span><span class="n">get_overall_limits_state</span><span class="si">}</span><span class="s2">"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">puts</span> <span class="s2">"Overall limits state: </span><span class="si">#{</span><span class="n">get_overall_limits_state</span><span class="si">}</span><span class="s2">"</span>
 <span class="n">get_out_of_limits</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
-<span class="n">tgt</span><span class="p">,</span> <span class="n">pkt</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">item</span>
-<span class="nb">puts</span> <span class="s2">"tgt:</span><span class="si">#{</span><span class="n">tgt</span><span class="si">}</span><span class="s2"> pkt:</span><span class="si">#{</span><span class="n">pkt</span><span class="si">}</span><span class="s2"> item:</span><span class="si">#{</span><span class="n">item</span><span class="si">}</span><span class="s2"> state:</span><span class="si">#{</span><span class="n">state</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span></code></pre></figure>
+  <span class="n">tgt</span><span class="p">,</span> <span class="n">pkt</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">item</span>
+  <span class="nb">puts</span> <span class="s2">"tgt:</span><span class="si">#{</span><span class="n">tgt</span><span class="si">}</span><span class="s2"> pkt:</span><span class="si">#{</span><span class="n">pkt</span><span class="si">}</span><span class="s2"> item:</span><span class="si">#{</span><span class="n">item</span><span class="si">}</span><span class="s2"> state:</span><span class="si">#{</span><span class="n">state</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>Note that the get_out_of_limits call returns the items which are out of limits at the exact instant of the API call. Thus it doesn’t provide history like the Limits Monitor tool.</p>
 
 <p>You can also disable and enable limits on individual telemetry items using the API. The following script will disable limits on TEMP1 and then after 5 seconds it re-enables limits. Run this with the Limits Monitor open and you’ll notice the text for the INST HEALTH_STATUS TEMP1 telemetry point turns black when limits are disabled. Note that this disables limits events logging in the Command and Telemetry Server for this telemetry point.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">puts</span> <span class="s2">"TEMP1 limits enable:</span><span class="si">#{</span><span class="n">limits_enabled?</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">,</span> <span class="s2">"TEMP1"</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">puts</span> <span class="s2">"TEMP1 limits enable:</span><span class="si">#{</span><span class="n">limits_enabled?</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">,</span> <span class="s2">"TEMP1"</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
 <span class="n">disable_limits</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">,</span> <span class="s2">"TEMP1"</span><span class="p">)</span>
 <span class="nb">puts</span> <span class="s2">"TEMP1 limits enable:</span><span class="si">#{</span><span class="n">limits_enabled?</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">,</span> <span class="s2">"TEMP1"</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
 <span class="n">wait</span> <span class="mi">5</span>
 <span class="n">enable_limits</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">,</span> <span class="s2">"TEMP1"</span><span class="p">)</span>
-<span class="nb">puts</span> <span class="s2">"TEMP1 limits enable:</span><span class="si">#{</span><span class="n">limits_enabled?</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">,</span> <span class="s2">"TEMP1"</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span></code></pre></figure>
+<span class="nb">puts</span> <span class="s2">"TEMP1 limits enable:</span><span class="si">#{</span><span class="n">limits_enabled?</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">,</span> <span class="s2">"TEMP1"</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+</code></pre></div></div>
 
 <h2 id="limits-sets">Limits Sets</h2>
 
@@ -1912,10 +1914,11 @@ ITEM RECEIVED_COUNT 0 0 DERIVED "COSMOS packet received count"
 
 <p>You can also manipulate the limits sets programatically from a script.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">get_limits_sets</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">set</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"Limits Set:</span><span class="si">#{</span><span class="n">set</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_limits_sets</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">set</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"Limits Set:</span><span class="si">#{</span><span class="n">set</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span>
 <span class="nb">puts</span> <span class="s2">"Current Set:</span><span class="si">#{</span><span class="n">get_limits_set</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span> <span class="c1"># Currently selected limits set</span>
 <span class="n">set_limits_set</span><span class="p">(</span><span class="s2">"DEFAULT"</span><span class="p">)</span> <span class="c1"># Change to DEFAULT</span>
-<span class="n">set_limits_set</span><span class="p">(</span><span class="s2">"TVAC"</span><span class="p">)</span> <span class="c1"># Change to TVAC</span></code></pre></figure>
+<span class="n">set_limits_set</span><span class="p">(</span><span class="s2">"TVAC"</span><span class="p">)</span> <span class="c1"># Change to TVAC</span>
+</code></pre></div></div>
 
 <h2 id="limits-groups">Limits Groups</h2>
 
@@ -1925,7 +1928,7 @@ ITEM RECEIVED_COUNT 0 0 DERIVED "COSMOS packet received count"
 
 <p>Items are assigned to a group using the <a href="/docs/v4/telemetry#limits_group_item">LIMITS_GROUP_ITEM</a> keyword. Here is the definition in the COSMOS demo.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LIMITS_GROUP INST2_TEMP2
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LIMITS_GROUP INST2_TEMP2
   LIMITS_GROUP_ITEM INST2 HEALTH_STATUS TEMP2
 
 LIMITS_GROUP INST2_GROUND
@@ -1937,43 +1940,48 @@ LIMITS_GROUP INST2_GROUND
 
 <p>You can also manipulate the limits groups programatically from a script.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">get_limits_groups</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">group</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"Limits Group:</span><span class="si">#{</span><span class="n">group</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_limits_groups</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">group</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"Limits Group:</span><span class="si">#{</span><span class="n">group</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span>
 <span class="n">enable_limits_group</span><span class="p">(</span><span class="s2">"INST2_TEMP2"</span><span class="p">)</span>
-<span class="n">disable_limits_group</span><span class="p">(</span><span class="s2">"INST2_GROUND"</span><span class="p">)</span></code></pre></figure>
+<span class="n">disable_limits_group</span><span class="p">(</span><span class="s2">"INST2_GROUND"</span><span class="p">)</span>
+</code></pre></div></div>
 
 <h3 id="automating-limits-groups">Automating Limits Groups</h3>
 
 <p>COSMOS also has the ability to automatically enable and disable limits groups based on user configurable conditions. For example, you can automatically enable the group for a particular device when the power supply voltage for that device goes high (the device is powered on). The COSMOS demo has an example of this in the SYSTEM/lib/limits_groups.rb file.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos/tools/cmd_tlm_server/limits_groups_background_task'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos/tools/cmd_tlm_server/limits_groups_background_task'</span>
 
 <span class="k">module</span> <span class="nn">Cosmos</span>
-
-<span class="c1"># Inheriting from the LimitsGroupsBackgroundTask provides a framework for</span>
-
-<span class="c1"># automatically enabling and disabling limits groups based on telemetry.</span>
-
-<span class="k">class</span> <span class="nc">LimitsGroups</span> <span class="o">&lt;</span> <span class="no">LimitsGroupsBackgroundTask</span>
-<span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">initial_delay</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">task_delay</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="c1"># Initial delay upon starting the server before staring the group checks # followed by the background task delay between check iterations</span>
-<span class="k">super</span><span class="p">(</span><span class="n">initial_delay</span><span class="p">,</span> <span class="n">task_delay</span><span class="p">)</span> <span class="c1"># Creating a Proc allows for arbitrary code to be executed when a group # is enabled or disabled.</span>
-<span class="vi">@temp2_enable_code</span> <span class="o">=</span> <span class="no">Proc</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
-<span class="n">enable_limits_group</span><span class="p">(</span><span class="s1">'INST2_GROUND'</span><span class="p">)</span> <span class="c1"># Enable the INST2_GROUND group</span>
+  <span class="c1"># Inheriting from the LimitsGroupsBackgroundTask provides a framework for</span>
+  <span class="c1"># automatically enabling and disabling limits groups based on telemetry.</span>
+  <span class="k">class</span> <span class="nc">LimitsGroups</span> <span class="o">&lt;</span> <span class="no">LimitsGroupsBackgroundTask</span>
+    <span class="c1"># Initial delay upon starting the server before staring the group checks</span>
+    <span class="c1"># followed by the background task delay between check iterations</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">initial_delay</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">task_delay</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+      <span class="k">super</span><span class="p">(</span><span class="n">initial_delay</span><span class="p">,</span> <span class="n">task_delay</span><span class="p">)</span>
+      <span class="c1"># Creating a Proc allows for arbitrary code to be executed when a group is enabled or disabled</span>
+      <span class="vi">@temp2_enable_code</span> <span class="o">=</span> <span class="no">Proc</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
+        <span class="n">enable_limits_group</span><span class="p">(</span><span class="s1">'INST2_GROUND'</span><span class="p">)</span> <span class="c1"># Enable the INST2_GROUND group</span>
+      <span class="k">end</span>
+      <span class="vi">@temp2_disable_code</span> <span class="o">=</span> <span class="no">Proc</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
+        <span class="n">disable_limits_group</span><span class="p">(</span><span class="s1">'INST2_GROUND'</span><span class="p">)</span> <span class="c1"># Disable the INST2_GROUND group</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="vi">@temp2_disable_code</span> <span class="o">=</span> <span class="no">Proc</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
-<span class="n">disable_limits_group</span><span class="p">(</span><span class="s1">'INST2_GROUND'</span><span class="p">)</span> <span class="c1"># Disable the INST2_GROUND group</span>
-<span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>You first must require the COSMOS base class and inherit from LimitsGroupsBackgroundTask. The constructor (initialize) takes two delay parameters. The first is the initial delay after starting the Command and Telemetry Server before the task starts checking your logical conditions. The second is the delay between doing the checks (it controls the rate of the task). After calling super (important!) a Proc is created to run arbitrary code when a particular group is enabled or disabled. Note this is entirely optional but in this case we wanted to enable the INST2_GROUND group when the INST2_TEMP2 group got enabled. The @temp2_enable_code and @temp2_disable_code names don’t really matter but they must be unique and have the ‘@’ symbol to make them Ruby instance variables (rather than locals).</p>
 
 <p>After the constructor is configured the method to perform the check is implemented.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">check_inst2_temp2</span>
-<span class="n">process_group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="vi">@temp2_enable_code</span><span class="p">,</span> <span class="vi">@temp2_disable_code</span><span class="p">)</span> <span class="k">do</span>
-<span class="n">val</span> <span class="o">=</span> <span class="n">tlm</span><span class="p">(</span><span class="s2">"INST2 HEALTH_STATUS TEMP2"</span><span class="p">)</span>
-<span class="k">return</span> <span class="p">(</span><span class="o">!</span><span class="n">val</span><span class="p">.</span><span class="nf">nan?</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">val</span><span class="p">.</span><span class="nf">infinite?</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">check_inst2_temp2</span>
+  <span class="n">process_group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="vi">@temp2_enable_code</span><span class="p">,</span> <span class="vi">@temp2_disable_code</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">tlm</span><span class="p">(</span><span class="s2">"INST2 HEALTH_STATUS TEMP2"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="o">!</span><span class="n">val</span><span class="p">.</span><span class="nf">nan?</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">val</span><span class="p">.</span><span class="nf">infinite?</span><span class="p">)</span>
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>The method name is very important. It must begin with ‘check_’ and end with the name of a Limits Group defined by the LIMITS_GROUP keyword. In the demo, LIMITS_GROUP(s) are defined in config/targets/SYSTEM/cmd_tlm/limits_groups.txt. Since there is a LIMITS_GROUP INST2_TEMP2 we have a match (the method name should be lower case while the LIMITS_GROUP is typically defined to be uppercase).</p>
 
@@ -1981,8 +1989,8 @@ LIMITS_GROUP INST2_GROUND
 
 <p>The code inside the process_group block (the lines after ‘do’ and before ‘end’) must return a boolean. True will enable the group and false will disable the group. In this example, the group is enabled when the value is not NaN (Not a Number) and not Infinite. If the value is NaN or Infinite the group is disabled. You can watch this happening in the demo by watching the bottom log portion of the Command and Telemetry Server.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2018/02/12 09:12:58.118  ERROR: INST HEALTH_STATUS TEMP2 = NaN is RED_LOW
-2018/02/12 09:12:58.121  ERROR: INST2 HEALTH_STATUS TEMP2 = NaN is RED_LOW
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2018/02/12 09:12:58.118  ERROR: INST HEALTH_STATUS TEMP2 <span class="o">=</span> NaN is RED_LOW
+2018/02/12 09:12:58.121  ERROR: INST2 HEALTH_STATUS TEMP2 <span class="o">=</span> NaN is RED_LOW
 2018/02/12 09:12:58.220  INFO: Disabling Limits Group: INST2_TEMP2
 2018/02/12 09:12:58.220  INFO: Disabling Limits Group: INST2_GROUND
 </code></pre></div></div>
@@ -2009,26 +2017,25 @@ LIMITS_GROUP INST2_GROUND
 
 <p>Here’s a example of using the subscription APIs.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">id</span> <span class="o">=</span> <span class="n">subscribe_limits_events</span><span class="p">()</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">id</span> <span class="o">=</span> <span class="n">subscribe_limits_events</span><span class="p">()</span>
 <span class="k">while</span> <span class="kp">true</span>
-<span class="n">type</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">get_limits_event</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="c1"># block waiting</span>
-<span class="nb">puts</span> <span class="s2">"type:</span><span class="si">#{</span><span class="n">type</span><span class="si">}</span><span class="s2"> data:</span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="s2">"</span>
-
-<span class="c1"># break if XXX # Break the loop when ...</span>
-
+  <span class="n">type</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">get_limits_event</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="c1"># block waiting</span>
+  <span class="nb">puts</span> <span class="s2">"type:</span><span class="si">#{</span><span class="n">type</span><span class="si">}</span><span class="s2"> data:</span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="s2">"</span>
+  <span class="c1"># break if XXX # Break the loop when ...</span>
 <span class="k">end</span>
 <span class="n">unsubscribe_limits_events</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
 
 <span class="nb">id</span> <span class="o">=</span> <span class="n">subscribe_limits_events</span><span class="p">()</span>
 <span class="k">while</span> <span class="kp">true</span>
-<span class="k">begin</span>
-<span class="n">type</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">get_limits_event</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span> <span class="c1"># don't block</span>
-<span class="nb">puts</span> <span class="s2">"type:</span><span class="si">#{</span><span class="n">type</span><span class="si">}</span><span class="s2"> data:</span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="s2">"</span> <span class="c1"># break if XXX # Break the loop when ...</span>
-<span class="k">rescue</span> <span class="no">ThreadError</span> <span class="c1"># raised if no event present</span>
-<span class="n">wait</span> <span class="mi">1</span> <span class="c1"># Wait before checking again</span>
+  <span class="k">begin</span>
+    <span class="n">type</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">get_limits_event</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span> <span class="c1"># don't block</span>
+    <span class="nb">puts</span> <span class="s2">"type:</span><span class="si">#{</span><span class="n">type</span><span class="si">}</span><span class="s2"> data:</span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="s2">"</span> <span class="c1"># break if XXX # Break the loop when ...</span>
+  <span class="k">rescue</span> <span class="no">ThreadError</span> <span class="c1"># raised if no event present</span>
+    <span class="n">wait</span> <span class="mi">1</span> <span class="c1"># Wait before checking again</span>
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span>
-<span class="n">unsubscribe_limits_events</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span></code></pre></figure>
+<span class="n">unsubscribe_limits_events</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+</code></pre></div></div>
 
 <h2 id="conclusion">Conclusion</h2>
 
@@ -2376,27 +2383,27 @@ COLLECT_METADATA
 
 <p>The Ruby programming language defines the keywords ‘require’ and ‘load’. These are actually methods on the Kernel class and you can find the full documention on <a href="https://ruby-doc.org/">ruby-doc.org</a> for both <a href="https://ruby-doc.org/core-2.4.2/Kernel.html#method-i-require">require</a> and <a href="https://ruby-doc.org/core-2.4.2/Kernel.html#method-i-load">load</a>. They basically include additional Ruby source files into the current execution environment so they can be used by your code. The key difference is that require will only include a file once. If you try to require a file a second time the require method actually returns false indicating that the file has already been required. You can easily test this by opening an IRB session and requiring something twice.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irb(main):001:0&gt; require 'cosmos'
-=&gt; true
-irb(main):002:0&gt; require 'cosmos'
-=&gt; false
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irb<span class="o">(</span>main<span class="o">)</span>:001:0&gt; require <span class="s1">'cosmos'</span>
+<span class="o">=&gt;</span> <span class="nb">true
+</span>irb<span class="o">(</span>main<span class="o">)</span>:002:0&gt; require <span class="s1">'cosmos'</span>
+<span class="o">=&gt;</span> <span class="nb">false</span>
 </code></pre></div></div>
 
 <p>This has key implications for usage in COSMOS, especially when writing scripts for use in Script Runner or Test Runner. Let’s say you have a subroutine that you want to call (and don’t want to watch the line by line execution of). You require it in your script and execute it. You realize you have a bug in this required script and edit the file. Now you re-run the top level script but notice none of your changes have been include! What gives?! The require keyword notices that you’ve already required the file and thus does not re-load it on the next execution of your script. This has led some COSMOS users to simply close and re-open Script Runner or Test Runner each time they edit something. While this solves the require problem there is a better solution: load.</p>
 
 <p>The load keyword loads the specified file everytime and thus reparses any changes that may have been made to the file in question. This is almost always what you want to use when writing scripts for COSMOS as it allows you to edit files and be assured that you will be running the latest. Note the difference when using load in this IRB session.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irb(main):001:0&gt; load 'cosmos.rb'
-=&gt; true
-irb(main):002:0&gt; load 'cosmos.rb'
-=&gt; true
-irb(main):003:0&gt; load 'cosmos'
-LoadError: cannot load such file -- cosmos
-        from (irb):3:in `load'
-        from (irb):3
-        from C:/Ruby233p222-x64/bin/irb.cmd:19:in `&lt;main&gt;'
-irb(main):004:0&gt; require 'cosmos.rb'
-=&gt; true
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irb<span class="o">(</span>main<span class="o">)</span>:001:0&gt; load <span class="s1">'cosmos.rb'</span>
+<span class="o">=&gt;</span> <span class="nb">true
+</span>irb<span class="o">(</span>main<span class="o">)</span>:002:0&gt; load <span class="s1">'cosmos.rb'</span>
+<span class="o">=&gt;</span> <span class="nb">true
+</span>irb<span class="o">(</span>main<span class="o">)</span>:003:0&gt; load <span class="s1">'cosmos'</span>
+LoadError: cannot load such file <span class="nt">--</span> cosmos
+        from <span class="o">(</span>irb<span class="o">)</span>:3:in <span class="s1">'load'</span>
+        from <span class="o">(</span>irb<span class="o">)</span>:3
+        from C:/Ruby233p222-x64/bin/irb.cmd:19:in <span class="s1">'&lt;main&gt;'</span>
+irb<span class="o">(</span>main<span class="o">)</span>:004:0&gt; require <span class="s1">'cosmos.rb'</span>
+<span class="o">=&gt;</span> <span class="nb">true</span>
 </code></pre></div></div>
 
 <p>When using the keyword load you must add the .rb Ruby extension to the file you are trying to load. Leaving this off (which is allowed with the require keyword) will result in a LoadError as shown above. Note that require works with or without the .rb Ruby extension and that the previous load of cosmos.rb did not affect the require of cosmos.rb (it still had never been required).</p>
@@ -2411,8 +2418,8 @@ irb(main):004:0&gt; require 'cosmos.rb'
 
 <p>After talking aobut require and load I think this is a good place to talk a little about the Ruby Load Path since it directly affects whether a require or load will succeed. The overall Ruby load path can be found by typing $LOAD_PATH. Doing this in my IRB session running Ruby 2.3.3 results in the following.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irb(main):004:0&gt; puts $LOAD_PATH
-C:\git\cosmos\lib
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irb<span class="o">(</span>main<span class="o">)</span>:004:0&gt; puts <span class="nv">$LOAD_PATH</span>
+C:<span class="se">\g</span>it<span class="se">\c</span>osmos<span class="se">\l</span>ib
 C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/did_you_mean-1.0.0/lib
 C:/Ruby233p222-x64/lib/ruby/site_ruby/2.3.0
 C:/Ruby233p222-x64/lib/ruby/site_ruby/2.3.0/x64-msvcrt
@@ -2422,18 +2429,18 @@ C:/Ruby233p222-x64/lib/ruby/vendor_ruby/2.3.0/x64-msvcrt
 C:/Ruby233p222-x64/lib/ruby/vendor_ruby
 C:/Ruby233p222-x64/lib/ruby/2.3.0
 C:/Ruby233p222-x64/lib/ruby/2.3.0/x64-mingw32
-=&gt; nil
+<span class="o">=&gt;</span> nil
 </code></pre></div></div>
 
 <p>You’ll notice most of these paths are relative to my Ruby installation at C:/Ruby233p222. I also have an entry for my developer copy of COSMOS due to my environment variable of RUBYLIB=C:\git\cosmos\lib. As a COSMOS developer I have this variable set but you most likely will not. Setting the RUBYLIB environment variable is useful when developing but can interfere with loading gems since it is at the top of the $LOAD_PATH.</p>
 
 <p>When you start requiring other libraries they typically add things to your LOAD_PATH. Watch what happens when I require ‘cosmos’.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irb(main):001:0&gt; require 'cosmos'
-=&gt; true
-irb(main):002:0&gt; puts $LOAD_PATH
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irb<span class="o">(</span>main<span class="o">)</span>:001:0&gt; require <span class="s1">'cosmos'</span>
+<span class="o">=&gt;</span> <span class="nb">true
+</span>irb<span class="o">(</span>main<span class="o">)</span>:002:0&gt; puts <span class="nv">$LOAD_PATH</span>
 C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/uuidtools-2.1.5/lib
-C:\git\cosmos\lib
+C:<span class="se">\g</span>it<span class="se">\c</span>osmos<span class="se">\l</span>ib
 C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/did_you_mean-1.0.0/lib
 C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/bundler-1.15.4/lib
 C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/json-1.8.6/lib
@@ -2453,117 +2460,117 @@ C:/Ruby233p222-x64/lib/ruby/vendor_ruby/2.3.0/x64-msvcrt
 C:/Ruby233p222-x64/lib/ruby/vendor_ruby
 C:/Ruby233p222-x64/lib/ruby/2.3.0
 C:/Ruby233p222-x64/lib/ruby/2.3.0/x64-mingw32
-=&gt; nil
+<span class="o">=&gt;</span> nil
 </code></pre></div></div>
 
 <p>Now a bunch of gems have added themselves to my $LOAD_PATH. These gems are the gems that cosmos has dependencies on. Note that when you require or load a file the $LOAD_PATH entries are searched in order. Thus in the above example a file in the uuidtools library will be found before a file in the rubyzip library.</p>
 
 <p>You can display your $LOAD_PATH from Script Runner by simply running “puts $LOAD_PATH” from Script Runner. When I do this I get the following in my Script Output:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2017/11/13 10:58:21.815 (SCRIPTRUNNER): Starting script:
-2017/11/13 10:58:22.076 (:1): C:/git/COSMOS/demo/procedures
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/uuidtools-2.1.5/lib
-2017/11/13 10:58:22.076 (:1): C:/git/COSMOS/demo/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/bundler-1.15.4/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/ruby-prof-0.15.9/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/extensions/x64-mingw32/2.3.0/ruby-prof-0.15.9
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/roodi-4.1.1/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/reek-1.6.6/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/unparser-0.2.4/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rainbow-2.2.2/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/extensions/x64-mingw32/2.3.0/rainbow-2.2.2
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/procto-0.0.3/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/parser-2.2.3.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/guard-rspec-4.7.3/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rspec-3.5.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rspec-mocks-3.5.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rspec-expectations-3.5.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rspec-core-3.5.4/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rspec-support-3.5.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/guard-bundler-2.1.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/guard-compat-1.2.1/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/guard-2.14.1/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/notiffany-0.1.1/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/shellany-0.0.1/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/nenv-0.3.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/lumberjack-1.0.12/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/listen-2.10.1/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rb-inotify-0.9.10/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rb-fsevent-0.10.2/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/formatador-0.2.5/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/flog-4.6.1/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/flay-2.10.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/ruby_parser-3.10.1/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/sexp_processor-4.10.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/path_expander-1.0.2/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/ffi-1.9.18-x64-mingw32/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/erubis-2.7.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/diff-lcs-1.2.5/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/coveralls-0.8.21/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/thor-0.19.4/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/term-ansicolor-1.6.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/tins-1.15.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/simplecov-0.14.1/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/simplecov-html-0.10.2/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/docile-1.1.5/lib
-2017/11/13 10:58:22.076 (:1): C:/git/COSMOS/lib
-2017/11/13 10:58:22.076 (:1): C:/git/extensions/x64-mingw32/2.3.0/cosmos-0.0.0
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/uuidtools-2.1.5/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/snmp-1.2.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rubyzip-1.1.7/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rdoc-4.3.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rack-2.0.3/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/qtbindings-4.8.6.3-x64-mingw32/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/qtbindings-qt-4.8.6.3-x64-mingw32/qtlib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/puma-3.10.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/extensions/x64-mingw32/2.3.0/puma-3.10.0
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/pry-doc-0.6.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/yard-0.9.9/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/pry-0.10.4/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/slop-3.6.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/method_source-0.8.2/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/opengl-0.9.2-x64-mingw32/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/nokogiri-1.8.1-x64-mingw32/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/mini_portile2-2.3.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/json-1.8.6/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/extensions/x64-mingw32/2.3.0/json-1.8.6
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/httpclient-2.8.3/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/concord-0.1.5/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/equalizer-0.0.11/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/coderay-1.1.2/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/celluloid-0.16.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/timers-4.0.4/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/hitimes-1.2.6/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/extensions/x64-mingw32/2.3.0/hitimes-1.2.6
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/benchmark-ips-2.7.2/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/ast-2.3.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/adamantium-0.2.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/memoizable-0.4.2/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/thread_safe-0.3.6/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/ice_nine-0.11.2/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/abstract_type-0.0.7/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rake-12.1.0/lib
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/site_ruby/2.3.0
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/site_ruby/2.3.0/x64-msvcrt
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/site_ruby
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/vendor_ruby/2.3.0
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/vendor_ruby/2.3.0/x64-msvcrt
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/vendor_ruby
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/2.3.0
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/2.3.0/x64-mingw32
-2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/qtbindings-4.8.6.3-x64-mingw32/lib/../lib/2.3
-2017/11/13 10:58:22.076 (:1): C:/git/COSMOS/demo/config/targets/INST/lib
-2017/11/13 10:58:22.076 (:1): C:/git/COSMOS/demo/config/targets/INST/procedures
-2017/11/13 10:58:22.076 (:1): C:/git/COSMOS/demo/config/targets/EXAMPLE/lib
-2017/11/13 10:58:22.076 (:1): C:/git/COSMOS/demo/config/targets/TEMPLATED/lib
-2017/11/13 10:58:22.076 (:1): C:/git/COSMOS/demo/config/targets/SYSTEM/lib
-2017/11/13 10:58:22.092 (SCRIPTRUNNER): Script completed:
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2017/11/13 10:58:21.815 <span class="o">(</span>SCRIPTRUNNER<span class="o">)</span>: Starting script:
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/git/COSMOS/demo/procedures
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/uuidtools-2.1.5/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/git/COSMOS/demo/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/bundler-1.15.4/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/ruby-prof-0.15.9/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/extensions/x64-mingw32/2.3.0/ruby-prof-0.15.9
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/roodi-4.1.1/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/reek-1.6.6/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/unparser-0.2.4/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rainbow-2.2.2/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/extensions/x64-mingw32/2.3.0/rainbow-2.2.2
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/procto-0.0.3/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/parser-2.2.3.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/guard-rspec-4.7.3/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rspec-3.5.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rspec-mocks-3.5.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rspec-expectations-3.5.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rspec-core-3.5.4/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rspec-support-3.5.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/guard-bundler-2.1.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/guard-compat-1.2.1/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/guard-2.14.1/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/notiffany-0.1.1/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/shellany-0.0.1/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/nenv-0.3.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/lumberjack-1.0.12/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/listen-2.10.1/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rb-inotify-0.9.10/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rb-fsevent-0.10.2/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/formatador-0.2.5/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/flog-4.6.1/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/flay-2.10.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/ruby_parser-3.10.1/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/sexp_processor-4.10.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/path_expander-1.0.2/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/ffi-1.9.18-x64-mingw32/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/erubis-2.7.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/diff-lcs-1.2.5/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/coveralls-0.8.21/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/thor-0.19.4/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/term-ansicolor-1.6.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/tins-1.15.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/simplecov-0.14.1/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/simplecov-html-0.10.2/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/docile-1.1.5/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/git/COSMOS/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/git/extensions/x64-mingw32/2.3.0/cosmos-0.0.0
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/uuidtools-2.1.5/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/snmp-1.2.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rubyzip-1.1.7/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rdoc-4.3.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rack-2.0.3/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/qtbindings-4.8.6.3-x64-mingw32/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/qtbindings-qt-4.8.6.3-x64-mingw32/qtlib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/puma-3.10.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/extensions/x64-mingw32/2.3.0/puma-3.10.0
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/pry-doc-0.6.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/yard-0.9.9/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/pry-0.10.4/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/slop-3.6.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/method_source-0.8.2/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/opengl-0.9.2-x64-mingw32/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/nokogiri-1.8.1-x64-mingw32/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/mini_portile2-2.3.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/json-1.8.6/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/extensions/x64-mingw32/2.3.0/json-1.8.6
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/httpclient-2.8.3/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/concord-0.1.5/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/equalizer-0.0.11/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/coderay-1.1.2/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/celluloid-0.16.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/timers-4.0.4/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/hitimes-1.2.6/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/extensions/x64-mingw32/2.3.0/hitimes-1.2.6
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/benchmark-ips-2.7.2/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/ast-2.3.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/adamantium-0.2.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/memoizable-0.4.2/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/thread_safe-0.3.6/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/ice_nine-0.11.2/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/abstract_type-0.0.7/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/rake-12.1.0/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/site_ruby/2.3.0
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/site_ruby/2.3.0/x64-msvcrt
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/site_ruby
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/vendor_ruby/2.3.0
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/vendor_ruby/2.3.0/x64-msvcrt
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/vendor_ruby
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/2.3.0
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/2.3.0/x64-mingw32
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/qtbindings-4.8.6.3-x64-mingw32/lib/../lib/2.3
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/git/COSMOS/demo/config/targets/INST/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/git/COSMOS/demo/config/targets/INST/procedures
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/git/COSMOS/demo/config/targets/EXAMPLE/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/git/COSMOS/demo/config/targets/TEMPLATED/lib
+2017/11/13 10:58:22.076 <span class="o">(</span>:1<span class="o">)</span>: C:/git/COSMOS/demo/config/targets/SYSTEM/lib
+2017/11/13 10:58:22.092 <span class="o">(</span>SCRIPTRUNNER<span class="o">)</span>: Script completed:
 </code></pre></div></div>
 
 <p>Wow, that is a lot of gems! COSMOS requires a lot of libraries to support how it operates including many used for development purposes like rspec and simplecov. An important thing to note is at the top of the list the following paths are listed.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:/git/COSMOS/demo/procedures
-C:/git/COSMOS/demo/lib
+<div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">C</span>:/git/COSMOS/demo/procedures
+<span class="kd">C</span>:/git/COSMOS/demo/lib
 </code></pre></div></div>
 
 <p>The first path is due to the following line in the COSMOS Demo configuration’s system.txt configuration file: <code class="language-plaintext highlighter-rouge">PATH PROCEDURES ./procedures</code>. This adds the procedures directory in the current COSMOS configuration (C:/git/COSMOS/demo on my machine) to the path.</p>
@@ -2572,11 +2579,11 @@ C:/git/COSMOS/demo/lib
 
 <p>You should also note the last few lines of the $LOAD_PATH.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:/git/COSMOS/demo/config/targets/INST/lib
-C:/git/COSMOS/demo/config/targets/INST/procedures
-C:/git/COSMOS/demo/config/targets/EXAMPLE/lib
-C:/git/COSMOS/demo/config/targets/TEMPLATED/lib
-C:/git/COSMOS/demo/config/targets/SYSTEM/lib
+<div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">C</span>:/git/COSMOS/demo/config/targets/INST/lib
+<span class="kd">C</span>:/git/COSMOS/demo/config/targets/INST/procedures
+<span class="kd">C</span>:/git/COSMOS/demo/config/targets/EXAMPLE/lib
+<span class="kd">C</span>:/git/COSMOS/demo/config/targets/TEMPLATED/lib
+<span class="kd">C</span>:/git/COSMOS/demo/config/targets/SYSTEM/lib
 </code></pre></div></div>
 
 <p>These are added because COSMOS automatically adds the lib and procedures directory from each Target folder. Thus you are able to directly load a file in the INST/procedures directory by doing “load ‘checks.rb’” (for example). If a file is in a subdirectory like the INST/procedures/utilities directory, then you must specify the additional subpath such as “load_utility ‘utilities/clear.rb’”.</p>
@@ -3347,14 +3354,16 @@ Documentation will updated the first week of April.</p>
 
 <h2 id="processor-implementation">Processor Implementation</h2>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos/processors/processor'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos/processors/processor'</span>
 <span class="k">module</span> <span class="nn">Cosmos</span>
-<span class="k">class</span> <span class="nc">WatermarkProcessor</span> <span class="o">&lt;</span> <span class="no">Processor</span> <span class="c1"># @param item_name [String] The name of the item to gather statistics on # @param value_type #See Processor::initialize</span>
-<span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">item_name</span><span class="p">,</span> <span class="n">value_type</span> <span class="o">=</span> <span class="ss">:CONVERTED</span><span class="p">)</span>
-<span class="k">super</span><span class="p">(</span><span class="n">value_type</span><span class="p">)</span>
-<span class="vi">@item_name</span> <span class="o">=</span> <span class="n">item_name</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">upcase</span>
-<span class="n">reset</span><span class="p">()</span>
-<span class="k">end</span>
+  <span class="k">class</span> <span class="nc">WatermarkProcessor</span> <span class="o">&lt;</span> <span class="no">Processor</span>
+    <span class="c1"># @param item_name [String] The name of the item to gather statistics on</span>
+    <span class="c1"># @param value_type #See Processor::initialize</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">item_name</span><span class="p">,</span> <span class="n">value_type</span> <span class="o">=</span> <span class="ss">:CONVERTED</span><span class="p">)</span>
+      <span class="k">super</span><span class="p">(</span><span class="n">value_type</span><span class="p">)</span>
+      <span class="vi">@item_name</span> <span class="o">=</span> <span class="n">item_name</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">upcase</span>
+      <span class="n">reset</span><span class="p">()</span>
+    <span class="k">end</span>
 
     <span class="c1"># See Processor#call</span>
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">packet</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
@@ -3375,9 +3384,9 @@ Documentation will updated the first week of April.</p>
     <span class="k">def</span> <span class="nf">to_config</span>
       <span class="s2">"  PROCESSOR </span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">name</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">class_name_to_filename</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="vi">@item_name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="vi">@value_type</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
     <span class="k">end</span>
-
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>The initialize method gets passed the parameters from the config file. Thus our config file of:
 <code class="language-plaintext highlighter-rouge">PROCESSOR TEMP1WATER watermark_processor.rb TEMP1</code>
@@ -3393,22 +3402,24 @@ Since we only pass one value, we use the default value_type of :CONVERTED.</p>
 
 <p>If you then open up the processor_conversion.rb code you can see how these results are converted into new telemetry items.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos/conversions/conversion'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos/conversions/conversion'</span>
 <span class="k">module</span> <span class="nn">Cosmos</span>
-
-<span class="c1"># Retrieves the result from an item processor</span>
-
-<span class="k">class</span> <span class="nc">ProcessorConversion</span> <span class="o">&lt;</span> <span class="no">Conversion</span> <span class="c1"># @param processor_name [String] The name of the associated processor # @param result_name [String] The name of the associated result in the processor # @param converted_type [String or nil] The datatype of the result of the processor # @param converted_bit_size [Integer or nil] The bit size of the result of the processor</span>
-<span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">processor_name</span><span class="p">,</span> <span class="n">result_name</span><span class="p">,</span> <span class="n">converted_type</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">converted_bit_size</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">)</span>
-<span class="k">super</span><span class="p">()</span>
-<span class="vi">@processor_name</span> <span class="o">=</span> <span class="n">processor_name</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">upcase</span>
-<span class="vi">@result_name</span> <span class="o">=</span> <span class="n">result_name</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">upcase</span><span class="p">.</span><span class="nf">intern</span>
-<span class="k">if</span> <span class="no">ConfigParser</span><span class="p">.</span><span class="nf">handle_nil</span><span class="p">(</span><span class="n">converted_type</span><span class="p">)</span>
-<span class="vi">@converted_type</span> <span class="o">=</span> <span class="n">converted_type</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">upcase</span><span class="p">.</span><span class="nf">intern</span>
-<span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">,</span> <span class="s2">"Unknown converted type: </span><span class="si">#{</span><span class="n">converted_type</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="o">!</span><span class="no">BinaryAccessor</span><span class="o">::</span><span class="no">DATA_TYPES</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="vi">@converted_type</span><span class="p">)</span>
-<span class="k">end</span>
-<span class="vi">@converted_bit_size</span> <span class="o">=</span> <span class="no">Integer</span><span class="p">(</span><span class="n">converted_bit_size</span><span class="p">)</span> <span class="k">if</span> <span class="no">ConfigParser</span><span class="p">.</span><span class="nf">handle_nil</span><span class="p">(</span><span class="n">converted_bit_size</span><span class="p">)</span>
-<span class="k">end</span>
+  <span class="c1"># Retrieves the result from an item processor</span>
+  <span class="k">class</span> <span class="nc">ProcessorConversion</span> <span class="o">&lt;</span> <span class="no">Conversion</span>
+    <span class="c1"># @param processor_name [String] The name of the associated processor</span>
+    <span class="c1"># @param result_name [String] The name of the associated result in the processor</span>
+    <span class="c1"># @param converted_type [String or nil] The datatype of the result of the processor</span>
+    <span class="c1"># @param converted_bit_size [Integer or nil] The bit size of the result of the processor</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">processor_name</span><span class="p">,</span> <span class="n">result_name</span><span class="p">,</span> <span class="n">converted_type</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">converted_bit_size</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">)</span>
+      <span class="k">super</span><span class="p">()</span>
+      <span class="vi">@processor_name</span> <span class="o">=</span> <span class="n">processor_name</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">upcase</span>
+      <span class="vi">@result_name</span> <span class="o">=</span> <span class="n">result_name</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">upcase</span><span class="p">.</span><span class="nf">intern</span>
+      <span class="k">if</span> <span class="no">ConfigParser</span><span class="p">.</span><span class="nf">handle_nil</span><span class="p">(</span><span class="n">converted_type</span><span class="p">)</span>
+        <span class="vi">@converted_type</span> <span class="o">=</span> <span class="n">converted_type</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">upcase</span><span class="p">.</span><span class="nf">intern</span>
+        <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">,</span> <span class="s2">"Unknown converted type: </span><span class="si">#{</span><span class="n">converted_type</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="o">!</span><span class="no">BinaryAccessor</span><span class="o">::</span><span class="no">DATA_TYPES</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="vi">@converted_type</span><span class="p">)</span>
+      <span class="k">end</span>
+      <span class="vi">@converted_bit_size</span> <span class="o">=</span> <span class="no">Integer</span><span class="p">(</span><span class="n">converted_bit_size</span><span class="p">)</span> <span class="k">if</span> <span class="no">ConfigParser</span><span class="p">.</span><span class="nf">handle_nil</span><span class="p">(</span><span class="n">converted_bit_size</span><span class="p">)</span>
+    <span class="k">end</span>
 
     <span class="c1"># @param (see Conversion#call)</span>
     <span class="c1"># @return [Varies] The result of the associated processor</span>
@@ -3417,9 +3428,9 @@ Since we only pass one value, we use the default value_type of :CONVERTED.</p>
     <span class="k">end</span>
     <span class="k">def</span> <span class="nf">to_s</span><span class="p">;</span> <span class="k">end</span> <span class="c1"># Not shown for brevity</span>
     <span class="k">def</span> <span class="nf">to_config</span><span class="p">(</span><span class="n">read_or_write</span><span class="p">);</span> <span class="k">end</span> <span class="c1"># Not shown for brevity</span>
-
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>First of all note that ProcessorConversion inherits from the <a href="https://github.com/BallAerospace/COSMOS/blob/cosmos4/lib/cosmos/conversions/conversion.rb">Conversion</a> base class. This is very similar to the WatermarkProcessor inheriting from the Processor base class. Again, there is an initialize method and a call method. The initialize method requires the processor_name and result_name and takes optional parameters that help describe the converted type. Let’s see how these map together in our definition.</p>
 
@@ -3438,14 +3449,14 @@ This passes TEMP1WATER and HIGH_WATER as processor_name and result_name into ini
 
 <p>First create your new Processor class. Let’s call it MeanProcessor. This code should go into a file called mean_processor.rb and can either live in one of your target/lib folders or since it’s generic we can put it in the top level /lib directory in our project.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos/processors/processor'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos/processors/processor'</span>
 <span class="k">module</span> <span class="nn">Cosmos</span>
-<span class="k">class</span> <span class="nc">MeanProcessor</span> <span class="o">&lt;</span> <span class="no">Processor</span> <span class="c1"># @param item_name [Array&lt;String&gt;] The names of the items to mean</span>
-<span class="k">def</span> <span class="nf">initialize</span><span class="p">(\</span><span class="o">*</span><span class="n">item_names</span><span class="p">)</span> <span class="c1"># the splat operator accepts a variable length argument list</span>
-<span class="k">super</span><span class="p">(</span><span class="ss">:CONVERTED</span><span class="p">)</span> <span class="c1"># Hard code to work on converted values</span>
-<span class="vi">@item_names</span> <span class="o">=</span> <span class="n">item_names</span> <span class="c1"># Array of the item names</span>
-<span class="n">reset</span><span class="p">()</span>
-<span class="k">end</span>
+  <span class="k">class</span> <span class="nc">MeanProcessor</span> <span class="o">&lt;</span> <span class="no">Processor</span> <span class="c1"># @param item_name [Array&lt;String&gt;] The names of the items to mean</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(\</span><span class="o">*</span><span class="n">item_names</span><span class="p">)</span> <span class="c1"># the splat operator accepts a variable length argument list</span>
+      <span class="k">super</span><span class="p">(</span><span class="ss">:CONVERTED</span><span class="p">)</span> <span class="c1"># Hard code to work on converted values</span>
+      <span class="vi">@item_names</span> <span class="o">=</span> <span class="n">item_names</span> <span class="c1"># Array of the item names</span>
+      <span class="n">reset</span><span class="p">()</span>
+    <span class="k">end</span>
 
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">packet</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
       <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
@@ -3464,9 +3475,9 @@ This passes TEMP1WATER and HIGH_WATER as processor_name and result_name into ini
     <span class="k">def</span> <span class="nf">to_config</span>
       <span class="s2">"  PROCESSOR </span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="p">.</span><span class="nf">name</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">class_name_to_filename</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="vi">@item_names</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
     <span class="k">end</span>
-
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>This class introduces some new Ruby syntax. Since we want to accept any number of items to average we have to accept a variable number of arguments in our initialize method. The ruby splat operator (or star operator) does this and places the arguments into a Ruby array. We store these names and then use them in our call method to perform the mean. I’m using a cool feature of Ruby’s Enumerable mixin, which is part of Array, to sum up the values (starting with 0) and then dividing by the number of values we have to get the mean. Note I’m also calling to_f to ensure the numerator is a floating point number so we do floating point math during the division. Integer division would truncate the value to an integer value.</p>
 
@@ -3474,12 +3485,12 @@ This passes TEMP1WATER and HIGH_WATER as processor_name and result_name into ini
 <code class="language-plaintext highlighter-rouge">REQUIRE mean_processor.rb</code>
 Then delcare the processing in your configuration definition as follows:</p>
 
-<p><code class="language-plaintext highlighter-rouge">TELEMETRY INST HEALTH_STATUS BIG_ENDIAN "Health and status from the instrument"
-  ... # See demo configuration
-  ITEM TEMPS_MEAN 0 0 DERIVED "Mean of TEMP1, TEMP2, TEMP3, TEMP4"
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TELEMETRY INST HEALTH_STATUS BIG_ENDIAN <span class="s2">"Health and status from the instrument"</span>
+  ... <span class="c"># See demo configuration</span>
+  ITEM TEMPS_MEAN 0 0 DERIVED <span class="s2">"Mean of TEMP1, TEMP2, TEMP3, TEMP4"</span>
     READ_CONVERSION processor_conversion.rb TEMPMEAN MEAN
   PROCESSOR TEMPMEAN mean_processor.rb TEMP1 TEMP2 TEMP3 TEMP4
-</code></p>
+</code></pre></div></div>
 
 <p>We define the processor on the INST HEALTH_STATUS packet and pass in 4 items to average. We also define a new derived item called TEMPS_MEAN which uses our previously described processor_conversion to pull out the MEAN value that we calculated. The result is shown in this PacketViewer screen shot:</p>
 
@@ -3634,18 +3645,20 @@ PORT CTS_PREIDENTIFIED 7779
 
 <p>To connect to the INST_ROUTER that we created we can write a little Ruby code using existing COSMOS interface classes and streams.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos'</span>
 <span class="nb">require</span> <span class="s1">'cosmos/interfaces/tcpip_client_interface'</span>
+
 <span class="n">i</span> <span class="o">=</span> <span class="no">Cosmos</span><span class="o">::</span><span class="no">TcpipClientInterface</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'localhost'</span><span class="p">,</span><span class="mi">2055</span><span class="p">,</span><span class="mi">2055</span><span class="p">,</span><span class="kp">nil</span><span class="p">,</span><span class="kp">nil</span><span class="p">,</span><span class="s1">'LENGTH'</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
 <span class="n">i</span><span class="p">.</span><span class="nf">connect</span>
 <span class="kp">loop</span> <span class="k">do</span>
-<span class="n">pkt</span> <span class="o">=</span> <span class="no">Cosmos</span><span class="o">::</span><span class="no">System</span><span class="p">.</span><span class="nf">telemetry</span><span class="p">.</span><span class="nf">identify!</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="nf">read</span><span class="p">.</span><span class="nf">buffer</span><span class="p">,</span> <span class="p">[</span><span class="s1">'INST'</span><span class="p">])</span>
-<span class="nb">puts</span> <span class="n">pkt</span><span class="p">.</span><span class="nf">packet_name</span>
-<span class="k">end</span></code></pre></figure>
+  <span class="n">pkt</span> <span class="o">=</span> <span class="no">Cosmos</span><span class="o">::</span><span class="no">System</span><span class="p">.</span><span class="nf">telemetry</span><span class="p">.</span><span class="nf">identify!</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="nf">read</span><span class="p">.</span><span class="nf">buffer</span><span class="p">,</span> <span class="p">[</span><span class="s1">'INST'</span><span class="p">])</span>
+  <span class="nb">puts</span> <span class="n">pkt</span><span class="p">.</span><span class="nf">packet_name</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>Obviously we need the TCPIP Client Interface to match the port number of the TCPIP Server and we also need to match the LENGTH protocol options. Notice how we have to call the System.telemetry.identify! method to identify the raw packet stream. When I run this from a command prompt after starting the Server I see a stream of packet names similar to this:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MECH
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MECH
 ADCS
 MECH
 IMAGE
@@ -3661,14 +3674,16 @@ ADCS
 
 <p>We can also write some code to connect to the PREIDENTIFIED router. It looks very similar to the previous code except we do not need to identify the packets as they are pre-identified!</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos'</span>
 <span class="nb">require</span> <span class="s1">'cosmos/interfaces/tcpip_client_interface'</span>
+
 <span class="n">i</span> <span class="o">=</span> <span class="no">Cosmos</span><span class="o">::</span><span class="no">TcpipClientInterface</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'localhost'</span><span class="p">,</span><span class="mi">7779</span><span class="p">,</span><span class="mi">7779</span><span class="p">,</span><span class="kp">nil</span><span class="p">,</span><span class="kp">nil</span><span class="p">,</span><span class="s1">'PREIDENTIFIED'</span><span class="p">)</span>
 <span class="n">i</span><span class="p">.</span><span class="nf">connect</span>
 <span class="kp">loop</span> <span class="k">do</span>
-<span class="n">pkt</span> <span class="o">=</span> <span class="n">i</span><span class="p">.</span><span class="nf">read</span>
-<span class="nb">puts</span> <span class="n">pkt</span><span class="p">.</span><span class="nf">packet_name</span>
-<span class="k">end</span></code></pre></figure>
+  <span class="n">pkt</span> <span class="o">=</span> <span class="n">i</span><span class="p">.</span><span class="nf">read</span>
+  <span class="nb">puts</span> <span class="n">pkt</span><span class="p">.</span><span class="nf">packet_name</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>This time you should see some LIMITS_CHANGE packet names sprinkled in with the output from before. That’s because we’re accessing the ENTIRE COSMOS telemetry stream and not just the stream from the INST interface. Keep this in mind if you have performance issues when trying to process the entire telemetry stream.</p>
 
@@ -3809,9 +3824,9 @@ ADCS
 
 <p>A COSMOS user recently asked if he could include environment variables in his COSMOS configuration. This is very easy using the ERB syntax. For example, you have an environment variable named “LOG_DIR” in your system which points to the path you want to store your COSMOS logs. To use this value you would modify your system.txt file as follows:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
-# Paths
-PATH LOGS &lt;%= ENV["LOG_DIR"] %&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+<span class="c"># Paths</span>
+PATH LOGS &lt;%<span class="o">=</span> ENV[<span class="s2">"LOG_DIR"</span><span class="o">]</span> %&gt;
 ...
 </code></pre></div></div>
 
@@ -3819,9 +3834,10 @@ PATH LOGS &lt;%= ENV["LOG_DIR"] %&gt;
 
 <p>It’s recommended that you don’t put too much logic in these ERB statements to keep your configuration files readable and maintainable. If you have a complex piece of code you want to use in an ERB statement, you can create a utility in your ‘lib’ folder and define methods to use. For example, in your ‘lib’ folder create utilties.rb:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">log_path</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">log_path</span>
   <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="no">Cosmos</span><span class="o">::</span><span class="no">USERPATH</span><span class="p">,</span> <span class="s1">'outputs'</span><span class="p">,</span> <span class="s1">'mylogs'</span><span class="p">)</span>
-<span class="k">end</span></code></pre></figure>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>Now in system.txt we can use that ‘log_path’ routine after we first require ‘utilities’.</p>
 
@@ -3909,8 +3925,8 @@ COMMAND INST ABORT BIG_ENDIAN "Aborts a collect on the instrument"
 
 <p>This screen is already using the Array widget to display this data in a text box. We will add our new widget to the top of the screen which will display the data in a table. Let’s add the line to the screen which will call our new widget. Edit <code class="language-plaintext highlighter-rouge">demo/config/targets/INST/screens/array.txt</code> and add the following line in the middle:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
-TITLE "Instrument Array Data"
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+TITLE <span class="s2">"Instrument Array Data"</span>
 DEMOTABLE INST HEALTH_STATUS ARY
 ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 ...
@@ -3918,31 +3934,31 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 
 <p>Now we need to create the DemotableWidget which will implement the actual display. Create a new file called <code class="language-plaintext highlighter-rouge">demotable_widget.rb</code> in <code class="language-plaintext highlighter-rouge">demo/config/targets/INST/lib</code>. Note that the name of the line in the config file, DEMOTABLE, must be all lowercase followed by an underscore and ‘widget’. The class name in the file must be one word with the first letter and Widget capitalized. This is how it should start:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos/tools/tlm_viewer/widgets/widget'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos/tools/tlm_viewer/widgets/widget'</span>
 
 <span class="k">module</span> <span class="nn">Cosmos</span>
-<span class="k">class</span> <span class="nc">DemotableWidget</span> <span class="o">&lt;</span> <span class="no">Qt</span><span class="o">::</span><span class="no">TableWidget</span>
-<span class="kp">include</span> <span class="no">Widget</span>
-
+  <span class="k">class</span> <span class="nc">DemotableWidget</span> <span class="o">&lt;</span> <span class="no">Qt</span><span class="o">::</span><span class="no">TableWidget</span>
+  <span class="kp">include</span> <span class="no">Widget</span>
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">parent_layout</span><span class="p">,</span> <span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">value_type</span> <span class="o">=</span> <span class="ss">:WITH_UNITS</span><span class="p">)</span>
       <span class="k">super</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">value_type</span><span class="p">)</span>
     <span class="k">end</span>
-
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>We’re extending the closest widget that Qt offers to what we’re trying to achieve. In this case it’s pretty obvious but you can get documentation on <a href="http://doc.qt.io/qt-4.8/classes.html">all the Qt classes</a>. In many cases it might be easier to extend an existing <a href="https://github.com/BallAerospace/COSMOS/tree/master/lib/cosmos/tools/tlm_viewer/widgets">COSMOS widget</a>.</p>
 
 <p>Note that our initialize method takes the parent_layout as the first value. All COSMOS widgets make the first parameter the parent_layout so they can be added. The next four paramaters are typically the target_name, packet_name, item_name and value_type. Additional parameters can follow the value_type parameter. The first thing we do in the initialize method is call super which calls the Widget initialize method. If you run this code you should see that the screen displays but doesn’t look any different. That’s because we haven’t actually added our new widget to the parent_layout. Before adding widgets to the layout you typically want to configure them. For our table, we need to set the number of rows and columns. First I grab the telemetry value from the server using the <code class="language-plaintext highlighter-rouge">System.telemetry.value</code> method defined in <a href="https://github.com/BallAerospace/COSMOS/blob/cosmos4/lib/cosmos/packets/telemetry.rb">telemetry.rb</a>. Since this is an array value I call <code class="language-plaintext highlighter-rouge">length</code> to determine how many rows to display in the table. I then use the Qt methods <code class="language-plaintext highlighter-rouge">setRowCount</code> and <code class="language-plaintext highlighter-rouge">setColumnCount</code> to initialize the table. You can find these methods in the <a href="http://doc.qt.io/qt-4.8/qtablewidget.html">Qt::TableWidget</a> documentation. Finally I call the addWidget method which is a part of all the <a href="http://doc.qt.io/qt-4.8/qlayout.html">Qt::Layout</a> classes.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">parent_layout</span><span class="p">,</span> <span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">value_type</span> <span class="o">=</span> <span class="ss">:WITH_UNITS</span><span class="p">)</span>
-<span class="k">super</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">value_type</span><span class="p">)</span>
-<span class="n">value</span> <span class="o">=</span> <span class="no">System</span><span class="p">.</span><span class="nf">telemetry</span><span class="p">.</span><span class="nf">value</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">)</span> <span class="c1"># Get the value</span>
-<span class="vi">@rows</span> <span class="o">=</span> <span class="n">value</span><span class="p">.</span><span class="nf">length</span> <span class="c1"># Store the rows</span>
-<span class="n">setRowCount</span><span class="p">(</span><span class="vi">@rows</span><span class="p">)</span>
-<span class="n">setColumnCount</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">parent_layout</span><span class="p">.</span><span class="nf">addWidget</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="k">if</span> <span class="n">parent_layout</span>
-<span class="k">end</span></code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">parent_layout</span><span class="p">,</span> <span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">value_type</span> <span class="o">=</span> <span class="ss">:WITH_UNITS</span><span class="p">)</span>
+  <span class="k">super</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">value_type</span><span class="p">)</span>
+  <span class="n">value</span> <span class="o">=</span> <span class="no">System</span><span class="p">.</span><span class="nf">telemetry</span><span class="p">.</span><span class="nf">value</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">)</span> <span class="c1"># Get the value</span>
+  <span class="vi">@rows</span> <span class="o">=</span> <span class="n">value</span><span class="p">.</span><span class="nf">length</span> <span class="c1"># Store the rows</span>
+  <span class="n">setRowCount</span><span class="p">(</span><span class="vi">@rows</span><span class="p">)</span>
+  <span class="n">setColumnCount</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">parent_layout</span><span class="p">.</span><span class="nf">addWidget</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="k">if</span> <span class="n">parent_layout</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>Now if you stop and restart the Telemetry Viewer (so it can re-require the new widget code) it should display an empty table:</p>
 
@@ -3950,23 +3966,26 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 
 <p>To actually populate it with data we must follow the Cosmos Widget conventions. First of all by including Widget you include all the <a href="https://github.com/BallAerospace/COSMOS/blob/cosmos4/lib/cosmos/tools/tlm_viewer/widgets/widget.rb">Widget</a> code which creates two key class methods: <code class="language-plaintext highlighter-rouge">layout_manager?</code> and <code class="language-plaintext highlighter-rouge">takes_value?</code>. These must be overridden to return true if your widget is either a layout or takes a value respectively. Since our widget will be taking the array data as a value we must override <code class="language-plaintext highlighter-rouge">takes_value?</code>:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos/tools/tlm_viewer/widgets/widget'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos/tools/tlm_viewer/widgets/widget'</span>
 
 <span class="k">module</span> <span class="nn">Cosmos</span>
-<span class="k">class</span> <span class="nc">DemotableWidget</span> <span class="o">&lt;</span> <span class="no">Qt</span><span class="o">::</span><span class="no">TableWidget</span>
-<span class="kp">include</span> <span class="no">Widget</span>
-
+  <span class="k">class</span> <span class="nc">DemotableWidget</span> <span class="o">&lt;</span> <span class="no">Qt</span><span class="o">::</span><span class="no">TableWidget</span>
+  <span class="kp">include</span> <span class="no">Widget</span>
     <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">takes_value?</span>
       <span class="k">return</span> <span class="kp">true</span>
-    <span class="k">end</span></code></pre></figure>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>Typically class methods are defined at the top of the source file and begin with self. You can also type out the class name but this is less robust as changing the class name requires changing the method name. Implementing this class method allows Telemetry Viewer to call the <code class="language-plaintext highlighter-rouge">value=(data)</code> method with new telemetry data. The value method implementation should look like this:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">value</span><span class="o">=</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">0</span><span class="o">...</span><span class="vi">@rows</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span> <span class="c1"># Note the extra 'dot' which means up to but not including</span>
-<span class="n">setItem</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="no">Qt</span><span class="o">::</span><span class="no">TableWidgetItem</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">row</span><span class="p">].</span><span class="nf">to_s</span><span class="p">))</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">value</span><span class="o">=</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  <span class="p">(</span><span class="mi">0</span><span class="o">...</span><span class="vi">@rows</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span> <span class="c1"># Note the extra 'dot' which means up to but not including</span>
+    <span class="n">setItem</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="no">Qt</span><span class="o">::</span><span class="no">TableWidgetItem</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">row</span><span class="p">].</span><span class="nf">to_s</span><span class="p">))</span>
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>The data value passed to the method is the same target, packet, and item used in the screen definition. In our value= method we are using our stored instance variable <code class="language-plaintext highlighter-rouge">@rows</code> to index into the array data and create new <a href="http://doc.qt.io/qt-4.8/qtablewidgetitem.html">Qt::TableWidgetItem</a> instances to store the data. TableWidgetItems expect Strings to be passed so I call to_s on the data item to ensure it is a String. If you now re-launch Telemetry Viewer you should see the values populated in the table:</p>
 
@@ -3974,13 +3993,13 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 
 <p>At this point you could be done. But wait! The Array widget below the table fades darker to implement “aging”, showing the user the values haven’t changed. How do we implement “aging” in our new widget? To start we require the aging_widget and include the AgingWidget module. Then we must call the setup_aging method in our initialize method as well as redefine the process_settings method:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos/tools/tlm_viewer/widgets/widget'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos/tools/tlm_viewer/widgets/widget'</span>
 <span class="nb">require</span> <span class="s1">'cosmos/tools/tlm_viewer/widgets/aging_widget'</span>
 
 <span class="k">module</span> <span class="nn">Cosmos</span>
-<span class="k">class</span> <span class="nc">DemotableWidget</span> <span class="o">&lt;</span> <span class="no">Qt</span><span class="o">::</span><span class="no">TableWidget</span>
-<span class="kp">include</span> <span class="no">Widget</span>
-<span class="kp">include</span> <span class="no">AgingWidget</span>
+  <span class="k">class</span> <span class="nc">DemotableWidget</span> <span class="o">&lt;</span> <span class="no">Qt</span><span class="o">::</span><span class="no">TableWidget</span>
+    <span class="kp">include</span> <span class="no">Widget</span>
+    <span class="kp">include</span> <span class="no">AgingWidget</span>
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">parent_layout</span><span class="p">,</span> <span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">value_type</span> <span class="o">=</span> <span class="ss">:WITH_UNITS</span><span class="p">)</span>
       <span class="k">super</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">value_type</span><span class="p">)</span>
@@ -3996,20 +4015,21 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
       <span class="k">super</span>
       <span class="n">process_aging_settings</span>
     <span class="k">end</span>
-
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>Note that we were able to remove the class method <code class="language-plaintext highlighter-rouge">self.takes_value?</code> because AgingWidget already implements it. This is all required to setup aging but we must still modify the value= method to do the work. First in value= we call super to call the AgingWidget’s value= method. This method returns a string representation of the data with the correct foreground color and text character indicating the color, e.g. G=Green, Y=Yellow, R=Red. This is important for values with limits settings but since our array value doesn’t have limits I’m going to igore the return value and simply allow the aging routine to age the data. Interally this updates the <code class="language-plaintext highlighter-rouge">@background</code> instance variable with the current ‘aged’ background color. I then set the TableWidgetItem’s background color to this color before adding it to the table:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">value</span><span class="o">=</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="k">super</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="p">(</span><span class="mi">0</span><span class="o">...</span><span class="vi">@rows</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
-<span class="n">item</span> <span class="o">=</span> <span class="no">Qt</span><span class="o">::</span><span class="no">TableWidgetItem</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">row</span><span class="p">])</span>
-<span class="n">item</span><span class="p">.</span><span class="nf">setBackgroundColor</span><span class="p">(</span><span class="vi">@background</span><span class="p">)</span>
-<span class="n">setItem</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">value</span><span class="o">=</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  <span class="k">super</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  <span class="p">(</span><span class="mi">0</span><span class="o">...</span><span class="vi">@rows</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
+    <span class="n">item</span> <span class="o">=</span> <span class="no">Qt</span><span class="o">::</span><span class="no">TableWidgetItem</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">row</span><span class="p">])</span>
+    <span class="n">item</span><span class="p">.</span><span class="nf">setBackgroundColor</span><span class="p">(</span><span class="vi">@background</span><span class="p">)</span>
+    <span class="n">setItem</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>The end result is aging:</p>
 
@@ -4053,36 +4073,36 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 
 <p>In this example we will assume the original interface is the COSMOS <a href="/docs/v4/interfaces#serial-interface">Serial Interface</a>. In your target’s lib folder create a new interface called checksum_serial_interface.rb:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos'</span> <span class="c1"># always require cosmos</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos'</span> <span class="c1"># always require cosmos</span>
 <span class="nb">require</span> <span class="s1">'cosmos/interfaces/serial_interface'</span> <span class="c1"># original interface being extended</span>
 
 <span class="k">module</span> <span class="nn">Cosmos</span>
-<span class="k">class</span> <span class="nc">ChecksumSerialInterface</span> <span class="o">&lt;</span> <span class="no">SerialInterface</span>
-<span class="k">def</span> <span class="nf">pre_write_packet</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">packet</span><span class="p">.</span><span class="nf">buffer</span>
-<span class="n">checksum</span> <span class="o">=</span> <span class="mh">0xFFFF</span>
-<span class="n">data</span><span class="p">.</span><span class="nf">each_byte</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">checksum</span> <span class="o">+=</span> <span class="n">x</span> <span class="p">}</span>
-<span class="n">checksum</span> <span class="o">&amp;=</span> <span class="mh">0xFFFF</span>
-<span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="p">[</span><span class="n">checksum</span><span class="p">].</span><span class="nf">pack</span><span class="p">(</span><span class="s2">"n"</span><span class="p">)</span> <span class="c1"># Pack as 16 bit unsigned bit endian</span>
-<span class="k">return</span> <span class="n">data</span>
-<span class="k">end</span>
+  <span class="k">class</span> <span class="nc">ChecksumSerialInterface</span> <span class="o">&lt;</span> <span class="no">SerialInterface</span>
+    <span class="k">def</span> <span class="nf">pre_write_packet</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
+      <span class="n">data</span> <span class="o">=</span> <span class="n">packet</span><span class="p">.</span><span class="nf">buffer</span>
+      <span class="n">checksum</span> <span class="o">=</span> <span class="mh">0xFFFF</span>
+      <span class="n">data</span><span class="p">.</span><span class="nf">each_byte</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">checksum</span> <span class="o">+=</span> <span class="n">x</span> <span class="p">}</span>
+      <span class="n">checksum</span> <span class="o">&amp;=</span> <span class="mh">0xFFFF</span>
+      <span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="p">[</span><span class="n">checksum</span><span class="p">].</span><span class="nf">pack</span><span class="p">(</span><span class="s2">"n"</span><span class="p">)</span> <span class="c1"># Pack as 16 bit unsigned bit endian</span>
+      <span class="k">return</span> <span class="n">data</span>
+    <span class="k">end</span>
 
-<span class="k">def</span> <span class="nf">post_read_data</span><span class="p">(</span><span class="n">packet_data</span><span class="p">)</span>
-<span class="n">len</span> <span class="o">=</span> <span class="n">packet_data</span><span class="p">.</span><span class="nf">length</span>
-<span class="n">calc_checksum</span> <span class="o">=</span> <span class="mh">0xFFFF</span>
-<span class="n">packet_data</span><span class="p">[</span><span class="mi">0</span><span class="o">..</span><span class="p">(</span><span class="n">len</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)].</span><span class="nf">each_byte</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">calc_checksum</span> <span class="o">+=</span> <span class="n">x</span> <span class="p">}</span>
-<span class="n">calc_checksum</span> <span class="o">&amp;=</span> <span class="mh">0xFFFF</span>
-<span class="n">rx_checksum</span> <span class="o">=</span> <span class="n">packet_data</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">..-</span><span class="mi">1</span><span class="p">].</span><span class="nf">unpack</span><span class="p">(</span><span class="s2">"n"</span><span class="p">)</span> <span class="c1"># Unpack as 16 bit unsigned big endian</span>
-<span class="k">if</span> <span class="n">calc_checksum</span> <span class="o">==</span> <span class="n">rx_checksum</span>
-<span class="k">return</span> <span class="n">packet_data</span>
-<span class="k">else</span>
-<span class="nb">puts</span> <span class="s2">"Bad checksum detected. Calculated: 0x</span><span class="si">#{</span><span class="n">calc_checksum</span><span class="p">.</span><span class="nf">to_s</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="si">}</span><span class="s2"> Received: 0x</span><span class="si">#{</span><span class="n">rx_checksum</span><span class="p">.</span><span class="nf">to_s</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="si">}</span><span class="s2">. Dropping packet."</span>
-<span class="k">return</span> <span class="s2">""</span> <span class="c1"># Also can return nil to break the connection and reconnect to the target</span>
+    <span class="k">def</span> <span class="nf">post_read_data</span><span class="p">(</span><span class="n">packet_data</span><span class="p">)</span>
+      <span class="n">len</span> <span class="o">=</span> <span class="n">packet_data</span><span class="p">.</span><span class="nf">length</span>
+      <span class="n">calc_checksum</span> <span class="o">=</span> <span class="mh">0xFFFF</span>
+      <span class="n">packet_data</span><span class="p">[</span><span class="mi">0</span><span class="o">..</span><span class="p">(</span><span class="n">len</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)].</span><span class="nf">each_byte</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">calc_checksum</span> <span class="o">+=</span> <span class="n">x</span> <span class="p">}</span>
+      <span class="n">calc_checksum</span> <span class="o">&amp;=</span> <span class="mh">0xFFFF</span>
+      <span class="n">rx_checksum</span> <span class="o">=</span> <span class="n">packet_data</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">..-</span><span class="mi">1</span><span class="p">].</span><span class="nf">unpack</span><span class="p">(</span><span class="s2">"n"</span><span class="p">)</span> <span class="c1"># Unpack as 16 bit unsigned big endian</span>
+      <span class="k">if</span> <span class="n">calc_checksum</span> <span class="o">==</span> <span class="n">rx_checksum</span>
+        <span class="k">return</span> <span class="n">packet_data</span>
+      <span class="k">else</span>
+        <span class="nb">puts</span> <span class="s2">"Bad checksum detected. Calculated: 0x</span><span class="si">#{</span><span class="n">calc_checksum</span><span class="p">.</span><span class="nf">to_s</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="si">}</span><span class="s2"> Received: 0x</span><span class="si">#{</span><span class="n">rx_checksum</span><span class="p">.</span><span class="nf">to_s</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="si">}</span><span class="s2">. Dropping packet."</span>
+        <span class="k">return</span> <span class="s2">""</span> <span class="c1"># Also can return nil to break the connection and reconnect to the target</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>What we’re doing is overriding pre_write_packet in StreamInterface to allow us to modify the data before it is written to the packet and sent over the interface. We also override post_read_data to operate on data received before it is sent back to the COSMOS server and thus the tools. Note there is also a post_read_packet(packet) method which is called after post_read_data is called and after the COSMOS Packet has been created. All Interfaces inheriting from StreamInterface includes these callback methods, including SerialInterface, TcpipServerInterface, and TcpipClientInterface. Note that UdpInterface inherits directly from Interface and thus does NOT include these callbacks.</p>
 
@@ -5265,20 +5285,21 @@ TELEMETRY INST DATA BIG_ENDIAN "Data from the instrument"
 
 <p>At this point I refactored to combine some of the functionality in the read method with the new write method. I probably could have done more refactoring but refactoring C code just isn’t as much fun as refactoring Ruby code. Once I completed the refactor I wanted to benchmark my new C extension to determine how much faster (or slower?) I made it. I love the <a href="https://github.com/evanphx/benchmark-ips">benchmark-ips</a> gem as it benchmarks iterations per second and automatically determines how many times to run the code to get good data. But I didn’t want to re-write our existing specs to support using this gem so I looked into how to integrate it with RSpec. It turns out this is all that was needed in our spec_helper.rb:</p>
 
-<p><code class="language-plaintext highlighter-rouge">if ENV.key?("BENCHMARK")
-    c.around(:each) do |example|
-      Benchmark.ips do |x|
-        x.report(example.metadata[:full_description]) do
-          example.run
-        end
-      end
-    end
-  end
-</code></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="no">ENV</span><span class="p">.</span><span class="nf">key?</span><span class="p">(</span><span class="s2">"BENCHMARK"</span><span class="p">)</span>
+  <span class="n">c</span><span class="p">.</span><span class="nf">around</span><span class="p">(</span><span class="ss">:each</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">example</span><span class="o">|</span>
+    <span class="no">Benchmark</span><span class="p">.</span><span class="nf">ips</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+      <span class="n">x</span><span class="p">.</span><span class="nf">report</span><span class="p">(</span><span class="n">example</span><span class="p">.</span><span class="nf">metadata</span><span class="p">[</span><span class="ss">:full_description</span><span class="p">])</span> <span class="k">do</span>
+        <span class="n">example</span><span class="p">.</span><span class="nf">run</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>Benchmark-ips works by calculating the number of runs to get interesting data and then running the code in question. Thus defining BENCHMARK in the environment makes the specs run EXTREMELY slow. I used the ability of RSpec to filter only the examples I wanted to benchmark with the -e option:</p>
 
-<p><code class="language-plaintext highlighter-rouge">rspec spec/packets/binary_accesor_spec.rb -e "write only"</code></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rspec</span> <span class="n">spec</span><span class="o">/</span><span class="n">packets</span><span class="o">/</span><span class="n">binary_accesor_spec</span><span class="p">.</span><span class="nf">rb</span> <span class="o">-</span><span class="n">e</span> <span class="s2">"write only"</span>
+</code></pre></div></div>
 
 <p>Running this in master and then in my C-extension branch I calculated the difference in iterations and then filtered out all the “complains” (raise an exception) and “overflow” test cases to focus on just the tests which write values. The average improvement was 1.3x. Not quite as awesome as I was hoping for but an improvement in an area that is performance sensitive. I suspected I could get additional performance if I optimized the check_overflow method to not always use Bignums and to do Fixnum comparisons if possible. However, this did not yield any optimizations so I backed out the change.</p>
 

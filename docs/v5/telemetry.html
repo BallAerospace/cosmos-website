@@ -1172,8 +1172,7 @@ LIMITS TVAC 3 ENABLED -80.0 -30.0 30.0 80.0
 <p><strong>Example File: TARGET/cmd_tlm/tlm.txt</strong></p>
 
 <!-- prettier-ignore -->
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">TELEMETRY TARGET HS BIG_ENDIAN <span class="s2">"Health and Status for My Target"</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TELEMETRY TARGET HS BIG_ENDIAN <span class="s2">"Health and Status for My Target"</span>
   ITEM CCSDSVER 0 3 UINT <span class="s2">"CCSDS PACKET VERSION NUMBER (SEE CCSDS 133.0-B-1)"</span>
   ITEM CCSDSTYPE 3 1 UINT <span class="s2">"CCSDS PACKET TYPE (COMMAND OR TELEMETRY)"</span>
     STATE TLM 0
@@ -1208,8 +1207,8 @@ LIMITS TVAC 3 ENABLED -80.0 -30.0 30.0 80.0
     GENERIC_READ_CONVERSION_START STRING 216
       <span class="nb">time</span> <span class="o">=</span> Time.ccsds2mdy<span class="o">(</span>packet.read<span class="o">(</span><span class="s1">'ccsdsday'</span><span class="o">)</span>, packet.read<span class="o">(</span><span class="s1">'ccsdsmsod'</span><span class="o">)</span>, packet.read<span class="o">(</span><span class="s1">'ccsdsusoms'</span><span class="o">))</span>
       sprintf<span class="o">(</span><span class="s1">'%04u/%02u/%02u %02u:%02u:%02u.%06u'</span>, <span class="nb">time</span><span class="o">[</span>0], <span class="nb">time</span><span class="o">[</span>1], <span class="nb">time</span><span class="o">[</span>2], <span class="nb">time</span><span class="o">[</span>3], <span class="nb">time</span><span class="o">[</span>4], <span class="nb">time</span><span class="o">[</span>5], <span class="nb">time</span><span class="o">[</span>6]<span class="o">)</span>
-    GENERIC_READ_CONVERSION_END</code></pre></figure>
-
+    GENERIC_READ_CONVERSION_END
+</code></pre></div></div>
 
       </article>
     </div>

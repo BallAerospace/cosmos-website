@@ -268,9 +268,9 @@
 
 <p>A COSMOS user recently asked if he could include environment variables in his COSMOS configuration. This is very easy using the ERB syntax. For example, you have an environment variable named “LOG_DIR” in your system which points to the path you want to store your COSMOS logs. To use this value you would modify your system.txt file as follows:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
-# Paths
-PATH LOGS &lt;%= ENV["LOG_DIR"] %&gt;
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+<span class="c"># Paths</span>
+PATH LOGS &lt;%<span class="o">=</span> ENV[<span class="s2">"LOG_DIR"</span><span class="o">]</span> %&gt;
 ...
 </code></pre></div></div>
 
@@ -278,9 +278,10 @@ PATH LOGS &lt;%= ENV["LOG_DIR"] %&gt;
 
 <p>It’s recommended that you don’t put too much logic in these ERB statements to keep your configuration files readable and maintainable. If you have a complex piece of code you want to use in an ERB statement, you can create a utility in your ‘lib’ folder and define methods to use. For example, in your ‘lib’ folder create utilties.rb:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">log_path</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">log_path</span>
   <span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="no">Cosmos</span><span class="o">::</span><span class="no">USERPATH</span><span class="p">,</span> <span class="s1">'outputs'</span><span class="p">,</span> <span class="s1">'mylogs'</span><span class="p">)</span>
-<span class="k">end</span></code></pre></figure>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>Now in system.txt we can use that ‘log_path’ routine after we first require ‘utilities’.</p>
 
