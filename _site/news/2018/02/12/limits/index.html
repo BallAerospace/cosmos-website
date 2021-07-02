@@ -282,22 +282,24 @@
 
 <p>You can get this same information from a script by executing the following script in Script Runner.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">puts</span> <span class="s2">"Overall limits state: </span><span class="si">#{</span><span class="n">get_overall_limits_state</span><span class="si">}</span><span class="s2">"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">puts</span> <span class="s2">"Overall limits state: </span><span class="si">#{</span><span class="n">get_overall_limits_state</span><span class="si">}</span><span class="s2">"</span>
 <span class="n">get_out_of_limits</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
-<span class="n">tgt</span><span class="p">,</span> <span class="n">pkt</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">item</span>
-<span class="nb">puts</span> <span class="s2">"tgt:</span><span class="si">#{</span><span class="n">tgt</span><span class="si">}</span><span class="s2"> pkt:</span><span class="si">#{</span><span class="n">pkt</span><span class="si">}</span><span class="s2"> item:</span><span class="si">#{</span><span class="n">item</span><span class="si">}</span><span class="s2"> state:</span><span class="si">#{</span><span class="n">state</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span></code></pre></figure>
+  <span class="n">tgt</span><span class="p">,</span> <span class="n">pkt</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">item</span>
+  <span class="nb">puts</span> <span class="s2">"tgt:</span><span class="si">#{</span><span class="n">tgt</span><span class="si">}</span><span class="s2"> pkt:</span><span class="si">#{</span><span class="n">pkt</span><span class="si">}</span><span class="s2"> item:</span><span class="si">#{</span><span class="n">item</span><span class="si">}</span><span class="s2"> state:</span><span class="si">#{</span><span class="n">state</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>Note that the get_out_of_limits call returns the items which are out of limits at the exact instant of the API call. Thus it doesn’t provide history like the Limits Monitor tool.</p>
 
 <p>You can also disable and enable limits on individual telemetry items using the API. The following script will disable limits on TEMP1 and then after 5 seconds it re-enables limits. Run this with the Limits Monitor open and you’ll notice the text for the INST HEALTH_STATUS TEMP1 telemetry point turns black when limits are disabled. Note that this disables limits events logging in the Command and Telemetry Server for this telemetry point.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">puts</span> <span class="s2">"TEMP1 limits enable:</span><span class="si">#{</span><span class="n">limits_enabled?</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">,</span> <span class="s2">"TEMP1"</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">puts</span> <span class="s2">"TEMP1 limits enable:</span><span class="si">#{</span><span class="n">limits_enabled?</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">,</span> <span class="s2">"TEMP1"</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
 <span class="n">disable_limits</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">,</span> <span class="s2">"TEMP1"</span><span class="p">)</span>
 <span class="nb">puts</span> <span class="s2">"TEMP1 limits enable:</span><span class="si">#{</span><span class="n">limits_enabled?</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">,</span> <span class="s2">"TEMP1"</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
 <span class="n">wait</span> <span class="mi">5</span>
 <span class="n">enable_limits</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">,</span> <span class="s2">"TEMP1"</span><span class="p">)</span>
-<span class="nb">puts</span> <span class="s2">"TEMP1 limits enable:</span><span class="si">#{</span><span class="n">limits_enabled?</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">,</span> <span class="s2">"TEMP1"</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span></code></pre></figure>
+<span class="nb">puts</span> <span class="s2">"TEMP1 limits enable:</span><span class="si">#{</span><span class="n">limits_enabled?</span><span class="p">(</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">,</span> <span class="s2">"TEMP1"</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+</code></pre></div></div>
 
 <h2 id="limits-sets">Limits Sets</h2>
 
@@ -315,10 +317,11 @@
 
 <p>You can also manipulate the limits sets programatically from a script.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">get_limits_sets</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">set</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"Limits Set:</span><span class="si">#{</span><span class="n">set</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_limits_sets</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">set</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"Limits Set:</span><span class="si">#{</span><span class="n">set</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span>
 <span class="nb">puts</span> <span class="s2">"Current Set:</span><span class="si">#{</span><span class="n">get_limits_set</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span> <span class="c1"># Currently selected limits set</span>
 <span class="n">set_limits_set</span><span class="p">(</span><span class="s2">"DEFAULT"</span><span class="p">)</span> <span class="c1"># Change to DEFAULT</span>
-<span class="n">set_limits_set</span><span class="p">(</span><span class="s2">"TVAC"</span><span class="p">)</span> <span class="c1"># Change to TVAC</span></code></pre></figure>
+<span class="n">set_limits_set</span><span class="p">(</span><span class="s2">"TVAC"</span><span class="p">)</span> <span class="c1"># Change to TVAC</span>
+</code></pre></div></div>
 
 <h2 id="limits-groups">Limits Groups</h2>
 
@@ -328,7 +331,7 @@
 
 <p>Items are assigned to a group using the <a href="/docs/v4/telemetry#limits_group_item">LIMITS_GROUP_ITEM</a> keyword. Here is the definition in the COSMOS demo.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LIMITS_GROUP INST2_TEMP2
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LIMITS_GROUP INST2_TEMP2
   LIMITS_GROUP_ITEM INST2 HEALTH_STATUS TEMP2
 
 LIMITS_GROUP INST2_GROUND
@@ -340,43 +343,48 @@ LIMITS_GROUP INST2_GROUND
 
 <p>You can also manipulate the limits groups programatically from a script.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">get_limits_groups</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">group</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"Limits Group:</span><span class="si">#{</span><span class="n">group</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_limits_groups</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">group</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">"Limits Group:</span><span class="si">#{</span><span class="n">group</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span>
 <span class="n">enable_limits_group</span><span class="p">(</span><span class="s2">"INST2_TEMP2"</span><span class="p">)</span>
-<span class="n">disable_limits_group</span><span class="p">(</span><span class="s2">"INST2_GROUND"</span><span class="p">)</span></code></pre></figure>
+<span class="n">disable_limits_group</span><span class="p">(</span><span class="s2">"INST2_GROUND"</span><span class="p">)</span>
+</code></pre></div></div>
 
 <h3 id="automating-limits-groups">Automating Limits Groups</h3>
 
 <p>COSMOS also has the ability to automatically enable and disable limits groups based on user configurable conditions. For example, you can automatically enable the group for a particular device when the power supply voltage for that device goes high (the device is powered on). The COSMOS demo has an example of this in the SYSTEM/lib/limits_groups.rb file.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos/tools/cmd_tlm_server/limits_groups_background_task'</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos/tools/cmd_tlm_server/limits_groups_background_task'</span>
 
 <span class="k">module</span> <span class="nn">Cosmos</span>
-
-<span class="c1"># Inheriting from the LimitsGroupsBackgroundTask provides a framework for</span>
-
-<span class="c1"># automatically enabling and disabling limits groups based on telemetry.</span>
-
-<span class="k">class</span> <span class="nc">LimitsGroups</span> <span class="o">&lt;</span> <span class="no">LimitsGroupsBackgroundTask</span>
-<span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">initial_delay</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">task_delay</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="c1"># Initial delay upon starting the server before staring the group checks # followed by the background task delay between check iterations</span>
-<span class="k">super</span><span class="p">(</span><span class="n">initial_delay</span><span class="p">,</span> <span class="n">task_delay</span><span class="p">)</span> <span class="c1"># Creating a Proc allows for arbitrary code to be executed when a group # is enabled or disabled.</span>
-<span class="vi">@temp2_enable_code</span> <span class="o">=</span> <span class="no">Proc</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
-<span class="n">enable_limits_group</span><span class="p">(</span><span class="s1">'INST2_GROUND'</span><span class="p">)</span> <span class="c1"># Enable the INST2_GROUND group</span>
+  <span class="c1"># Inheriting from the LimitsGroupsBackgroundTask provides a framework for</span>
+  <span class="c1"># automatically enabling and disabling limits groups based on telemetry.</span>
+  <span class="k">class</span> <span class="nc">LimitsGroups</span> <span class="o">&lt;</span> <span class="no">LimitsGroupsBackgroundTask</span>
+    <span class="c1"># Initial delay upon starting the server before staring the group checks</span>
+    <span class="c1"># followed by the background task delay between check iterations</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">initial_delay</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">task_delay</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+      <span class="k">super</span><span class="p">(</span><span class="n">initial_delay</span><span class="p">,</span> <span class="n">task_delay</span><span class="p">)</span>
+      <span class="c1"># Creating a Proc allows for arbitrary code to be executed when a group is enabled or disabled</span>
+      <span class="vi">@temp2_enable_code</span> <span class="o">=</span> <span class="no">Proc</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
+        <span class="n">enable_limits_group</span><span class="p">(</span><span class="s1">'INST2_GROUND'</span><span class="p">)</span> <span class="c1"># Enable the INST2_GROUND group</span>
+      <span class="k">end</span>
+      <span class="vi">@temp2_disable_code</span> <span class="o">=</span> <span class="no">Proc</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
+        <span class="n">disable_limits_group</span><span class="p">(</span><span class="s1">'INST2_GROUND'</span><span class="p">)</span> <span class="c1"># Disable the INST2_GROUND group</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="vi">@temp2_disable_code</span> <span class="o">=</span> <span class="no">Proc</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span>
-<span class="n">disable_limits_group</span><span class="p">(</span><span class="s1">'INST2_GROUND'</span><span class="p">)</span> <span class="c1"># Disable the INST2_GROUND group</span>
-<span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>You first must require the COSMOS base class and inherit from LimitsGroupsBackgroundTask. The constructor (initialize) takes two delay parameters. The first is the initial delay after starting the Command and Telemetry Server before the task starts checking your logical conditions. The second is the delay between doing the checks (it controls the rate of the task). After calling super (important!) a Proc is created to run arbitrary code when a particular group is enabled or disabled. Note this is entirely optional but in this case we wanted to enable the INST2_GROUND group when the INST2_TEMP2 group got enabled. The @temp2_enable_code and @temp2_disable_code names don’t really matter but they must be unique and have the ‘@’ symbol to make them Ruby instance variables (rather than locals).</p>
 
 <p>After the constructor is configured the method to perform the check is implemented.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">check_inst2_temp2</span>
-<span class="n">process_group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="vi">@temp2_enable_code</span><span class="p">,</span> <span class="vi">@temp2_disable_code</span><span class="p">)</span> <span class="k">do</span>
-<span class="n">val</span> <span class="o">=</span> <span class="n">tlm</span><span class="p">(</span><span class="s2">"INST2 HEALTH_STATUS TEMP2"</span><span class="p">)</span>
-<span class="k">return</span> <span class="p">(</span><span class="o">!</span><span class="n">val</span><span class="p">.</span><span class="nf">nan?</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">val</span><span class="p">.</span><span class="nf">infinite?</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">check_inst2_temp2</span>
+  <span class="n">process_group</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="vi">@temp2_enable_code</span><span class="p">,</span> <span class="vi">@temp2_disable_code</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="n">tlm</span><span class="p">(</span><span class="s2">"INST2 HEALTH_STATUS TEMP2"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="o">!</span><span class="n">val</span><span class="p">.</span><span class="nf">nan?</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">val</span><span class="p">.</span><span class="nf">infinite?</span><span class="p">)</span>
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>The method name is very important. It must begin with ‘check_’ and end with the name of a Limits Group defined by the LIMITS_GROUP keyword. In the demo, LIMITS_GROUP(s) are defined in config/targets/SYSTEM/cmd_tlm/limits_groups.txt. Since there is a LIMITS_GROUP INST2_TEMP2 we have a match (the method name should be lower case while the LIMITS_GROUP is typically defined to be uppercase).</p>
 
@@ -384,8 +392,8 @@ LIMITS_GROUP INST2_GROUND
 
 <p>The code inside the process_group block (the lines after ‘do’ and before ‘end’) must return a boolean. True will enable the group and false will disable the group. In this example, the group is enabled when the value is not NaN (Not a Number) and not Infinite. If the value is NaN or Infinite the group is disabled. You can watch this happening in the demo by watching the bottom log portion of the Command and Telemetry Server.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2018/02/12 09:12:58.118  ERROR: INST HEALTH_STATUS TEMP2 = NaN is RED_LOW
-2018/02/12 09:12:58.121  ERROR: INST2 HEALTH_STATUS TEMP2 = NaN is RED_LOW
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2018/02/12 09:12:58.118  ERROR: INST HEALTH_STATUS TEMP2 <span class="o">=</span> NaN is RED_LOW
+2018/02/12 09:12:58.121  ERROR: INST2 HEALTH_STATUS TEMP2 <span class="o">=</span> NaN is RED_LOW
 2018/02/12 09:12:58.220  INFO: Disabling Limits Group: INST2_TEMP2
 2018/02/12 09:12:58.220  INFO: Disabling Limits Group: INST2_GROUND
 </code></pre></div></div>
@@ -412,26 +420,25 @@ LIMITS_GROUP INST2_GROUND
 
 <p>Here’s a example of using the subscription APIs.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">id</span> <span class="o">=</span> <span class="n">subscribe_limits_events</span><span class="p">()</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">id</span> <span class="o">=</span> <span class="n">subscribe_limits_events</span><span class="p">()</span>
 <span class="k">while</span> <span class="kp">true</span>
-<span class="n">type</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">get_limits_event</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="c1"># block waiting</span>
-<span class="nb">puts</span> <span class="s2">"type:</span><span class="si">#{</span><span class="n">type</span><span class="si">}</span><span class="s2"> data:</span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="s2">"</span>
-
-<span class="c1"># break if XXX # Break the loop when ...</span>
-
+  <span class="n">type</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">get_limits_event</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="c1"># block waiting</span>
+  <span class="nb">puts</span> <span class="s2">"type:</span><span class="si">#{</span><span class="n">type</span><span class="si">}</span><span class="s2"> data:</span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="s2">"</span>
+  <span class="c1"># break if XXX # Break the loop when ...</span>
 <span class="k">end</span>
 <span class="n">unsubscribe_limits_events</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
 
 <span class="nb">id</span> <span class="o">=</span> <span class="n">subscribe_limits_events</span><span class="p">()</span>
 <span class="k">while</span> <span class="kp">true</span>
-<span class="k">begin</span>
-<span class="n">type</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">get_limits_event</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span> <span class="c1"># don't block</span>
-<span class="nb">puts</span> <span class="s2">"type:</span><span class="si">#{</span><span class="n">type</span><span class="si">}</span><span class="s2"> data:</span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="s2">"</span> <span class="c1"># break if XXX # Break the loop when ...</span>
-<span class="k">rescue</span> <span class="no">ThreadError</span> <span class="c1"># raised if no event present</span>
-<span class="n">wait</span> <span class="mi">1</span> <span class="c1"># Wait before checking again</span>
+  <span class="k">begin</span>
+    <span class="n">type</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">get_limits_event</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span> <span class="c1"># don't block</span>
+    <span class="nb">puts</span> <span class="s2">"type:</span><span class="si">#{</span><span class="n">type</span><span class="si">}</span><span class="s2"> data:</span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="s2">"</span> <span class="c1"># break if XXX # Break the loop when ...</span>
+  <span class="k">rescue</span> <span class="no">ThreadError</span> <span class="c1"># raised if no event present</span>
+    <span class="n">wait</span> <span class="mi">1</span> <span class="c1"># Wait before checking again</span>
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span>
-<span class="n">unsubscribe_limits_events</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span></code></pre></figure>
+<span class="n">unsubscribe_limits_events</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+</code></pre></div></div>
 
 <h2 id="conclusion">Conclusion</h2>
 

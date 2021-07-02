@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url(native.css);
+@import url(dark.css);
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html { font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
 
@@ -371,7 +371,10 @@ article h2:first-child { margin-top: 0; }
 /* Code Highlighting */
 .values { margin: 0; font: 18px/1em Menlo, Consolas, "Courier New", Courier, "Liberation Mono", monospace; }
 
-pre, code { white-space: pre; margin: 0; padding: 5px; font: 14px/1.5em Menlo, Consolas, "Courier New", Courier, "Liberation Mono", monospace; }
+/* Give code inside other elements a little padding. Mainly for inline backticks. */
+li code, p code { padding: 3px; }
+
+pre, code { white-space: pre; margin: 0; font: 14px/1.5em Menlo, Consolas, "Courier New", Courier, "Liberation Mono", monospace; }
 
 code.wrap { white-space: normal; }
 

@@ -536,35 +536,28 @@
 
 <p>To use this protocol, you must add it to your interface wherever that is defined. Typically, this is in the target’s cmd_tlm_server.txt file but it could also be in the global cmd_tlm_server.txt. For example:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">INTERFACE INST_INT simulated_target_interface.rb sim_inst.rb
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INST_INT simulated_target_interface.rb sim_inst.rb
 TARGET INST
-PROTOCOL READ OverrideProtocol</code></pre></figure>
+PROTOCOL READ OverrideProtocol
+</code></pre></div></div>
 
 <p>By adding this to your interface you now have access to the following APIs:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Permanently set the converted value of a telemetry point to a given value</span>
-
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Permanently set the converted value of a telemetry point to a given value</span>
 <span class="n">override_tlm</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-
 <span class="c1"># or</span>
-
 <span class="n">override_tlm</span><span class="p">(</span><span class="s2">"target_name packet_name item_name = value"</span><span class="p">)</span>
 
 <span class="c1"># Permanently set the raw value of a telemetry point to a given value</span>
-
 <span class="n">override_tlm_raw</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-
 <span class="c1"># or</span>
-
 <span class="n">override_tlm_raw</span><span class="p">(</span><span class="s2">"target_name packet_name item_name = value"</span><span class="p">)</span>
 
 <span class="c1"># Clear an override of a telemetry point</span>
-
 <span class="n">normalize_tlm</span><span class="p">(</span><span class="n">target_name</span><span class="p">,</span> <span class="n">packet_name</span><span class="p">,</span> <span class="n">item_name</span><span class="p">)</span>
-
 <span class="c1"># or</span>
-
-<span class="n">normalize_tlm</span><span class="p">(</span><span class="s2">"target_name packet_name item_name"</span><span class="p">)</span></code></pre></figure>
+<span class="n">normalize_tlm</span><span class="p">(</span><span class="s2">"target_name packet_name item_name"</span><span class="p">)</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -736,13 +729,13 @@ PROTOCOL READ OverrideProtocol</code></pre></figure>
 
 <p>Base class implementation:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># @param allow_empty_data [true/false] Whether STOP should be returned on empty data</span>
-
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># @param allow_empty_data [true/false] Whether STOP should be returned on empty data</span>
 <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">allow_empty_data</span> <span class="o">=</span> <span class="kp">false</span><span class="p">)</span>
-<span class="vi">@interface</span> <span class="o">=</span> <span class="kp">nil</span>
-<span class="vi">@allow_empty_data</span> <span class="o">=</span> <span class="no">ConfigParser</span><span class="p">.</span><span class="nf">handle_true_false</span><span class="p">(</span><span class="n">allow_empty_data</span><span class="p">)</span>
-<span class="n">reset</span><span class="p">()</span>
-<span class="k">end</span></code></pre></figure>
+  <span class="vi">@interface</span> <span class="o">=</span> <span class="kp">nil</span>
+  <span class="vi">@allow_empty_data</span> <span class="o">=</span> <span class="no">ConfigParser</span><span class="p">.</span><span class="nf">handle_true_false</span><span class="p">(</span><span class="n">allow_empty_data</span><span class="p">)</span>
+  <span class="n">reset</span><span class="p">()</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>As you can see, every Protocol maintains state on at least two items. @interface holds the Interface class instance that the protocol is associated with. This is sometimes necessary to introspect details that only the Interface knows. @allow_empty_data is a flag used by the read_data(data) method that is discussed later in this document.</p>
 
@@ -753,8 +746,9 @@ PROTOCOL READ OverrideProtocol</code></pre></figure>
 
 <p>Base class implementation:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">reset</span>
-<span class="k">end</span></code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">reset</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>As you can see, the base class reset implementation doesn’t do anything.</p>
 
@@ -765,9 +759,10 @@ PROTOCOL READ OverrideProtocol</code></pre></figure>
 
 <p>Base class implementation:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">connect_reset</span>
-<span class="n">reset</span><span class="p">()</span>
-<span class="k">end</span></code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">connect_reset</span>
+  <span class="n">reset</span><span class="p">()</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>The base class connect_reset implementation just calls the reset method to ensure common reset logic is run.</p>
 
@@ -778,9 +773,10 @@ PROTOCOL READ OverrideProtocol</code></pre></figure>
 
 <p>Base class implementation:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">disconnect_reset</span>
-<span class="n">reset</span><span class="p">()</span>
-<span class="k">end</span></code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">disconnect_reset</span>
+  <span class="n">reset</span><span class="p">()</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>The base class disconnect_reset implementation just calls the reset method to ensure common reset logic is run.</p>
 
@@ -791,18 +787,19 @@ PROTOCOL READ OverrideProtocol</code></pre></figure>
 
 <p>Base Class Implemenation:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="nf">length</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
-<span class="k">if</span> <span class="vi">@allow_empty_data</span><span class="p">.</span><span class="nf">nil?</span>
-<span class="k">if</span> <span class="vi">@interface</span> <span class="n">and</span> <span class="vi">@interface</span><span class="p">.</span><span class="nf">read_protocols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="nb">self</span> <span class="c1"># Last read interface in chain with auto @allow_empty_data</span>
-<span class="k">return</span> <span class="ss">:STOP</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="nf">length</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="vi">@allow_empty_data</span><span class="p">.</span><span class="nf">nil?</span>
+      <span class="k">if</span> <span class="vi">@interface</span> <span class="n">and</span> <span class="vi">@interface</span><span class="p">.</span><span class="nf">read_protocols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="nb">self</span> <span class="c1"># Last read interface in chain with auto @allow_empty_data</span>
+        <span class="k">return</span> <span class="ss">:STOP</span>
+      <span class="k">end</span>
+    <span class="k">elsif</span> <span class="o">!</span><span class="vi">@allow_empty_data</span> <span class="c1"># Don't @allow_empty_data means STOP</span>
+      <span class="k">return</span> <span class="ss">:STOP</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="n">data</span>
 <span class="k">end</span>
-<span class="k">elsif</span> <span class="o">!</span><span class="vi">@allow_empty_data</span> <span class="c1"># Don't @allow_empty_data means STOP</span>
-<span class="k">return</span> <span class="ss">:STOP</span>
-<span class="k">end</span>
-<span class="k">end</span>
-<span class="n">data</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>The base class implementation does nothing except return the data it was given. The only exception to this is when handling an empty string. If the allow_empty_data flag is false or if it nil and the Protocol is the last in the chain, then the base implementation will return :STOP data to indicate that it is time to call the Interface read_interface() method to get more data. Blank strings are used to signal Protocols that they have an opportunity to return a cached packet.</p>
 
@@ -813,9 +810,10 @@ PROTOCOL READ OverrideProtocol</code></pre></figure>
 
 <p>Base Class Implementation:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">read_packet</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
-<span class="k">return</span> <span class="n">packet</span>
-<span class="k">end</span></code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">read_packet</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">packet</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>The base class always just returns the packet given.</p>
 
@@ -826,9 +824,10 @@ PROTOCOL READ OverrideProtocol</code></pre></figure>
 
 <p>Base Class Implementation:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">write_packet</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
-<span class="k">return</span> <span class="n">packet</span>
-<span class="k">end</span></code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">write_packet</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">packet</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>The base class always just returns the packet given.</p>
 
@@ -839,9 +838,10 @@ PROTOCOL READ OverrideProtocol</code></pre></figure>
 
 <p>Base Class Implementation:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">write_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="k">return</span> <span class="n">data</span>
-<span class="k">end</span></code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">write_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">data</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>The base class always just returns the data given.</p>
 
@@ -852,9 +852,10 @@ PROTOCOL READ OverrideProtocol</code></pre></figure>
 
 <p>Base Class Implementation:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">post_write_interface</span><span class="p">(</span><span class="n">packet</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-<span class="k">return</span> <span class="n">packet</span><span class="p">,</span> <span class="n">data</span>
-<span class="k">end</span></code></pre></figure>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">post_write_interface</span><span class="p">(</span><span class="n">packet</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">packet</span><span class="p">,</span> <span class="n">data</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <p>The base class always just returns the packet/data given.</p>
 

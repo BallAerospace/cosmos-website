@@ -273,36 +273,36 @@
 
 <p>In this example we will assume the original interface is the COSMOS <a href="/docs/v4/interfaces#serial-interface">Serial Interface</a>. In your target’s lib folder create a new interface called checksum_serial_interface.rb:</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'cosmos'</span> <span class="c1"># always require cosmos</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'cosmos'</span> <span class="c1"># always require cosmos</span>
 <span class="nb">require</span> <span class="s1">'cosmos/interfaces/serial_interface'</span> <span class="c1"># original interface being extended</span>
 
 <span class="k">module</span> <span class="nn">Cosmos</span>
-<span class="k">class</span> <span class="nc">ChecksumSerialInterface</span> <span class="o">&lt;</span> <span class="no">SerialInterface</span>
-<span class="k">def</span> <span class="nf">pre_write_packet</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">packet</span><span class="p">.</span><span class="nf">buffer</span>
-<span class="n">checksum</span> <span class="o">=</span> <span class="mh">0xFFFF</span>
-<span class="n">data</span><span class="p">.</span><span class="nf">each_byte</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">checksum</span> <span class="o">+=</span> <span class="n">x</span> <span class="p">}</span>
-<span class="n">checksum</span> <span class="o">&amp;=</span> <span class="mh">0xFFFF</span>
-<span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="p">[</span><span class="n">checksum</span><span class="p">].</span><span class="nf">pack</span><span class="p">(</span><span class="s2">"n"</span><span class="p">)</span> <span class="c1"># Pack as 16 bit unsigned bit endian</span>
-<span class="k">return</span> <span class="n">data</span>
-<span class="k">end</span>
+  <span class="k">class</span> <span class="nc">ChecksumSerialInterface</span> <span class="o">&lt;</span> <span class="no">SerialInterface</span>
+    <span class="k">def</span> <span class="nf">pre_write_packet</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
+      <span class="n">data</span> <span class="o">=</span> <span class="n">packet</span><span class="p">.</span><span class="nf">buffer</span>
+      <span class="n">checksum</span> <span class="o">=</span> <span class="mh">0xFFFF</span>
+      <span class="n">data</span><span class="p">.</span><span class="nf">each_byte</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">checksum</span> <span class="o">+=</span> <span class="n">x</span> <span class="p">}</span>
+      <span class="n">checksum</span> <span class="o">&amp;=</span> <span class="mh">0xFFFF</span>
+      <span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="p">[</span><span class="n">checksum</span><span class="p">].</span><span class="nf">pack</span><span class="p">(</span><span class="s2">"n"</span><span class="p">)</span> <span class="c1"># Pack as 16 bit unsigned bit endian</span>
+      <span class="k">return</span> <span class="n">data</span>
+    <span class="k">end</span>
 
-<span class="k">def</span> <span class="nf">post_read_data</span><span class="p">(</span><span class="n">packet_data</span><span class="p">)</span>
-<span class="n">len</span> <span class="o">=</span> <span class="n">packet_data</span><span class="p">.</span><span class="nf">length</span>
-<span class="n">calc_checksum</span> <span class="o">=</span> <span class="mh">0xFFFF</span>
-<span class="n">packet_data</span><span class="p">[</span><span class="mi">0</span><span class="o">..</span><span class="p">(</span><span class="n">len</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)].</span><span class="nf">each_byte</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">calc_checksum</span> <span class="o">+=</span> <span class="n">x</span> <span class="p">}</span>
-<span class="n">calc_checksum</span> <span class="o">&amp;=</span> <span class="mh">0xFFFF</span>
-<span class="n">rx_checksum</span> <span class="o">=</span> <span class="n">packet_data</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">..-</span><span class="mi">1</span><span class="p">].</span><span class="nf">unpack</span><span class="p">(</span><span class="s2">"n"</span><span class="p">)</span> <span class="c1"># Unpack as 16 bit unsigned big endian</span>
-<span class="k">if</span> <span class="n">calc_checksum</span> <span class="o">==</span> <span class="n">rx_checksum</span>
-<span class="k">return</span> <span class="n">packet_data</span>
-<span class="k">else</span>
-<span class="nb">puts</span> <span class="s2">"Bad checksum detected. Calculated: 0x</span><span class="si">#{</span><span class="n">calc_checksum</span><span class="p">.</span><span class="nf">to_s</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="si">}</span><span class="s2"> Received: 0x</span><span class="si">#{</span><span class="n">rx_checksum</span><span class="p">.</span><span class="nf">to_s</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="si">}</span><span class="s2">. Dropping packet."</span>
-<span class="k">return</span> <span class="s2">""</span> <span class="c1"># Also can return nil to break the connection and reconnect to the target</span>
+    <span class="k">def</span> <span class="nf">post_read_data</span><span class="p">(</span><span class="n">packet_data</span><span class="p">)</span>
+      <span class="n">len</span> <span class="o">=</span> <span class="n">packet_data</span><span class="p">.</span><span class="nf">length</span>
+      <span class="n">calc_checksum</span> <span class="o">=</span> <span class="mh">0xFFFF</span>
+      <span class="n">packet_data</span><span class="p">[</span><span class="mi">0</span><span class="o">..</span><span class="p">(</span><span class="n">len</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)].</span><span class="nf">each_byte</span> <span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">calc_checksum</span> <span class="o">+=</span> <span class="n">x</span> <span class="p">}</span>
+      <span class="n">calc_checksum</span> <span class="o">&amp;=</span> <span class="mh">0xFFFF</span>
+      <span class="n">rx_checksum</span> <span class="o">=</span> <span class="n">packet_data</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">..-</span><span class="mi">1</span><span class="p">].</span><span class="nf">unpack</span><span class="p">(</span><span class="s2">"n"</span><span class="p">)</span> <span class="c1"># Unpack as 16 bit unsigned big endian</span>
+      <span class="k">if</span> <span class="n">calc_checksum</span> <span class="o">==</span> <span class="n">rx_checksum</span>
+        <span class="k">return</span> <span class="n">packet_data</span>
+      <span class="k">else</span>
+        <span class="nb">puts</span> <span class="s2">"Bad checksum detected. Calculated: 0x</span><span class="si">#{</span><span class="n">calc_checksum</span><span class="p">.</span><span class="nf">to_s</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="si">}</span><span class="s2"> Received: 0x</span><span class="si">#{</span><span class="n">rx_checksum</span><span class="p">.</span><span class="nf">to_s</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="si">}</span><span class="s2">. Dropping packet."</span>
+        <span class="k">return</span> <span class="s2">""</span> <span class="c1"># Also can return nil to break the connection and reconnect to the target</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+</code></pre></div></div>
 
 <p>What we’re doing is overriding pre_write_packet in StreamInterface to allow us to modify the data before it is written to the packet and sent over the interface. We also override post_read_data to operate on data received before it is sent back to the COSMOS server and thus the tools. Note there is also a post_read_packet(packet) method which is called after post_read_data is called and after the COSMOS Packet has been created. All Interfaces inheriting from StreamInterface includes these callback methods, including SerialInterface, TcpipServerInterface, and TcpipClientInterface. Note that UdpInterface inherits directly from Interface and thus does NOT include these callbacks.</p>
 
