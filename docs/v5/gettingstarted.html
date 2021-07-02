@@ -147,7 +147,7 @@
   <li>
     <p>The plugin generate creates a single target named after the plugin. Best practice is to create a single target per plugin to make it easier to share targets and upgrade them individually. Lets see what the plugin generate created for us. Open the cosmos-bob/targets/BOB/cmd_tlm/cmd.txt:</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> COMMAND BOB COMMAND BIG_ENDIAN <span class="s2">"Packet description"</span>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> COMMAND BOB EXAMPLE BIG_ENDIAN <span class="s2">"Packet description"</span>
    <span class="c"># Keyword           Name  BitSize Type   Min Max  Default  Description</span>
    APPEND_ID_PARAMETER ID    16      INT    1   1    1        <span class="s2">"Identifier"</span>
    APPEND_PARAMETER    VALUE 32      FLOAT  0   10.5 2.5      <span class="s2">"Value"</span>
@@ -159,7 +159,7 @@
 
     <p>What does this all mean?</p>
     <ul>
-      <li>We created a COMMAND for target BOB named COMMAND.</li>
+      <li>We created a COMMAND for target BOB named EXAMPLE.</li>
       <li>The command is made up of BIG_ENDIAN parameters and is described by “Packet description”. Here we are using the append flavor of defining parameters which stacks them back to back as it builds up the packet and you don’t have to worry about defining the bit offset into the packet.</li>
       <li>First we APPEND_ID_PARAMETER a parameter that is used to identify the packet called ID that is an 16-bit signed integer (INT) with a minimum value of 1, a maximum value of 1, and a default value of 1, that is described as the “Identifier”.</li>
       <li>Next we APPEND_PARAMETER a parameter called VALUE that is a 32-bit float (FLOAT) that has a minimum value of 0, a maximum value of 10.5, and a default value of 2.5.</li>
@@ -220,11 +220,13 @@
   <p>In a plugin that you plan to reuse you should make things like hostnames and ports variables</p>
 </div>
 
+<h2 id="building-your-plugin">Building Your Plugin</h2>
+
 <ol>
   <li>
     <p>Now we need to build our plugin and upload it to COSMOS.</p>
 
-    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial\cosmos<span class="na">-bob</span><span class="o">&gt;</span> <span class="kd">C</span>:\COSMOS\cosmos<span class="na">-control</span>.bat <span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.0
+    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial\cosmos<span class="na">-bob</span><span class="o">&gt;</span> <span class="kd">C</span>:\COSMOS\cosmos<span class="na">-control</span>.bat <span class="kd">cosmos</span> <span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.0
    <span class="kd">Successfully</span> <span class="kd">built</span> <span class="kd">RubyGem</span>
    <span class="kd">Name</span>: <span class="kd">cosmos</span><span class="na">-bob
    </span><span class="kd">Version</span>: <span class="m">1</span>.0.0.20210618174517
@@ -241,7 +243,7 @@
   <li>
     <p>Let’s modify our BOB target and then update the copy in COSMOS. If you open Command Sender in COSMOS to BOB EXAMPLE you should see the VALUE parameter has value 2.5. Open the cosmos-bob/targets/BOB/cmd_tlm/cmd.txt and change the Default value for VALUE to 5 and the description to “New Value”.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> COMMAND BOB COMMAND BIG_ENDIAN <span class="s2">"Packet description"</span>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> COMMAND BOB EXAMPLE BIG_ENDIAN <span class="s2">"Packet description"</span>
    <span class="c"># Keyword           Name  BitSize Type   Min Max  Default  Description</span>
    APPEND_ID_PARAMETER ID    16      INT    1   1    1        <span class="s2">"Identifier"</span>
    APPEND_PARAMETER    VALUE 32      FLOAT  0   10.5 5        <span class="s2">"New Value"</span>
@@ -254,7 +256,7 @@
   <li>
     <p>Rebuild the plugin with a new VERSION number. Since we didn’t make any breaking changes we simply bump the patch release number:</p>
 
-    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial\cosmos<span class="na">-bob</span><span class="o">&gt;</span> <span class="kd">C</span>:\COSMOS\cosmos<span class="na">-control</span>.bat <span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.1
+    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\tutorial\cosmos<span class="na">-bob</span><span class="o">&gt;</span> <span class="kd">C</span>:\COSMOS\cosmos<span class="na">-control</span>.bat <span class="kd">cosmos</span> <span class="kd">rake</span> <span class="kd">build</span> <span class="kd">VERSION</span><span class="o">=</span><span class="m">1</span>.0.1
    <span class="kd">Successfully</span> <span class="kd">built</span> <span class="kd">RubyGem</span>
    <span class="kd">Name</span>: <span class="kd">cosmos</span><span class="na">-bob
    </span><span class="kd">Version</span>: <span class="m">1</span>.0.1.20210618202504
@@ -376,9 +378,17 @@
     
       
     
+      
+    
+      
+    
   
     
     
+    
+      
+    
+      
     
       
     
@@ -539,6 +549,10 @@
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/upgrading">Upgrading</a>
   </li>
@@ -562,6 +576,8 @@
   
     
     
+    
+      
     
       
     
@@ -642,6 +658,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/target">Target Configuration</a>
   </li>
@@ -664,6 +682,8 @@
   
     
     
+    
+      
     
       
     
@@ -776,6 +796,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/protocols">Protocol Configuration</a>
   </li>
@@ -821,6 +843,10 @@
   
     
     
+    
+      
+    
+      
     
       
     
@@ -973,6 +999,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/packet-viewer">Packet Viewer</a>
   </li>
@@ -1017,6 +1045,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/script-runner">Script Runner</a>
   </li>
@@ -1025,6 +1055,10 @@
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1131,6 +1165,10 @@
       
     
       
+    
+      
+    
+      
   <li class="">
     <a href="/docs/v5/tlm-viewer">Telemetry Viewer</a>
   </li>
@@ -1173,6 +1211,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/screens">Telemetry Screens</a>
   </li>
@@ -1181,6 +1221,10 @@
   
     
     
+    
+      
+    
+      
     
       
     
@@ -1288,6 +1332,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/scripting">Scripting Guide</a>
   </li>
@@ -1336,8 +1382,46 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/monitoring">Monitoring</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1417,6 +1501,62 @@
       
   <li class="">
     <a href="/docs/v5/logging">Logging</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/v5/testing">Test Procedure</a>
   </li>
   <!-- prettier-ignore -->
   
