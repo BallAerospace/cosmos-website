@@ -11,7 +11,7 @@ As a COSMOS developer I often get asked about require vs load vs require_utility
 
 The Ruby programming language defines the keywords 'require' and 'load'. These are actually methods on the Kernel class and you can find the full documention on [ruby-doc.org](https://ruby-doc.org/) for both [require](https://ruby-doc.org/core-2.4.2/Kernel.html#method-i-require) and [load](https://ruby-doc.org/core-2.4.2/Kernel.html#method-i-load). They basically include additional Ruby source files into the current execution environment so they can be used by your code. The key difference is that require will only include a file once. If you try to require a file a second time the require method actually returns false indicating that the file has already been required. You can easily test this by opening an IRB session and requiring something twice.
 
-```
+```shell
 irb(main):001:0> require 'cosmos'
 => true
 irb(main):002:0> require 'cosmos'
@@ -22,16 +22,16 @@ This has key implications for usage in COSMOS, especially when writing scripts f
 
 The load keyword loads the specified file everytime and thus reparses any changes that may have been made to the file in question. This is almost always what you want to use when writing scripts for COSMOS as it allows you to edit files and be assured that you will be running the latest. Note the difference when using load in this IRB session.
 
-```
+```shell
 irb(main):001:0> load 'cosmos.rb'
 => true
 irb(main):002:0> load 'cosmos.rb'
 => true
 irb(main):003:0> load 'cosmos'
 LoadError: cannot load such file -- cosmos
-        from (irb):3:in `load'
+        from (irb):3:in 'load'
         from (irb):3
-        from C:/Ruby233p222-x64/bin/irb.cmd:19:in `<main>'
+        from C:/Ruby233p222-x64/bin/irb.cmd:19:in '<main>'
 irb(main):004:0> require 'cosmos.rb'
 => true
 ```
@@ -48,7 +48,7 @@ Note that COSMOS also has a require_utility keyword. This keyword works exactly 
 
 After talking aobut require and load I think this is a good place to talk a little about the Ruby Load Path since it directly affects whether a require or load will succeed. The overall Ruby load path can be found by typing $LOAD_PATH. Doing this in my IRB session running Ruby 2.3.3 results in the following.
 
-```
+```shell
 irb(main):004:0> puts $LOAD_PATH
 C:\git\cosmos\lib
 C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/did_you_mean-1.0.0/lib
@@ -67,7 +67,7 @@ You'll notice most of these paths are relative to my Ruby installation at C:/Rub
 
 When you start requiring other libraries they typically add things to your LOAD_PATH. Watch what happens when I require 'cosmos'.
 
-```
+```shell
 irb(main):001:0> require 'cosmos'
 => true
 irb(main):002:0> puts $LOAD_PATH
@@ -99,7 +99,7 @@ Now a bunch of gems have added themselves to my $LOAD_PATH. These gems are the g
 
 You can display your $LOAD_PATH from Script Runner by simply running "puts $LOAD_PATH" from Script Runner. When I do this I get the following in my Script Output:
 
-```
+```shell
 2017/11/13 10:58:21.815 (SCRIPTRUNNER): Starting script:
 2017/11/13 10:58:22.076 (:1): C:/git/COSMOS/demo/procedures
 2017/11/13 10:58:22.076 (:1): C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/uuidtools-2.1.5/lib
@@ -202,18 +202,18 @@ You can display your $LOAD_PATH from Script Runner by simply running "puts $LOAD
 
 Wow, that is a lot of gems! COSMOS requires a lot of libraries to support how it operates including many used for development purposes like rspec and simplecov. An important thing to note is at the top of the list the following paths are listed.
 
-```
+```batch
 C:/git/COSMOS/demo/procedures
 C:/git/COSMOS/demo/lib
 ```
 
-The first path is due to the following line in the COSMOS Demo configuration's system.txt configuration file: ```PATH PROCEDURES ./procedures```. This adds the procedures directory in the current COSMOS configuration (C:/git/COSMOS/demo on my machine) to the path.
+The first path is due to the following line in the COSMOS Demo configuration's system.txt configuration file: `PATH PROCEDURES ./procedures`. This adds the procedures directory in the current COSMOS configuration (C:/git/COSMOS/demo on my machine) to the path.
 
 The second path is added to every COSMOS configuration. The lib directory in the current COSMOS configuration (C:/git/COSMOS/demo on my machine).
 
 You should also note the last few lines of the $LOAD_PATH.
 
-```
+```batch
 C:/git/COSMOS/demo/config/targets/INST/lib
 C:/git/COSMOS/demo/config/targets/INST/procedures
 C:/git/COSMOS/demo/config/targets/EXAMPLE/lib

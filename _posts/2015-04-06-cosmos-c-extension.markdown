@@ -29,20 +29,23 @@ The floating point values were probably the easiest because I simply called `RFL
 
 At this point I refactored to combine some of the functionality in the read method with the new write method. I probably could have done more refactoring but refactoring C code just isn't as much fun as refactoring Ruby code. Once I completed the refactor I wanted to benchmark my new C extension to determine how much faster (or slower?) I made it. I love the [benchmark-ips](https://github.com/evanphx/benchmark-ips) gem as it benchmarks iterations per second and automatically determines how many times to run the code to get good data. But I didn't want to re-write our existing specs to support using this gem so I looked into how to integrate it with RSpec. It turns out this is all that was needed in our spec_helper.rb:
 
-```if ENV.key?("BENCHMARK")
-    c.around(:each) do |example|
-      Benchmark.ips do |x|
-        x.report(example.metadata[:full_description]) do
-          example.run
-        end
+```ruby
+if ENV.key?("BENCHMARK")
+  c.around(:each) do |example|
+    Benchmark.ips do |x|
+      x.report(example.metadata[:full_description]) do
+        example.run
       end
     end
   end
+end
 ```
 
 Benchmark-ips works by calculating the number of runs to get interesting data and then running the code in question. Thus defining BENCHMARK in the environment makes the specs run EXTREMELY slow. I used the ability of RSpec to filter only the examples I wanted to benchmark with the -e option:
 
-`rspec spec/packets/binary_accesor_spec.rb -e "write only"`
+```ruby
+rspec spec/packets/binary_accesor_spec.rb -e "write only"
+```
 
 Running this in master and then in my C-extension branch I calculated the difference in iterations and then filtered out all the "complains" (raise an exception) and "overflow" test cases to focus on just the tests which write values. The average improvement was 1.3x. Not quite as awesome as I was hoping for but an improvement in an area that is performance sensitive. I suspected I could get additional performance if I optimized the check_overflow method to not always use Bignums and to do Fixnum comparisons if possible. However, this did not yield any optimizations so I backed out the change.
 

@@ -7,7 +7,7 @@ Configuring COSMOS for your hardware unlocks all of its functionality for your s
 
 COSMOS Configuration is organized into the following directory structure with all files having a well defined location:
 
-{% highlight bash %}
+```bash
 .
 ├── Gemfile
 ├── Launcher
@@ -47,7 +47,7 @@ COSMOS Configuration is organized into the following directory structure with al
 ├── tools
 | ├── mac
 | └── ...
-{% endhighlight %}
+```
 
 An overview of what each of these does:
 

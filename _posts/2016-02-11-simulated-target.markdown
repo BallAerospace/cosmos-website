@@ -57,7 +57,7 @@ module Cosmos
   class SimInst < SimulatedTarget
 ```
 
-Next you can initialize any of your packets in the initialize method. This is entirely optional but I show how to use the ```@tlm_packets``` hash to access all the defined packets. This hash is created automatically by the SimulatedTarget based on all the packets you have defined in your cmd_tlm/tlm.txt file. Note that there is NOT a corresponding ```@cmd_packets```.
+Next you can initialize any of your packets in the initialize method. This is entirely optional but I show how to use the `@tlm_packets` hash to access all the defined packets. This hash is created automatically by the SimulatedTarget based on all the packets you have defined in your cmd_tlm/tlm.txt file. Note that there is NOT a corresponding `@cmd_packets`.
 
 ```ruby
 def initialize(target_name)
@@ -70,7 +70,7 @@ def initialize(target_name)
 end
 ```
 
-We then have to configure the telemetry packet rates of our target. That is, how fast do the packets get sent out. This is handled by implementing the ```set_rates``` method and by calling ```set_rate``` for each packet defined in your system. If you do not call ```set_rate``` the packet will not be send out periodically (which may be desirable for event based packets).
+We then have to configure the telemetry packet rates of our target. That is, how fast do the packets get sent out. This is handled by implementing the `set_rates` method and by calling `set_rate` for each packet defined in your system. If you do not call `set_rate` the packet will not be send out periodically (which may be desirable for event based packets).
 
 ```ruby
 def set_rates
@@ -82,7 +82,7 @@ def set_rates
 end
 ```
 
-If your target will accept command you need to implemented the ```write(packet)``` method. My write method is simple in that I only have a single command that directly sets a value in one of my telemetry packets.
+If your target will accept command you need to implemented the `write(packet)` method. My write method is simple in that I only have a single command that directly sets a value in one of my telemetry packets.
 
 ```ruby
 def write(packet)
@@ -93,7 +93,7 @@ def write(packet)
 end
 ```
 
-Your target must implement the ```read(count_100hz, time)``` method to return telemetry packets back to COSMOS. You'll call the ```get_pending_packets(count_100hz)``` method implemented by SimulatedTarget and then perform whatever operations you want on the packets before returning the array of packets back to COSMOS. Note my use of the ```cycle_tlm_item``` method to automatically cycle the telemetry item as each packet is sent out. This is used heavily in the COSMOS Demo.
+Your target must implement the `read(count_100hz, time)` method to return telemetry packets back to COSMOS. You'll call the `get_pending_packets(count_100hz)` method implemented by SimulatedTarget and then perform whatever operations you want on the packets before returning the array of packets back to COSMOS. Note my use of the `cycle_tlm_item` method to automatically cycle the telemetry item as each packet is sent out. This is used heavily in the COSMOS Demo.
 
 ```ruby
 def read(count_100hz, time)

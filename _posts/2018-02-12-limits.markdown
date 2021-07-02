@@ -24,26 +24,26 @@ Here I've ignored various other items to focus on the INST HEALTH*STATUS packet 
 
 You can get this same information from a script by executing the following script in Script Runner.
 
-{% highlight ruby %}
+```ruby
 puts "Overall limits state: #{get_overall_limits_state}"
 get_out_of_limits.each do |item|
-tgt, pkt, item, state = item
-puts "tgt:#{tgt} pkt:#{pkt} item:#{item} state:#{state}"
+  tgt, pkt, item, state = item
+  puts "tgt:#{tgt} pkt:#{pkt} item:#{item} state:#{state}"
 end
-{% endhighlight %}
+```
 
 Note that the get_out_of_limits call returns the items which are out of limits at the exact instant of the API call. Thus it doesn't provide history like the Limits Monitor tool.
 
 You can also disable and enable limits on individual telemetry items using the API. The following script will disable limits on TEMP1 and then after 5 seconds it re-enables limits. Run this with the Limits Monitor open and you'll notice the text for the INST HEALTH_STATUS TEMP1 telemetry point turns black when limits are disabled. Note that this disables limits events logging in the Command and Telemetry Server for this telemetry point.
 
-{% highlight ruby %}
+```ruby
 puts "TEMP1 limits enable:#{limits_enabled?("INST", "HEALTH_STATUS", "TEMP1")}"
 disable_limits("INST", "HEALTH_STATUS", "TEMP1")
 puts "TEMP1 limits enable:#{limits_enabled?("INST", "HEALTH_STATUS", "TEMP1")}"
 wait 5
 enable_limits("INST", "HEALTH_STATUS", "TEMP1")
 puts "TEMP1 limits enable:#{limits_enabled?("INST", "HEALTH_STATUS", "TEMP1")}"
-{% endhighlight %}
+```
 
 ## Limits Sets
 
@@ -61,12 +61,12 @@ Notice the log contains "INFO: Limits Set Changed to: TVAC". This happened immed
 
 You can also manipulate the limits sets programatically from a script.
 
-{% highlight ruby %}
+```ruby
 get_limits_sets.each { |set| puts "Limits Set:#{set}" }
 puts "Current Set:#{get_limits_set()}" # Currently selected limits set
 set_limits_set("DEFAULT") # Change to DEFAULT
 set_limits_set("TVAC") # Change to TVAC
-{% endhighlight %}
+```
 
 ## Limits Groups
 
@@ -76,7 +76,7 @@ Limits groups are defined by the [LIMITS_GROUP](/docs/v4/telemetry#limits_group)
 
 Items are assigned to a group using the [LIMITS_GROUP_ITEM](/docs/v4/telemetry#limits_group_item) keyword. Here is the definition in the COSMOS demo.
 
-```
+```bash
 LIMITS_GROUP INST2_TEMP2
   LIMITS_GROUP_ITEM INST2 HEALTH_STATUS TEMP2
 
@@ -89,49 +89,51 @@ LIMITS_GROUP INST2_GROUND
 
 You can also manipulate the limits groups programatically from a script.
 
-{% highlight ruby %}
+```ruby
 get_limits_groups.each { |group| puts "Limits Group:#{group}" }
 enable_limits_group("INST2_TEMP2")
 disable_limits_group("INST2_GROUND")
-{% endhighlight %}
+```
 
 ### Automating Limits Groups
 
 COSMOS also has the ability to automatically enable and disable limits groups based on user configurable conditions. For example, you can automatically enable the group for a particular device when the power supply voltage for that device goes high (the device is powered on). The COSMOS demo has an example of this in the SYSTEM/lib/limits_groups.rb file.
 
-{% highlight ruby %}
+```ruby
 require 'cosmos/tools/cmd_tlm_server/limits_groups_background_task'
 
 module Cosmos
-
-# Inheriting from the LimitsGroupsBackgroundTask provides a framework for
-
-# automatically enabling and disabling limits groups based on telemetry.
-
-class LimitsGroups < LimitsGroupsBackgroundTask
-def initialize(initial_delay = 0, task_delay = 0.5) # Initial delay upon starting the server before staring the group checks # followed by the background task delay between check iterations
-super(initial_delay, task_delay) # Creating a Proc allows for arbitrary code to be executed when a group # is enabled or disabled.
-@temp2_enable_code = Proc.new do
-enable_limits_group('INST2_GROUND') # Enable the INST2_GROUND group
+  # Inheriting from the LimitsGroupsBackgroundTask provides a framework for
+  # automatically enabling and disabling limits groups based on telemetry.
+  class LimitsGroups < LimitsGroupsBackgroundTask
+    # Initial delay upon starting the server before staring the group checks
+    # followed by the background task delay between check iterations
+    def initialize(initial_delay = 0, task_delay = 0.5)
+      super(initial_delay, task_delay)
+      # Creating a Proc allows for arbitrary code to be executed when a group is enabled or disabled
+      @temp2_enable_code = Proc.new do
+        enable_limits_group('INST2_GROUND') # Enable the INST2_GROUND group
+      end
+      @temp2_disable_code = Proc.new do
+        disable_limits_group('INST2_GROUND') # Disable the INST2_GROUND group
+      end
+    end
+  end
 end
-@temp2_disable_code = Proc.new do
-disable_limits_group('INST2_GROUND') # Disable the INST2_GROUND group
-end
-end
-{% endhighlight %}
+```
 
 You first must require the COSMOS base class and inherit from LimitsGroupsBackgroundTask. The constructor (initialize) takes two delay parameters. The first is the initial delay after starting the Command and Telemetry Server before the task starts checking your logical conditions. The second is the delay between doing the checks (it controls the rate of the task). After calling super (important!) a Proc is created to run arbitrary code when a particular group is enabled or disabled. Note this is entirely optional but in this case we wanted to enable the INST2_GROUND group when the INST2_TEMP2 group got enabled. The @temp2_enable_code and @temp2_disable_code names don't really matter but they must be unique and have the '@' symbol to make them Ruby instance variables (rather than locals).
 
 After the constructor is configured the method to perform the check is implemented.
 
-{% highlight ruby %}
+```ruby
 def check_inst2_temp2
-process_group(0, @temp2_enable_code, @temp2_disable_code) do
-val = tlm("INST2 HEALTH_STATUS TEMP2")
-return (!val.nan? && !val.infinite?)
+  process_group(0, @temp2_enable_code, @temp2_disable_code) do
+    val = tlm("INST2 HEALTH_STATUS TEMP2")
+    return (!val.nan? && !val.infinite?)
+  end
 end
-end
-{% endhighlight %}
+```
 
 The method name is very important. It must begin with 'check\_' and end with the name of a Limits Group defined by the LIMITS_GROUP keyword. In the demo, LIMITS_GROUP(s) are defined in config/targets/SYSTEM/cmd_tlm/limits_groups.txt. Since there is a LIMITS_GROUP INST2_TEMP2 we have a match (the method name should be lower case while the LIMITS_GROUP is typically defined to be uppercase).
 
@@ -139,7 +141,7 @@ Inside the method you must call process_group. The first parameter is the number
 
 The code inside the process_group block (the lines after 'do' and before 'end') must return a boolean. True will enable the group and false will disable the group. In this example, the group is enabled when the value is not NaN (Not a Number) and not Infinite. If the value is NaN or Infinite the group is disabled. You can watch this happening in the demo by watching the bottom log portion of the Command and Telemetry Server.
 
-```
+```shell
 2018/02/12 09:12:58.118  ERROR: INST HEALTH_STATUS TEMP2 = NaN is RED_LOW
 2018/02/12 09:12:58.121  ERROR: INST2 HEALTH_STATUS TEMP2 = NaN is RED_LOW
 2018/02/12 09:12:58.220  INFO: Disabling Limits Group: INST2_TEMP2
@@ -168,28 +170,26 @@ You can also use API methods to subscribe to limits events. This allows you to p
 
 Here's a example of using the subscription APIs.
 
-{% highlight ruby %}
+```ruby
 id = subscribe_limits_events()
 while true
-type, data = get_limits_event(id) # block waiting
-puts "type:#{type} data:#{data}"
-
-# break if XXX # Break the loop when ...
-
+  type, data = get_limits_event(id) # block waiting
+  puts "type:#{type} data:#{data}"
+  # break if XXX # Break the loop when ...
 end
 unsubscribe_limits_events(id)
 
 id = subscribe_limits_events()
 while true
-begin
-type, data = get_limits_event(id, true) # don't block
-puts "type:#{type} data:#{data}" # break if XXX # Break the loop when ...
-rescue ThreadError # raised if no event present
-wait 1 # Wait before checking again
-end
+  begin
+    type, data = get_limits_event(id, true) # don't block
+    puts "type:#{type} data:#{data}" # break if XXX # Break the loop when ...
+  rescue ThreadError # raised if no event present
+    wait 1 # Wait before checking again
+  end
 end
 unsubscribe_limits_events(id)
-{% endhighlight %}
+```
 
 ## Conclusion
 

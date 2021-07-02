@@ -119,40 +119,30 @@ The Override Protocol allows telemetry items to be overridden when read. This ac
 
 To use this protocol, you must add it to your interface wherever that is defined. Typically, this is in the target's cmd_tlm_server.txt file but it could also be in the global cmd_tlm_server.txt. For example:
 
-{% highlight bash %}
+```bash
 INTERFACE INST_INT simulated_target_interface.rb sim_inst.rb
 TARGET INST
 PROTOCOL READ OverrideProtocol
-{% endhighlight %}
+```
 
 By adding this to your interface you now have access to the following APIs:
 
-{% highlight ruby %}
-
+```ruby
 # Permanently set the converted value of a telemetry point to a given value
-
 override_tlm(target_name, packet_name, item_name, value)
-
 # or
-
 override_tlm("target_name packet_name item_name = value")
 
 # Permanently set the raw value of a telemetry point to a given value
-
 override_tlm_raw(target_name, packet_name, item_name, value)
-
 # or
-
 override_tlm_raw("target_name packet_name item_name = value")
 
 # Clear an override of a telemetry point
-
 normalize_tlm(target_name, packet_name, item_name)
-
 # or
-
 normalize_tlm("target_name packet_name item_name")
-{% endhighlight %}
+```
 
 | Parameter        | Description                                                                                                                                                                                                                                                  | Required | Default |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ------- |
@@ -214,16 +204,14 @@ This is the constructor for your custom Protocol. It should always call super(al
 
 Base class implementation:
 
-{% highlight ruby %}
-
+```ruby
 # @param allow_empty_data [true/false] Whether STOP should be returned on empty data
-
 def initialize(allow_empty_data = false)
-@interface = nil
-@allow_empty_data = ConfigParser.handle_true_false(allow_empty_data)
-reset()
+  @interface = nil
+  @allow_empty_data = ConfigParser.handle_true_false(allow_empty_data)
+  reset()
 end
-{% endhighlight %}
+```
 
 As you can see, every Protocol maintains state on at least two items. @interface holds the Interface class instance that the protocol is associated with. This is sometimes necessary to introspect details that only the Interface knows. @allow_empty_data is a flag used by the read_data(data) method that is discussed later in this document.
 
@@ -233,10 +221,10 @@ The reset method is used to reset internal protocol state when the Interface is 
 
 Base class implementation:
 
-{% highlight ruby %}
+```ruby
 def reset
 end
-{% endhighlight %}
+```
 
 As you can see, the base class reset implementation doesn't do anything.
 
@@ -246,11 +234,11 @@ The connect_reset method is used to reset internal Protocol state each time the 
 
 Base class implementation:
 
-{% highlight ruby %}
+```ruby
 def connect_reset
-reset()
+  reset()
 end
-{% endhighlight %}
+```
 
 The base class connect_reset implementation just calls the reset method to ensure common reset logic is run.
 
@@ -260,11 +248,11 @@ The disconnect_reset method is used to reset internal Protocol state each time t
 
 Base class implementation:
 
-{% highlight ruby %}
+```ruby
 def disconnect_reset
-reset()
+  reset()
 end
-{% endhighlight %}
+```
 
 The base class disconnect_reset implementation just calls the reset method to ensure common reset logic is run.
 
@@ -274,20 +262,20 @@ The read_data method is used to analyze and potentially modify any raw data read
 
 Base Class Implemenation:
 
-{% highlight ruby %}
+```ruby
 def read_data(data)
-if (data.length <= 0)
-if @allow_empty_data.nil?
-if @interface and @interface.read_protocols[-1] == self # Last read interface in chain with auto @allow_empty_data
-return :STOP
+  if (data.length <= 0)
+    if @allow_empty_data.nil?
+      if @interface and @interface.read_protocols[-1] == self # Last read interface in chain with auto @allow_empty_data
+        return :STOP
+      end
+    elsif !@allow_empty_data # Don't @allow_empty_data means STOP
+      return :STOP
+    end
+  end
+  data
 end
-elsif !@allow_empty_data # Don't @allow_empty_data means STOP
-return :STOP
-end
-end
-data
-end
-{% endhighlight %}
+```
 
 The base class implementation does nothing except return the data it was given. The only exception to this is when handling an empty string. If the allow_empty_data flag is false or if it nil and the Protocol is the last in the chain, then the base implementation will return :STOP data to indicate that it is time to call the Interface read_interface() method to get more data. Blank strings are used to signal Protocols that they have an opportunity to return a cached packet.
 
@@ -297,11 +285,11 @@ The read_packet method is used to analyze and potentially modify a COSMOS packet
 
 Base Class Implementation:
 
-{% highlight ruby %}
+```ruby
 def read_packet(packet)
-return packet
+  return packet
 end
-{% endhighlight %}
+```
 
 The base class always just returns the packet given.
 
@@ -311,11 +299,11 @@ The write_packet method is used to analyze and potentially modify a COSMOS packe
 
 Base Class Implementation:
 
-{% highlight ruby %}
+```ruby
 def write_packet(packet)
-return packet
+  return packet
 end
-{% endhighlight %}
+```
 
 The base class always just returns the packet given.
 
@@ -325,11 +313,11 @@ The write_data method is used to analyze and potentially modify data before it i
 
 Base Class Implementation:
 
-{% highlight ruby %}
+```ruby
 def write_data(data)
-return data
+  return data
 end
-{% endhighlight %}
+```
 
 The base class always just returns the data given.
 
@@ -339,11 +327,11 @@ The post_write_interface method is called after data has been written out the In
 
 Base Class Implementation:
 
-{% highlight ruby %}
+```ruby
 def post_write_interface(packet, data)
-return packet, data
+  return packet, data
 end
-{% endhighlight %}
+```
 
 The base class always just returns the packet/data given.
 

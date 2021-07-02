@@ -21,7 +21,7 @@ When defining command parameters you can choose from the following data types: I
 **Example File: TARGET/cmd_tlm/cmd.txt**
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```ruby
 COMMAND TARGET COLLECT_DATA BIG_ENDIAN "Commands my target to collect data"
   PARAMETER CCSDSVER 0 3 UINT 0 0 0 "CCSDS PRIMARY HEADER VERSION NUMBER"
   PARAMETER CCSDSTYPE 3 1 UINT 1 1 1 "CCSDS PRIMARY HEADER PACKET TYPE"
@@ -55,4 +55,4 @@ COMMAND TARGET SETTINGS BIG_ENDIAN "Set the Settings"
   <% 5.times do |x| %>
   APPEND_PARAMETER SETTING<%= x %> 16 UINT 0 5 0 "Setting <%= x %>"
   <% end %>
-{% endhighlight %}
+```

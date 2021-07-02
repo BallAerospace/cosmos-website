@@ -81,16 +81,16 @@ If a script has the word 'suite' in the filename it automatically prompts Script
 
 All suite files should start with the following line:
 
-{% highlight ruby %}
+```ruby
 load 'cosmos/script/suite.rb'
-{% endhighlight %}
+```
 
 ### Cosmos::Group
 
 This pulls in the COSMOS suite framework including the Cosmos::Suite and Cosmos::Group classes. Any methods starting with 'script', 'op', or 'test' which are implemented inside a Cosmos::Group class are automatically included as scripts to run. For example, in the above image, you'll notice the 'script_1_method_with_long_name' is in the Script drop down menu. Here's another simple example:
 
 <!-- prettier-ignore -->
-{% highlight ruby %}
+```ruby
 class ExampleGroup < Cosmos::Group
   def setup
     puts "setup"
@@ -102,7 +102,7 @@ class ExampleGroup < Cosmos::Group
     puts "teardown"
   end
 end
-{% endhighlight %}
+```
 
 The setup and teardown methods are special methods which enable the Setup and Teardown buttons next to the Group drop down menu. Clicking these buttons runs the associated method.
 
@@ -111,7 +111,7 @@ The setup and teardown methods are special methods which enable the Setup and Te
 Groups are added to Suites by creating a class inheriting from Cosmos::Suite and then calling the add_group method. For example:
 
 <!-- prettier-ignore -->
-{% highlight ruby %}
+```ruby
 class MySuite < Cosmos::Suite
   def initialize
     super()
@@ -124,7 +124,7 @@ class MySuite < Cosmos::Suite
     puts "Suite teardown"
   end
 end
-{% endhighlight %}
+```
 
 Again there are setup and teardown methods which enable the Setup and Teardown buttons next to the Suite drop down menu.
 

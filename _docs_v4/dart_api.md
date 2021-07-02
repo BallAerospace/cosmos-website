@@ -30,10 +30,10 @@ DART creates a HTTP Server at port 8779 by default to respond to request for dec
 After sending the request, the JSON RPC response will contain an Array of Arrays containing the item value, item seconds, item microseconds, samples (always 1 for NONE reduction, varies for other reduction values), and meta_id. Note this meta_id is the ID which can be used in subsequent requests in the meta_ids field.
 
 Example Usage:
-{% highlight bash %}
+```bash
 --> {"jsonrpc": "2.0", "method": "query", "params": [{"start_time_sec": 1514764800, "start_time_usec": 0, "end_time_sec": 415000000, "end_time_usec": 0, "item": ["INST", "HEALTH_STATUS", "TEMP1"], "reduction": "NONE", "value_type": "CONVERTED"}], "id": 1}
 <-- {"jsonrpc": "2.0", "result": [[10.3, 1514764800, 0, 1, 1], [15.6, 1514764801, 340, 1, 1]], "id": 1}
-{% endhighlight %}
+```
 
 ## DART Stream Server
 

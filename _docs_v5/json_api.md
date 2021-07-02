@@ -65,13 +65,13 @@ The second is two or three parameters with the first parameter being a string de
 | command_params | Hash      | Optional hash of command parameters       |
 
 Example Usage:
-{% highlight bash %}
+```bash
 --> {"jsonrpc": "2.0", "method": "cmd", "params": ["INST COLLECT with DURATION 1.0, TEMP 0.0, TYPE 'NORMAL'"], "id": 1}
 <-- {"jsonrpc": "2.0", "result": ["INST", "COLLECT", {"DURATION": 1.0, "TEMP": 0.0, "TYPE": "NORMAL"}], "id": 1}
 
 --> {"jsonrpc": "2.0", "method": "cmd", "params": ["INST", "COLLECT", {"DURATION": 1.0, "TEMP": 0.0, "TYPE": "NORMAL"}], "id": 1}
 <-- {"jsonrpc": "2.0", "result": ["INST", "COLLECT", {"DURATION": 1.0, "TEMP": 0.0, "TYPE": "NORMAL"}], "id": 1}
-{% endhighlight %}
+```
 
 ### Getting Telemetry
 
@@ -96,13 +96,13 @@ The second is three parameters with the first parameter being a string denoting 
 | item_name   | String    | Name of the telemetry item                         |
 
 Example Usage:
-{% highlight bash %}
+```bash
 --> {"jsonrpc": "2.0", "method": "tlm", "params": ["INST HEALTH_STATUS TEMP1"], "id": 2}
 <-- {"jsonrpc": "2.0", "result": 94.9438, "id": 2}
 
 --> {"jsonrpc": "2.0", "method": "tlm", "params": ["INST", "HEALTH_STATUS", "TEMP1"], "id": 2}
 <-- {"jsonrpc": "2.0", "result": 94.9438, "id": 2}
-{% endhighlight %}
+```
 
 ## Further Debugging
 
@@ -112,16 +112,16 @@ If developing an interface for the JSON API from another language, the best way 
 2. From a command line, launch ScriptRunner: ruby ScriptRunner
 3. Run a script like the following:
 
-{% highlight ruby %}
+```ruby
 JsonDRb.debug = true
 cmd("INST ARYCMD with ARRAY [1, 2, 3]")
-{% endhighlight %}
+```
 
 4. The following will be printed to the terminal where you launched ScriptRunner:
 
-{% highlight bash %}
+```bash
 Request:
 {"jsonrpc":"2.0","method":"cmd","params":["INST ARYCMD with ARRAY [1, 2, 3]"],"id":0}
 Response:
 {"jsonrpc":"2.0","id":0,"result":["INST","ARYCMD",{"ARRAY":[1,2,3]}]}
-{% endhighlight %}
+```

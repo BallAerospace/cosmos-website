@@ -11,11 +11,15 @@ This example assumes an existing COSMOS 5 installation at C:\COSMOS_5.0.0 and a 
 
 1. Stop the current COSMOS application
 
-    ```C:\COSMOS_5.0.0> cosmos-control.bat stop```
+    ```batch
+    C:\COSMOS_5.0.0> cosmos-control.bat stop
+    ```
 
 1. Start the new COSMOS application (note this will also build the new containers)
 
-    ```C:\COSMOS_5.1.0> cosmos-control.bat start```
+    ```batch
+    C:\COSMOS_5.1.0> cosmos-control.bat start
+    ```
 
 
 ### Migrating From COSMOS 4 to COSMOS 5
@@ -26,11 +30,15 @@ COSMOS 5 includes a migration tool for converting an existing COSMOS 4 configura
 
 1. Change to the existing COSMOS configuration directory. You should see the config, lib, procedures, outputs directory. You can then run the migration tool by specifying the absolute path to the COSMOS 5 installation.
 
-    ```C:\COSMOS4_config> C:\COSMOS5\cosmos-control.bat cosmos migrate -a demo```
+    ```batch
+    C:\COSMOS4_config> C:\COSMOS5\cosmos-control.bat cosmos migrate -a demo
+    ```
 
     This creates a new COSMOS 5 plugin called cosmos-demo with a target named DEMO containing the existing lib and procedures files as well as all the existing targets.
 
-    ```C:\COSMOS4_config> C:\COSMOS5\cosmos-control.bat cosmos migrate demo-part INST SYSTEM```
+    ```batch
+    C:\COSMOS4_config> C:\COSMOS5\cosmos-control.bat cosmos migrate demo-part INST SYSTEM
+    ```
 
     This would create a new COSMOS 5 plugin called cosmos-demo-part with a target named DEMO_PART containing the existing lib and procedures files as well as the INST and SYSTEM targets (but no others).
 

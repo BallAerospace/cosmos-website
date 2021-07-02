@@ -130,27 +130,18 @@ By adding this to your interface you now have access to the following APIs:
 {% highlight ruby %}
 
 # Permanently set the converted value of a telemetry point to a given value
-
 override_tlm(target_name, packet_name, item_name, value)
-
 # or
-
 override_tlm("target_name packet_name item_name = value")
 
 # Permanently set the raw value of a telemetry point to a given value
-
 override_tlm_raw(target_name, packet_name, item_name, value)
-
 # or
-
 override_tlm_raw("target_name packet_name item_name = value")
 
 # Clear an override of a telemetry point
-
 normalize_tlm(target_name, packet_name, item_name)
-
 # or
-
 normalize_tlm("target_name packet_name item_name")
 {% endhighlight %}
 
@@ -248,7 +239,7 @@ Base class implementation:
 
 {% highlight ruby %}
 def connect_reset
-reset()
+  reset()
 end
 {% endhighlight %}
 
@@ -262,7 +253,7 @@ Base class implementation:
 
 {% highlight ruby %}
 def disconnect_reset
-reset()
+  reset()
 end
 {% endhighlight %}
 
@@ -276,16 +267,16 @@ Base Class Implemenation:
 
 {% highlight ruby %}
 def read_data(data)
-if (data.length <= 0)
-if @allow_empty_data.nil?
-if @interface and @interface.read_protocols[-1] == self # Last read interface in chain with auto @allow_empty_data
-return :STOP
-end
-elsif !@allow_empty_data # Don't @allow_empty_data means STOP
-return :STOP
-end
-end
-data
+  if (data.length <= 0)
+    if @allow_empty_data.nil?
+      if @interface and @interface.read_protocols[-1] == self # Last read interface in chain with auto @allow_empty_data
+        return :STOP
+      end
+    elsif !@allow_empty_data # Don't @allow_empty_data means STOP
+      return :STOP
+    end
+  end
+  data
 end
 {% endhighlight %}
 
@@ -299,7 +290,7 @@ Base Class Implementation:
 
 {% highlight ruby %}
 def read_packet(packet)
-return packet
+  return packet
 end
 {% endhighlight %}
 
@@ -313,7 +304,7 @@ Base Class Implementation:
 
 {% highlight ruby %}
 def write_packet(packet)
-return packet
+  return packet
 end
 {% endhighlight %}
 
@@ -327,7 +318,7 @@ Base Class Implementation:
 
 {% highlight ruby %}
 def write_data(data)
-return data
+  return data
 end
 {% endhighlight %}
 
@@ -341,7 +332,7 @@ Base Class Implementation:
 
 {% highlight ruby %}
 def post_write_interface(packet, data)
-return packet, data
+  return packet, data
 end
 {% endhighlight %}
 

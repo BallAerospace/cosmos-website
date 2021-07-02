@@ -38,20 +38,21 @@ For more information about the options you can pass to a Router (and Interface) 
 
 To connect to the INST_ROUTER that we created we can write a little Ruby code using existing COSMOS interface classes and streams.
 
-{% highlight ruby %}
+```ruby
 require 'cosmos'
 require 'cosmos/interfaces/tcpip_client_interface'
+
 i = Cosmos::TcpipClientInterface.new('localhost',2055,2055,nil,nil,'LENGTH',32,16,7)
 i.connect
 loop do
-pkt = Cosmos::System.telemetry.identify!(i.read.buffer, ['INST'])
-puts pkt.packet_name
+  pkt = Cosmos::System.telemetry.identify!(i.read.buffer, ['INST'])
+  puts pkt.packet_name
 end
-{% endhighlight %}
+```
 
 Obviously we need the TCPIP Client Interface to match the port number of the TCPIP Server and we also need to match the LENGTH protocol options. Notice how we have to call the System.telemetry.identify! method to identify the raw packet stream. When I run this from a command prompt after starting the Server I see a stream of packet names similar to this:
 
-```
+```bash
 MECH
 ADCS
 MECH
@@ -68,16 +69,17 @@ You should see MECH and ADCS come out at 10Hz and the IMAGE, PARAMS, and HEALTH_
 
 We can also write some code to connect to the PREIDENTIFIED router. It looks very similar to the previous code except we do not need to identify the packets as they are pre-identified!
 
-{% highlight ruby %}
+```ruby
 require 'cosmos'
 require 'cosmos/interfaces/tcpip_client_interface'
+
 i = Cosmos::TcpipClientInterface.new('localhost',7779,7779,nil,nil,'PREIDENTIFIED')
 i.connect
 loop do
-pkt = i.read
-puts pkt.packet_name
+  pkt = i.read
+  puts pkt.packet_name
 end
-{% endhighlight %}
+```
 
 This time you should see some LIMITS_CHANGE packet names sprinkled in with the output from before. That's because we're accessing the ENTIRE COSMOS telemetry stream and not just the stream from the INST interface. Keep this in mind if you have performance issues when trying to process the entire telemetry stream.
 

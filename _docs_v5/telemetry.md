@@ -31,7 +31,7 @@ Note the bit offset and bit size of 0 and the data type of DERIVED. This definit
 **Example File: TARGET/cmd_tlm/tlm.txt**
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 TELEMETRY TARGET HS BIG_ENDIAN "Health and Status for My Target"
   ITEM CCSDSVER 0 3 UINT "CCSDS PACKET VERSION NUMBER (SEE CCSDS 133.0-B-1)"
   ITEM CCSDSTYPE 3 1 UINT "CCSDS PACKET TYPE (COMMAND OR TELEMETRY)"
@@ -68,4 +68,4 @@ TELEMETRY TARGET HS BIG_ENDIAN "Health and Status for My Target"
       time = Time.ccsds2mdy(packet.read('ccsdsday'), packet.read('ccsdsmsod'), packet.read('ccsdsusoms'))
       sprintf('%04u/%02u/%02u %02u:%02u:%02u.%06u', time[0], time[1], time[2], time[3], time[4], time[5], time[6])
     GENERIC_READ_CONVERSION_END
-{% endhighlight %}
+```

@@ -6,11 +6,11 @@ author: jmthomas
 categories: [post]
 ---
 
-COSMOS configuration files support ERB (Embedded RuBy) which is used heavily by [Ruby on Rails](http://rubyonrails.org/). I found a pretty good description of ERB [here](http://www.stuartellis.eu/articles/erb/). ERB allows you to put executable Ruby code in your configuration files. The trick is to surround the Ruby code with the special markers: ```<% <code> %>```. If you want the result of your Ruby code to be placed in the configuration file you need to add the equal sign to the first marker: ```<%= <code> %>```
+COSMOS configuration files support ERB (Embedded RuBy) which is used heavily by [Ruby on Rails](http://rubyonrails.org/). I found a pretty good description of ERB [here](http://www.stuartellis.eu/articles/erb/). ERB allows you to put executable Ruby code in your configuration files. The trick is to surround the Ruby code with the special markers: `<% <code> %>`. If you want the result of your Ruby code to be placed in the configuration file you need to add the equal sign to the first marker: `<%= <code> %>`
 
 A COSMOS user recently asked if he could include environment variables in his COSMOS configuration. This is very easy using the ERB syntax. For example, you have an environment variable named "LOG_DIR" in your system which points to the path you want to store your COSMOS logs. To use this value you would modify your system.txt file as follows:
 
-```
+```bash
 ...
 # Paths
 PATH LOGS <%= ENV["LOG_DIR"] %>
@@ -21,11 +21,11 @@ When this file gets parsed by COSMOS, the value of the LOG_DIR environment varia
 
 It's recommended that you don't put too much logic in these ERB statements to keep your configuration files readable and maintainable. If you have a complex piece of code you want to use in an ERB statement, you can create a utility in your 'lib' folder and define methods to use. For example, in your 'lib' folder create utilties.rb:
 
-{% highlight ruby %}
+```ruby
 def log_path
   File.join(Cosmos::USERPATH, 'outputs', 'mylogs')
 end
-{% endhighlight %}
+```
 
 Now in system.txt we can use that 'log_path' routine after we first require 'utilities'.
 
@@ -59,7 +59,7 @@ COMMAND INST ABORT BIG_ENDIAN "Aborts a collect on the instrument"
 ...
 ```
 
-Notice the call to ```<%= render "_ccsds_cmd.txt", locals: {id: 1} %>```. Opening the '_ccsds_cmd.txt' file reveals this command template:
+Notice the call to `<%= render "_ccsds_cmd.txt", locals: {id: 1} %>`. Opening the '_ccsds_cmd.txt' file reveals this command template:
 
 ```
   PARAMETER    CCSDSVER        0   3  UINT  0     0   0 "CCSDS primary header version number"

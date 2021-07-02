@@ -26,31 +26,24 @@ The only issue on the master CmdTlmServer computer is that you must make sure th
 
 ### Example CmdTlmServer Configuration for Child (cmd_tlm_server_chain.txt)
 
-{% highlight bash %}
-
+```bash
 # Using this file WITH LOCALHOST requires changing the ports in system.txt
-
 # Otherwise don't change the ports!
-
 TITLE 'COSMOS Command and Telemetry Server - Chain Configuration'
 
 # Don't log on the chained server
-
 PACKET_LOG_WRITER DEFAULT packet_log_writer.rb nil false
 
 # Replace localhost below with the IP Address of the master CmdTlmServer
-
 # Update the target list below to the full list of targets in your system
-
 # To make this child unable to send commands change the first 7779 to nil
-
 INTERFACE CHAININT tcpip_client_interface.rb localhost 7779 7779 10 5 PREIDENTIFIED
 TARGET INST
 TARGET INST2
 TARGET EXAMPLE
 TARGET TEMPLATED
 TARGET COSMOS
-{% endhighlight %}
+```
 
 ## Connect Master CmdTlmServer to Client
 
@@ -76,15 +69,13 @@ The master config/tools/cmd_tlm_server/cmd_tlm_server.txt file is where you defi
 
 ### Example CmdTlmServer Configuration for Master (cmd_tlm_server.txt)
 
-{% highlight bash %}
-TITLE 'COSMOS Command and Telemetry Server'
+```bash
+TITLE 'COSMOS Command and Telemetry sServer'
 
 PACKET_LOG_WRITER DEFAULT packet_log_writer.rb
 
 # Replace localhost below with the IP Address of the client CmdTlmServer
-
 # Change <TARGET> to the target name as defined in the client
-
 INTERFACE <TARGET>\_INT tcpip_client_interface.rb localhost 7779 7779 nil nil PREIDENTIFIED
-TARGET <TARGET>
-{% endhighlight %}
+  TARGET <TARGET>
+```

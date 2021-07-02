@@ -36,9 +36,9 @@ The SCREEN keyword is the first keyword in any telemetry screen definition. It d
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 SCREEN AUTO AUTO 1.0 FIXED
-{% endhighlight %}
+```
 
 ### END
 
@@ -57,9 +57,9 @@ The GLOBAL_SETTING keyword is used to apply a widget setting to allow widgets of
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 GLOBAL_SETTING LABELVALUELIMITSBAR COLORBLIND TRUE
-{% endhighlight %}
+```
 
 ### GLOBAL_SUBSETTING
 
@@ -75,10 +75,10 @@ The GLOBAL_SUBSETTING keyword is used to apply a widget subsetting to allow widg
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 GLOBAL_SUBSETTING LABELVALUELIMITSBAR 1 COLORBLIND TRUE
 GLOBAL_SUBSETTING LABELVALUELIMITSBAR 0:0 TEXTCOLOR white # Set all text color to white for labelvaluelimitsbars
-{% endhighlight %}
+```
 
 ### SETTING
 
@@ -92,12 +92,12 @@ The SETTING keyword is used to apply a widget setting to the widget that was spe
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 VERTICALBOX
   LABEL ... # Various other widgets
 END
 SETTING BACKCOLOR 163 185 163 # RGB color for the box background
-{% endhighlight %}
+```
 
 ### SUBSETTING
 
@@ -112,14 +112,14 @@ The SUBSETTING keyword is used to apply a widget subsetting to the widget that w
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 VERTICALBOX
   LABELVALUE ...
   SUBSETTING 0 TEXTCOLOR blue # Change only the label's color
   LABELVALUELIMITSBAR ...
   SUBSETTING 0:0 TEXTCOLOR white # Change the label's text color to white
 END
-{% endhighlight %}
+```
 
 ### NAMED_WIDGET
 
@@ -134,10 +134,10 @@ The NAMED_WIDGET keyword is used to give a name to a widget that allows it to be
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 NAMED_WIDGET DURATION TEXTFIELD
 BUTTON "Push" "screen.get_named_widget('DURATION').text()"
-{% endhighlight %}
+```
 
 ### WIDGETNAME
 
@@ -155,7 +155,7 @@ Example Usage: See the Example File
 Example File: <TARGET>/myscreen.txt
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 SCREEN AUTO AUTO 0.5
 VERTICAL
   TITLE "<%= @target_name %> Commanding Examples"
@@ -186,7 +186,7 @@ VERTICAL
   END
   SETTING BACKCOLOR 163 185 163
 END
-{% endhighlight %}
+```
 
 ## Widget Descriptions
 
@@ -208,12 +208,12 @@ The VERTICAL widget places the widgets it encapsulates vertically on the screen.
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 VERTICAL 50
   LABEL "TEST"
   LABEL "SCREEN"
 END
-{% endhighlight %}
+```
 
 ### VERTICALBOX
 
@@ -228,12 +228,12 @@ The VERTICALBOX widget places the widgets it encapsulates vertically on the scre
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 VERTICALBOX Info
   LABEL "TEST"
   LABEL "SCREEN"
 END
-{% endhighlight %}
+```
 
 ### HORIZONTAL
 
@@ -246,12 +246,12 @@ The HORIZONTAL widget places the widgets it encapsulates horizontally on the scr
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 HORIZONTAL 100
   LABEL "TEST"
   LABEL "SCREEN"
 END
-{% endhighlight %}
+```
 
 ### HORIZONTALBOX
 
@@ -265,12 +265,12 @@ The HORIZONTALBOX widget places the widgets it encapsulates horizontally on the 
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 HORIZONTALBOX Info 10
   LABEL "TEST"
   LABEL "SCREEN"
 END
-{% endhighlight %}
+```
 
 ### MATRIXBYCOLUMNS
 
@@ -285,7 +285,7 @@ The MATRIXBYCOLUMNS widget places the widgets into a table-like matrix. The MATR
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 MATRIXBYCOLUMNS 3
   LABEL "COL 1"
   LABEL "COL 2"
@@ -294,7 +294,7 @@ MATRIXBYCOLUMNS 3
   LABEL "200"
   LABEL "300"
 END
-{% endhighlight %}
+```
 
 ### SCROLLWINDOW
 
@@ -303,7 +303,7 @@ The SCROLLWINDOW widget places the widgets inside of it into a scrollable area. 
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 SCROLLWINDOW
   VERTICAL
     LABEL "100"
@@ -317,7 +317,7 @@ SCROLLWINDOW
     LABEL "900"
   END
 END
-{% endhighlight %}
+```
 
 ### TABBOOK
 
@@ -334,7 +334,7 @@ The TABITEM widget creates a tab into which to place widgets. The tab automatica
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 TABBOOK
   TABITEM "Tab 1"
     LABEL "100"
@@ -345,7 +345,7 @@ TABBOOK
     LABEL "400"
   END
 END
-{% endhighlight %}
+```
 
 ## Decoration Widgets
 
@@ -362,9 +362,9 @@ The LABEL widget displays text on the screen. Generally, label widgets contain a
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABEL "Note: This is only a warning"
-{% endhighlight %}
+```
 
 ### HORIZONTALLINE
 
@@ -381,9 +381,9 @@ The SECTIONHEADER widget displays a label that is underlined with a horizontal l
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 SECTIONHEADER Mechanisms
-{% endhighlight %}
+```
 
 ### TITLE
 
@@ -396,12 +396,12 @@ The TITLE widget displays a large centered title on the screen.
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 TITLE "Title"
 HORIZONTALLINE
 SECTIONHEADER "Section Header"
 LABEL "Label"
-{% endhighlight %}
+```
 
 ### SPACER
 
@@ -417,13 +417,13 @@ The SPACER widget inserts a spacer into a layout. This can be used to separate o
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 VERTICAL 3 FALSE
   LABEL "Spacer below"
   SPACER 0 100 MINIMUM EXPANDING
   LABEL "Spacer above"
 END
-{% endhighlight %}
+```
 
 ## Telemetry widgets
 
@@ -447,10 +447,10 @@ The ARRAY widget is used to display data from an array telemetry item. Data is o
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 ARRAY INST HEALTH_STATUS ARY 250 50 "0x%x" 6 FORMATTED
 ARRAY INST HEALTH_STATUS ARY2 200 60 nil 4 WITH_UNITS
-{% endhighlight %}
+```
 
 ### BLOCK
 
@@ -472,9 +472,9 @@ The BLOCK widget is used to display data from a block telemetry item. Data is or
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 BLOCK INST IMAGE IMAGE 400 130 "%02X" 4 4 "0x%08X:"
-{% endhighlight %}
+```
 
 ### FORMATFONTVALUE
 
@@ -496,9 +496,9 @@ The FORMATFONTVALUE widget displays a box with a value printed inside that is fo
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 FORMATFONTVALUE INST LATEST TIMESEC %012u CONVERTED 12 arial 15 Qt::Font::Bold true
-{% endhighlight %}
+```
 
 ### FORMATVALUE
 
@@ -516,9 +516,9 @@ The FORMATVALUE widget displays a box with a value printed inside that is format
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 FORMATVALUE INST LATEST TIMESEC %012u CONVERTED 12
-{% endhighlight %}
+```
 
 ### LABELFORMATVALUE
 
@@ -536,9 +536,9 @@ The LABELFORMATVALUE widget displays a label with a value box that is formatted 
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABELFORMATVALUE INST LATEST TIMESEC %012u CONVERTED 12
-{% endhighlight %}
+```
 
 ### LABELPROGRESSBAR
 
@@ -556,10 +556,10 @@ The LABELPROGRESSBAR widget displays a LABEL widget showing the items name follo
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABELPROGRESSBAR INST ADCS POSPROGRESS 2 200 RAW
 LABELPROGRESSBAR INST ADCS POSPROGRESS
-{% endhighlight %}
+```
 
 ### LABELTRENDLIMITSBAR
 
@@ -579,10 +579,10 @@ The LABELTRENDLIMITSBAR widget displays a LABEL widget to show the item's name, 
 Example Usage
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABELTRENDLIMITSBAR INST HEALTH_STATUS TEMP1 CONVERTED 5 20 200 50
 LABELTRENDLIMITSBAR INST HEALTH_STATUS TEMP1
-{% endhighlight %}
+```
 
 ### LABELVALUE
 
@@ -600,10 +600,10 @@ The LABELVALUE widget displays a LABEL widget to shows the telemetry items name 
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABELVALUE INST LATEST TIMESEC CONVERTED 18 center
 LABELVALUE INST LATEST COLLECT_TYPE
-{% endhighlight %}
+```
 
 ### LABELVALUEDESC
 
@@ -621,10 +621,10 @@ The LABELVALUEDESC widget displays a LABEL widget to shows the telemetry items d
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABELVALUEDESC INST LATEST TIMESEC "Time in seconds" CONVERTED 18
 LABELVALUEDESC INST LATEST COLLECT_TYPE
-{% endhighlight %}
+```
 
 ### LABELVALUELIMITSBAR
 
@@ -641,10 +641,10 @@ The LABELVALUELIMITSBAR widget displays a LABEL widget to shows the telemetry it
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABELVALUELIMITSBAR INST HEALTH_STATUS TEMP1 CONVERTED 18
 LABELVALUELIMITSBAR INST HEALTH_STATUS TEMP1
-{% endhighlight %}
+```
 
 ### LABELVALUELIMITSCOLUMN
 
@@ -661,10 +661,10 @@ The LABELVALUELIMITSCOLUMN widget displays a LABEL widget to shows the telemetry
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABELVALUELIMITSCOLUMN INST HEALTH_STATUS TEMP1 CONVERTED 18
 LABELVALUELIMITSCOLUMN INST HEALTH_STATUS TEMP1
-{% endhighlight %}
+```
 
 ### LABELVALUERANGEBAR
 
@@ -685,10 +685,10 @@ The LABELVALUERANGEBAR widget displays a LABEL widget to shows the telemetry ite
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABELVALUERANGEBAR INST HEALTH_STATUS TEMP1 0 50 CONVERTED 18 200 50
 LABELVALUERANGEBAR INST HEALTH_STATUS TEMP1 0 50
-{% endhighlight %}
+```
 
 ### LABELVALUERANGECOLUMN
 
@@ -709,10 +709,10 @@ The LABELVALUERANGECOLUMN widget displays a LABEL widget to shows the telemetry 
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABELVALUERANGECOLUMN INST HEALTH_STATUS TEMP1 0 50 CONVERTED 18 50 200
 LABELVALUERANGECOLUMN INST HEALTH_STATUS TEMP1 0 50
-{% endhighlight %}
+```
 
 ### LIMITSBAR
 
@@ -730,10 +730,10 @@ The LIMITSBAR widget displays a graphical representation of where an items value
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LIMITSBAR INST HEALTH_STATUS TEMP1 CONVERTED 200 50
 LIMITSBAR INST HEALTH_STATUS TEMP1
-{% endhighlight %}
+```
 
 ### LIMITSCOLUMN
 
@@ -751,10 +751,10 @@ The LIMITSCOLUMN widget displays a graphical representation of where an items va
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LIMITSCOLUMN INST HEALTH_STATUS TEMP1 CONVERTED 50 200
 LIMITSCOLUMN INST HEALTH_STATUS TEMP1
-{% endhighlight %}
+```
 
 ### LIMITSCOLOR
 
@@ -772,10 +772,10 @@ The LIMITSCOLOR widget displays a stoplight-like circle depicting the limits col
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LIMITSCOLOR INST HEALTH_STATUS TEMP1 CONVERTED 20 TRUE
 LIMITSCOLOR INST HEALTH_STATUS TEMP1
-{% endhighlight %}
+```
 
 ### VALUELIMITSBAR
 
@@ -792,10 +792,10 @@ The VALUELIMITSBAR widget displays a graphical representation of where an items 
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 VALUELIMITSBAR INST HEALTH_STATUS TEMP1 CONVERTED 18
 VALUELIMITSBAR INST HEALTH_STATUS TEMP1
-{% endhighlight %}
+```
 
 ### VALUELIMITSCOLUMN
 
@@ -812,10 +812,10 @@ The VALUELIMITSCOLUMN widget displays a graphical representation of where an ite
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 VALUELIMITSCOLUMN INST HEALTH_STATUS TEMP1 CONVERTED 18
 VALUELIMITSCOLUMN INST HEALTH_STATUS TEMP1
-{% endhighlight %}
+```
 
 ### VALUERANGEBAR
 
@@ -836,10 +836,10 @@ The VALUERANGEBAR widget displays a graphical representation of where an items v
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 VALUERANGEBAR INST HEALTH_STATUS TEMP1 0 100 CONVERTED 18 200 50
 VALUERANGEBAR INST HEALTH_STATUS TEMP1 -1000 1000
-{% endhighlight %}
+```
 
 ### VALUERANGECOLUMN
 
@@ -860,10 +860,10 @@ The VALUERANGECOLUMN widget displays a graphical representation of where an item
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 VALUERANGECOLUMN INST HEALTH_STATUS TEMP1 0 100 CONVERTED 18 50 200
 VALUERANGECOLUMN INST HEALTH_STATUS TEMP1 -1000 1000
-{% endhighlight %}
+```
 
 ### LINEGRAPH
 
@@ -882,10 +882,10 @@ The LINEGRAPH widget displays a line graph of a telemetry items value verses sam
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LINEGRAPH INST HEALTH_STATUS TEMP1
 LINEGRAPH INST HEALTH_STATUS TEMP1 10 400 100 RAW
-{% endhighlight %}
+```
 
 ### PROGRESSBAR
 
@@ -903,10 +903,10 @@ The PROGRESSBAR widget displays a progress bar that is useful for displaying per
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 PROGRESSBAR INST ADCS POSPROGRESS 0.5 200
 PROGRESSBAR INST ADCS POSPROGRESS
-{% endhighlight %}
+```
 
 ### RANGEBAR
 
@@ -926,10 +926,10 @@ The RANGEBAR widget displays a graphical representation of where an items value 
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 RANGEBAR INST HEALTH_STATUS TEMP1 0 100 CONVERTED 200 50
 RANGEBAR INST HEALTH_STATUS TEMP1 -1000 1000
-{% endhighlight %}
+```
 
 ### RANGECOLUMN
 
@@ -949,10 +949,10 @@ The RANGECOLUMN widget displays a graphical representation of where an items val
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 RANGECOLUMN INST HEALTH_STATUS TEMP1 0 100 CONVERTED 50 200
 RANGECOLUMN INST HEALTH_STATUS TEMP1 -1000 1000
-{% endhighlight %}
+```
 
 ### TEXTBOX
 
@@ -970,10 +970,10 @@ The TEXTBOX widget provides a large box for multiline text.
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 TEXTBOX INST HEALTH_STATUS TIMEFORMATTED 150 50
 TEXTBOX INST HEALTH_STATUS TIMEFORMATTED
-{% endhighlight %}
+```
 
 ### TIMEGRAPH
 
@@ -994,10 +994,10 @@ The TIMEGRAPH widget displays a line graph of a telemetry items value verses tim
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 TIMEGRAPH INST HEALTH_STATUS TEMP1
 TIMEGRAPH INST HEALTH_STATUS TEMP1 10 400 100 false TIMESECONDS CONVERTED
-{% endhighlight %}
+```
 
 ### TRENDBAR
 
@@ -1016,10 +1016,10 @@ The TRENDBAR widget provides the same functionality as the LIMITSBAR widget exce
 Example Usage
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 TRENDBAR INST HEALTH_STATUS TEMP1 CONVERTED 20 200 50
 TRENDBAR INST HEALTH_STATUS TEMP1
-{% endhighlight %}
+```
 
 ### TRENDLIMITSBAR
 
@@ -1039,10 +1039,10 @@ The TRENDLIMITSBAR widget displays a VALUE widget to show the telemetry items cu
 Example Usage
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 TRENDLIMITSBAR INST HEALTH_STATUS TEMP1 CONVERTED 20 20 200 50
 TRENDLIMITSBAR INST HEALTH_STATUS TEMP1
-{% endhighlight %}
+```
 
 ### VALUE
 
@@ -1059,10 +1059,10 @@ The VALUE widget displays a box with a value printed inside. The white portion o
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 VALUE INST HEALTH_STATUS TEMP1 CONVERTED 18
 VALUE INST HEALTH_STATUS TEMP1
-{% endhighlight %}
+```
 
 ## Interactive Widgets
 
@@ -1082,9 +1082,9 @@ If you want your button to use values from other widgets, define them as named w
 Example Usage to execute a command:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 BUTTON 'Start Collect' 'api.cmd("INST COLLECT with TYPE NORMAL, DURATION 5")'
-{% endhighlight %}
+```
 
 ### CHECKBUTTON
 
@@ -1098,10 +1098,10 @@ The CHECKBUTTON widget displays a check box. Note this is of limited use by itse
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 NAMED_WIDGET CHECK CHECKBUTTON 'Ignore Hazardous Checks'
 BUTTON 'Send' 'screen.get_named_widget("CHECK").checked() ? api.cmd_no_hazardous_check("INST CLEAR") : api.cmd("INST CLEAR")'
-{% endhighlight %}
+```
 
 ### COMBOBOX
 
@@ -1115,10 +1115,10 @@ The COMBOBOX widget displays a drop down list of text items that the user can ch
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 BUTTON 'Start Collect' 'api.cmd("INST COLLECT with TYPE '+screen.get_named_widget("COLLECT_TYPE").text()+', DURATION 10.0")'
 NAMED_WIDGET COLLECT_TYPE COMBOBOX NORMAL SPECIAL
-{% endhighlight %}
+```
 
 ### RADIOBUTTON
 
@@ -1132,11 +1132,11 @@ The RADIOBUTTON widget a radio button and text. Note this is of limited use by i
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 NAMED_WIDGET ABORT RADIOBUTTON 'Abort'
 NAMED_WIDGET CLEAR RADIOBUTTON 'Clear'
 BUTTON 'Send' 'screen.get_named_widget("ABORT").checked() ? cmd("INST ABORT") : cmd("INST CLEAR")'
-{% endhighlight %}
+```
 
 ### TEXTFIELD
 
@@ -1150,10 +1150,10 @@ The TEXTFIELD widget displays a rectangular box that the user can enter text int
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 NAMED_WIDGET DURATION TEXTFIELD 12 "10.0"
 BUTTON 'Start Collect' 'api.cmd("INST COLLECT with TYPE NORMAL, DURATION '+screen.get_named_widget("DURATION").text()+'")'
-{% endhighlight %}
+```
 
 ## Canvas Widgets
 
@@ -1185,12 +1185,12 @@ The CANVASLABEL widget draws text onto the canvas.
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 CANVAS 100 100
   CANVASLABEL 5 34 "Label1" 24 red
   CANVASLABEL 5 70 "Label2" 18 blue
 END
-{% endhighlight %}
+```
 
 ### CANVASLABELVALUE
 
@@ -1212,12 +1212,12 @@ The CANVASLABELVALUE widget draws the text value of a telemetry item onto the ca
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 CANVAS 200 100
   CANVASLABELVALUE INST HEALTH_STATUS TEMP1 5 34 12 red true 5
   CANVASLABELVALUE INST HEALTH_STATUS TEMP2 5 70 10 blue false 0 WITH_UNITS
 END
-{% endhighlight %}
+```
 
 ### CANVASIMAGE
 
@@ -1234,12 +1234,12 @@ The CANVASIMAGE widget displays a GIF image on the canvas.
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
   CANVAS 300 300
   CANVASIMAGE "satellite.gif" 0 0
   CANVASIMAGE "https://images.pexels.com/photos/256152/pexels-photo-256152.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=640&w=426" 0 250 250 150
 END
-{% endhighlight %}
+```
 
 ### CANVASIMAGEVALUE
 
@@ -1258,12 +1258,12 @@ The CANVASIMAGEVALUE widget displays a GIF image on the canvas that changes with
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 CANVAS 150 200
   CANVASLABELVALUE INST HEALTH_STATUS GROUND1STATUS 0 12 12 black false
   CANVASIMAGEVALUE INST HEALTH_STATUS GROUND1STATUS "ground" 0 20 # Uses groundon.gif and groundoff.gif
 END
-{% endhighlight %}
+```
 
 ### CANVASLINE
 
@@ -1282,13 +1282,13 @@ The CANVASLINE widget draws a line onto the canvas.
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 CANVAS 100 50
   CANVASLINE 5 5 95 5
   CANVASLINE 5 5 5 45 green 2 CONNECTOR
   CANVASLINE 95 5 95 45 blue 3 CONNECTOR
 END
-{% endhighlight %}
+```
 
 ### CANVASLINEVALUE
 
@@ -1312,13 +1312,13 @@ The CANVASLINEVALUE widget draws a line onto the canvas in one of two colors bas
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 CANVAS 120 50
   CANVASLABELVALUE INST HEALTH_STATUS GROUND1STATUS 0 12 12 black false
   CANVASLINEVALUE INST HEALTH_STATUS GROUND1STATUS 5 25 115 25
   CANVASLINEVALUE INST HEALTH_STATUS GROUND1STATUS 5 45 115 45 purple red 3 CONNECTOR
 END
-{% endhighlight %}
+```
 
 ### CANVASDOT
 
@@ -1334,7 +1334,7 @@ The CANVASDOT widget draws a dot onto the canvas, and it can be programmed to ch
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 CANVAS 201 201
   CANVASLINE 0 0 200 0
   CANVASLINE 200 0 200 200
@@ -1344,7 +1344,7 @@ CANVAS 201 201
   CANVASLINE 1 99 199 99 white
   CANVASDOT 'api.tlm_variable("GIMBAL AXIS_STATUS_X POSITION", :RAW) + 100' 'api.tlm_variable("GIMBAL AXIS_STATUS_Y POSITION", :RAW) + 100' red
 END
-{% endhighlight %}
+```
 
 ![720311333_78794](https://cloud.githubusercontent.com/assets/5217851/11122513/d29af8c0-8918-11e5-9138-17011956911a.jpg)
 
@@ -1375,10 +1375,10 @@ or
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 SETTING BACKCOLOR red
 SETTING BACKCOLOR 162 181 205
-{% endhighlight %}
+```
 
 ### TEXTCOLOR
 
@@ -1397,10 +1397,10 @@ The TEXTCOLOR setting sets the text color for a widget.
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 SETTING TEXTCOLOR red
 SETTING TEXTCOLOR 162 181 205
-{% endhighlight %}
+```
 
 ### WIDTH
 
@@ -1413,9 +1413,9 @@ The WIDTH setting forces the height of a widget to a certain size.
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 SETTING WIDTH 100
-{% endhighlight %}
+```
 
 ### HEIGHT
 
@@ -1428,9 +1428,9 @@ The HEIGHT setting forces the height of a widget to a certain size.
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 SETTING HEIGHT 100
-{% endhighlight %}
+```
 
 ## Widget-Specific Settings
 
@@ -1455,13 +1455,13 @@ or
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 HORIZONTALBOX
   LABEL "Label 1"
   LABEL "Label 2"
 END
 SETTING BORDERCOLOR red
-{% endhighlight %}
+```
 
 ### COLORBLIND
 
@@ -1474,10 +1474,10 @@ The COLORBLIND setting enables/disables providing clues in visualization for use
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABELVALUELIMITSBAR INST HEALTH_STATUS TEMP1
 SETTING COLORBLIND TRUE
-{% endhighlight %}
+```
 
 ### ENABLE_AGING
 
@@ -1490,10 +1490,10 @@ The ENABLE_AGING setting enables/disables graying of widgets if there value does
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABELVALUE INST HEALTH_STATUS COLLECTS
 SETTING ENABLE_AGING FALSE
-{% endhighlight %}
+```
 
 ### GRAY_RATE / GREY_RATE
 
@@ -1506,10 +1506,10 @@ The GRAY_RATE and GREY_RATE settings change the rate at which graying occurs in 
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABELVALUE INST HEALTH_STATUS COLLECTS
 SETTING GRAY_RATE 5
-{% endhighlight %}
+```
 
 ### GRAY_TOLERANCE / GREY_TOLERANCE
 
@@ -1522,10 +1522,10 @@ The GRAY_TOLERANCE and GREY_TOLERANCE settings set the maximum change in value t
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABELVALUE INST HEALTH_STATUS COLLECTS
 SETTING GRAY_TOLERANCE 1
-{% endhighlight %}
+```
 
 ### MIN_GRAY / MIN_GREY
 
@@ -1538,11 +1538,11 @@ The MIN_GRAY and MIN_GREY settings set the minimum shade of a gray that a widget
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 LABELVALUE INST HEALTH_STATUS TEMP1
 SETTING GRAY_TOLERANCE 1000 # Prevent the widget from refreshing by choosing a high tolerance
 SETTING MIN_GRAY 0 # Set the minimum gray to black
-{% endhighlight %}
+```
 
 ### TREND_SECONDS
 
@@ -1555,10 +1555,10 @@ The TREND_SECONDS setting changes the number of seconds using during trending. S
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 TRENDBAR INST HEALTH_STATUS TEMP1
 SETTING TREND_SECONDS 10
-{% endhighlight %}
+```
 
 ### VALUE_EQ
 
@@ -1571,10 +1571,10 @@ The VALUE_EQ setting configures for an equal to comparison for a canvas value wi
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 CANVASIMAGEVALUE INST HEALTH_STATUS GROUND1STATUS "ground" 400 100
 SETTING VALUE_EQ 0
-{% endhighlight %}
+```
 
 ### VALUE_GT
 
@@ -1587,10 +1587,10 @@ The VALUE_GT setting configures for a greater than comparison for a canvas value
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 CANVASIMAGEVALUE INST HEALTH_STATUS TEMP1 "ground" 400 100
 SETTING VALUE_GT 10.0
-{% endhighlight %}
+```
 
 ### VALUE_GTEQ
 
@@ -1603,10 +1603,10 @@ The VALUE_GTEQ setting configures for a greater than or equal to comparison for 
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 CANVASIMAGEVALUE INST HEALTH_STATUS TEMP1 "ground" 400 100
 SETTING VALUE_GTEQ 10.0
-{% endhighlight %}
+```
 
 ### VALUE_LT
 
@@ -1619,10 +1619,10 @@ The VALUE_LT setting configures for a less than comparison for a canvas value wi
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 CANVASIMAGEVALUE INST HEALTH_STATUS TEMP1 "ground" 400 100
 SETTING VALUE_LT 10.0
-{% endhighlight %}
+```
 
 ### VALUE_LTEQ
 
@@ -1636,10 +1636,10 @@ Supported widgets: CANVASIMAGEVALUE, CANVASLABELVALUE, CANVASLINEVALUE.
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 CANVASIMAGEVALUE INST HEALTH_STATUS TEMP1 "ground" 400 100
 SETTING VALUE_LTEQ 10.0
-{% endhighlight %}
+```
 
 ### TLM_AND
 
@@ -1656,11 +1656,11 @@ The TLM_AND setting allows added another comparison that is anded with the origi
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 CANVASIMAGEVALUE INST HEALTH_STATUS TEMP1 "ground" 400 100
 SETTING VALUE_LTEQ 10.0
 SETTING TLM_AND INST HEALTH_STATUS TEMP2 VALUE_GT 20.0
-{% endhighlight %}
+```
 
 ### TLM_OR
 
@@ -1677,8 +1677,8 @@ The TLM_OR setting allows added another comparison that is ored with the origina
 Example Usage:
 
 <!-- prettier-ignore -->
-{% highlight bash %}
+```bash
 CANVASIMAGEVALUE INST HEALTH_STATUS TEMP1 "ground" 400 100
 SETTING VALUE_LTEQ 10.0
 SETTING TLM_OR INST HEALTH_STATUS TEMP2 VALUE_GT 20.0
-{% endhighlight %}
+```

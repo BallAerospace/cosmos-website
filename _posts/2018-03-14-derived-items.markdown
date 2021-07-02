@@ -55,16 +55,16 @@ ITEM TEMP_AVERAGE 0 0 DERIVED "Average of TEMP1, TEMP2, TEMP3, TEMP4"
 
 We now need to implement average_conversion.rb to take our arguments and generate the average. Put this new file in the target's lib folder (in the demo this is config/targets/INST/lib).
 
-{% highlight ruby %}
+```ruby
 require 'cosmos/conversions/conversion'
 module Cosmos
-class AverageConversion < Conversion
-def initialize(\*args)
-super()
-@items = args
-@converted_type = :FLOAT
-@converted_bit_size = 32
-end
+  class AverageConversion < Conversion
+    def initialize(*args)
+      super()
+      @items = args
+      @converted_type = :FLOAT
+      @converted_bit_size = 32
+    end
 
     def call(value, packet, buffer)
       total = 0
@@ -73,16 +73,15 @@ end
       end
       return total / @items.length
     end
-
+  end
 end
-end
-{% endhighlight %}
+```
 
 Here I'm using the Ruby splat operator to collect all the arguments passed into initialize and assign them to @items. I also explicitly set the @converted_type and @converted_bit_size variables (part of the Conversion base class) to :FLOAT and 32 to indicate our conversion will return a 32 bit floating point number. The call method is what actually performs the conversion. Note how it defines the same three variables I previously talked about: value, packet and buffer. I use the packet argument to read the items passed in and then divide by the total to average them.
 
 We're not yet done though as we need to edit the INST/target.txt file to require this new conversion.
 
-```
+```bash
 REQUIRE average_conversion.rb
 ```
 
