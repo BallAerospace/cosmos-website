@@ -111,31 +111,6 @@ RUN /usr/share/elasticsearch/bin/elasticsearch-plugin remove opendistro_security
 
 #### Notes
 
-datasource.yaml
-```
-apiVersion: 1
-
-datasources:
-  - name: Prometheus
-    type: prometheus
-    # Access mode - proxy (server in the UI) or direct (browser in the UI).
-    access: proxy
-    url: http://cosmos-prometheus:9090
-```
-
-Dockerfile
-```
-FROM grafana/grafana
-
-COPY datasource.yaml /etc/grafana/provisioning/datasources/
-```
-
-### [Grafana](https://grafana.com/)
-
-> Grafana is a multi-platform open source analytics and interactive visualization web application. It provides charts, graphs, and alerts for the web when connected to supported data sources. 
-
-#### Notes
-
 prometheus.yaml
 ```
 global:
@@ -163,10 +138,41 @@ scrape_configs:
   - job_name: cosmos-script-runner-api
     static_configs:
       - targets: ["cosmos-script-runner-api:2902"]
+
+  - job_name: minio-job
+    metrics_path: /minio/v2/metrics/cluster
+    scheme: http
+    static_configs:
+    - targets: ['cosmos-minio:9000']
 ```
 
 Dockerfile
 ```
 FROM prom/prometheus:v2.24.1
 ADD prometheus.yaml /etc/prometheus/
+```
+
+### [Grafana](https://grafana.com/)
+
+> Grafana is a multi-platform open source analytics and interactive visualization web application. It provides charts, graphs, and alerts for the web when connected to supported data sources. 
+
+#### Notes
+
+datasource.yaml
+```
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    # Access mode - proxy (server in the UI) or direct (browser in the UI).
+    access: proxy
+    url: http://cosmos-prometheus:9090
+```
+
+Dockerfile
+```
+FROM grafana/grafana
+
+COPY datasource.yaml /etc/grafana/provisioning/datasources/
 ```
