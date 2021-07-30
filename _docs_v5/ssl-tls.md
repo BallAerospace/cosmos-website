@@ -4,7 +4,7 @@ title: SSL-TLS
 toc: true
 ---
 
-### SSL-TLS 
+## SSL-TLS 
 
 With moving cosmos to container based service, we do not support ssl/tls out of the box you need to set this part up. So here is some information on enabling SSL and TLS. If you want to read more you can go to the Traefik [docs](https://doc.traefik.io/traefik/routing/entrypoints/#tls)
 
@@ -121,3 +121,54 @@ entrypoints:
 
 
 Now you can run `./cosmos-control.sh start` and it should work....
+
+## Let's Encrypt (with manual challenge).
+
+#### KEY
+
+privkey.pem is the "key" file
+
+Sometimes it is improperly named as cert.key or example.com.key.
+
+#### CRT
+
+fullchain.pem is your "crt" file.
+
+Sometimes it is improperly named as example.com.crt.
+
+#### CRT/KEY Bundle
+
+bundle.pem would be made like so: cat fullchain.pem privkey.pem > bundle.pem
+
+HAProxy is the only server that I know of that uses bundle.pem.
+
+#### cert.pem
+
+cert.pem contains ONLY your certificate, which can only be used by itself if the browser already has the certificate which signed it, which may work in testing (which makes it seem like it may be the right file), but will actually fail for many of your users in production with a security error of untrusted certificate.
+
+However, you don't generally use the cert.pem by itself. It's almost always coupled with chain.pem as fullchain.pem.
+
+#### chain.pem
+
+chain.pem is the intermediary signed authority, signed by the root authority - which is what all browsers are guaranteed to have in their pre-built cache.
+
+### Checking certs
+
+You can inspect the cert only like so:
+
+```
+openssl x509 -in cert.pem -text -noout
+```
+
+## TLS1.3 vs TLS1.2
+
+Some firewalls have issues with how new 1.3 is so in traefik you can update the TLS options to support 1.2.
+
+```
+tls:
+  options:
+    default:
+      minVersion: VersionTLS12
+    mintls13:
+      minVersion: VersionTLS13
+```
