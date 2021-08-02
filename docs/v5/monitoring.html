@@ -238,34 +238,6 @@ RUN /usr/share/elasticsearch/bin/elasticsearch-plugin remove opendistro_security
 <h4 id="notes-2">
 <a class="anchor" href="#notes-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notes</h4>
 
-<p>datasource.yaml</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: 1
-
-datasources:
-  - name: Prometheus
-    type: prometheus
-    # Access mode - proxy (server in the UI) or direct (browser in the UI).
-    access: proxy
-    url: http://cosmos-prometheus:9090
-</code></pre></div></div>
-
-<p>Dockerfile</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM grafana/grafana
-
-COPY datasource.yaml /etc/grafana/provisioning/datasources/
-</code></pre></div></div>
-
-<h3 id="grafana">
-<a class="anchor" href="#grafana" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://grafana.com/">Grafana</a>
-</h3>
-
-<blockquote>
-  <p>Grafana is a multi-platform open source analytics and interactive visualization web application. It provides charts, graphs, and alerts for the web when connected to supported data sources.</p>
-</blockquote>
-
-<h4 id="notes-3">
-<a class="anchor" href="#notes-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notes</h4>
-
 <p>prometheus.yaml</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>global:
   scrape_interval: 15s
@@ -292,11 +264,45 @@ scrape_configs:
   - job_name: cosmos-script-runner-api
     static_configs:
       - targets: ["cosmos-script-runner-api:2902"]
+
+  - job_name: minio-job
+    metrics_path: /minio/v2/metrics/cluster
+    scheme: http
+    static_configs:
+    - targets: ['cosmos-minio:9000']
 </code></pre></div></div>
 
 <p>Dockerfile</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM prom/prometheus:v2.24.1
 ADD prometheus.yaml /etc/prometheus/
+</code></pre></div></div>
+
+<h3 id="grafana">
+<a class="anchor" href="#grafana" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://grafana.com/">Grafana</a>
+</h3>
+
+<blockquote>
+  <p>Grafana is a multi-platform open source analytics and interactive visualization web application. It provides charts, graphs, and alerts for the web when connected to supported data sources.</p>
+</blockquote>
+
+<h4 id="notes-3">
+<a class="anchor" href="#notes-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notes</h4>
+
+<p>datasource.yaml</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    # Access mode - proxy (server in the UI) or direct (browser in the UI).
+    access: proxy
+    url: http://cosmos-prometheus:9090
+</code></pre></div></div>
+
+<p>Dockerfile</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM grafana/grafana
+
+COPY datasource.yaml /etc/grafana/provisioning/datasources/
 </code></pre></div></div>
 
       </article>
@@ -410,9 +416,13 @@ ADD prometheus.yaml /etc/prometheus/
     
       
     
+      
+    
   
     
     
+    
+      
     
       
     
@@ -581,6 +591,8 @@ ADD prometheus.yaml /etc/prometheus/
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/upgrading">Upgrading</a>
   </li>
@@ -688,6 +700,8 @@ ADD prometheus.yaml /etc/prometheus/
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/target">Target Configuration</a>
   </li>
@@ -710,6 +724,8 @@ ADD prometheus.yaml /etc/prometheus/
   
     
     
+    
+      
     
       
     
@@ -832,6 +848,70 @@ ADD prometheus.yaml /etc/prometheus/
   <!-- prettier-ignore -->
   
   
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
 </ul>
 
     
@@ -871,6 +951,8 @@ ADD prometheus.yaml /etc/prometheus/
   
     
     
+    
+      
     
       
     
@@ -1135,6 +1217,8 @@ ADD prometheus.yaml /etc/prometheus/
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/tlm-grapher">Telemetry Grapher</a>
   </li>
@@ -1143,6 +1227,8 @@ ADD prometheus.yaml /etc/prometheus/
   
     
     
+    
+      
     
       
     
@@ -1249,6 +1335,8 @@ ADD prometheus.yaml /etc/prometheus/
   
     
     
+    
+      
     
       
     
@@ -1535,6 +1623,8 @@ ADD prometheus.yaml /etc/prometheus/
   
     
     
+    
+      
     
       
     

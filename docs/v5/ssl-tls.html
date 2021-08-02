@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Tools</title>
+  <title>SSL-TLS</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.0">
@@ -92,154 +92,220 @@
         </div>
          
         <div class="toc"><ul id="toc" class="section-nav">
-<li class="toc-entry toc-h2"><a href="#navigation">Navigation</a></li>
-<li class="toc-entry toc-h2"><a href="#command-and-telemetry-server">Command and Telemetry Server</a></li>
-<li class="toc-entry toc-h2"><a href="#limits-monitor">Limits Monitor</a></li>
-<li class="toc-entry toc-h2"><a href="#command-sender">Command Sender</a></li>
-<li class="toc-entry toc-h2"><a href="#script-runner">Script Runner</a></li>
-<li class="toc-entry toc-h2"><a href="#packet-viewer">Packet Viewer</a></li>
-<li class="toc-entry toc-h2"><a href="#telemetry-viewer">Telemetry Viewer</a></li>
-<li class="toc-entry toc-h2"><a href="#telemetry-grapher">Telemetry Grapher</a></li>
-<li class="toc-entry toc-h2"><a href="#data-extractor">Data Extractor</a></li>
-<li class="toc-entry toc-h2"><a href="#data-viewer">Data Viewer</a></li>
-<li class="toc-entry toc-h2"><a href="#timeline">Timeline</a></li>
+<li class="toc-entry toc-h2"><a href="#ssl-tls">SSL-TLS</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#generate-the-certificate">Generate the certificate</a></li>
+<li class="toc-entry toc-h3"><a href="#updating-the-cosmos-traefik-dockerfile">Updating the cosmos-traefik Dockerfile</a></li>
+<li class="toc-entry toc-h3"><a href="#updating-the-traefik-config">Updating the Traefik config</a></li>
+<li class="toc-entry toc-h3"><a href="#update-docker-composeyaml">Update docker-compose.yaml</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#lets-encrypt-with-manual-challenge">Let’s Encrypt (with manual challenge).</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#key">KEY</a></li>
+<li class="toc-entry toc-h4"><a href="#crt">CRT</a></li>
+<li class="toc-entry toc-h4"><a href="#crtkey-bundle">CRT/KEY Bundle</a></li>
+<li class="toc-entry toc-h4"><a href="#certpem">cert.pem</a></li>
+<li class="toc-entry toc-h4"><a href="#chainpem">chain.pem</a></li>
+<li class="toc-entry toc-h3"><a href="#checking-certs">Checking certs</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#tls13-vs-tls12">TLS1.3 vs TLS1.2</a></li>
 </ul></div>
         
-        <h1>Tools</h1>
-        <h2 id="navigation">
-<a class="anchor" href="#navigation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Navigation</h2>
+        <h1>SSL-TLS</h1>
+        <h2 id="ssl-tls">
+<a class="anchor" href="#ssl-tls" aria-hidden="true"><span class="octicon octicon-link"></span></a>SSL-TLS</h2>
 
-<p>The left side of every COSMOS web page can be opened up to display the available tools.
-This list is updated when new COSMOS gems are installed which add tools.</p>
+<p>With moving cosmos to container based service, we do not support ssl/tls out of the box you need to set this part up. So here is some information on enabling SSL and TLS. If you want to read more you can go to the Traefik <a href="https://doc.traefik.io/traefik/routing/entrypoints/#tls">docs</a></p>
 
-<p><img src="/img/v5/navigation.png" alt="Launcher"></p>
+<h3 id="generate-the-certificate">
+<a class="anchor" href="#generate-the-certificate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generate the certificate</h3>
 
-<h2 id="command-and-telemetry-server">
-<a class="anchor" href="#command-and-telemetry-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command and Telemetry Server</h2>
+<blockquote>
+  <p>Self-signed certificates are considered insecure for the Internet. Firefox will treat the site as having an invalid certificate, while Chrome will act as if the connection was plain HTTP. Openssl command</p>
+</blockquote>
 
-<p>Displays information about the active targets and interfaces.</p>
+<p>To create a new Self-Signed SSL Certificate, use the openssl req command:</p>
 
-<p><img src="/img/v5/cmd_tlm_server/cmd_tlm_server.png" alt="Command and Telemetry Server"></p>
-
-<ul>
-  <li>Displays interfaces and associated counters</li>
-  <li>Displays raw versions of commands/telemetry packets</li>
-</ul>
-
-<h2 id="limits-monitor">
-<a class="anchor" href="#limits-monitor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limits Monitor</h2>
-
-<p>Situational awareness of everything that is currently out of limits in your system and everything that has temporarily gone out of limits since it was started.</p>
-
-<p><img src="/img/v5/limits_monitor/limits_monitor.png" alt="Limits Monitor"></p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl req <span class="nt">-newkey</span> rsa:4096 <span class="se">\</span>
+            <span class="nt">-x509</span> <span class="se">\</span>
+            <span class="nt">-sha256</span> <span class="se">\</span>
+            <span class="nt">-days</span> 3650 <span class="se">\</span>
+            <span class="nt">-nodes</span> <span class="se">\</span>
+            <span class="nt">-out</span> example.crt <span class="se">\</span>
+            <span class="nt">-keyout</span> example.key
+</code></pre></div></div>
+<p>Let’s breakdown the command and understand what each option means:</p>
 
 <ul>
-  <li>Limits bar widget used to show where in the limits range you are</li>
-  <li>Packets and Items can be ignored</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">newkey rsa:4096</code> - Creates a new certificate request and 4096 bit RSA key. The default one is 2048 bits.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">x509</code> - Creates a X.509 Certificate.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">sha256</code> - Use 265-bit SHA (Secure Hash Algorithm).</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">days 3650</code> - The number of days to certify the certificate for. 3650 is ten years. You can use any positive integer.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">nodes</code> - Creates a key without a passphrase.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">out example.crt</code> - Specifies the filename to write the newly created certificate to. You can specify any file name.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">keyout example.key</code> - Specifies the filename to write the newly created private key to. You can specify any file name.</li>
 </ul>
 
-<h2 id="command-sender">
-<a class="anchor" href="#command-sender" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command Sender</h2>
+<p>For more information about the <code class="language-plaintext highlighter-rouge">openssl req</code> command options, visit the <a href="https://www.openssl.org/docs/man1.0.2/man1/openssl-req.html">OpenSSL req documentation page</a>.</p>
 
-<p>Easily send individual commands.</p>
+<blockquote>
+  <p>Note this command is being run from a linux  machine and from inside of the root cosmos directory.</p>
+</blockquote>
 
-<p><img src="/img/v5/command_sender/command_sender.png" alt="Command Sender"></p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl req <span class="nt">-newkey</span> rsa:4096 <span class="se">\</span>
+            <span class="nt">-x509</span> <span class="se">\</span>
+            <span class="nt">-sha256</span> <span class="se">\</span>
+            <span class="nt">-days</span> 3650 <span class="se">\</span>
+            <span class="nt">-nodes</span> <span class="se">\</span>
+            <span class="nt">-out</span> example.crt <span class="se">\</span>
+            <span class="nt">-keyout</span> ./cosmos-traefik/cert.key
+            <span class="nt">-out</span> ./cosmos-traefik/cert.crt
 
-<ul>
-  <li>Select any command by target and command name and then fill out a form with the command parameters</li>
-  <li>Command history can be used to resend the same or slightly modified commands</li>
-</ul>
+Country Name <span class="o">(</span>2 letter code<span class="o">)</span> <span class="o">[</span>XX]:.
+State or Province Name <span class="o">(</span>full name<span class="o">)</span> <span class="o">[]</span>:.
+Locality Name <span class="o">(</span>eg, city<span class="o">)</span> <span class="o">[</span>Default City]:.
+Organization Name <span class="o">(</span>eg, company<span class="o">)</span> <span class="o">[</span>Default Company Ltd]:.
+Organizational Unit Name <span class="o">(</span>eg, section<span class="o">)</span> <span class="o">[]</span>:.
+Common Name <span class="o">(</span>eg, your name or your server <span class="nb">hostname</span><span class="o">)</span> <span class="o">[]</span>: &lt;<span class="o">!</span><span class="nt">--</span> UPDATE WITH YOUR HOSTNAME HERE <span class="nt">--</span><span class="o">&gt;</span>
+Email Address <span class="o">[]</span>:
+</code></pre></div></div>
 
-<h2 id="script-runner">
-<a class="anchor" href="#script-runner" aria-hidden="true"><span class="octicon octicon-link"></span></a>Script Runner</h2>
+<h3 id="updating-the-cosmos-traefik-dockerfile">
+<a class="anchor" href="#updating-the-cosmos-traefik-dockerfile" aria-hidden="true"><span class="octicon octicon-link"></span></a>Updating the cosmos-traefik Dockerfile</h3>
 
-<p>Develop and execute test procedures with line highlighting, syntax checking, and more. Also supports organization of scripts into repeatable scripts with an auto-generated report.</p>
+<blockquote>
+  <p>We need to add the cert to the docker container.</p>
+</blockquote>
 
-<p><img src="/img/v5/script_runner/script_runner.png" alt="Script Runner"></p>
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">--- a/cosmos-traefik/Dockerfile
+</span><span class="gi">+++ b/cosmos-traefik/Dockerfile
+</span><span class="p">@@ -1,3 +1,4 @@</span>
+ FROM traefik:2.4
+ COPY ./traefik.yaml /etc/traefik/traefik.yaml
+<span class="gi">+COPY ./cert.crt ./cert.key /etc/certs/
+</span> EXPOSE 80
+</code></pre></div></div>
 
-<ul>
-  <li>Simple API to send commands and check telemetry</li>
-  <li>Query the user for information</li>
-  <li>Currently executing line is highlighted</li>
-  <li>Full power of the Ruby programming language available</li>
-  <li>Disconnect mode for offline testing</li>
-  <li>Debugger for step execution</li>
-  <li>Script organization by Script, Group, Suite</li>
-  <li>Automatic report generation</li>
-</ul>
+<h3 id="updating-the-traefik-config">
+<a class="anchor" href="#updating-the-traefik-config" aria-hidden="true"><span class="octicon octicon-link"></span></a>Updating the Traefik config</h3>
 
-<h2 id="packet-viewer">
-<a class="anchor" href="#packet-viewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Packet Viewer</h2>
+<blockquote>
 
-<p>View any telemetry packet in the system with no extra configuration necessary.</p>
+</blockquote>
 
-<p><img src="/img/v5/packet_viewer/packet_viewer.png" alt="Packet Viewer"></p>
+<p>cosmos-traefik/treafik.yaml</p>
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">--- a/cosmos-traefik/traefik.yaml
+</span><span class="gi">+++ b/cosmos-traefik/traefik.yaml
+</span><span class="p">@@ -3,6 +3,17 @@</span>
+<span class="gi">+tls:
++  certificates:
++   - certFile: "/etc/certs/cert.crt"
++     keyFile: "/etc/certs/cert.key"
+</span><span class="err">#</span> Listen for everything coming in on the standard HTTP port
+<span class="p">entrypoints:
+</span>  web:
+    address: ":80"
+<span class="gi">+    http:
++      redirections:
++        entryPoint:
++          to: websecure
++          scheme: https
++  websecure:
++    address: ":443"
++    http:
++      tls:
++        domains:
++          - main: "&lt;!-- UPDATE WITH YOUR HOSTNAME HERE --&gt;"
+</span></code></pre></div></div>
 
-<ul>
-  <li>Automatically contains all defined targets, packets, and telemetry items</li>
-  <li>Right click to get detailed item information</li>
-</ul>
+<h3 id="update-docker-composeyaml">
+<a class="anchor" href="#update-docker-composeyaml" aria-hidden="true"><span class="octicon octicon-link"></span></a>Update docker-compose.yaml</h3>
 
-<h2 id="telemetry-viewer">
-<a class="anchor" href="#telemetry-viewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Telemetry Viewer</h2>
+<blockquote>
+  <p>We want to update treafik to also use 443, so open the <code class="language-plaintext highlighter-rouge">compose.yaml</code> file and update the <code class="language-plaintext highlighter-rouge">cosmos-traefik</code> ports to <code class="language-plaintext highlighter-rouge">443:443</code></p>
+</blockquote>
 
-<p>Easily create custom telemetry screens with simple configuration text files.</p>
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">--- a/compose.yaml
+</span><span class="gi">+++ b/compose.yaml
+</span> services:
+   cosmos-minio:
+<span class="p">@@ -70,7 +70,7 @@</span> services:
+   cosmos-traefik:
+     image: "ballaerospace/cosmosc2-traefik:${COSMOS_TAG}"
+     ports:
+<span class="gd">-      - "2900:80"
+</span><span class="gi">+      - "443:443"
+</span>     restart: "unless-stopped"
+     depends_on:
+</code></pre></div></div>
 
-<p><img src="/img/v5/telemetry_viewer/telemetry_viewer.png" alt="Telemetry Viewer"></p>
+<p>Now you can run <code class="language-plaintext highlighter-rouge">./cosmos-control.sh start</code> and it should work….</p>
 
-<ul>
-  <li>Advanced widgets available to display data</li>
-  <li>Modular to allow for creating your own custom widgets</li>
-</ul>
+<h2 id="lets-encrypt-with-manual-challenge">
+<a class="anchor" href="#lets-encrypt-with-manual-challenge" aria-hidden="true"><span class="octicon octicon-link"></span></a>Let’s Encrypt (with manual challenge).</h2>
 
-<h2 id="telemetry-grapher">
-<a class="anchor" href="#telemetry-grapher" aria-hidden="true"><span class="octicon octicon-link"></span></a>Telemetry Grapher</h2>
+<h4 id="key">
+<a class="anchor" href="#key" aria-hidden="true"><span class="octicon octicon-link"></span></a>KEY</h4>
 
-<p>Realtime or offline graphing of any telemetry item.</p>
+<p>privkey.pem is the “key” file</p>
 
-<p><img src="/img/v5/telemetry_grapher/telemetry_grapher.png" alt="Telemetry Grapher"></p>
+<p>Sometimes it is improperly named as cert.key or example.com.key.</p>
 
-<ul>
-  <li>One or more telemetry points per graph</li>
-  <li>Spread data across multiple graphs</li>
-  <li>Easily save and restore configurations</li>
-</ul>
+<h4 id="crt">
+<a class="anchor" href="#crt" aria-hidden="true"><span class="octicon octicon-link"></span></a>CRT</h4>
 
-<h2 id="data-extractor">
-<a class="anchor" href="#data-extractor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Extractor</h2>
+<p>fullchain.pem is your “crt” file.</p>
 
-<p>Quickly extract command and telemetry into CSV files with just the data you care about.</p>
+<p>Sometimes it is improperly named as example.com.crt.</p>
 
-<p><img src="/img/v5/data_extractor/data_extractor.png" alt="Data Extractor"></p>
+<h4 id="crtkey-bundle">
+<a class="anchor" href="#crtkey-bundle" aria-hidden="true"><span class="octicon octicon-link"></span></a>CRT/KEY Bundle</h4>
 
-<ul>
-  <li>Process items into CSV data for analysis in other tools (Excel, Matlab, etc)</li>
-  <li>Add individual items, whole packets, and every packet from a given target</li>
-</ul>
+<p>bundle.pem would be made like so: cat fullchain.pem privkey.pem &gt; bundle.pem</p>
 
-<h2 id="data-viewer">
-<a class="anchor" href="#data-viewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Viewer</h2>
+<p>HAProxy is the only server that I know of that uses bundle.pem.</p>
 
-<p>Quickly view the data you care about.</p>
+<h4 id="certpem">
+<a class="anchor" href="#certpem" aria-hidden="true"><span class="octicon octicon-link"></span></a>cert.pem</h4>
 
-<p><img src="/img/v5/data_viewer/data_viewer.png" alt="Data Viewer"></p>
+<p>cert.pem contains ONLY your certificate, which can only be used by itself if the browser already has the certificate which signed it, which may work in testing (which makes it seem like it may be the right file), but will actually fail for many of your users in production with a security error of untrusted certificate.</p>
 
-<ul>
-  <li>View both raw and decomed data.</li>
-  <li>Save and load configurations.</li>
-</ul>
+<p>However, you don’t generally use the cert.pem by itself. It’s almost always coupled with chain.pem as fullchain.pem.</p>
 
-<h2 id="timeline">
-<a class="anchor" href="#timeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Timeline</h2>
+<h4 id="chainpem">
+<a class="anchor" href="#chainpem" aria-hidden="true"><span class="octicon octicon-link"></span></a>chain.pem</h4>
 
-<p>Schedule commands and scripts to be run.</p>
+<p>chain.pem is the intermediary signed authority, signed by the root authority - which is what all browsers are guaranteed to have in their pre-built cache.</p>
 
-<p><img src="/img/v5/timeline/timeline.png" alt="Timeline"></p>
+<h3 id="checking-certs">
+<a class="anchor" href="#checking-certs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Checking certs</h3>
 
-<ul>
-  <li>View activities and timelines</li>
-  <li>Set times for scripts or cmds to be run</li>
-</ul>
+<p>You can inspect the cert only like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl x509 -in cert.pem -text -noout
+</code></pre></div></div>
+
+<h2 id="tls13-vs-tls12">
+<a class="anchor" href="#tls13-vs-tls12" aria-hidden="true"><span class="octicon octicon-link"></span></a>TLS1.3 vs TLS1.2</h2>
+
+<p>Some firewalls have issues with how new 1.3 is so in traefik you can update the TLS options to support 1.2.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tls:
+  options:
+    default:
+      minVersion: VersionTLS12
+    mintls13:
+      minVersion: VersionTLS13
+</code></pre></div></div>
 
       </article>
     </div>
@@ -415,7 +481,7 @@ This list is updated when new COSMOS gems are installed which add tools.</p>
       
     
       
-  <li class="current">
+  <li class="">
     <a href="/docs/v5/tools">Tools</a>
   </li>
   <!-- prettier-ignore -->
