@@ -14,7 +14,7 @@
     - telemetry
     - interfaces
     - protocols
-    - SSL-TLS
+    - ssl_tls
 
 - title: Tool User Manuals
   docs:
