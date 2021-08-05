@@ -3517,27 +3517,6 @@ set_stdout_max_lines(2000)
 
 These methods allow the user to debug scripts with ScriptRunner.
 
-### insert_return
-
-Inserts a ruby return statement into the currently executing context. This can be used to break out of methods early from the ScriptRunner Debug prompt.
-
-Syntax:
-
-```ruby
-insert_return (<return value (optional)>, ...)
-```
-
-| Parameter    | Description                                          |
-| ------------ | ---------------------------------------------------- |
-| return value | One or more values that are returned from the method |
-
-Example:
-
-```ruby
-insert_return()
-insert_return(5, 10)
-```
-
 ### step_mode
 
 Places ScriptRunner into step mode where Go must be hit to proceed to the next line.
@@ -3580,33 +3559,47 @@ Syntax / Example:
 shutdown_cmd_tlm()
 ```
 
-### set_cmd_tlm_disconnect
+### set_disconnected_targets
 
-The set_cmd_tlm_disconnect method puts scripting into or out of disconnect mode. In disconnect mode, messages are not sent to CmdTlmServer. Instead things are reported as nominally succeeding. Disconnect mode is useful for dry-running scripts without having a connected CmdTlmServer.
+The set_disconnected_targets method puts scripting into disconnect mode. In disconnect mode, commands are not sent to targets but are simply discarded. Telemetry waits and checks immediately return successfully. Disconnect mode is useful for dry-running scripts without having a connected CmdTlmServer.
 
 Syntax:
 
 ```ruby
-set_cmd_tlm_disconnect(<Disconnect>, <Config File>)
+set_disconnected_targets(targets, all, config_file)
 ```
 
 | Parameter   | Description                                                                                                          |
 | ----------- | -------------------------------------------------------------------------------------------------------------------- |
-| Disconnect  | True or Fase. True enters disconnect mode and False leaves it.                                                       |
-| Config File | Command and Telemetry Server configuration file to use to simulate the CmdTlmServer. Defaults to cmd_tlm_server.txt. |
+| targets  | Array of targets to disconnect |
+| all  | Optimizational to indicate that all targets are disconnected. Optional - defaults to false  |
+| config_file | Command and Telemetry Server configuration file to use to simulate the CmdTlmServer. Optional - defaults to cmd_tlm_server.txt |
 
 Example:
 
 ```ruby
-set_cmd_tlm_disconnect(true)
+set_disconnected_targets(['INST'])
+set_disconnected_targets(['INST', 'INST2'], true)
 ```
 
-### get_cmd_tlm_disconnect
+### get_disconnected_targets
 
-The get_cmd_tlm_disconnect method returns true if currently in disconnect mode.
+The get_disconnected_targets method returns an array of disconnected targets.
 
 Syntax / Example:
 
 ```ruby
-mode = get_cmd_tlm_disconnect()
+targets = get_disconnected_targets()
+puts targets #=> ['INST', 'INST2']
+```
+
+### clear_disconnected_targets
+
+The clear_disconnected_targets method reconnects all targets
+
+Syntax / Example:
+
+```ruby
+clear_disconnected_targets()
+puts get_disconnected_targets() #=> []
 ```
