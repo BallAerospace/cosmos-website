@@ -354,13 +354,13 @@
 </li>
 <li class="toc-entry toc-h2"><a href="#debugging">Debugging</a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#insert_return">insert_return</a></li>
 <li class="toc-entry toc-h3"><a href="#step_mode">step_mode</a></li>
 <li class="toc-entry toc-h3"><a href="#run_mode">run_mode</a></li>
 <li class="toc-entry toc-h3"><a href="#show_backtrace">show_backtrace</a></li>
 <li class="toc-entry toc-h3"><a href="#shutdown_cmd_tlm">shutdown_cmd_tlm</a></li>
-<li class="toc-entry toc-h3"><a href="#set_cmd_tlm_disconnect">set_cmd_tlm_disconnect</a></li>
-<li class="toc-entry toc-h3"><a href="#get_cmd_tlm_disconnect">get_cmd_tlm_disconnect</a></li>
+<li class="toc-entry toc-h3"><a href="#set_disconnected_targets">set_disconnected_targets</a></li>
+<li class="toc-entry toc-h3"><a href="#get_disconnected_targets">get_disconnected_targets</a></li>
+<li class="toc-entry toc-h3"><a href="#clear_disconnected_targets">clear_disconnected_targets</a></li>
 </ul>
 </li>
 </ul></div>
@@ -5794,37 +5794,6 @@ Consider breaking code like this into a seperate file and using either require/l
 
 <p>These methods allow the user to debug scripts with ScriptRunner.</p>
 
-<h3 id="insert_return">
-<a class="anchor" href="#insert_return" aria-hidden="true"><span class="octicon octicon-link"></span></a>insert_return</h3>
-
-<p>Inserts a ruby return statement into the currently executing context. This can be used to break out of methods early from the ScriptRunner Debug prompt.</p>
-
-<p>Syntax:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">insert_return</span> <span class="p">(</span><span class="o">&lt;</span><span class="k">return</span> <span class="n">value</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>return value</td>
-      <td>One or more values that are returned from the method</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">insert_return</span><span class="p">()</span>
-<span class="n">insert_return</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-</code></pre></div></div>
-
 <h3 id="step_mode">
 <a class="anchor" href="#step_mode" aria-hidden="true"><span class="octicon octicon-link"></span></a>step_mode</h3>
 
@@ -5867,14 +5836,14 @@ Consider breaking code like this into a seperate file and using either require/l
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">shutdown_cmd_tlm</span><span class="p">()</span>
 </code></pre></div></div>
 
-<h3 id="set_cmd_tlm_disconnect">
-<a class="anchor" href="#set_cmd_tlm_disconnect" aria-hidden="true"><span class="octicon octicon-link"></span></a>set_cmd_tlm_disconnect</h3>
+<h3 id="set_disconnected_targets">
+<a class="anchor" href="#set_disconnected_targets" aria-hidden="true"><span class="octicon octicon-link"></span></a>set_disconnected_targets</h3>
 
-<p>The set_cmd_tlm_disconnect method puts scripting into or out of disconnect mode. In disconnect mode, messages are not sent to CmdTlmServer. Instead things are reported as nominally succeeding. Disconnect mode is useful for dry-running scripts without having a connected CmdTlmServer.</p>
+<p>The set_disconnected_targets method puts scripting into disconnect mode. In disconnect mode, commands are not sent to targets but are simply discarded. Telemetry waits and checks immediately return successfully. Disconnect mode is useful for dry-running scripts without having a connected CmdTlmServer.</p>
 
 <p>Syntax:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set_cmd_tlm_disconnect</span><span class="p">(</span><span class="o">&lt;</span><span class="no">Disconnect</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="no">Config</span> <span class="no">File</span><span class="o">&gt;</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set_disconnected_targets</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">all</span><span class="p">,</span> <span class="n">config_file</span><span class="p">)</span>
 </code></pre></div></div>
 
 <table>
@@ -5886,29 +5855,46 @@ Consider breaking code like this into a seperate file and using either require/l
   </thead>
   <tbody>
     <tr>
-      <td>Disconnect</td>
-      <td>True or Fase. True enters disconnect mode and False leaves it.</td>
+      <td>targets</td>
+      <td>Array of targets to disconnect</td>
     </tr>
     <tr>
-      <td>Config File</td>
-      <td>Command and Telemetry Server configuration file to use to simulate the CmdTlmServer. Defaults to cmd_tlm_server.txt.</td>
+      <td>all</td>
+      <td>Optimizational to indicate that all targets are disconnected. Optional - defaults to false</td>
+    </tr>
+    <tr>
+      <td>config_file</td>
+      <td>Command and Telemetry Server configuration file to use to simulate the CmdTlmServer. Optional - defaults to cmd_tlm_server.txt</td>
     </tr>
   </tbody>
 </table>
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set_cmd_tlm_disconnect</span><span class="p">(</span><span class="kp">true</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set_disconnected_targets</span><span class="p">([</span><span class="s1">'INST'</span><span class="p">])</span>
+<span class="n">set_disconnected_targets</span><span class="p">([</span><span class="s1">'INST'</span><span class="p">,</span> <span class="s1">'INST2'</span><span class="p">],</span> <span class="kp">true</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h3 id="get_cmd_tlm_disconnect">
-<a class="anchor" href="#get_cmd_tlm_disconnect" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_cmd_tlm_disconnect</h3>
+<h3 id="get_disconnected_targets">
+<a class="anchor" href="#get_disconnected_targets" aria-hidden="true"><span class="octicon octicon-link"></span></a>get_disconnected_targets</h3>
 
-<p>The get_cmd_tlm_disconnect method returns true if currently in disconnect mode.</p>
+<p>The get_disconnected_targets method returns an array of disconnected targets.</p>
 
 <p>Syntax / Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mode</span> <span class="o">=</span> <span class="n">get_cmd_tlm_disconnect</span><span class="p">()</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">targets</span> <span class="o">=</span> <span class="n">get_disconnected_targets</span><span class="p">()</span>
+<span class="nb">puts</span> <span class="n">targets</span> <span class="c1">#=&gt; ['INST', 'INST2']</span>
+</code></pre></div></div>
+
+<h3 id="clear_disconnected_targets">
+<a class="anchor" href="#clear_disconnected_targets" aria-hidden="true"><span class="octicon octicon-link"></span></a>clear_disconnected_targets</h3>
+
+<p>The clear_disconnected_targets method reconnects all targets</p>
+
+<p>Syntax / Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">clear_disconnected_targets</span><span class="p">()</span>
+<span class="nb">puts</span> <span class="n">get_disconnected_targets</span><span class="p">()</span> <span class="c1">#=&gt; []</span>
 </code></pre></div></div>
 
       </article>
