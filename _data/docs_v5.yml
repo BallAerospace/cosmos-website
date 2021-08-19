@@ -36,6 +36,7 @@
     - scripting
     - scripting_best_practices
     - monitoring
+    - cfs
 
 - title: Development
   docs:
