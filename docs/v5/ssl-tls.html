@@ -110,7 +110,7 @@
 <li class="toc-entry toc-h3"><a href="#checking-certs">Checking certs</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#tls13-vs-tls12">TLS1.3 vs TLS1.2</a></li>
+<li class="toc-entry toc-h2"><a href="#tls12-inadequate_security-errors">TLS1.2 INADEQUATE_SECURITY Errors</a></li>
 </ul></div>
         
         <h1>SSL-TLS</h1>
@@ -294,18 +294,27 @@ Email Address <span class="o">[]</span>:
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl x509 -in cert.pem -text -noout
 </code></pre></div></div>
 
-<h2 id="tls13-vs-tls12">
-<a class="anchor" href="#tls13-vs-tls12" aria-hidden="true"><span class="octicon octicon-link"></span></a>TLS1.3 vs TLS1.2</h2>
+<h2 id="tls12-inadequate_security-errors">
+<a class="anchor" href="#tls12-inadequate_security-errors" aria-hidden="true"><span class="octicon octicon-link"></span></a>TLS1.2 INADEQUATE_SECURITY Errors</h2>
 
-<p>Some firewalls have issues with how new 1.3 is so in traefik you can update the TLS options to support 1.2.</p>
+<p>https://doc.traefik.io/traefik/https/tls/#cipher-suites
+https://pkg.go.dev/crypto/tls#pkg-constants</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tls:
   options:
     default:
-      minVersion: VersionTLS12
-    mintls13:
-      minVersion: VersionTLS13
+      cipherSuites:
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
 </code></pre></div></div>
+
+<blockquote>
+  <p>This is as of 2021/08/24</p>
+</blockquote>
 
       </article>
     </div>
@@ -420,9 +429,13 @@ Email Address <span class="o">[]</span>:
     
       
     
+      
+    
   
     
     
+    
+      
     
       
     
@@ -507,6 +520,8 @@ Email Address <span class="o">[]</span>:
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/installation">Installation</a>
   </li>
@@ -527,6 +542,8 @@ Email Address <span class="o">[]</span>:
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/gettingstarted">Getting Started</a>
   </li>
@@ -535,6 +552,8 @@ Email Address <span class="o">[]</span>:
   
     
     
+    
+      
     
       
     
@@ -650,6 +669,8 @@ Email Address <span class="o">[]</span>:
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/plugins">Plugins</a>
   </li>
@@ -658,6 +679,8 @@ Email Address <span class="o">[]</span>:
   
     
     
+    
+      
     
       
     
@@ -718,6 +741,8 @@ Email Address <span class="o">[]</span>:
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/command">Command Configuration</a>
   </li>
@@ -726,6 +751,8 @@ Email Address <span class="o">[]</span>:
   
     
     
+    
+      
     
       
     
@@ -802,6 +829,8 @@ Email Address <span class="o">[]</span>:
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/interfaces">Interface Configuration</a>
   </li>
@@ -810,6 +839,8 @@ Email Address <span class="o">[]</span>:
   
     
     
+    
+      
     
       
     
@@ -896,6 +927,8 @@ Email Address <span class="o">[]</span>:
       
     
       
+    
+      
   <li class="current">
     <a href="/docs/v5/ssl-tls">SSL-TLS</a>
   </li>
@@ -921,6 +954,8 @@ Email Address <span class="o">[]</span>:
     
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/cmd-sender">Command Sender</a>
   </li>
@@ -929,6 +964,8 @@ Email Address <span class="o">[]</span>:
   
     
     
+    
+      
     
       
     
@@ -1002,9 +1039,13 @@ Email Address <span class="o">[]</span>:
     
       
     
+      
+    
   
     
     
+    
+      
     
       
     
@@ -1023,6 +1064,8 @@ Email Address <span class="o">[]</span>:
   
     
     
+    
+      
     
       
     
@@ -1063,6 +1106,8 @@ Email Address <span class="o">[]</span>:
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/limits-monitor">Limits Monitor</a>
   </li>
@@ -1071,6 +1116,8 @@ Email Address <span class="o">[]</span>:
   
     
     
+    
+      
     
       
     
@@ -1147,6 +1194,8 @@ Email Address <span class="o">[]</span>:
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/script-runner">Script Runner</a>
   </li>
@@ -1155,6 +1204,8 @@ Email Address <span class="o">[]</span>:
   
     
     
+    
+      
     
       
     
@@ -1273,6 +1324,8 @@ Email Address <span class="o">[]</span>:
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/tlm-viewer">Telemetry Viewer</a>
   </li>
@@ -1317,6 +1370,8 @@ Email Address <span class="o">[]</span>:
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/screens">Telemetry Screens</a>
   </li>
@@ -1325,6 +1380,8 @@ Email Address <span class="o">[]</span>:
   
     
     
+    
+      
     
       
     
@@ -1440,6 +1497,8 @@ Email Address <span class="o">[]</span>:
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/scripting">Scripting Guide</a>
   </li>
@@ -1448,6 +1507,8 @@ Email Address <span class="o">[]</span>:
   
     
     
+    
+      
     
       
     
@@ -1526,8 +1587,20 @@ Email Address <span class="o">[]</span>:
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/monitoring">Monitoring</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+  <li class="">
+    <a href="/docs/v5/cfs">COSMOS and NASA cFS</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1549,6 +1622,8 @@ Email Address <span class="o">[]</span>:
   
     
     
+    
+      
     
       
     
@@ -1605,6 +1680,8 @@ Email Address <span class="o">[]</span>:
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/logging">Logging</a>
   </li>
@@ -1613,6 +1690,8 @@ Email Address <span class="o">[]</span>:
   
     
     
+    
+      
     
       
     
