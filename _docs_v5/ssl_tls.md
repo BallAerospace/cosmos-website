@@ -160,15 +160,22 @@ You can inspect the cert only like so:
 openssl x509 -in cert.pem -text -noout
 ```
 
-## TLS1.3 vs TLS1.2
+## TLS1.2 INADEQUATE_SECURITY Errors
 
-Some firewalls have issues with how new 1.3 is so in traefik you can update the TLS options to support 1.2.
+https://doc.traefik.io/traefik/https/tls/#cipher-suites
+https://pkg.go.dev/crypto/tls#pkg-constants
 
 ```
 tls:
   options:
     default:
-      minVersion: VersionTLS12
-    mintls13:
-      minVersion: VersionTLS13
+      cipherSuites:
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
 ```
+
+> This is as of 2021/08/24
