@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Test Procedure
+title: Testing COSMOS
 toc: true
 ---
 
@@ -45,13 +45,13 @@ toc: true
     Tests will run successfully without this step and you will get coverage statistics, but line-by-line coverage won't work.
     ```bash
     cypress> yarn run fixwindows
-    ```  
+    ```
 
 1. Open Cypress and run tests
 
     ```bash
     cypress> yarn run cypress open
-    ```  	
+    ```
 
 Code coverage reports can be viewed at [cypress/coverage/lcov-report/index.html](./coverage/lcov-report/index.html)
 
