@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Arduinos & Battle Bots</title>
+  <title>Ball Aerospace COSMOS 4.5.1 Released</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.0">
@@ -248,17 +248,17 @@
       <div class="unit four-fifths">
         <article>
   <h2>
-    Arduinos & Battle Bots
-    <a href="/news/2017/07/05/arduino-battle-bots/" class="permalink" title="Permalink">∞</a>
+    Ball Aerospace COSMOS 4.5.1 Released
+    <a href="/news/2021/09/21/cosmos-4-5-1-released/" class="permalink" title="Permalink">∞</a>
   </h2>
   <span class="post-category">
     <span class="label">
-      post
+      release
     </span>
   </span>
   <div class="post-meta">
     <span class="post-date">
-      05 Jul 2017
+      21 Sep 2021
     </span>
     <a href="https://github.com/jmthomas" class="post-author">
       <img src="https://github.com/jmthomas.png" class="avatar" alt="jmthomas avatar" width="24" height="24">
@@ -266,7 +266,55 @@
     </a>
   </div>
   <div class="post-content">
-    <p>Ball Aerospace COSMOS has been featured in a <a href="http://www.williamosman.com/2016/08/cosmos-and-arduino-20-telemetry-system.html">blog post</a> by <a href="http://www.williamosman.com/">William Osman</a> about creating a telemetry system for a race car. William mentions first seeing COSMOS in action on the set of Battle Bots <a href="http://www.battlebots.com/bracket-s2/">Season 2</a> where <a href="http://battlebots.com/robot/chomp-2/">Team Chomp</a> was using it enroute to their quarterfinal finish. What an awesome example of COSMOS in action!</p>
+    <p>COSMOS 4.5.1</p>
+
+<p>This is primarily a security and bug fix release. All users are recommended to update. Please see the migration notes below for necessary changes when upgrading from 4.4.x.</p>
+
+<h3 id="security-updates">Security Updates:</h3>
+
+<ul>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1357">#1357</a> Fix fortify issues in C ext</li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1361">#1361</a> Incorporate Fortify findings</li>
+</ul>
+
+<h3 id="bug-fixes">Bug Fixes:</h3>
+
+<ul>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1363">#1363</a> Synchronize packet and limits so that inject_tlm works as expected</li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1314">#1314</a> Time#sys breaks with frozen timestamps</li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1300">#1300</a> Read only files should not be editable</li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1336">#1336</a> Sort Files in CRC File</li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1330">#1330</a> xtce_converter: uninitialized constant USERPATH</li>
+</ul>
+
+<h3 id="new-features">New Features:</h3>
+
+<ul>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1299">#1299</a> Stay on top command line option for tools</li>
+</ul>
+
+<h3 id="maintenance">Maintenance:</h3>
+
+<ul>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1242">#1242</a> Update installer link</li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1252">#1252</a> Check for absolute path in installer</li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1362">#1362</a> Ahk issues</li>
+</ul>
+
+<h3 id="migration-notes-from-cosmos-44x">Migration Notes from COSMOS 4.4.x:</h3>
+
+<p>To upgrade to the latest version of COSMOS, run “bundle update cosmos” in your COSMOS project folder.</p>
+
+<p>Modify you system.txt files to:</p>
+
+<ol>
+  <li>Make sure you have a X_CSRF_TOKEN line with a unique value (anything will do, just change it)</li>
+  <li>Change all LISTEN_HOST settings to 127.0.01 unless you need connections from external hosts</li>
+  <li>If you know only specific external hosts will be connecting, add ALLOW_ACCESS lines for each</li>
+  <li>Only add ALLOW_ROUTER_COMMANDING if you are chaining CmdTlmServers (that need to send commands), or you are receiving commands through routers</li>
+  <li>Only add ALLOW_ORIGIN &lt;Address of webpage&gt;if you expect COSMOS to be accessed from a webpage</li>
+  <li>Add ALLOW_HOST <Your COSMOS="" IP="" Address="">:7777, etc if you expect the COSMOS APIs to be accessed from external computers. Otherwise it will only accept connections that have a HOST header set to localhost</Your></li>
+</ol>
 
   </div>
 </article>
@@ -286,7 +334,7 @@
     <h4>Recent Releases</h4>
     <ul>
       
-      <li class="">
+      <li class="current">
         <a href="/news/2021/09/21/cosmos-4-5-1-released/">Version 4.5.1</a>
       </li>
       
@@ -370,7 +418,7 @@
         <a href="/news/2017/08/23/cloud-deploy/">Deploying COSMOS to the Cloud</a>
       </li>
             
-      <li class="current">
+      <li class="">
         <a href="/news/2017/07/05/arduino-battle-bots/">Arduinos & Battle Bots</a>
       </li>
         

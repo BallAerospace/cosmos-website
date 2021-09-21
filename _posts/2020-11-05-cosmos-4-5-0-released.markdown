@@ -7,9 +7,9 @@ version: 4.5.0
 categories: [release]
 ---
 
-COSMOS 4.5
+COSMOS 4.5.0
 
-This is a security and bug fix release. All users are recommended to update. Please see the migration notes below for necessary changes when upgrading from 4.4.2.
+This is a security and bug fix release. All users are recommended to update. Please see the migration notes below for necessary changes when upgrading from 4.4.x.
 
 ### Security Updates:
 
@@ -35,7 +35,7 @@ This is a security and bug fix release. All users are recommended to update. Ple
 
 - [#1136](https://github.com/BallAerospace/COSMOS/issues/1136) Telemetry Extractor delimiter on last item
 
-### Migration Notes from COSMOS 4.4,x:
+### Migration Notes from COSMOS 4.4.x:
 
 To upgrade to the latest version of COSMOS, run "bundle update cosmos" in your COSMOS project folder.
 
