@@ -88,6 +88,8 @@
     <option value="/news/">Home</option>
     <optgroup label="v1.x">
       
+      <option value="/news/2021/09/21/cosmos-4-5-1-released/">Ball Aerospace COSMOS 4.5.1 Released</option>
+      
       <option value="/news/2021/04/12/cosmos-5-0-0-beta-2-released/">Ball Aerospace COSMOS 5.0.0 beta 2 Released</option>
       
       <option value="/news/2021/01/09/cosmos-5-0-0-beta-1-released/">Ball Aerospace COSMOS 5.0.0 beta 1 Released</option>
@@ -245,6 +247,81 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    <a href="/news/2021/09/21/cosmos-4-5-1-released/">
+      Ball Aerospace COSMOS 4.5.1 Released
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      release
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      21 Sep 2021
+    </span>
+    <a href="https://github.com/jmthomas" class="post-author">
+      <img src="https://github.com/jmthomas.png" class="avatar" alt="jmthomas avatar" width="24" height="24">
+      jmthomas
+    </a>
+  </div>
+  <div class="post-content">
+    <p>COSMOS 4.5.1</p>
+
+<p>This is primarily a security and bug fix release. All users are recommended to update. Please see the migration notes below for necessary changes when upgrading from 4.4.x.</p>
+
+<h3 id="security-updates">Security Updates:</h3>
+
+<ul>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1357">#1357</a> Fix fortify issues in C ext</li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1361">#1361</a> Incorporate Fortify findings</li>
+</ul>
+
+<h3 id="bug-fixes">Bug Fixes:</h3>
+
+<ul>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1363">#1363</a> Synchronize packet and limits so that inject_tlm works as expected</li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1314">#1314</a> Time#sys breaks with frozen timestamps</li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1300">#1300</a> Read only files should not be editable</li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1336">#1336</a> Sort Files in CRC File</li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1330">#1330</a> xtce_converter: uninitialized constant USERPATH</li>
+</ul>
+
+<h3 id="new-features">New Features:</h3>
+
+<ul>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1299">#1299</a> Stay on top command line option for tools</li>
+</ul>
+
+<h3 id="maintenance">Maintenance:</h3>
+
+<ul>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1242">#1242</a> Update installer link</li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1252">#1252</a> Check for absolute path in installer</li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1362">#1362</a> Ahk issues</li>
+</ul>
+
+<h3 id="migration-notes-from-cosmos-44x">Migration Notes from COSMOS 4.4.x:</h3>
+
+<p>To upgrade to the latest version of COSMOS, run “bundle update cosmos” in your COSMOS project folder.</p>
+
+<p>Modify you system.txt files to:</p>
+
+<ol>
+  <li>Make sure you have a X_CSRF_TOKEN line with a unique value (anything will do, just change it)</li>
+  <li>Change all LISTEN_HOST settings to 127.0.01 unless you need connections from external hosts</li>
+  <li>If you know only specific external hosts will be connecting, add ALLOW_ACCESS lines for each</li>
+  <li>Only add ALLOW_ROUTER_COMMANDING if you are chaining CmdTlmServers (that need to send commands), or you are receiving commands through routers</li>
+  <li>Only add ALLOW_ORIGIN &lt;Address of webpage&gt;if you expect COSMOS to be accessed from a webpage</li>
+  <li>Add ALLOW_HOST <Your COSMOS="" IP="" Address="">:7777, etc if you expect the COSMOS APIs to be accessed from external computers. Otherwise it will only accept connections that have a HOST header set to localhost</Your></li>
+</ol>
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     <a href="/news/2021/04/12/cosmos-5-0-0-beta-2-released/">
@@ -481,9 +558,9 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk</p>
     </a>
   </div>
   <div class="post-content">
-    <p>COSMOS 4.5</p>
+    <p>COSMOS 4.5.0</p>
 
-<p>This is a security and bug fix release. All users are recommended to update. Please see the migration notes below for necessary changes when upgrading from 4.4.2.</p>
+<p>This is a security and bug fix release. All users are recommended to update. Please see the migration notes below for necessary changes when upgrading from 4.4.x.</p>
 
 <h3 id="security-updates">Security Updates:</h3>
 
@@ -517,7 +594,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk</p>
   <li><a href="https://github.com/BallAerospace/COSMOS/issues/1136">#1136</a> Telemetry Extractor delimiter on last item</li>
 </ul>
 
-<h3 id="migration-notes-from-cosmos-44x">Migration Notes from COSMOS 4.4,x:</h3>
+<h3 id="migration-notes-from-cosmos-44x">Migration Notes from COSMOS 4.4.x:</h3>
 
 <p>To upgrade to the latest version of COSMOS, run “bundle update cosmos” in your COSMOS project folder.</p>
 
@@ -5652,6 +5729,10 @@ change the whole playing field of Operations, Integration, and Test”.</p>
     <ul>
       
       <li class="">
+        <a href="/news/2021/09/21/cosmos-4-5-1-released/">Version 4.5.1</a>
+      </li>
+      
+      <li class="">
         <a href="/news/2021/04/12/cosmos-5-0-0-beta-2-released/">Version 5.0.0.beta2</a>
       </li>
       
@@ -5667,14 +5748,10 @@ change the whole playing field of Operations, Integration, and Test”.</p>
         <a href="/news/2020/08/31/cosmos-5-0-0-alpha-1-released/">Version 5.0.0-alpha.1</a>
       </li>
       
-      <li class="">
-        <a href="/news/2020/03/09/cosmos-4-4-2-released/">Version 4.4.2</a>
-      </li>
-      
     </ul>
     <h4>Other News</h4>
     <ul>
-             
+               
       <li class="">
         <a href="/news/2020/09/23/packet-time/">Packet Time</a>
       </li>

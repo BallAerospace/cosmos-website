@@ -11,8 +11,8 @@
     <title xml:lang="en">Ball Aerospace COSMOS News</title>
     <atom:link type="application/atom+xml" href="http://cosmosc2/feed.xml" rel="self"/>
     <link>http://cosmosc2.com/</link>
-    <pubDate>Wed, 08 Sep 2021 09:36:32 -0600</pubDate>
-    <lastBuildDate>Wed, 08 Sep 2021 09:36:32 -0600</lastBuildDate>
+    <pubDate>Tue, 21 Sep 2021 15:11:07 -0600</pubDate>
+    <lastBuildDate>Tue, 21 Sep 2021 15:11:07 -0600</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.2.0</generator>
     <description>The User Interface for Embedded Systems</description>
@@ -24,6 +24,68 @@
       <width>144</width>
       <height>73</height>
     </image>
+    
+    <item>
+      <title>Ball Aerospace COSMOS 4.5.1 Released</title>
+      <link>http://cosmosc2.com/news/2021/09/21/cosmos-4-5-1-released/</link>
+      <pubDate>Tue, 21 Sep 2021 04:00:00 -0600</pubDate>
+      <dc:creator>jmthomas</dc:creator>
+      
+      
+      <category>release</category>
+      
+      <guid isPermaLink="true">http://cosmosc2.com/news/2021/09/21/cosmos-4-5-1-released/</guid>
+      <description>&lt;p&gt;COSMOS 4.5.1&lt;/p&gt;
+
+&lt;p&gt;This is primarily a security and bug fix release. All users are recommended to update. Please see the migration notes below for necessary changes when upgrading from 4.4.x.&lt;/p&gt;
+
+&lt;h3 id=&quot;security-updates&quot;&gt;Security Updates:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues/1357&quot;&gt;#1357&lt;/a&gt; Fix fortify issues in C ext&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues/1361&quot;&gt;#1361&lt;/a&gt; Incorporate Fortify findings&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;bug-fixes&quot;&gt;Bug Fixes:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues/1363&quot;&gt;#1363&lt;/a&gt; Synchronize packet and limits so that inject_tlm works as expected&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues/1314&quot;&gt;#1314&lt;/a&gt; Time#sys breaks with frozen timestamps&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues/1300&quot;&gt;#1300&lt;/a&gt; Read only files should not be editable&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues/1336&quot;&gt;#1336&lt;/a&gt; Sort Files in CRC File&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues/1330&quot;&gt;#1330&lt;/a&gt; xtce_converter: uninitialized constant USERPATH&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;new-features&quot;&gt;New Features:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues/1299&quot;&gt;#1299&lt;/a&gt; Stay on top command line option for tools&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;maintenance&quot;&gt;Maintenance:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues/1242&quot;&gt;#1242&lt;/a&gt; Update installer link&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues/1252&quot;&gt;#1252&lt;/a&gt; Check for absolute path in installer&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues/1362&quot;&gt;#1362&lt;/a&gt; Ahk issues&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;migration-notes-from-cosmos-44x&quot;&gt;Migration Notes from COSMOS 4.4.x:&lt;/h3&gt;
+
+&lt;p&gt;To upgrade to the latest version of COSMOS, run “bundle update cosmos” in your COSMOS project folder.&lt;/p&gt;
+
+&lt;p&gt;Modify you system.txt files to:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Make sure you have a X_CSRF_TOKEN line with a unique value (anything will do, just change it)&lt;/li&gt;
+  &lt;li&gt;Change all LISTEN_HOST settings to 127.0.01 unless you need connections from external hosts&lt;/li&gt;
+  &lt;li&gt;If you know only specific external hosts will be connecting, add ALLOW_ACCESS lines for each&lt;/li&gt;
+  &lt;li&gt;Only add ALLOW_ROUTER_COMMANDING if you are chaining CmdTlmServers (that need to send commands), or you are receiving commands through routers&lt;/li&gt;
+  &lt;li&gt;Only add ALLOW_ORIGIN &amp;lt;Address of webpage&amp;gt;if you expect COSMOS to be accessed from a webpage&lt;/li&gt;
+  &lt;li&gt;Add ALLOW_HOST &lt;Your COSMOS=&quot;&quot; IP=&quot;&quot; Address=&quot;&quot;&gt;:7777, etc if you expect the COSMOS APIs to be accessed from external computers. Otherwise it will only accept connections that have a HOST header set to localhost&lt;/Your&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>Ball Aerospace COSMOS 5.0.0 beta 2 Released</title>
@@ -224,9 +286,9 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
       <category>release</category>
       
       <guid isPermaLink="true">http://cosmosc2.com/news/2020/11/05/cosmos-4-5-0-released/</guid>
-      <description>&lt;p&gt;COSMOS 4.5&lt;/p&gt;
+      <description>&lt;p&gt;COSMOS 4.5.0&lt;/p&gt;
 
-&lt;p&gt;This is a security and bug fix release. All users are recommended to update. Please see the migration notes below for necessary changes when upgrading from 4.4.2.&lt;/p&gt;
+&lt;p&gt;This is a security and bug fix release. All users are recommended to update. Please see the migration notes below for necessary changes when upgrading from 4.4.x.&lt;/p&gt;
 
 &lt;h3 id=&quot;security-updates&quot;&gt;Security Updates:&lt;/h3&gt;
 
@@ -260,7 +322,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
   &lt;li&gt;&lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues/1136&quot;&gt;#1136&lt;/a&gt; Telemetry Extractor delimiter on last item&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;migration-notes-from-cosmos-44x&quot;&gt;Migration Notes from COSMOS 4.4,x:&lt;/h3&gt;
+&lt;h3 id=&quot;migration-notes-from-cosmos-44x&quot;&gt;Migration Notes from COSMOS 4.4.x:&lt;/h3&gt;
 
 &lt;p&gt;To upgrade to the latest version of COSMOS, run “bundle update cosmos” in your COSMOS project folder.&lt;/p&gt;
 
