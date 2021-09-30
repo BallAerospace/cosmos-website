@@ -20,7 +20,7 @@ The decom_logs and raw_logs folders contain the decommutated and raw command and
 
 Note the presence of both .bin files and .idx files. The .bin files contain the raw binary data  while the idx files are index files designed to allow quick binary searches on the corresponding packet logs. For more information about the structure of these files see the [Log Structure](/docs/v5/log-structure) developer documentation.
 
-Note the files have timestamps about 10 minutes apart. This is the default setting for the Logging microservice that is started when each target gets deployed.
+The default settings for the Logging microservice is to start a new log file every 10 minutes or 50MB, which ever comes first. In the case of the low data rate demo, the 10 minute mark is hit first.
 
 <div class="note unreleased">
   <p>Decribe how to change the logging parameters</p>
