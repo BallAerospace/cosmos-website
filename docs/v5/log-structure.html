@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Upgrading</title>
+  <title>Log Structure</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.0">
@@ -91,55 +91,257 @@
           <span class="version-badge">v5</span>
         </div>
          
-        <h1>Upgrading</h1>
-        <h3 id="cosmos-5-upgrades">COSMOS 5 Upgrades</h3>
+        <div class="toc"><ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#packet-log-file-format">Packet Log File Format</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#file-header">File Header</a></li>
+<li class="toc-entry toc-h3"><a href="#entry-types">Entry Types</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#common-entry-format">Common Entry Format</a></li>
+<li class="toc-entry toc-h4"><a href="#target-declaration-entry">Target Declaration Entry</a></li>
+<li class="toc-entry toc-h4"><a href="#packet-declaration-entry">Packet Declaration Entry</a></li>
+<li class="toc-entry toc-h4"><a href="#raw-packet-and-json-packet-entries">Raw Packet and JSON Packet Entries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#index-files">Index Files</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#file-header-1">File Header</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#index-file-entries">Index File Entries</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#index-file-footer">Index File Footer</a></li>
+</ul>
+</li>
+</ul></div>
+        
+        <h1>Log Structure</h1>
+        <h2 id="packet-log-file-format">
+<a class="anchor" href="#packet-log-file-format" aria-hidden="true"><span class="octicon octicon-link"></span></a>Packet Log File Format</h2>
 
-<p>COSMOS is released as a zip or tar file containing all the source code to build the COSMOS Docker containers and run them. Since we’re using Docker containers and volumes we can simply stop the existing COSMOS application, then build and start the new release. Keep your existing COSMOS 5 installation and <a href="/docs/v5/installation">install</a> COSMOS according to the installation instructions to a new directory.</p>
+<p>Packet logs in COSMOS 5 are used to store raw binary packets as received from various targets, as
+well as decommutated packets stored as JSON structures.</p>
 
-<p>This example assumes an existing COSMOS 5 installation at C:\COSMOS_5.0.0 and a new COSMOS 5 installation at C:\COSMOS_5.1.0. Linux users can adjust paths and change from .bat to .sh to follow along.</p>
+<h3 id="file-header">
+<a class="anchor" href="#file-header" aria-hidden="true"><span class="octicon octicon-link"></span></a>File Header</h3>
+<p>COSMOS 5 Packet log files start with the 8-character sequence “COSMOS5_”. This can be used to identify the type of file independent of filename and differentiate them from newer and older versions.</p>
 
-<ol>
-  <li>
-    <p>Stop the current COSMOS application</p>
+<h3 id="entry-types">
+<a class="anchor" href="#entry-types" aria-hidden="true"><span class="octicon octicon-link"></span></a>Entry Types</h3>
+<p>Packet log files have 4 different entry types with room for future expansion. All entry headers are big endian binary data.</p>
 
-    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\COSMOS_5.0.0&gt; <span class="kd">cosmos</span><span class="na">-control</span>.bat <span class="kd">stop</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Start the new COSMOS application (note this will also build the new containers)</p>
+<h4 id="common-entry-format">
+<a class="anchor" href="#common-entry-format" aria-hidden="true"><span class="octicon octicon-link"></span></a>Common Entry Format</h4>
+<p>This common format is used for all packet log entries as well as the corresponding index file entries.</p>
 
-    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\COSMOS_5.1.0&gt; <span class="kd">cosmos</span><span class="na">-control</span>.bat <span class="nb">start</span>
-</code></pre></div>    </div>
-  </li>
-</ol>
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Data Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Length</td>
+      <td>32-bit Unsigned Integer</td>
+      <td>Total length of the entry in bytes not including the length field.  Max entry size is therefore 4GiB.</td>
+    </tr>
+    <tr>
+      <td>Entry Type</td>
+      <td>4-bit Unsigned Integer</td>
+      <td>Entry Type:<br>1 = Target Declaration<br>2 = Packet Declaraction<br>3 = Raw Packet<br>4 = JSON Packet</td>
+    </tr>
+    <tr>
+      <td>Cmd/Tlm Flag</td>
+      <td>1-bit Unsigned Integer</td>
+      <td>1 = Command<br>0 = Telemetry</td>
+    </tr>
+    <tr>
+      <td>Stored Flag</td>
+      <td>1-bit Unsigned Integer</td>
+      <td>1 = Stored Data<br>0 = Realtime Data</td>
+    </tr>
+    <tr>
+      <td>Id Flag</td>
+      <td>1-bit Unsigned Integer</td>
+      <td>1 = ID present<br>0 = ID not present</td>
+    </tr>
+    <tr>
+      <td>Reserved</td>
+      <td>9-bit Unsigned Integer</td>
+      <td>Reserved for Future expansion.  Should be set to 0 if unused.</td>
+    </tr>
+    <tr>
+      <td>Entry Data</td>
+      <td>Variable</td>
+      <td>Unique data based on entry type.  See Entry Types Below</td>
+    </tr>
+    <tr>
+      <td>Id (Optional)</td>
+      <td>32-byte Binary Hash</td>
+      <td>If the ID field is set, this is a binary 256-bit SHA-256 hash uniquely identifying a target configuration or packet configuration</td>
+    </tr>
+  </tbody>
+</table>
 
-<h3 id="migrating-from-cosmos-4-to-cosmos-5">Migrating From COSMOS 4 to COSMOS 5</h3>
+<h4 id="target-declaration-entry">
+<a class="anchor" href="#target-declaration-entry" aria-hidden="true"><span class="octicon octicon-link"></span></a>Target Declaration Entry</h4>
 
-<p>COSMOS 5 is a new architecture and treats targets as independent <a href="/docs/v5/plugins">plugins</a>. Thus the primary effort in porting from 4 to 5 is converting targets to plugins. We recommend creating plugins for each independent target (with its own interface) but targets which share an interface will need to be part of the same plugin. The reason for independent plugins is it allows the plugin to be versioned separately and more easily shared outside your specific project. If you have very project specific targets (e.g. custom hardware) those can potentially be combined for ease of deployment.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Data Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target Name</td>
+      <td>Variable-Length ASCII String</td>
+      <td>Target Name</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>COSMOS 5 includes a migration tool for converting an existing COSMOS 4 configuration into a COSMOS 5 plugin. This example assumes an existing COSMOS 4 configuration at C:\COSMOS4_config and a new COSMOS 5 installation at C:\COSMOS5. Linux users can adjust paths and change from .bat to .sh to follow along.</p>
+<h4 id="packet-declaration-entry">
+<a class="anchor" href="#packet-declaration-entry" aria-hidden="true"><span class="octicon octicon-link"></span></a>Packet Declaration Entry</h4>
 
-<ol>
-  <li>
-    <p>Change to the existing COSMOS configuration directory. You should see the config, lib, procedures, outputs directory. You can then run the migration tool by specifying the absolute path to the COSMOS 5 installation.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Data Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Target Index</td>
+      <td>16-bit Unsigned Integer</td>
+      <td>Index into a dynamically built table of target names, generated from the order of the target declarations in the file.  The first target declaration gets index 0, the second target declaration gets index 1, etc.</td>
+    </tr>
+    <tr>
+      <td>Packet Name</td>
+      <td>Variable-Length ASCII String</td>
+      <td>Packet Name</td>
+    </tr>
+  </tbody>
+</table>
 
-    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\COSMOS4_config&gt; <span class="kd">C</span>:\COSMOS5\cosmos<span class="na">-control</span>.bat <span class="kd">cosmos</span> <span class="kd">migrate</span> <span class="na">-a </span><span class="kd">demo</span>
-</code></pre></div>    </div>
+<h4 id="raw-packet-and-json-packet-entries">
+<a class="anchor" href="#raw-packet-and-json-packet-entries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Raw Packet and JSON Packet Entries</h4>
 
-    <p>This creates a new COSMOS 5 plugin called cosmos-demo with a target named DEMO containing the existing lib and procedures files as well as all the existing targets.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Data Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Packet Index</td>
+      <td>16-bit Unsigned Integer</td>
+      <td>Index into a dynamically built table of cmd_or_tlm/target name/packet name tuples, generated from the order of the packet declarations in the file. The first packet declaration gets index 0, the second packet declaration gets index 1, etc. This limits the max number of unique packet types in a single file to 65536.</td>
+    </tr>
+    <tr>
+      <td>Timestamp</td>
+      <td>64-bit Unsigned Integer</td>
+      <td>Packet timestamp in nanoseconds from the unix epoch (Jan 1st, 1970, midnight). The packet received time for raw packet entries, and the “packet time” for JSON packet entries (which are used to store decommutated date). For JSON packet entries, the packet received time can be extracted from the JSON data if needed.</td>
+    </tr>
+    <tr>
+      <td>Packet Data</td>
+      <td>Variable-Length Block Data</td>
+      <td>The Raw binary packet data for Raw Packet entries, and ASCII JSON data for JSON packet entries. Note the Common Id field is not supported with either type of packet entry.</td>
+    </tr>
+  </tbody>
+</table>
 
-    <div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">C</span>:\COSMOS4_config&gt; <span class="kd">C</span>:\COSMOS5\cosmos<span class="na">-control</span>.bat <span class="kd">cosmos</span> <span class="kd">migrate</span> <span class="kd">demo</span><span class="na">-part </span><span class="kd">INST</span> <span class="kd">SYSTEM</span>
-</code></pre></div>    </div>
+<h2 id="index-files">
+<a class="anchor" href="#index-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>Index Files</h2>
+<p>Alongside each Packet Log File, COSMOS 5 also created a separate index file with the same name but a file extension of “.idx”.  This file is designed to allow quick binary searches on the corresponding packet log by timestamp.</p>
 
-    <p>This would create a new COSMOS 5 plugin called cosmos-demo-part with a target named DEMO_PART containing the existing lib and procedures files as well as the INST and SYSTEM targets (but no others).</p>
-  </li>
-  <li>
-    <p>Open the new COSMOS 5 plugin and ensure the <a href="/docs/v5/plugins#plugintxt-configuration-file">plugin.txt</a> file is correctly configured. The migration tool doesn’t create VARIABLEs or MICROSERVICEs or handle target substitution so those features will have to added manually.</p>
-  </li>
-  <li>
-    <p>Follow the <a href="/docs/v5/gettingstarted#building-your-plugin">building your plugin</a> part of the Getting Started tutorial to build your new plugin and upload it to COSMOS 5.</p>
-  </li>
-</ol>
+<h3 id="file-header-1">
+<a class="anchor" href="#file-header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>File Header</h3>
+<p>COSMOS 5 Packet log files start with the 8-character sequence “COSIDX5_”.  This can be used to identify the type of file independent of filename and differentiate them from newer and older versions.</p>
+
+<h4 id="index-file-entries">
+<a class="anchor" href="#index-file-entries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Index File Entries</h4>
+<p>Index file entries are the same as the corresponding packet entries, except the packet data field is replaced by 64-bit unsigned integer with the offset into the corresponding packet log file, where the full packet entry exists.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Data Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Packet Index</td>
+      <td>16-bit Unsigned Integer</td>
+      <td>Index into a dynamically built table of cmd_or_tlm/target name/packet name tuples, generated from the order of the packet declarations in the file. The first packet declaration gets index 0, the second packet declaration gets index 1, etc. This limits the max number of unique packet types in a single file to 65536.</td>
+    </tr>
+    <tr>
+      <td>Timestamp</td>
+      <td>64-bit Unsigned Integer</td>
+      <td>Packet timestamp in nanoseconds from the unix epoch (Jan 1st, 1970, midnight). The packet received time for raw packet entries, and the “packet time” for JSON packet entries (which are used to store decommutated date). For JSON packet entries, the packet received time can be extracted from the JSON data if needed.</td>
+    </tr>
+    <tr>
+      <td>Offset</td>
+      <td>64-bit Unsigned Integer</td>
+      <td>File offset in bytes to the beginning of the corresponding entry in the packet log file.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="index-file-footer">
+<a class="anchor" href="#index-file-footer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Index File Footer</h3>
+<p>All of the target declaration entries and packet declaration entries from the corresponding packet log file are written out together at the very end of index files.   This makes the entire index file up to this point a set of fixed size entries that can be very quickly searched (as opposed to the standard packet log file where every entry is variably sized).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Data Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Count of Target Declaration Entries</td>
+      <td>16-bit Unsigned Integer</td>
+      <td>The number of target declaration entries that follow.</td>
+    </tr>
+    <tr>
+      <td>Target Declaration Entries</td>
+      <td>Variable Sized</td>
+      <td>Array of target declaration entries</td>
+    </tr>
+    <tr>
+      <td>Count of Packet Declaration Entries</td>
+      <td>16-bit Unsigned Integer</td>
+      <td>The number of packet declaration entries that follow.</td>
+    </tr>
+    <tr>
+      <td>Packet Declaration Entries</td>
+      <td>Variable Sized</td>
+      <td>Array of packet declaration entries</td>
+    </tr>
+    <tr>
+      <td>Index File Footer Length</td>
+      <td>32-bit Unsigned Integer</td>
+      <td>The entire length of the footer (including this length field)</td>
+    </tr>
+  </tbody>
+</table>
 
       </article>
     </div>
@@ -445,7 +647,7 @@
       
     
       
-  <li class="current">
+  <li class="">
     <a href="/docs/v5/upgrading">Upgrading</a>
   </li>
   <!-- prettier-ignore -->
@@ -1581,7 +1783,7 @@
       
     
       
-  <li class="">
+  <li class="current">
     <a href="/docs/v5/log-structure">Log Structure</a>
   </li>
   <!-- prettier-ignore -->

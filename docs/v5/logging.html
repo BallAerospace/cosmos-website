@@ -92,12 +92,63 @@
         </div>
          
         <div class="toc"><ul id="toc" class="section-nav">
+<li class="toc-entry toc-h3"><a href="#decom_logs--raw_logs">decom_logs &amp; raw_logs</a></li>
+<li class="toc-entry toc-h3"><a href="#text_logs">text_logs</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#cosmos_log_messages">cosmos_log_messages</a></li>
+<li class="toc-entry toc-h4"><a href="#cosmos_notifications">cosmos_notifications</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#tool_logs">tool_logs</a></li>
 </ul></div>
         
         <h1>Logging</h1>
-        <div class="note unreleased">
-  <p>Logging is completely different in COSMOS 5.</p>
+        <p>COSMOS 5 includes the open source <a href="https://min.io/">minio</a> software which is a high-performance S3 compatible object storage. Browse to http://localhost:2900/minio and enter the username and password which are stored in the root .env file as COSMOS_MINIO_USERNAME and COSMOS_MINIO_PASSWORD.</p>
+
+<p>You should see the MinIO Browser and the list of buckets:</p>
+
+<p><img src="/img/v5/logging/browser.png" alt="MinIO Browser"></p>
+
+<p>Note the logs bucket is organized by scopes of which there initially is just one: DEFAULT. Clicking that shows the decom_logs, raw_logs, text_logs and tool_logs.</p>
+
+<h3 id="decom_logs--raw_logs">
+<a class="anchor" href="#decom_logs--raw_logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>decom_logs &amp; raw_logs</h3>
+
+<p>The decom_logs and raw_logs folders contain the decommutated and raw command and telemetry data. Both are further broken down by target, packet, then date. For example, browsing into the raw_logs/tlm/INST/HEALTH_STATUS:</p>
+
+<p><img src="/img/v5/logging/raw_tlm_logs.png" alt="raw_tlm_logs"></p>
+
+<p>Note the presence of both .bin files and .idx files. The .bin files contain the raw binary data  while the idx files are index files designed to allow quick binary searches on the corresponding packet logs. For more information about the structure of these files see the <a href="/docs/v5/log-structure">Log Structure</a> developer documentation.</p>
+
+<p>The default settings for the Logging microservice is to start a new log file every 10 minutes or 50MB, which ever comes first. In the case of the low data rate demo, the 10 minute mark is hit first.</p>
+
+<div class="note unreleased">
+  <p>Decribe how to change the logging parameters</p>
 </div>
+
+<h3 id="text_logs">
+<a class="anchor" href="#text_logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>text_logs</h3>
+
+<p>The text_logs folder contains cosmos_log_messages and cosmos_notifications.</p>
+
+<h4 id="cosmos_log_messages">
+<a class="anchor" href="#cosmos_log_messages" aria-hidden="true"><span class="octicon octicon-link"></span></a>cosmos_log_messages</h4>
+
+<p>The cosmos_log_messages folder contains text files which are again sorted by date and timestamped. These log messages come from the various microservices including the server and the target microservices. Thus these logs contain all the commands sent (in plain text) and telemetry checked.</p>
+
+<h4 id="cosmos_notifications">
+<a class="anchor" href="#cosmos_notifications" aria-hidden="true"><span class="octicon octicon-link"></span></a>cosmos_notifications</h4>
+
+<p>The cosmos_notifications folder contains all the notifications which are accessible from the Bell icon in the status bar.</p>
+
+<p><img src="/img/v5/logging/notifications.png" alt="notifications"></p>
+
+<h3 id="tool_logs">
+<a class="anchor" href="#tool_logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>tool_logs</h3>
+
+<p>The tool_logs directory contains logs from the various COSMOS tools. Note that if you have not yet run any tools you may not see this directory as it is created on demand. Tool sub-directories are also created on demand. For example, after running a script in Script Runner a new ‘sr’ subdirectory appears which contains the script runner log resulting from running the script. In some cases logs in this directory may also be directly available from the tool itself. In the Script Runner case, the Log Messages pane below the script holds the output messages from the last script. Clicking the Download link allows you to download these messages as a file.</p>
+
+<p><img src="/img/v5/logging/log_messages.png" alt="log_messages"></p>
 
       </article>
     </div>
@@ -214,9 +265,13 @@
     
       
     
+      
+    
   
     
     
+    
+      
     
       
     
@@ -397,6 +452,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/upgrading">Upgrading</a>
   </li>
@@ -420,6 +477,8 @@
   
     
     
+    
+      
     
       
     
@@ -510,6 +569,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/target">Target Configuration</a>
   </li>
@@ -534,6 +595,8 @@
   
     
     
+    
+      
     
       
     
@@ -658,6 +721,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/protocols">Protocol Configuration</a>
   </li>
@@ -666,6 +731,8 @@
   
     
     
+    
+      
     
       
     
@@ -761,6 +828,8 @@
   
     
     
+    
+      
     
       
     
@@ -931,6 +1000,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/packet-viewer">Packet Viewer</a>
   </li>
@@ -979,6 +1050,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/script-runner">Script Runner</a>
   </li>
@@ -987,6 +1060,8 @@
   
     
     
+    
+      
     
       
     
@@ -1109,6 +1184,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/tlm-viewer">Telemetry Viewer</a>
   </li>
@@ -1155,6 +1232,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/screens">Telemetry Screens</a>
   </li>
@@ -1163,6 +1242,8 @@
   
     
     
+    
+      
     
       
     
@@ -1270,6 +1351,46 @@
       
     
       
+  <li class="current">
+    <a href="/docs/v5/logging">Logging</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     
@@ -1334,6 +1455,8 @@
       
     
       
+    
+      
   <li class="">
     <a href="/docs/v5/scripting-best-practices">Scripting Best Practices</a>
   </li>
@@ -1342,6 +1465,8 @@
   
     
     
+    
+      
     
       
     
@@ -1465,8 +1590,8 @@
       
     
       
-  <li class="current">
-    <a href="/docs/v5/logging">Logging</a>
+  <li class="">
+    <a href="/docs/v5/log-structure">Log Structure</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1525,8 +1650,10 @@
       
     
       
+    
+      
   <li class="">
-    <a href="/docs/v5/testing">Test Procedure</a>
+    <a href="/docs/v5/testing">Testing COSMOS</a>
   </li>
   <!-- prettier-ignore -->
   
