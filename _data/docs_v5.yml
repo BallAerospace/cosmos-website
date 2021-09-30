@@ -33,6 +33,7 @@
 
 - title: Usage Guides
   docs:
+    - logging
     - scripting
     - scripting_best_practices
     - monitoring
@@ -41,5 +42,5 @@
 - title: Development
   docs:
     - json_api
-    - logging
+    - log_structure
     - testing
