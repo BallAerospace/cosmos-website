@@ -162,8 +162,8 @@ openssl x509 -in cert.pem -text -noout
 
 ## TLS1.2 INADEQUATE_SECURITY Errors
 
-https://doc.traefik.io/traefik/https/tls/#cipher-suites
-https://pkg.go.dev/crypto/tls#pkg-constants
+- https://doc.traefik.io/traefik/https/tls/#cipher-suites
+- https://pkg.go.dev/crypto/tls#pkg-constants
 
 ```
 tls:
