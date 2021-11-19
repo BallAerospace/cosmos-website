@@ -14,6 +14,10 @@ title: JSON API
 
 This document provides the information necessary for external applications to interact with the COSMOS Command and Telemetry Server using the COSMOS API. External applications written in any language can send commands and retrieve individual telemetry points using this API. External applications also have the option of connecting to the COSMOS Command and Telemetry server to interact with raw tcp/ip streams of commands/telemetry. However, the COSMOS JSON API removes the requirement that external applications have knowledge of the binary formats of packets.
 
+## Swagger OpenApi Documentation
+
+Current work is being done to document all api endpoints in cosmos. More information can be found at [cosmos-api](//github.com/BallAerospace/cosmos-api)
+
 ## Authorization
 
 The HTTP Authorization request header contains the credentials to authenticate a user agent with a server, usually, but not necessarily, after the server has responded with a 401 Unauthorized status and the WWW-Authenticate header.
