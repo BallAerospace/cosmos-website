@@ -41,6 +41,7 @@
 
 - title: Development
   docs:
+    - development
+    - testing
     - json_api
     - log_structure
-    - testing
