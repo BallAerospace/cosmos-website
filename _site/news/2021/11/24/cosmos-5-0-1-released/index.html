@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Template Protocol</title>
+  <title>Ball Aerospace COSMOS 5.0.1 Released</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.1">
@@ -252,83 +252,71 @@
       <div class="unit four-fifths">
         <article>
   <h2>
-    Template Protocol
-    <a href="/news/2017/06/19/template_protocol/" class="permalink" title="Permalink">∞</a>
+    Ball Aerospace COSMOS 5.0.1 Released
+    <a href="/news/2021/11/24/cosmos-5-0-1-released/" class="permalink" title="Permalink">∞</a>
   </h2>
   <span class="post-category">
     <span class="label">
-      post
+      release
     </span>
   </span>
   <div class="post-meta">
     <span class="post-date">
-      19 Jun 2017
+      24 Nov 2021
     </span>
-    <a href="https://github.com/jmthomas" class="post-author">
-      <img src="https://github.com/jmthomas.png" class="avatar" alt="jmthomas avatar" width="24" height="24">
-      jmthomas
+    <a href="https://github.com/ryanmelt" class="post-author">
+      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
+      ryanmelt
     </a>
   </div>
   <div class="post-content">
-    <p>The <a href="/docs/protocols#template-protocol">Template Protocol</a> is probably one of the more confusing protocols in the COSMOS protocol library but it is extremely helpful when implementing string based protocols such as Standard Commands for Programmable Instruments (SCPI; often pronounced “skippy”).</p>
+    <p>This is the first patch release of COSMOS 5 Open Source Edition.</p>
 
-<p>For this example we’ll assume we’re trying to talk to a SCPI enabled power supply such as the Keysight N6700. We start by creating a directory under our config/targets called POWER. The supply has a TCP/IP interface so we’ll use the <a href="/docs/v4/interfaces#tcpip-client-interface">TCP/IP Client Interface</a> to connect to it. Thus we create our POWER/cmd_tlm_server.txt file as follows:</p>
+<h3 id="significant-changes">Significant Changes:</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE POWER_INT tcpip_client_interface.rb 127.0.0.1 5025 5025 10.0 nil TEMPLATE 0x0A 0x0A
-  TARGET POWER
-</code></pre></div></div>
+<ul>
+  <li>Added new notification system to frontend</li>
+  <li>ScriptRunner now supports mnemonic autocomplete for cmd() and tlm() keywords</li>
+  <li>Fixed redis streams that were not properly trimmed and leaking memory</li>
+  <li>All example telemetry screens from COSMOS 4 now working in COSMOS 5</li>
+  <li>Added ability to directly edit screens in TlmViewer</li>
+  <li>Added save and restore configuration to TlmViewer</li>
+  <li>Updated to use docker compose as much as possible</li>
+  <li>Greatly improved error reporting</li>
+  <li>Lots and Lots of Minor bug fixes and improvements</li>
+</ul>
 
-<p>This definition declares an interface named POWER_INT using the TCP/IP client interface which connects to ‘127.0.0.1’ (obviously you’ll change this to your actual power supply IP addres) using a write and read port of 5025 (standard SCPI ports for Keysight instruments) with a write timeout of 10s and no read timeout (block on read). We specify the TEMPLATE protocol with both write and read termination characters of 0x0A (ASCII newline). Note the <a href="/docs/protocols#template-protocol">TEMPLATE protocol</a> takes many additional parameters to allow you to work with off nominal protocol conditions.</p>
+<h3 id="known-things-that-arent-donefully-working-yet">Known Things That Aren’t Done/Fully Working Yet:</h3>
 
-<p>Now you can define your target’s command and telemetry definitions. We’ll create example commands which get and set the voltage setting in our power supply. Create a POWER/cmd_tlm/cmd.txt file which has the following:</p>
+<ul>
+  <li>Automatic data reduction for long term trending isn’t complete yet</li>
+  <li>Limits sets are not fully implemented</li>
+</ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COMMAND POWER GET_VOLTAGE BIG_ENDIAN "Get voltage"
-  APPEND_ID_PARAMETER CMD_ID 8 UINT 1 1 1 "Command Id" # Unique command ID
-  APPEND_PARAMETER CHANNEL 8 UINT 1 4 1 "Channel"
-  APPEND_PARAMETER CMD_TEMPLATE 512 STRING "MEAS:VOLT? (@&lt;CHANNEL&gt;)"
-  APPEND_PARAMETER RSP_TEMPLATE 512 STRING "&lt;VOLTAGE&gt;"
-  APPEND_PARAMETER RSP_PACKET 512 STRING "TLM"
+<h3 id="prerequisites">Prerequisites:</h3>
 
-COMMAND POWER SET_VOLTAGE BIG_ENDIAN "Set voltage"
-  APPEND_ID_PARAMETER CMD_ID 8 UINT 2 2 2 "Command Id" # Unique command ID
-  APPEND_PARAMETER CHANNEL 8 UINT 1 4 1 "Channel"
-  APPEND_PARAMETER VOLTAGE 8 UINT 0 100 10 "Voltage"
-  APPEND_PARAMETER CMD_TEMPLATE 512 STRING "VOLT &lt;VOLTAGE&gt;,(@&lt;CHANNEL&gt;)"
-  APPEND_PARAMETER RSP_TEMPLATE 512 STRING "&lt;SET_VOLTAGE&gt;"
-  APPEND_PARAMETER RSP_PACKET 512 STRING "TLM"
-</code></pre></div></div>
+<p>Docker - Running COSMOS 5 requires a working Docker installation. Typically Docker Desktop on Windows / Mac. Plain docker should work on linux. We’re currently only developing / running with Docker Desktop on Windows, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
 
-<p>The CMD_ID parameter is defined by <a href="/docs/v4/command#append_id_parameter">APPEND_ID_PARAMETER</a>. This ID parameter is not used by the SCPI protocol but is needed for COSMOS to identify the command when it is logged. The CMD_TEMPLATE parameter is the actual SCPI command which is being sent to the target. Anything inside brackets &lt;&gt; will be replaced by the value in the named parameter. For example, both commands define the CHANNEL parameter and thus &lt;CHANNEL&gt; will be replaced by the value of that parameter when constructing the command. The RSP_TEMPLATE is the expected string response back from the target. This is parsed by pulling out values into the bracket delimited values. The RSP_PACKET defines the packet where the bracket delimited values are defined. So for our GET_VOLTAGE example we parse the VOLTAGE value and place it in the TLM packet.</p>
+<p>Minimum Resources allocated to Docker: 8GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk</p>
 
-<p>Create a POWER/cmd_tlm/tlm.txt file to define the response telemetry:</p>
+<h3 id="to-run">To Run:</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TELEMETRY POWER TLM BIG_ENDIAN "Power Supply Telemetry"
-  APPEND_ID_ITEM TLM_ID 32 INT 1 "Packet Identifier" # Unique telemetry ID
-  APPEND_ITEM VOLTAGE 32 FLOAT "PS Measured Voltage"
-    FORMAT_STRING "%0.3f"
-    UNITS "Volts" "V"
-  APPEND_ITEM SET_VOLTAGE 32 FLOAT "PS Set Voltage"
-    FORMAT_STRING "%0.3f"
-    UNITS "Volts" "V"
-</code></pre></div></div>
+<ol>
+  <li>Download one of the archives (.zip or .tar.gz from the Github release page) <a href="https://github.com/BallAerospace/COSMOS/releases/tag/v5.0.1">Download Release Here</a></li>
+  <li>Extract the archive somewhere on your host computer</li>
+  <li>The COSMOS 5 containers are designed to work and be built in the presence of an SSL Decryption device. To support this a cacert.pem file can be placed at the base of the COSMOS 5 project that includes any certificates needed by your organization. If you don’t need this, then please ignore, but if you see any SSL errors, this is probably why.</li>
+  <li>Run cosmos-control.bat start (Windows), or ./cosmos-control.sh start (linux/Mac)</li>
+  <li>COSMOS 5 will be built and when ready should be running (~10 mins for first run, ~3 for subsequent)</li>
+  <li>Connect a web browser to http://localhost:2900</li>
+  <li>Have fun running COSMOS 5!</li>
+</ol>
 
-<p>The TLM_ID item is defined by <a href="/docs/v4/telemetry#append_id_item">APPEND_ID_ITEM</a>. This ID item is not used by the SCPI protocol but is needed by COSMOS to decode this logged telemetry packet. The packet is named TLM which matches our RSP_PACKET definition in the commands. We define VOLTAGE and SET_VOLTAGE which also match the values used in the RSP_TEMPLATE parameters in our commands.</p>
+<p>We will be actively updating documentation on cosmosc2.com to capture all the details on COSMOS 5. So if it isn’t documented yet, we’re getting there! The biggest new documentation is on the new plugin system.</p>
 
-<p>With Keysight supplies you can string together a bunch of SCIP commands in one CMD_TEMPLATE if you delimit them with semicolons. Then in the RSP_TEMPLATE you can break the response apart and set a bunch of telemetry items at once. For example:</p>
+<p>Please try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to COSMOS@ball.com.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COMMAND POWER GET_STATUS BIG_ENDIAN "Get status"
-  APPEND_ID_PARAMETER CMD_ID 8 UINT 3 3 3 "Command Id" # Unique command ID
-  APPEND_PARAMETER CHANNEL 8 UINT 1 4 1 "Channel"
-  APPEND_PARAMETER CMD_TEMPLATE 512 STRING "MEAS:VOLT (@&lt;CHANNEL&gt;);CURR (@&lt;CHANNEL&gt;);POW (@&lt;CHANNEL&gt;)"
-  APPEND_PARAMETER RSP_TEMPLATE 512 STRING "&lt;VOLTAGE&gt;,&lt;CURRENT&gt;,&lt;POWER&gt;"
-  APPEND_PARAMETER RSP_PACKET 512 STRING "TLM"
-</code></pre></div></div>
-
-<p>The RSP_TEMPLATE expects to have three values delimited by the comma character. For this example to be complete you would also need to declare CURRENT and POWER items in the TLM packet.</p>
-
-<p>Using the TEMPLATE processor can be complex but makes working with with string based command / response protocols like SCPI much easier.</p>
-
-<p>If you have a question which would benefit the community or find a possible bug please use our <a href="https://github.com/BallAerospace/COSMOS/issues">Github Issues</a>. If you would like more information about a COSMOS training or support contract please contact us at <a href="mailto:cosmos@ball.com">cosmos@ball.com</a>.</p>
+<p>Thanks!</p>
 
   </div>
 </article>
@@ -348,7 +336,7 @@ COMMAND POWER SET_VOLTAGE BIG_ENDIAN "Set voltage"
     <h4>Recent Releases</h4>
     <ul>
       
-      <li class="">
+      <li class="current">
         <a href="/news/2021/11/24/cosmos-5-0-1-released/">Version 5.0.1</a>
       </li>
       
@@ -436,7 +424,7 @@ COMMAND POWER SET_VOLTAGE BIG_ENDIAN "Set voltage"
         <a href="/news/2017/07/05/arduino-battle-bots/">Arduinos & Battle Bots</a>
       </li>
         
-      <li class="current">
+      <li class="">
         <a href="/news/2017/06/19/template_protocol/">Template Protocol</a>
       </li>
           
