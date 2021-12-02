@@ -50,7 +50,7 @@ Here are some directions on environment variables in Windows:
 <a href="https://www.computerhope.com/issues/ch000549.htm">Windows Environment Variables</a><br/>
 You will need to create new ones with the names above and set their value to the full path to the certificate file.
 </p>
-<p style="margin-bottom:20px;">After these changes the installer should work. At Ball please contact <a href="mailto:COSMOS@ball.com">COSMOS@ball.com</a> for assistance.</p>
+<p style="margin-bottom:20px;">After these changes the installer should work. At Ball please contact <a href="mailto:cosmos@ballaerospace.com">cosmos@ballaerospace.com</a> for assistance.</p>
 </div>
 
 <div class="note info">
