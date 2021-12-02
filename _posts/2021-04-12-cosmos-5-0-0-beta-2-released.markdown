@@ -74,7 +74,7 @@ https://github.com/BallAerospace/COSMOS/tags
 
 We will be actively updating documentation on cosmosc2.com throughout the month of April. So if it isn't documented yet, we're getting there! The biggest new documentation is on the new plugin system.
 
-Please try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to COSMOS@ball.com.
+Please try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to cosmos@ballaerospace.com.
 
 Note that this release is not recommended for production use, but at this point you are encouraged to start migrating and working through any initial issues.
 
