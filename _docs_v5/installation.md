@@ -87,6 +87,8 @@ Usage: "cosmos-control.bat" [start, stop, cleanup, build, run, deploy, util]
 ...
 ```
 
+**Note**: On some windows systems we have seen docker error when building the cosmosc2-minio-init container. It could be due to an issue downloading the minio mc container. To solve this open https://github.com/BallAerospace/COSMOS/blob/master/cosmos-minio-init/Dockerfile#L1 and copy the text after FROM and run `docker pull minio/mc:RELEASE.<DATE>`. This should download the minio/mc container locally and not have docker-compose pull the image on build. Now re-run `cosmos-control.* start` and continue on the cosmos adventure.
+
 ### WAIT
 
 COSMOS 5 will be built and when ready should be running (~15 mins for first run, ~2 for subsequent). Running `docker ps` can help show the running containers.
