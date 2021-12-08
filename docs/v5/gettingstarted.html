@@ -203,14 +203,14 @@
  <span class="c"># Modify this according to your actual target connection</span>
  <span class="c"># See https://cosmosc2.com/docs/v5/interfaces for more information</span>
  TARGET BOB &lt;%<span class="o">=</span> bob_target_name %&gt;
- INTERFACE &lt;%<span class="o">=</span> bob_target_name %&gt;_INT tcpip_client_interface.rb 127.0.0.1 8080 8081 10.0 nil BURST
+ INTERFACE &lt;%<span class="o">=</span> bob_target_name %&gt;_INT tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil BURST
    MAP_TARGET &lt;%<span class="o">=</span> bob_target_name %&gt;
 </code></pre></div>    </div>
 
     <ul>
       <li>This configures the plugin with a VARIABLE called bob_target_name with a default of “BOB”. When you install this plugin you will have the option to change the name of this target to something other than “BOB”. This is useful to avoid name conflicts and allows you to have multiple copies of the BOB target in your COSMOS system.</li>
       <li>The TARGET line declares the new BOB target using the name from the variable. The &lt;%= %&gt; syntax is called ERB (embedded Ruby) and allows us to put variables into our text files, in this case referencing our bob_target_name.</li>
-      <li>The last line declares a new INTERFACE called (by default) BOB_INT that will connect as a TCP/IP client using the code in tcpip_client_interface.rb to address 127.0.0.1 (localhost) using port 8080 for writing and 8081 for reading. It also has a write timeout of 10 seconds and reads will never timeout (nil). The TCP/IP stream will be interpreted using the COSMOS <a href="/docs/v5/protocols#burst-protocol">BURST</a> protocol which means it will read as much data as it can from the interface. For all the details on how to configure COSMOS interfaces please see the <a href="/docs/v5/interfaces">Interface Guide</a>. The MAP_TARGET line tells COSMOS that it will receive telemetry from and send commands to the BOB target using the BOB_INT interface.</li>
+      <li>The last line declares a new INTERFACE called (by default) BOB_INT that will connect as a TCP/IP client using the code in tcpip_client_interface.rb to address host.docker.internal (This adds an /etc/hosts entry to the correct IP address for the host’s gateway) using port 8080 for writing and 8081 for reading. It also has a write timeout of 10 seconds and reads will never timeout (nil). The TCP/IP stream will be interpreted using the COSMOS <a href="/docs/v5/protocols#burst-protocol">BURST</a> protocol which means it will read as much data as it can from the interface. For all the details on how to configure COSMOS interfaces please see the <a href="/docs/v5/interfaces">Interface Guide</a>. The MAP_TARGET line tells COSMOS that it will receive telemetry from and send commands to the BOB target using the BOB_INT interface.</li>
     </ul>
   </li>
 </ol>
