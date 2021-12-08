@@ -5,7 +5,7 @@ title: Installation
 
 ## Installing COSMOS
 
-The following sections describe how to get COSMOS installed on various operating systems. A ajor difference between COSMOS v4 and COSMOS v5 is the usage of containers. This document should help you setup you host machine to allow you to have a running version of COSMOS in no time.
+The following sections describe how to get COSMOS installed on various operating systems. A major difference between COSMOS v4 and COSMOS v5 is the usage of containers. This document should help you setup you host machine to allow you to have a running version of COSMOS in no time.
 
 ## Installing COSMOS on Host Machines
 
