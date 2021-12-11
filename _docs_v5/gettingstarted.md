@@ -95,13 +95,13 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
     # Modify this according to your actual target connection
     # See https://cosmosc2.com/docs/v5/interfaces for more information
     TARGET BOB <%= bob_target_name %>
-    INTERFACE <%= bob_target_name %>_INT tcpip_client_interface.rb 127.0.0.1 8080 8081 10.0 nil BURST
+    INTERFACE <%= bob_target_name %>_INT tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil BURST
       MAP_TARGET <%= bob_target_name %>
     ```
 
     - This configures the plugin with a VARIABLE called bob_target_name with a default of "BOB". When you install this plugin you will have the option to change the name of this target to something other than "BOB". This is useful to avoid name conflicts and allows you to have multiple copies of the BOB target in your COSMOS system.
     - The TARGET line declares the new BOB target using the name from the variable. The <%= %> syntax is called ERB (embedded Ruby) and allows us to put variables into our text files, in this case referencing our bob_target_name.
-    - The last line declares a new INTERFACE called (by default) BOB_INT that will connect as a TCP/IP client using the code in tcpip_client_interface.rb to address 127.0.0.1 (localhost) using port 8080 for writing and 8081 for reading. It also has a write timeout of 10 seconds and reads will never timeout (nil). The TCP/IP stream will be interpreted using the COSMOS [BURST](/docs/v5/protocols#burst-protocol) protocol which means it will read as much data as it can from the interface. For all the details on how to configure COSMOS interfaces please see the [Interface Guide](/docs/v5/interfaces). The MAP_TARGET line tells COSMOS that it will receive telemetry from and send commands to the BOB target using the BOB_INT interface.
+    - The last line declares a new INTERFACE called (by default) BOB_INT that will connect as a TCP/IP client using the code in tcpip_client_interface.rb to address host.docker.internal (This adds an /etc/hosts entry to the correct IP address for the host's gateway) using port 8080 for writing and 8081 for reading. It also has a write timeout of 10 seconds and reads will never timeout (nil). The TCP/IP stream will be interpreted using the COSMOS [BURST](/docs/v5/protocols#burst-protocol) protocol which means it will read as much data as it can from the interface. For all the details on how to configure COSMOS interfaces please see the [Interface Guide](/docs/v5/interfaces). The MAP_TARGET line tells COSMOS that it will receive telemetry from and send commands to the BOB target using the BOB_INT interface.
 
 <div class="note">
   <h5>Variables Support Reusability</h5>
@@ -149,4 +149,4 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
 
 1. Go back to the Admin page and click the Plugins Tab. This time click the clock icon next to cosmos-bob-1.0.0 to Upgrade the plugin. Browse to the newly built plugin gem and select it. This will re-prompt for the plugin variables (bob_target_name) so don't change the name and just click OK. You should see a message about the plugin being installed at which point the plugins list will change to cosmos-bob-1.0.1.20210618202504.gem. Go back to Command Sender and you should see the new Default value for VALUE is 5 and the description is "New Value". We have upgraded our plugin!
 
-1. At this point you can create a new plugin named after your real target and start modifying the interface and command and telemetry definitions to enable COSMOS to connect to and drive your target. If you run into trouble look for solutions on our [Github Issues](https://github.com/BallAerospace/COSMOS/issues) page. If you would like to enquire about support contracts or professional COSMOS development please contact us at cosmos@ball.com.
+1. At this point you can create a new plugin named after your real target and start modifying the interface and command and telemetry definitions to enable COSMOS to connect to and drive your target. If you run into trouble look for solutions on our [Github Issues](https://github.com/BallAerospace/COSMOS/issues) page. If you would like to enquire about support contracts or professional COSMOS development please contact us at cosmos@ballaerospace.com.

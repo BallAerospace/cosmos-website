@@ -91,4 +91,4 @@ Running this in the Demo with Telemetry Grapher shows our new average value pret
 
 Conversions and DERIVED variables are powerful ways to add additional telemetry points based on existing data in your packet structure. Another way to add insight into your telemetry is to add [Packet Processors](/news/2017/05/08/packet_processors/) which I've previously blogged about.
 
-If you have a question which would benefit the community or find a possible bug please use our [Github Issues](https://github.com/BallAerospace/COSMOS/issues). If you would like more information about a COSMOS training or support contract please contact us at <cosmos@ball.com>.
+If you have a question which would benefit the community or find a possible bug please use our [Github Issues](https://github.com/BallAerospace/COSMOS/issues). If you would like more information about a COSMOS training or support contract please contact us at <cosmos@ballaerospace.com>.

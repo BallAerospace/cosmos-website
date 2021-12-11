@@ -71,7 +71,7 @@ git push origin my_awesome_feature
   <p>
     Both using and hacking on COSMOS should be fun, simple, and easy, so if for
     some reason you find it's a pain, please <a
-    href="{{ site.repository }}/issues/new">create an issue</a> on
+    href="{{ site.repository }}/issues/new/choose">create an issue</a> on
     GitHub describing your experience so we can make it better.
   </p>
 </div>

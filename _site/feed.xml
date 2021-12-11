@@ -11,8 +11,8 @@
     <title xml:lang="en">Ball Aerospace COSMOS News</title>
     <atom:link type="application/atom+xml" href="http://cosmosc2/feed.xml" rel="self"/>
     <link>http://cosmosc2.com/</link>
-    <pubDate>Wed, 24 Nov 2021 20:57:55 -0700</pubDate>
-    <lastBuildDate>Wed, 24 Nov 2021 20:57:55 -0700</lastBuildDate>
+    <pubDate>Wed, 08 Dec 2021 13:29:09 -0700</pubDate>
+    <lastBuildDate>Wed, 08 Dec 2021 13:29:09 -0700</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.2.1</generator>
     <description>The User Interface for Embedded Systems</description>
@@ -315,7 +315,7 @@ https://github.com/BallAerospace/COSMOS/tags&lt;/li&gt;
 
 &lt;p&gt;We will be actively updating documentation on cosmosc2.com throughout the month of April. So if it isn’t documented yet, we’re getting there! The biggest new documentation is on the new plugin system.&lt;/p&gt;
 
-&lt;p&gt;Please try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to COSMOS@ball.com.&lt;/p&gt;
+&lt;p&gt;Please try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to cosmos@ballaerospace.com.&lt;/p&gt;
 
 &lt;p&gt;Note that this release is not recommended for production use, but at this point you are encouraged to start migrating and working through any initial issues.&lt;/p&gt;
 
@@ -409,7 +409,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
 
 &lt;p&gt;We will be actively updating documentation on cosmosc2.com throughout the month of January. So if it isn’t documented yet, we’re getting there!&lt;/p&gt;
 
-&lt;p&gt;Please try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to COSMOS@ball.com.&lt;/p&gt;
+&lt;p&gt;Please try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to cosmos@ballaerospace.com.&lt;/p&gt;
 
 &lt;p&gt;Note that this release is not recommended for production use. We will have a release candidate release in a few months.&lt;/p&gt;
 
@@ -514,7 +514,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
 
 &lt;p&gt;Definining PACKET_TIME allows the PACKET_TIMESECONDS and PACKET_TIMEFORMATTED to be calculated against an internal Packet time rather than the time that COSMOS receives the packet.&lt;/p&gt;
 
-&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -575,7 +575,7 @@ Recommended Resources allocated to Docker: 8GB RAM, 2+ CPUs, 100GB Disk&lt;/p&gt
   &lt;li&gt;Have fun trying out COSMOS 5!&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Please try it out and let us know what you think!  Please submit any issues as Github tickets, or any generic feedback to COSMOS@ball.com.&lt;/p&gt;
+&lt;p&gt;Please try it out and let us know what you think!  Please submit any issues as Github tickets, or any generic feedback to cosmos@ballaerospace.com.&lt;/p&gt;
 
 &lt;p&gt;Note that this release is not ready for production use.  We will have a more beta ready release in a few months.&lt;/p&gt;
 
@@ -609,7 +609,7 @@ Recommended Resources allocated to Docker: 8GB RAM, 2+ CPUs, 100GB Disk&lt;/p&gt
 
 &lt;p&gt;An example of a custom interface implementing this might look something like this:&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require &apos;cosmos/interfaces/interface&apos;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require 'cosmos/interfaces/interface'
 module Cosmos
   class MyInterface &amp;lt; Interface
     # ... various other methods
@@ -634,7 +634,7 @@ end
 
 &lt;p&gt;At this point the interface thread will receive an identified packet and can quickly update the current value table with the packet data.&lt;/p&gt;
 
-&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -672,7 +672,7 @@ end
 
 &lt;p&gt;Let’s assume we want to slow down the INST ADCS packet which the demo generates at 10Hz. First create a new file called config/targets/INST/lib/drop_protocol.rb. This protocol will drop data until we get the rate we want. It looks like this:&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require &apos;cosmos/interfaces/protocols/protocol&apos;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require 'cosmos/interfaces/protocols/protocol'
 module Cosmos
   # Limit a specific packet by dropping packets
   class DropProtocol &amp;lt; Protocol
@@ -771,7 +771,7 @@ SEND
   PROTOCOL READ DropProtocol INST2 ADCS 9 # Drop 9 ADCS packets to force 1Hz
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -901,7 +901,7 @@ SEND
 
 &lt;p&gt;Jason atteneded the conference back in 2017 and was able to present a talk about COSMOS based on another paper entitled &lt;a href=&quot;/assets/2017_AMOS_Paper.pdf&quot;&gt;“A Cloud-based, Open-Source, Command-and-Control Software Paradigm for Space Situational Awareness (SSA)”&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1031,7 +1031,7 @@ SEND
 
 &lt;p&gt;In the target’s lib directory the strip_etx_protocol.rb file was created. Since the protocol had to simply strip off a single byte, it overrides the read_data(data) method.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require &apos;cosmos/interfaces/protocols/protocol&apos;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require 'cosmos/interfaces/protocols/protocol'
 class StripEtxProtocol &amp;lt; Protocol
   def read_data(data)
     if data[-1] == &quot;\x03&quot;
@@ -1055,7 +1055,7 @@ end
 
 &lt;p&gt;In the target’s lib directory create a file called framing_protocol.rb. Since the protocol is adding data to the outgoing stream, we override the write_data(data) method.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require &apos;cosmos/interfaces/protocols/protocol&apos;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;require 'cosmos/interfaces/protocols/protocol'
 class FramingProtocol &amp;lt; Protocol
   HEADER = &quot;\xDE\xAD\xBE\xEF&quot; # Binary header data
   def write_data(data)
@@ -1064,7 +1064,7 @@ class FramingProtocol &amp;lt; Protocol
 end
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1128,7 +1128,7 @@ ITEM C 8 4 UINT &quot;struct item c&quot;
 
 &lt;p&gt;The COSMOS system configuration is performed by system.txt in the config/system directory. This file declares all the targets that will be used by COSMOS as well as top level configuration information which is primarily used by the Command and Telemetry Server.&lt;/p&gt;
 
-&lt;p&gt;By default, all COSMOS tools use the config/system/system.txt file. However, all tools can take a custom system configuration file by passing the “–system &lt;filename&gt;&quot; option to the tool when it starts. This is typically done in the Launcher script as shown in the COSMOS demo. Here&apos;s an excerpt which shows how we&apos;re passing system2.txt using the --system option.&lt;/filename&gt;&lt;/p&gt;
+&lt;p&gt;By default, all COSMOS tools use the config/system/system.txt file. However, all tools can take a custom system configuration file by passing the “–system &lt;filename&gt;&quot; option to the tool when it starts. This is typically done in the Launcher script as shown in the COSMOS demo. Here's an excerpt which shows how we're passing system2.txt using the --system option.&lt;/filename&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;TOOL &quot;Command and Telemetry Server&quot; &quot;LAUNCH CmdTlmServer --system system2.txt&quot; &quot;cts.png&quot; --config cmd_tlm_server2.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1221,7 +1221,7 @@ TELEMETRY inst2_tlm.txt
 
 &lt;p&gt;Note that you can include these override files as needed based on the target.txt file as described above.&lt;/p&gt;
 
-&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1487,12 +1487,12 @@ rake db:seed
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ITEM PACKET_TIMESECONDS 0 0 DERIVED &quot;COSMOS Received Time (UTC, Floating point, Unix epoch)&quot;
   READ_CONVERSION packet_time_seconds_conversion.rb
-  FORMAT_STRING &apos;%0.6f&apos;
+  FORMAT_STRING '%0.6f'
 ITEM PACKET_TIMEFORMATTED 0 0 DERIVED &quot;COSMOS Received Time (Local time zone, Formatted string)&quot;
   READ_CONVERSION packet_time_formatted_conversion.rb
 ITEM RECEIVED_TIMESECONDS 0 0 DERIVED &quot;COSMOS Received Time (UTC, Floating point, Unix epoch)&quot;
   READ_CONVERSION received_time_seconds_conversion.rb
-  FORMAT_STRING &apos;%0.6f&apos;
+  FORMAT_STRING '%0.6f'
 ITEM RECEIVED_TIMEFORMATTED 0 0 DERIVED &quot;COSMOS Received Time (Local time zone, Formatted string)&quot;
   READ_CONVERSION received_time_formatted_conversion.rb
 ITEM RECEIVED_COUNT 0 0 DERIVED &quot;COSMOS packet received count&quot;
@@ -1525,7 +1525,7 @@ ITEM RECEIVED_COUNT 0 0 DERIVED &quot;COSMOS packet received count&quot;
 
 &lt;p&gt;We now need to implement average_conversion.rb to take our arguments and generate the average. Put this new file in the target’s lib folder (in the demo this is config/targets/INST/lib).&lt;/p&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos/conversions/conversion&apos;&lt;/span&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos/conversions/conversion'&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Cosmos&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AverageConversion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Conversion&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -1559,7 +1559,7 @@ ITEM RECEIVED_COUNT 0 0 DERIVED &quot;COSMOS packet received count&quot;
 
 &lt;p&gt;Conversions and DERIVED variables are powerful ways to add additional telemetry points based on existing data in your packet structure. Another way to add insight into your telemetry is to add &lt;a href=&quot;/news/2017/05/08/packet_processors/&quot;&gt;Packet Processors&lt;/a&gt; which I’ve previously blogged about.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1661,7 +1661,7 @@ LIMITS_GROUP INST2_GROUND
 
 &lt;p&gt;COSMOS also has the ability to automatically enable and disable limits groups based on user configurable conditions. For example, you can automatically enable the group for a particular device when the power supply voltage for that device goes high (the device is powered on). The COSMOS demo has an example of this in the SYSTEM/lib/limits_groups.rb file.&lt;/p&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos/tools/cmd_tlm_server/limits_groups_background_task&apos;&lt;/span&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos/tools/cmd_tlm_server/limits_groups_background_task'&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Cosmos&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;# Inheriting from the LimitsGroupsBackgroundTask provides a framework for&lt;/span&gt;
@@ -1673,10 +1673,10 @@ LIMITS_GROUP INST2_GROUND
       &lt;span class=&quot;k&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initial_delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;task_delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
       &lt;span class=&quot;c1&quot;&gt;# Creating a Proc allows for arbitrary code to be executed when a group is enabled or disabled&lt;/span&gt;
       &lt;span class=&quot;vi&quot;&gt;@temp2_enable_code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;enable_limits_group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;INST2_GROUND&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Enable the INST2_GROUND group&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;enable_limits_group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'INST2_GROUND'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Enable the INST2_GROUND group&lt;/span&gt;
       &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
       &lt;span class=&quot;vi&quot;&gt;@temp2_disable_code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;disable_limits_group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;INST2_GROUND&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Disable the INST2_GROUND group&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;disable_limits_group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'INST2_GROUND'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Disable the INST2_GROUND group&lt;/span&gt;
       &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
@@ -1724,7 +1724,7 @@ LIMITS_GROUP INST2_GROUND
 
 &lt;div class=&quot;note warning&quot;&gt;
   &lt;p&gt;&lt;b&gt;Overflown Queues Are Deleted&lt;/b&gt;&lt;/p&gt;
-  &lt;p&gt;By default the limits queue is 1000 events deep. If you don&apos;t call get_limits_event fast enough to keep up with the population of this queue and it overflows, COSMOS will clean up the resources and delete the queue. At this point when you call get_limits_event you will get a &quot;RuntimeError : Packet data queue with id X not found.&quot; Note you can pass a larger queue size to the subscribe_limits_events method.&lt;/p&gt;
+  &lt;p&gt;By default the limits queue is 1000 events deep. If you don't call get_limits_event fast enough to keep up with the population of this queue and it overflows, COSMOS will clean up the resources and delete the queue. At this point when you call get_limits_event you will get a &quot;RuntimeError : Packet data queue with id X not found.&quot; Note you can pass a larger queue size to the subscribe_limits_events method.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Here’s a example of using the subscription APIs.&lt;/p&gt;
@@ -1740,7 +1740,7 @@ LIMITS_GROUP INST2_GROUND
 &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;subscribe_limits_events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;begin&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_limits_event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# don&apos;t block&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_limits_event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# don't block&lt;/span&gt;
     &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;type:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; data:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# break if XXX # Break the loop when ...&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;rescue&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ThreadError&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# raised if no event present&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;wait&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Wait before checking again&lt;/span&gt;
@@ -1753,7 +1753,7 @@ LIMITS_GROUP INST2_GROUND
 
 &lt;p&gt;Limits are a powerful concept in COSMOS. Sets provide for a system wide setting that affects all limits items. Groups allow limits items to be grouped to typically enable and disable them together. APIs allow the user to query and set limits across the system while subscriptions provide notifications for every limits event action.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1839,7 +1839,7 @@ COLLECT_METADATA
 
 &lt;p&gt;Metadata is a useful way to add information which can’t be determined by the available hardware targets. The OPERATOR_NAME in the demo is an obvious example. Start using metadata to your advantage to help you distinguish your telemetry.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -2030,9 +2030,9 @@ COLLECT_METADATA
 
 &lt;p&gt;The Ruby programming language defines the keywords ‘require’ and ‘load’. These are actually methods on the Kernel class and you can find the full documention on &lt;a href=&quot;https://ruby-doc.org/&quot;&gt;ruby-doc.org&lt;/a&gt; for both &lt;a href=&quot;https://ruby-doc.org/core-2.4.2/Kernel.html#method-i-require&quot;&gt;require&lt;/a&gt; and &lt;a href=&quot;https://ruby-doc.org/core-2.4.2/Kernel.html#method-i-load&quot;&gt;load&lt;/a&gt;. They basically include additional Ruby source files into the current execution environment so they can be used by your code. The key difference is that require will only include a file once. If you try to require a file a second time the require method actually returns false indicating that the file has already been required. You can easily test this by opening an IRB session and requiring something twice.&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:001:0&amp;gt; require &lt;span class=&quot;s1&quot;&gt;&apos;cosmos&apos;&lt;/span&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:001:0&amp;gt; require &lt;span class=&quot;s1&quot;&gt;'cosmos'&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true
-&lt;/span&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:002:0&amp;gt; require &lt;span class=&quot;s1&quot;&gt;&apos;cosmos&apos;&lt;/span&gt;
+&lt;/span&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:002:0&amp;gt; require &lt;span class=&quot;s1&quot;&gt;'cosmos'&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -2040,16 +2040,16 @@ COLLECT_METADATA
 
 &lt;p&gt;The load keyword loads the specified file everytime and thus reparses any changes that may have been made to the file in question. This is almost always what you want to use when writing scripts for COSMOS as it allows you to edit files and be assured that you will be running the latest. Note the difference when using load in this IRB session.&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:001:0&amp;gt; load &lt;span class=&quot;s1&quot;&gt;&apos;cosmos.rb&apos;&lt;/span&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:001:0&amp;gt; load &lt;span class=&quot;s1&quot;&gt;'cosmos.rb'&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true
-&lt;/span&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:002:0&amp;gt; load &lt;span class=&quot;s1&quot;&gt;&apos;cosmos.rb&apos;&lt;/span&gt;
+&lt;/span&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:002:0&amp;gt; load &lt;span class=&quot;s1&quot;&gt;'cosmos.rb'&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true
-&lt;/span&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:003:0&amp;gt; load &lt;span class=&quot;s1&quot;&gt;&apos;cosmos&apos;&lt;/span&gt;
+&lt;/span&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:003:0&amp;gt; load &lt;span class=&quot;s1&quot;&gt;'cosmos'&lt;/span&gt;
 LoadError: cannot load such file &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; cosmos
-        from &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;irb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:3:in &lt;span class=&quot;s1&quot;&gt;&apos;load&apos;&lt;/span&gt;
+        from &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;irb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:3:in &lt;span class=&quot;s1&quot;&gt;'load'&lt;/span&gt;
         from &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;irb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:3
-        from C:/Ruby233p222-x64/bin/irb.cmd:19:in &lt;span class=&quot;s1&quot;&gt;&apos;&amp;lt;main&amp;gt;&apos;&lt;/span&gt;
-irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:004:0&amp;gt; require &lt;span class=&quot;s1&quot;&gt;&apos;cosmos.rb&apos;&lt;/span&gt;
+        from C:/Ruby233p222-x64/bin/irb.cmd:19:in &lt;span class=&quot;s1&quot;&gt;'&amp;lt;main&amp;gt;'&lt;/span&gt;
+irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:004:0&amp;gt; require &lt;span class=&quot;s1&quot;&gt;'cosmos.rb'&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -2083,7 +2083,7 @@ C:/Ruby233p222-x64/lib/ruby/2.3.0/x64-mingw32
 
 &lt;p&gt;When you start requiring other libraries they typically add things to your LOAD_PATH. Watch what happens when I require ‘cosmos’.&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:001:0&amp;gt; require &lt;span class=&quot;s1&quot;&gt;&apos;cosmos&apos;&lt;/span&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:001:0&amp;gt; require &lt;span class=&quot;s1&quot;&gt;'cosmos'&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true
 &lt;/span&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:002:0&amp;gt; puts &lt;span class=&quot;nv&quot;&gt;$LOAD_PATH&lt;/span&gt;
 C:/Ruby233p222-x64/lib/ruby/gems/2.3.0/gems/uuidtools-2.1.5/lib
@@ -2239,7 +2239,7 @@ C:/Ruby233p222-x64/lib/ruby/2.3.0/x64-mingw32
 
 &lt;p&gt;Just for completeness note that there is also a Ruby keyword called &lt;a href=&quot;https://ruby-doc.org/core-2.4.2/Kernel.html#method-i-require_relative&quot;&gt;require_relative&lt;/a&gt;. This works similar to require but instead of using the LOAD_PATH as described above, it looks relative to the current executing file. This should rarely be needed in COSMOS except perhaps in test files.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -2297,7 +2297,7 @@ C:/Ruby233p222-x64/lib/ruby/2.3.0/x64-mingw32
 
 &lt;p&gt;Enjoy these new COSMOS 4.0 tools!&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -2437,7 +2437,7 @@ C:/Ruby233p222-x64/lib/ruby/2.3.0/x64-mingw32
 
 &lt;p&gt;SSH to the instance using the connection string provided making sure to specify the full path to your ‘pem’ file in the quoted path after the -i option. Install a GUI by issuing the following command:&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo yum groupinstall &apos;Server with GUI&apos;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo yum groupinstall 'Server with GUI'
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Install COSMOS using the installation bash file:&lt;/p&gt;
@@ -2517,7 +2517,7 @@ vncconfig -iconic &amp;amp;
 &lt;p&gt;Chose the sudo option when asked how to install. On your local machine install a VNC viewer such as TightVNC and connect by entering the Public DNS address of your AWS instance in the Remote Host as well as the Port number of 5901. Typically this is added by appending it to the Remote Host address with a colon. Here is a screenshot of it running while I connected via TightVNC:
 &lt;img src=&quot;/img/2017_08_23_aws_ubuntu_vnc.png&quot; alt=&quot;Red Hat X&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -2763,7 +2763,7 @@ COMMAND POWER SET_VOLTAGE BIG_ENDIAN &quot;Set voltage&quot;
 
 &lt;p&gt;Using the TEMPLATE processor can be complex but makes working with with string based command / response protocols like SCPI much easier.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -2871,7 +2871,7 @@ Documentation will updated the first week of April.&lt;/p&gt;
 
 &lt;h2 id=&quot;processor-implementation&quot;&gt;Processor Implementation&lt;/h2&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos/processors/processor&apos;&lt;/span&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos/processors/processor'&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Cosmos&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WatermarkProcessor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Processor&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;# @param item_name [String] The name of the item to gather statistics on&lt;/span&gt;
@@ -2919,7 +2919,7 @@ Since we only pass one value, we use the default value_type of :CONVERTED.&lt;/p
 
 &lt;p&gt;If you then open up the processor_conversion.rb code you can see how these results are converted into new telemetry items.&lt;/p&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos/conversions/conversion&apos;&lt;/span&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos/conversions/conversion'&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Cosmos&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;# Retrieves the result from an item processor&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProcessorConversion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Conversion&lt;/span&gt;
@@ -2966,7 +2966,7 @@ This passes TEMP1WATER and HIGH_WATER as processor_name and result_name into ini
 
 &lt;p&gt;First create your new Processor class. Let’s call it MeanProcessor. This code should go into a file called mean_processor.rb and can either live in one of your target/lib folders or since it’s generic we can put it in the top level /lib directory in our project.&lt;/p&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos/processors/processor&apos;&lt;/span&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos/processors/processor'&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Cosmos&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MeanProcessor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Processor&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# @param item_name [Array&amp;lt;String&amp;gt;] The names of the items to mean&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item_names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the splat operator accepts a variable length argument list&lt;/span&gt;
@@ -2990,7 +2990,7 @@ This passes TEMP1WATER and HIGH_WATER as processor_name and result_name into ini
 
     &lt;span class=&quot;c1&quot;&gt;# Convert to configuration file string&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;to_config&lt;/span&gt;
-      &lt;span class=&quot;s2&quot;&gt;&quot;  PROCESSOR &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class_name_to_filename&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@item_names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos; &apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+      &lt;span class=&quot;s2&quot;&gt;&quot;  PROCESSOR &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;class_name_to_filename&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@item_names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
@@ -3015,7 +3015,7 @@ Then delcare the processing in your configuration definition as follows:&lt;/p&g
 
 &lt;p&gt;Creating a custom processor definitely requires you to dive into the COSMOS API and play with the underlying Ruby code. Hopefully the existing processor code and this blog post helps you to derive whatever telemetry points you need.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -3123,13 +3123,13 @@ PORT CTS_PREIDENTIFIED 7779
 
 &lt;p&gt;To connect to the INST_ROUTER that we created we can write a little Ruby code using existing COSMOS interface classes and streams.&lt;/p&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos&apos;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos/interfaces/tcpip_client_interface&apos;&lt;/span&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos/interfaces/tcpip_client_interface'&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Cosmos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TcpipClientInterface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;localhost&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2055&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2055&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;LENGTH&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Cosmos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TcpipClientInterface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'localhost'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2055&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2055&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'LENGTH'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;connect&lt;/span&gt;
 &lt;span class=&quot;kp&quot;&gt;loop&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Cosmos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;telemetry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;identify!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;INST&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Cosmos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;telemetry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;identify!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'INST'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;packet_name&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -3152,10 +3152,10 @@ ADCS
 
 &lt;p&gt;We can also write some code to connect to the PREIDENTIFIED router. It looks very similar to the previous code except we do not need to identify the packets as they are pre-identified!&lt;/p&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos&apos;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos/interfaces/tcpip_client_interface&apos;&lt;/span&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos/interfaces/tcpip_client_interface'&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Cosmos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TcpipClientInterface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;localhost&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7779&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7779&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;PREIDENTIFIED&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Cosmos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TcpipClientInterface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'localhost'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7779&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7779&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'PREIDENTIFIED'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;connect&lt;/span&gt;
 &lt;span class=&quot;kp&quot;&gt;loop&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;pkt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read&lt;/span&gt;
@@ -3165,7 +3165,7 @@ ADCS
 
 &lt;p&gt;This time you should see some LIMITS_CHANGE packet names sprinkled in with the output from before. That’s because we’re accessing the ENTIRE COSMOS telemetry stream and not just the stream from the INST interface. Keep this in mind if you have performance issues when trying to process the entire telemetry stream.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -3245,7 +3245,7 @@ ADCS
 &lt;p&gt;&lt;img src=&quot;/img/2016_10_13_stakem_screenshot.png&quot; alt=&quot;Stakem Screenshot&quot; /&gt;
 &lt;em&gt;Screenshot showing COSMOS in action&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Since COSMOS is open source, we don’t always hear about what people are doing with it. If you have a COSMOS success story you’d like to share with us please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Since COSMOS is open source, we don’t always hear about what people are doing with it. If you have a COSMOS success story you’d like to share with us please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -3274,13 +3274,13 @@ PATH LOGS &amp;lt;%&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ENV[&lt;span c
 &lt;p&gt;It’s recommended that you don’t put too much logic in these ERB statements to keep your configuration files readable and maintainable. If you have a complex piece of code you want to use in an ERB statement, you can create a utility in your ‘lib’ folder and define methods to use. For example, in your ‘lib’ folder create utilties.rb:&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;log_path&lt;/span&gt;
-  &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Cosmos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;USERPATH&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;outputs&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;mylogs&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Cosmos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;USERPATH&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'outputs'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mylogs'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Now in system.txt we can use that ‘log_path’ routine after we first require ‘utilities’.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;% require &apos;utilities&apos; %&amp;gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;% require 'utilities' %&amp;gt;
 ...
 # Paths
 PATH LOGS &amp;lt;%= log_path() %&amp;gt;
@@ -3325,7 +3325,7 @@ COMMAND INST ABORT BIG_ENDIAN &quot;Aborts a collect on the instrument&quot;
 
 &lt;p&gt;ERB is incredibly powerful and a great way to avoid WET (Write Each Time) command and telemetry definitions. Now go DRY (Don’t Repeat Yourself) up your COSMOS configuration!&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -3360,7 +3360,7 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 
 &lt;p&gt;Now we need to create the DemotableWidget which will implement the actual display. Create a new file called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;demotable_widget.rb&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;demo/config/targets/INST/lib&lt;/code&gt;. Note that the name of the line in the config file, DEMOTABLE, must be all lowercase followed by an underscore and ‘widget’. The class name in the file must be one word with the first letter and Widget capitalized. This is how it should start:&lt;/p&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos/tools/tlm_viewer/widgets/widget&apos;&lt;/span&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos/tools/tlm_viewer/widgets/widget'&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Cosmos&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DemotableWidget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Qt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TableWidget&lt;/span&gt;
@@ -3392,7 +3392,7 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 
 &lt;p&gt;To actually populate it with data we must follow the Cosmos Widget conventions. First of all by including Widget you include all the &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/blob/cosmos4/lib/cosmos/tools/tlm_viewer/widgets/widget.rb&quot;&gt;Widget&lt;/a&gt; code which creates two key class methods: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout_manager?&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;takes_value?&lt;/code&gt;. These must be overridden to return true if your widget is either a layout or takes a value respectively. Since our widget will be taking the array data as a value we must override &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;takes_value?&lt;/code&gt;:&lt;/p&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos/tools/tlm_viewer/widgets/widget&apos;&lt;/span&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos/tools/tlm_viewer/widgets/widget'&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Cosmos&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DemotableWidget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Qt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TableWidget&lt;/span&gt;
@@ -3407,7 +3407,7 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 &lt;p&gt;Typically class methods are defined at the top of the source file and begin with self. You can also type out the class name but this is less robust as changing the class name requires changing the method name. Implementing this class method allows Telemetry Viewer to call the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;value=(data)&lt;/code&gt; method with new telemetry data. The value method implementation should look like this:&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@rows&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Note the extra &apos;dot&apos; which means up to but not including&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@rows&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Note the extra 'dot' which means up to but not including&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;setItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Qt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TableWidgetItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
@@ -3419,8 +3419,8 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 
 &lt;p&gt;At this point you could be done. But wait! The Array widget below the table fades darker to implement “aging”, showing the user the values haven’t changed. How do we implement “aging” in our new widget? To start we require the aging_widget and include the AgingWidget module. Then we must call the setup_aging method in our initialize method as well as redefine the process_settings method:&lt;/p&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos/tools/tlm_viewer/widgets/widget&apos;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos/tools/tlm_viewer/widgets/aging_widget&apos;&lt;/span&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos/tools/tlm_viewer/widgets/widget'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos/tools/tlm_viewer/widgets/aging_widget'&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Cosmos&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DemotableWidget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Qt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;TableWidget&lt;/span&gt;
@@ -3463,7 +3463,7 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 
 &lt;p&gt;Note that if you have a widget that implements aging and limits you’ll want to keep the value returned by super and use it in your widget. If you don’t want the aging routine to directly use your data value you can pass a string as the second parameter, e.g. super(data, text). This text string will be modified with the color blind settings. Basically that means that whatever the calculated &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@foreground&lt;/code&gt; color string is, a corresponding text character is added (R=Red, G=Green, etc) to aid people who can’t distinguish colors. See &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/blob/cosmos4/lib/cosmos/tools/tlm_viewer/widgets/aging_widget.rb&quot;&gt;aging_widget.rb&lt;/a&gt; for more details.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -3486,8 +3486,8 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 
 &lt;p&gt;In this example we will assume the original interface is the COSMOS &lt;a href=&quot;/docs/v4/interfaces#serial-interface&quot;&gt;Serial Interface&lt;/a&gt;. In your target’s lib folder create a new interface called checksum_serial_interface.rb:&lt;/p&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos&apos;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# always require cosmos&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos/interfaces/serial_interface&apos;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# original interface being extended&lt;/span&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# always require cosmos&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos/interfaces/serial_interface'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# original interface being extended&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Cosmos&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ChecksumSerialInterface&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SerialInterface&lt;/span&gt;
@@ -3529,7 +3529,7 @@ INTERFACE UART_INTERFACE  checksum_serial_interface.rb COM1  COM1 115200 NONE   
 
 &lt;p&gt;This same technique can obviously be used to extend the the other TCPIP interfaces and can be used with all the various &lt;a href=&quot;/docs/v4/interfaces#streams&quot;&gt;Streams&lt;/a&gt; COSMOS defines.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -3556,7 +3556,7 @@ ITEM DEPLOYED? 0 0 DERIVED &quot;Deployed status&quot;
   STATE FALSE 0
   STATE TRUE 1
   GENERIC_READ_CONVERSION_START UINT 8
-    myself.read(&apos;DEPLOYED&apos;) &amp;gt; 0 ? 1 : 0
+    myself.read('DEPLOYED') &amp;gt; 0 ? 1 : 0
   GENERIC_READ_CONVERSION_END
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -3775,7 +3775,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
 
 &lt;p&gt;I’ll break down my sim_inst.rb piece by piece and then list it in its entirety. First you must inherit from the Cosmos::SimulatedTarget.&lt;/p&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos&apos;&lt;/span&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos'&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Cosmos&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimInst&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SimulatedTarget&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -3786,7 +3786,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
   &lt;span class=&quot;k&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;target_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
   &lt;span class=&quot;c1&quot;&gt;# We grab the STATUS packet to set initial values&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@tlm_packets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;STATUS&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@tlm_packets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'STATUS'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;enable_method_missing&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# required to use packet.&amp;lt;item&amp;gt; = value&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;NONE&quot;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
@@ -3798,8 +3798,8 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
   &lt;span class=&quot;c1&quot;&gt;# The SimulatedTarget operates on a 101Hz clock&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;# Thus the rates are determined by dividing this rate&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;# by the set rate to get the output rate of the packet&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;set_rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;STATUS&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 100 / 100 = 1Hz&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;set_rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;DATA&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 100 / 10 = 10Hz&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;set_rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'STATUS'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 100 / 100 = 1Hz&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;set_rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'DATA'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 100 / 10 = 10Hz&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -3807,9 +3807,9 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;# We directly set the telemetry value from the only command&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# If you have more than one command you&apos;ll need to switch&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# If you have more than one command you'll need to switch&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;# on the packet.packet_name to determine what command it is&lt;/span&gt;
-  &lt;span class=&quot;vi&quot;&gt;@tlm_packets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;STATUS&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@tlm_packets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'STATUS'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -3822,13 +3822,13 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
 
   &lt;span class=&quot;n&quot;&gt;pending_packets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;packet_name&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;STATUS&apos;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'STATUS'&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;DATA&apos;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'DATA'&lt;/span&gt;
       &lt;span class=&quot;c1&quot;&gt;# This method in SimulatedTarget cycles the specified telemetry&lt;/span&gt;
       &lt;span class=&quot;c1&quot;&gt;# point between the two given values by the given increment for&lt;/span&gt;
       &lt;span class=&quot;c1&quot;&gt;# each packet sent out.&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;cycle_tlm_item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;temp1&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;95.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;95.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;cycle_tlm_item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'temp1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;95.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;95.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
       &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timesec&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tv_sec&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timeus&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tv_usec&lt;/span&gt;
@@ -3843,14 +3843,14 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
 
 &lt;p&gt;Without further ado, here is my sim_inst.rb in its entirety:&lt;/p&gt;
 
-&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;cosmos&apos;&lt;/span&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cosmos'&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Cosmos&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimInst&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SimulatedTarget&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;target_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
       &lt;span class=&quot;k&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;target_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
       &lt;span class=&quot;c1&quot;&gt;# We grab the STATUS packet to set initial values&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@tlm_packets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;STATUS&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@tlm_packets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'STATUS'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;enable_method_missing&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# required to use packet.&amp;lt;item&amp;gt; = value&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;NONE&quot;&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
@@ -3859,15 +3859,15 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
       &lt;span class=&quot;c1&quot;&gt;# The SimulatedTarget operates on a 100Hz clock&lt;/span&gt;
       &lt;span class=&quot;c1&quot;&gt;# Thus the rates are determined by dividing this rate&lt;/span&gt;
       &lt;span class=&quot;c1&quot;&gt;# by the set rate to get the output rate of the packet&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;set_rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;STATUS&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 100 / 100 = 1Hz&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;set_rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;DATA&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 100 / 10 = 10Hz&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;set_rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'STATUS'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 100 / 100 = 1Hz&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;set_rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'DATA'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 100 / 10 = 10Hz&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
     &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
       &lt;span class=&quot;c1&quot;&gt;# We directly set the telemetry value from the only command&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;# If you have more than one command you&apos;ll need to switch&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# If you have more than one command you'll need to switch&lt;/span&gt;
       &lt;span class=&quot;c1&quot;&gt;# on the packet.packet_name to determine what command it is&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@tlm_packets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;STATUS&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;vi&quot;&gt;@tlm_packets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'STATUS'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 
     &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count_100hz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -3877,13 +3877,13 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
 
       &lt;span class=&quot;n&quot;&gt;pending_packets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;packet_name&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;STATUS&apos;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'STATUS'&lt;/span&gt;
           &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;DATA&apos;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'DATA'&lt;/span&gt;
           &lt;span class=&quot;c1&quot;&gt;# This method in SimulatedTarget cycles the specified telemetry&lt;/span&gt;
           &lt;span class=&quot;c1&quot;&gt;# point between the two given values by the given increment for&lt;/span&gt;
           &lt;span class=&quot;c1&quot;&gt;# each packet sent out.&lt;/span&gt;
-          &lt;span class=&quot;n&quot;&gt;cycle_tlm_item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;temp1&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;95.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;95.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;cycle_tlm_item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'temp1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;95.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;95.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
           &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timesec&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tv_sec&lt;/span&gt;
           &lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timeus&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tv_usec&lt;/span&gt;
@@ -3898,7 +3898,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
 
 &lt;p&gt;Happy simulated target programming!&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ball.com&quot;&gt;cosmos@ball.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. If you would like more information about a COSMOS training or support contract please contact us at &lt;a href=&quot;mailto:cosmos@ballaerospace.com&quot;&gt;cosmos@ballaerospace.com&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -4386,7 +4386,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
 
 &lt;div class=&quot;note warning&quot;&gt;
   &lt;h5&gt;Modifying Ruby strings&lt;/h5&gt;
-  &lt;p&gt;If you directly modify the Ruby string buffer in a C extension with memcpy, memmove, or memset (after getting a pointer with RSTRING_PTR), you need to tell the Ruby runtime with the rb_str_modify method. Calling Ruby&apos;s methods like rb_str_update automatically handles this for you.&lt;/p&gt;
+  &lt;p&gt;If you directly modify the Ruby string buffer in a C extension with memcpy, memmove, or memset (after getting a pointer with RSTRING_PTR), you need to tell the Ruby runtime with the rb_str_modify method. Calling Ruby's methods like rb_str_update automatically handles this for you.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Another issue I ran into was the existing Ruby code was calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;to_s&lt;/code&gt; on the input value to ensure it was a String. In the C extension you can check for a type using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RB_TYPE_P(value, T_STRING)&lt;/code&gt; where value is a unknown Ruby VALUE instance and T_STRING can be any number of Ruby types. If the value was not a Ruby String I used &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rb_funcall&lt;/code&gt; to directly call the Ruby runtime and call the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;to_s&lt;/code&gt; method. If you are unable to find an appropriate method in the C library to do what you want, this is the way to use Ruby from within your C extension.&lt;/p&gt;

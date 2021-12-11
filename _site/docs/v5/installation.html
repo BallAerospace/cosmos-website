@@ -94,25 +94,41 @@
         <h1>Installation</h1>
         <h2 id="installing-cosmos">Installing COSMOS</h2>
 
-<p>The following sections describe how to get COSMOS installed on various operating systems.</p>
+<p>The following sections describe how to get COSMOS installed on various operating systems. A major difference between COSMOS v4 and COSMOS v5 is the usage of containers. This document should help you setup you host machine to allow you to have a running version of COSMOS in no time.</p>
 
 <h2 id="installing-cosmos-on-host-machines">Installing COSMOS on Host Machines</h2>
 
-<ol>
-  <li>Install <a href="https://docs.docker.com/get-docker/">Docker</a></li>
-  <li>Download the latest COSMOS 5 from the Github <a href="https://github.com/BallAerospace/COSMOS/releases">releases</a></li>
-  <li>Extract the archive somewhere on your host computer</li>
-  <li>The COSMOS 5 containers are designed to work and be built in the presence of an SSL Decryption device. To support this a cacert.pem file can be placed at the base of the COSMOS 5 project that includes any certificates needed by your organization.</li>
-  <li>Run cosmos-control.bat start (Windows), or cosmos-control.sh start (linux/Mac)
-    <ul>
-      <li>Note cosmos-control.bat takes multiple arguments. Run with no arguments for help.</li>
-      <li>If you see an error indicating docker daemon is not running ensure Docker is installed and running.</li>
-    </ul>
-  </li>
-  <li>COSMOS 5 will be built and when ready should be running (~15 mins for first run, ~2 for subsequent)</li>
-  <li>Connect a web browser to http://localhost:2900</li>
-  <li>Continue to <a href="/docs/v5/gettingstarted">Getting Started</a></li>
-</ol>
+<h3 id="install">INSTALL</h3>
+
+<p>Install <a href="https://docs.docker.com/get-docker/">Docker</a> and install <a href="https://docs.docker.com/compose/install/">Docker Compose</a></p>
+
+<blockquote>
+  <p>As of December 2021 the COSMOS Docker containers are based on the Alpine Docker image.</p>
+</blockquote>
+
+<h3 id="download">DOWNLOAD</h3>
+
+<p>Download the latest COSMOS 5 from the Github <a href="https://github.com/BallAerospace/COSMOS/releases">releases</a></p>
+
+<h3 id="extract">EXTRACT</h3>
+
+<p>Extract the archive somewhere on your host computer</p>
+
+<h3 id="update">UPDATE</h3>
+
+<p>At this point if your plugin requires an external dependency you will need to update the cosmos gemspec file and rebuild the container.</p>
+
+<blockquote>
+  <p>An example diff of adding external gems to the cosmos/cosmos.gemspec file.</p>
+  <div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  s.add_runtime_dependency 'tzinfo-data', '~&gt; 1'
+<span class="gi">+  s.add_runtime_dependency 'google-protobuf', '~&gt; 3.17'
++  s.add_runtime_dependency 'protobuf'
+</span></code></pre></div>  </div>
+</blockquote>
+
+<hr />
+
+<p>The COSMOS 5 containers are designed to work and be built in the presence of an SSL Decryption device. To support this a cacert.pem file can be placed at the base of the COSMOS 5 project that includes any certificates needed by your organization. <strong>Note</strong>: If you set the path to the ssl file in the <code class="language-plaintext highlighter-rouge">SSL_CERT_FILE</code> environment variables the cosmos-control setup script will copy it and place it for the docker container to load.</p>
 
 <div class="note warning">
   <h5>SSL Issues</h5>
@@ -128,11 +144,73 @@ REQUESTS_CA_BUNDLE<br />
 
 <p style="margin-bottom:20px;">
 Here are some directions on environment variables in Windows:
-<a href="https://www.computerhope.com/issues/ch000549.htm">Windows Environment Variables</a><br />
+  <a href="https://www.computerhope.com/issues/ch000549.htm">
+    Windows Environment Variables
+  </a>
+<br />
 You will need to create new ones with the names above and set their value to the full path to the certificate file.
 </p>
-<p style="margin-bottom:20px;">After these changes the installer should work. At Ball please contact <a href="mailto:COSMOS@ball.com">COSMOS@ball.com</a> for assistance.</p>
+
+<p style="margin-bottom:20px;">
+  At Ball please contact
+  <a href="mailto:cosmos@ballaerospace.com">
+    cosmos@ballaerospace.com
+  </a> for assistance.
+</p>
 </div>
+
+<h3 id="run">RUN</h3>
+
+<p>Run <code class="language-plaintext highlighter-rouge">cosmos-control.bat</code> start (Windows), or <code class="language-plaintext highlighter-rouge">cosmos-control.sh</code> start (linux/Mac)</p>
+
+<blockquote>
+  <p>If you see an error indicating docker daemon is not running ensure Docker and Docker compose is installed and running. If it errors please try to run <code class="language-plaintext highlighter-rouge">docker --version</code> or <code class="language-plaintext highlighter-rouge">docker-compose --version</code> and try to run the start command again. If the error continues please include the version in your issue if you choose to create one.</p>
+</blockquote>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">cosmos-control.*</code> can help solve some of the short falls of docker-compose when building the containers.</p>
+</blockquote>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">cosmos-control.*</code> takes multiple arguments. Run with no arguments for help. An example run of cosmos-control.bat with no arguments will show a usage guide.</p>
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.\cosmos-control.bat
+Usage: "cosmos-control.bat" [start, stop, cleanup, build, run, deploy, util]
+*  build: build the containers for cosmos
+*  start: run the docker containers for cosmos
+*  stop: stop the running docker containers for cosmos
+*  restart: stop and run the minimal docker containers for cosmos
+*  cleanup: cleanup network and volumes for cosmos
+...
+</code></pre></div>  </div>
+</blockquote>
+
+<p><strong>Note</strong>: On some windows systems we have seen docker error when building the cosmosc2-minio-init container. It could be due to an issue downloading the minio mc container. To solve this open https://github.com/BallAerospace/COSMOS/blob/master/cosmos-minio-init/Dockerfile#L1 and copy the text after FROM and run <code class="language-plaintext highlighter-rouge">docker pull minio/mc:RELEASE.&lt;DATE&gt;</code>. This should download the minio/mc container locally and not have docker-compose pull the image on build. Now re-run <code class="language-plaintext highlighter-rouge">cosmos-control.* start</code> and continue on the cosmos adventure.</p>
+
+<h3 id="wait">WAIT</h3>
+
+<p>COSMOS 5 will be built and when ready should be running (~15 mins for first run, ~2 for subsequent). Running <code class="language-plaintext highlighter-rouge">docker ps</code> can help show the running containers.</p>
+
+<h3 id="connect">CONNECT</h3>
+
+<p>Connect a web browser to http://localhost:2900</p>
+
+<h3 id="next-steps">NEXT STEPS</h3>
+
+<p>Continue to <a href="/docs/v5/gettingstarted">Getting Started</a></p>
+
+<hr />
+
+<h3 id="feedback">Feedback</h3>
+
+<div class="note">
+  <h5>Let us know what could be better!</h5>
+  <p>
+    Both using and hacking on COSMOS should be fun, simple, and easy, so if for
+    some reason you find it's a pain, please <a href="https://github.com/BallAerospace/COSMOS/issues/new/choose">create an issue</a> on
+    GitHub describing your experience so we can make it better.
+  </p>
+</div>
+
 
       </article>
     </div>
