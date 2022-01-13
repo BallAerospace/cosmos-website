@@ -77,7 +77,6 @@ Key aspects of this architecture:
 
 | Reqt. ID | Description | Test Description |
 | -------- | ----------- | ---------------- |
-
 | API-1 | The COSMOS API shall allow scripted connection and disconnection of interfaces. | Disconnect and connect an interface from a script. |
 | API-2 | The COSMOS API shall allow scripted connection and disconnection of routers. | Disconnect and connect a router from a script. |
 | API-3 | The COSMOS API shall allow scripted setting of the current limits set. | Select a different limits set from a script. |
