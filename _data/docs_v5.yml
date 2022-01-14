@@ -45,4 +45,5 @@
     - development
     - testing
     - json_api
+    - streaming_api
     - log_structure
