@@ -71,14 +71,14 @@ this.subscription.perform('add', {
 
 Mode is either RAW, DECOM, REDUCED_MINUTE, REDUCED_HOUR, or REDUCED_DAY and all items/packets requested in a single add must be in the same mode.  However different modes can be used across calls to add.
 
-Items are requested by keys of the form: <CMD or TLM>__<TARGET NAME>__<PACKET NAME>__<ITEM NAME>__<VALUE TYPE>
+Items are requested by keys of the form: ```<CMD or TLM>__<TARGET NAME>__<PACKET NAME>__<ITEM NAME>__<VALUE TYPE>```
 For example TLM__INST__ADCS__Q1__RAW.
 
 Value type should be one of: RAW, CONVERTED, FORMATTED, or WITH_UNITS
 
 Each field is separated by two underscores __.
 
-Entire packets can also be requested by keys of the form: <CMD or TLM>__<TARGET NAME>__<PACKET NAME>__<VALUE TYPE>.  For Raw mode, VALUE TYPE should be set to RAW or omitted (e.g. TLM__INST__ADCS__RAW or TLM__INST__ADCS).
+Entire packets can also be requested by keys of the form: ```<CMD or TLM>__<TARGET NAME>__<PACKET NAME>__<VALUE TYPE>```.  For Raw mode, VALUE TYPE should be set to RAW or omitted (e.g. TLM__INST__ADCS__RAW or TLM__INST__ADCS).
 start_time and end_time are standard COSMOS 64-bit integer timestamps in nanoseconds since the Unix Epoch (midnight January 1st, 1970).  If start_time is null, that indicates to start streaming from the current time in realtime, indefinitely until items are removed, or the subscription is unsubscribed.  end_time is ignored if start_time is null.   If start_time is given and end_time is null, that indicates to playback from the given starttime and then continue indefinitely in realtime.  If both start_time and end_time are given, then that indicates a temporary playback of historical data.
 
 Data returned by the streaming API is handled by the received callback in Javascript.  Data is returned as a JSON Array, with a JSON object in the array for each packet returned.  Results are batched, and the current implementation will return up to 100 packets in each batch (the array will have 100 entries).  100 packets per batch is not guaranteed, and batches may take on varying sizes based on the size of the data returned, or other factors.  An empty array indicates that all data has been sent for a purely historical query and can be used as an end of data indicator.
