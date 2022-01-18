@@ -87,7 +87,23 @@ Usage: "cosmos-control.bat" [start, stop, cleanup, build, run, deploy, util]
 ...
 ```
 
-**Note**: On some windows systems we have seen docker error when building the cosmosc2-minio-init container. It could be due to an issue downloading the minio mc container. To solve this open https://github.com/BallAerospace/COSMOS/blob/master/cosmos-minio-init/Dockerfile#L1 and copy the text after FROM and run `docker pull minio/mc:RELEASE.<DATE>`. This should download the minio/mc container locally and not have docker-compose pull the image on build. Now re-run `cosmos-control.* start` and continue on the cosmos adventure.
+<div class="note info">
+  <h5>Docker minio/mc issue</h5>
+  <p style="margin-bottom:20px;">
+    On some windows systems we have seen docker error when building the cosmosc2-minio-init container. It could be due to an issue downloading the minio mc container. To solve this open the minio-init Dockerfile linked below and the text after the FROM and run:
+  </p>
+  <code style="margin-left:20px;margin-bottom:20px;">
+    <a href="https://github.com/BallAerospace/COSMOS/blob/master/cosmos-minio-init/Dockerfile#L1">
+      Dockerfile
+    </a>
+    <br/>
+    docker pull minio/mc:RELEASE.{DATE}
+    <br/>
+  </code>
+  <p style="margin-bottom:20px;">
+    This should download the minio/mc container locally and not have docker-compose pull the image on build. Now re-run cosmos-control start and continue on the cosmos adventure.
+  </p>
+</div>
 
 ### WAIT
 
