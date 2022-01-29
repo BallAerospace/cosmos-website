@@ -11,30 +11,30 @@ The following sections describe how to get COSMOS installed on various operating
 
 ### INSTALL
 
-Install [Docker](https://docs.docker.com/get-docker/) and install [Docker Compose](https://docs.docker.com/compose/install/)
+Install [Docker](https://docs.docker.com/get-docker/) and install [Docker Compose](https://docs.docker.com/compose/install/).
 
-> As of December 2021 the COSMOS Docker containers are based on the Alpine Docker image.
+**Note:** As of December 2021 the COSMOS Docker containers are based on the Alpine Docker image.
 
 ### DOWNLOAD
 
-Download the latest COSMOS 5 from the Github [releases](https://github.com/BallAerospace/COSMOS/releases)
+Download the latest COSMOS 5 from the Github [releases](https://github.com/BallAerospace/COSMOS/releases).
 
 ### EXTRACT
 
-Extract the archive somewhere on your host computer
+Extract the archive somewhere on your host computer.
 
 ### UPDATE
 
 At this point if your plugin requires an external dependency you will need to update the cosmos gemspec file and rebuild the container.
 
-> An example diff of adding external gems to the cosmos/cosmos.gemspec file.
+An example diff of adding external gems to the cosmos/cosmos.gemspec file.
 ```diff
   s.add_runtime_dependency 'tzinfo-data', '~> 1'
 +  s.add_runtime_dependency 'google-protobuf', '~> 3.17'
 +  s.add_runtime_dependency 'protobuf'
 ```
 
----
+### ENVIRONMENT
 
 The COSMOS 5 containers are designed to work and be built in the presence of an SSL Decryption device. To support this a cacert.pem file can be placed at the base of the COSMOS 5 project that includes any certificates needed by your organization. **Note**: If you set the path to the ssl file in the `SSL_CERT_FILE` environment variables the cosmos-control setup script will copy it and place it for the docker container to load.
 
@@ -67,15 +67,28 @@ You will need to create new ones with the names above and set their value to the
 </p>
 </div>
 
+<div class="note info">
+  <h5>Classified Installation</h5>
+  <p style="margin-bottom:20px;">If you're building in a classified environment or want to use a private Rubygems, NPM or APK server (e.g. Nexus), you can update the following environment variables: RUBYGEMS_URL, NPM_URL, APK_URL, and more in the <a href="https://github.com/BallAerospace/COSMOS/blob/master/.env">.env</a> file. Example values:</p>
+
+  <p style="margin-left:20px;margin-bottom:20px;">
+    ALPINE_VERSION=3.15<br/>
+    ALPINE_BUILD=0<br/>
+    RUBYGEMS_URL=https://rubygems.org<br/>
+    NPM_URL=https://registry.npmjs.org<br/>
+    APK_URL=http://dl-cdn.alpinelinux.org<br/>
+  </p>
+</div>
+
 ### RUN
 
-Run `cosmos-control.bat` start (Windows), or `cosmos-control.sh` start (linux/Mac)
+Run `cosmos-control.bat` start (Windows), or `cosmos-control.sh` start (linux/Mac).
 
-> If you see an error indicating docker daemon is not running ensure Docker and Docker compose is installed and running. If it errors please try to run `docker --version` or `docker-compose --version` and try to run the start command again. If the error continues please include the version in your issue if you choose to create one.
+If you see an error indicating docker daemon is not running ensure Docker and Docker compose is installed and running. If it errors please try to run `docker --version` or `docker-compose --version` and try to run the start command again. If the error continues please include the version in your issue if you choose to create one.
 
-> `cosmos-control.*` can help solve some of the short falls of docker-compose when building the containers.
+`cosmos-control.*` can help solve some of the short falls of docker-compose when building the containers.
 
-> `cosmos-control.*` takes multiple arguments. Run with no arguments for help. An example run of cosmos-control.bat with no arguments will show a usage guide. 
+`cosmos-control.*` takes multiple arguments. Run with no arguments for help. An example run of cosmos-control.bat with no arguments will show a usage guide.
 ```
 .\cosmos-control.bat
 Usage: "cosmos-control.bat" [start, stop, cleanup, build, run, deploy, util]
@@ -89,20 +102,14 @@ Usage: "cosmos-control.bat" [start, stop, cleanup, build, run, deploy, util]
 
 <div class="note info">
   <h5>Docker minio/mc issue</h5>
-  <p style="margin-bottom:20px;">
-    On some windows systems we have seen docker error when building the cosmosc2-minio-init container. It could be due to an issue downloading the minio mc container. To solve this open the minio-init Dockerfile linked below and the text after the FROM and run:
+  <p style="margin-bottom:20px;">On some windows systems we have seen docker error when building the cosmosc2-minio-init container. It could be due to an issue downloading the minio mc container. To solve this you can manually pull the minio container. Open the minio-init <a href="https://github.com/BallAerospace/COSMOS/blob/master/cosmos-minio-init/Dockerfile#L1">Dockerfile</a>, note the FROM line, e.g. <code>FROM minio/mc:RELEASE.2021-11-05T10-05-06Z</code>, and manually pull the image.</p>
+
+  <p style="margin-left:20px;margin-bottom:20px;">
+    Note: Image name may be different in current <a href="https://github.com/BallAerospace/COSMOS/blob/master/cosmos-minio-init/Dockerfile#L1">Dockerfile</a><br/>
+    <code>docker pull minio/mc:RELEASE.2021-11-05T10-05-06Z</code>
   </p>
-  <code style="margin-left:20px;margin-bottom:20px;">
-    <a href="https://github.com/BallAerospace/COSMOS/blob/master/cosmos-minio-init/Dockerfile#L1">
-      Dockerfile
-    </a>
-    <br/>
-    docker pull minio/mc:RELEASE.{DATE}
-    <br/>
-  </code>
-  <p style="margin-bottom:20px;">
-    This should download the minio/mc container locally and not have docker-compose pull the image on build. Now re-run cosmos-control start and continue on the cosmos adventure.
-  </p>
+
+  <p>This should download the minio/mc container locally and not have docker-compose pull the image on build. Now re-run cosmos-control start and continue on the cosmos adventure.</p>
 </div>
 
 ### WAIT
@@ -111,11 +118,11 @@ COSMOS 5 will be built and when ready should be running (~15 mins for first run,
 
 ### CONNECT
 
-Connect a web browser to http://localhost:2900
+Connect a web browser to http://localhost:2900.
 
 ### NEXT STEPS
 
-Continue to [Getting Started](/docs/v5/gettingstarted)
+Continue to [Getting Started](/docs/v5/gettingstarted).
 
 ---
 
