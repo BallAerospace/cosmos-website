@@ -13,6 +13,9 @@ The following sections describe how to get COSMOS installed on various operating
 
 Install [Docker](https://docs.docker.com/get-docker/) and install [Docker Compose](https://docs.docker.com/compose/install/).
 
+* Minimum Resources allocated to Docker: 8GB RAM, 1 CPU, 80GB Disk
+* Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+
 **Note:** As of December 2021 the COSMOS Docker containers are based on the Alpine Docker image.
 
 ### DOWNLOAD
