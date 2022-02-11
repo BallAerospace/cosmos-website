@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - Name: Checkout COSMOS
+      - name: Checkout COSMOS
         uses: actions/checkout@v2
         with:
           repository: BallAerospace/COSMOS
