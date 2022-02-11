@@ -6,9 +6,6 @@ task :build do
   sh "git pull"
   puts "## Building website"
   sh "bundle exec jekyll build"
-  sh "git add _site/*"
-  sh "git commit -m \"Built site\""
-  sh "git push"
 end
 
 "deploy website/_site to github pages"
