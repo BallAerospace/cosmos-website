@@ -7,9 +7,8 @@ task :build do
   puts "## Building website"
   sh "bundle exec jekyll build"
   sh "git add _site/*"
-  puts "\n\nAll of _site has been added to the git commit."
-  puts "Add additional source files, review the diff, and commit with 'git commit -m \"Message\"'"
-  puts "Then push with 'git push'"
+  sh "git commit -m \"Built site\""
+  sh "git push"
 end
 
 "deploy website/_site to github pages"

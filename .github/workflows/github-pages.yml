@@ -1,28 +1,21 @@
-name: Build and deploy Jekyll site to GitHub Pages
+name: Build cosmosc2
 
-# on:
-#   push:
-#     branches:
-#       - website
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  github-pages:
+  generate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          ref: master
-          path: COSMOS
-
-      - uses: actions/cache@v1
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-
-      - uses: helaili/jekyll-action@2.0.3
-        env:
-          JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
+          ruby-version: 3.0
+          bundler-cache: true
+      - name: Install dependencies
+        run: bundle install
+      - name: Run build
+        run: bundle exec rake build deploy
