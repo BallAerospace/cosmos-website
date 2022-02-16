@@ -21,21 +21,11 @@ Install [Docker](https://docs.docker.com/get-docker/) and install [Docker Compos
 ### DOWNLOAD
 
 Download the latest COSMOS 5 from the Github [releases](https://github.com/BallAerospace/COSMOS/releases).
+You can also clone the master branch to get the latest updates.
 
 ### EXTRACT
 
 Extract the archive somewhere on your host computer.
-
-### UPDATE
-
-At this point if your plugin requires an external dependency you will need to update the cosmos gemspec file and rebuild the container.
-
-An example diff of adding external gems to the cosmos/cosmos.gemspec file.
-```diff
-  s.add_runtime_dependency 'tzinfo-data', '~> 1'
-+  s.add_runtime_dependency 'google-protobuf', '~> 3.17'
-+  s.add_runtime_dependency 'protobuf'
-```
 
 ### ENVIRONMENT
 
@@ -81,6 +71,8 @@ You will need to create new ones with the names above and set their value to the
     NPM_URL=https://registry.npmjs.org<br/>
     APK_URL=http://dl-cdn.alpinelinux.org<br/>
   </p>
+
+  Create a zip file which can be transferred by running `cosmos-control.bat util zip`.
 </div>
 
 ### RUN
@@ -105,11 +97,11 @@ Usage: "cosmos-control.bat" [start, stop, cleanup, build, run, deploy, util]
 
 <div class="note info">
   <h5>Docker minio/mc issue</h5>
-  <p style="margin-bottom:20px;">On some windows systems we have seen docker error when building the cosmosc2-minio-init container. It could be due to an issue downloading the minio mc container. To solve this you can manually pull the minio container. Open the minio-init <a href="https://github.com/BallAerospace/COSMOS/blob/master/cosmos-minio-init/Dockerfile#L1">Dockerfile</a>, note the FROM line, e.g. <code>FROM minio/mc:RELEASE.2021-11-05T10-05-06Z</code>, and manually pull the image.</p>
+  <p style="margin-bottom:20px;">On some windows systems we have seen docker error when building the cosmosc2-minio-init container. It could be due to an issue downloading the minio mc container. To solve this you can manually pull the minio container. Open the minio-init <a href="https://github.com/BallAerospace/COSMOS/blob/master/cosmos-minio-init/Dockerfile#L1">Dockerfile</a>, note the FROM line, e.g. <code>FROM minio/mc:RELEASE.2021-12-10T00-14-28Z</code>, and manually pull the image.</p>
 
   <p style="margin-left:20px;margin-bottom:20px;">
     Note: Image name may be different in current <a href="https://github.com/BallAerospace/COSMOS/blob/master/cosmos-minio-init/Dockerfile#L1">Dockerfile</a><br/>
-    <code>docker pull minio/mc:RELEASE.2021-11-05T10-05-06Z</code>
+    <code>docker pull minio/mc:RELEASE.2021-12-10T00-14-28Z</code>
   </p>
 
   <p>This should download the minio/mc container locally and not have docker-compose pull the image on build. Now re-run cosmos-control start and continue on the cosmos adventure.</p>
