@@ -72,7 +72,7 @@ You will need to create new ones with the names above and set their value to the
     APK_URL=http://dl-cdn.alpinelinux.org<br/>
   </p>
 
-  Create a zip file which can be transferred by running `cosmos-control.bat util zip`.
+  <p>Create a zip file which can be transferred by running `cosmos-control.bat util zip`.</p>
 </div>
 
 ### RUN
