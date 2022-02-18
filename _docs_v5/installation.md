@@ -73,6 +73,8 @@ You will need to create new ones with the names above and set their value to the
   </p>
 
   <p>Create a zip file which can be transferred by running `cosmos-control.bat util zip`.</p>
+  <p>If you're on Unix, once you unzip the file run the following: `find . -name "*.sh" | xargs chmod +x`</p>
+  <p>Also note you may be unable to find the justincormack/nsenter1 container. If so just comment out those lines in scripts/linux/cosmos_setup.sh</p>
 </div>
 
 ### RUN
