@@ -1,6 +1,5 @@
 - title: Getting Started
   docs:
-    - home
     - tools
     - installation
     - gettingstarted
@@ -21,9 +20,8 @@
   docs:
     - cmd_sender
     - cmd_tlm_server
-    - config_editor
-    - data_viewer
     - data_extractor
+    - data_viewer
     - limits_monitor
     - packet_viewer
     - script_runner
@@ -32,7 +30,7 @@
     - screens
     - timeline
 
-- title: Usage Guides
+- title: Guides
   docs:
     - logging
     - scripting

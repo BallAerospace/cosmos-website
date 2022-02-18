@@ -1333,9 +1333,14 @@ div.gsc-results-wrapper-overlay {
   background-color: transparent !important;
   border: none !important;
 
-  /* The search button needs no padding because it is
-     next to the box and close button which have padding */
   .gsc-search-button {
-    padding: 0px !important;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .gsc-input-box {
+    border: none !important;
+    background-color: #555 !important;
   }
 }
