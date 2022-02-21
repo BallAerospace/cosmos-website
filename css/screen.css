@@ -520,10 +520,12 @@ div.gsc-results-wrapper-overlay .gs-result { background-color: white !important;
 
 div.gsc-results-wrapper-overlay a:hover { background-color: #ddd !important; }
 
-.gsc-control-cse, .gsc-control-cse-en { color: black; padding: 0 !important; margin: 0 !important; background-color: transparent !important; border: none !important; /* The search button needs no padding because it is next to the box and close button which have padding */ }
+.gsc-control-cse, .gsc-control-cse-en { color: black; padding: 0 !important; margin: 0 !important; background-color: transparent !important; border: none !important; }
 
 .gsc-control-cse td, .gsc-control-cse-en td { padding: 3px !important; }
 
-.gsc-control-cse .gsc-search-button, .gsc-control-cse-en .gsc-search-button { padding: 0px !important; }
+.gsc-control-cse .gsc-search-button, .gsc-control-cse-en .gsc-search-button { padding-top: 10px; padding-bottom: 0px; padding-left: 10px; padding-right: 10px; }
+
+.gsc-control-cse .gsc-input-box, .gsc-control-cse-en .gsc-input-box { border: none !important; background-color: #555 !important; }
 
 /*# sourceMappingURL=screen.css.map */
