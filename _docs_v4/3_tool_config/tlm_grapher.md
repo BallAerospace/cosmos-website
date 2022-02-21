@@ -4,9 +4,7 @@ title: Telemetry Grapher
 toc: true
 ---
 
-This document describes Telemetry Grapher configuration file parameters.
-
-<div style="clear:both;"></div>
+This document describes Telemetry Extractor configuration file and command line parameters.
 
 ## Telemetry Grapher Configuration Files
 
@@ -627,3 +625,6 @@ PLOT LINEGRAPH
 DATA_OBJECT SINGLEXY
 Y_VALUE_TYPE CONVERTED
 {% endhighlight %}
+
+
+{% cosmos_cmd_line TlmGrapher %}
