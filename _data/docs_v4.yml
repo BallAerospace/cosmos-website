@@ -1,12 +1,10 @@
 - title: Getting Started
   docs:
-    - home
     - tools
     - installation
     - upgrading
     - structure
     - gettingstarted
-    - securing
     - requirements
 
 - title: System Configuration
@@ -16,7 +14,6 @@
     - telemetry
     - interfaces
     - protocols
-    - environment
 
 - title: Tool Configuration
   docs:
@@ -50,9 +47,6 @@
     - scripting
     - scripting_best_practices
     - gemtargets
-
-- title: Tips
-  docs:
     - chaining
 
 - title: Development

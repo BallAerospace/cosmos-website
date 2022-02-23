@@ -13,6 +13,7 @@ The v4 documentation is currently not re-built because it is assumed to be stati
 
 1. Ensure COSMOS4 is built:
 
+    > cd C:\COSMOS4
     > rake build
 
 1. Comment out the _config.yml exclude and keep_files section:
@@ -25,7 +26,7 @@ The v4 documentation is currently not re-built because it is assumed to be stati
     #keep_files:
       #- docs/v4 # Thus we keep the existing content
 
-1. Now you can run with `bundle exec jekyll serve`
+1. Now you can build with `bundle exec jekyll build`
 
 # Deployment
 

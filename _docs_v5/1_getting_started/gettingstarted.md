@@ -78,10 +78,10 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
     ```
 
     - This time we created a TELEMETRY packet for target BOB called STATUS that contains BIG_ENDIAN items and is described as "Telemetry description".
-    - We start by defininig an ID_ITEM called ID that is a 16-bit signed integer (INT) with an id value of 1 and described as "Identifier". Id items are used to take unidentified blobs of bytes and determine which packet they are. In this case if a blob comes in with a value of 1, at bit offset 0 (since we APPEND this item first), interpreted as a 16-bit integer, then this packet will be "identified" as STATUS. Note the first packet defined without any ID_ITEMS is a "catch-all" packet that matches all incoming data (even if the data lengths don't match). 
+    - We start by defininig an ID_ITEM called ID that is a 16-bit signed integer (INT) with an id value of 1 and described as "Identifier". Id items are used to take unidentified blobs of bytes and determine which packet they are. In this case if a blob comes in with a value of 1, at bit offset 0 (since we APPEND this item first), interpreted as a 16-bit integer, then this packet will be "identified" as STATUS. Note the first packet defined without any ID_ITEMS is a "catch-all" packet that matches all incoming data (even if the data lengths don't match).
     - Next we define three items similar to the command definition above.
 
-    Check out the full [Telemetry](/docs/v5/telemetry) documention for more.    
+    Check out the full [Telemetry](/docs/v5/telemetry) documention for more.
 
 1. COSMOS has defined an example command and telemetry packet for our target. Most targets will obviously have more than one command and telemetry packet. To add more simply create additional COMMAND and TELEMETRY lines in your text files. Actual packets should match the structure of your command and telemetry. Be sure to add at least one unique [ID_PARAMETER](/docs/v5/command#id_parameter) and [ID_ITEM](/docs/v5/telemetry#id_item) so your packets can be distinguished from each other.
 
@@ -113,6 +113,7 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
 1. Now we need to build our plugin and upload it to COSMOS.
 
     ```batch
+    C:\tutorial> cd cosmos-bob
     C:\tutorial\cosmos-bob> C:\COSMOS\cosmos-control.bat cosmos rake build VERSION=1.0.0
       Successfully built RubyGem
       Name: cosmos-bob
