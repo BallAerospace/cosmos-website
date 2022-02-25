@@ -16,9 +16,9 @@ plugins:
 # Note the collection name is available from the page, e.g. page.collection
 # Thus you can do site[page.collection] to access the collection
 collections:
-  docs: # unversioned docs
+  docs_enterprise:
     output: true
-    permalink: /docs/:name
+    permalink: /docs/enterprise/:name
   docs_v5:
     output: true
     permalink: /docs/v5/:name
@@ -27,7 +27,7 @@ collections:
     permalink: /docs/v4/:name
 
 # Default collection
-default: v4
+default: v5
 
 exclude:
   - Gemfile
