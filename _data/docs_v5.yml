@@ -30,7 +30,8 @@
     - tlm_grapher
     - tlm_viewer
     - screens
-    - timeline
+    - calendar
+    - autonomic
 
 - title: Usage Guides
   docs:
