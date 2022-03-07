@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Enterprise Edition</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="Jekyll v4.2.2">
+  <link rel="alternate" type="application/rss+xml" title="Ball Aerospace COSMOS News" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Recent commits to COSMOS's master branch" href="https://github.com/BallAerospace/COSMOS/commits/master.atom">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="stylesheet" href="/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+
+<body class="wrap">
+  <header role="banner">
+  <nav class="mobile-nav show-on-mobiles">
+    <ul>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="current">
+    <span class="hide-on-mobiles"><a href="/docs/enterprise/">Enterprise</a></span>
+    <span class="show-on-mobiles"><a href="/docs/enterprise/">EE</a></span>
+  </li>
+  <li class="">
+    <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
+    <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
+  </li>
+  <li class="">
+    <a href="/news/">News</a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/BallAerospace/COSMOS" target="_blank"
+      ><span class="hide-on-mobiles">View on </span>GitHub</a
+    >
+  </li>
+</ul>
+
+  </nav>
+  <div class="grid wider">
+    <div class="unit one-fourth center-on-mobiles" style="margin-top:27px;">
+      <h1>
+        <a href="/">
+          <span class="sr-only">COSMOS</span>
+          <img src="/img/COSMOS.png" width="222" height="50" alt="COSMOS Logo">
+        </a>
+      </h1>
+    </div>
+    <nav class="main-nav unit three-fourths hide-on-mobiles">
+      <ul>
+  <li class="">
+    <a href="/">Home</a>
+  </li>
+  <li class="current">
+    <span class="hide-on-mobiles"><a href="/docs/enterprise/">Enterprise</a></span>
+    <span class="show-on-mobiles"><a href="/docs/enterprise/">EE</a></span>
+  </li>
+  <li class="">
+    <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
+    <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
+  </li>
+  <li class="">
+    <a href="/news/">News</a>
+  </li>
+  <li class="">
+    <a href="/help/">Help</a>
+  </li>
+  <li>
+    <a href="https://github.com/BallAerospace/COSMOS" target="_blank"
+      ><span class="hide-on-mobiles">View on </span>GitHub</a
+    >
+  </li>
+</ul>
+
+    </nav>
+  </div>
+</header>
+
+
+  <section class="docs">
+  <div class="grid wider">
+    <div class="unit four-fifths">
+      <article>
+        <!-- Get version but ignore the "docs" collection -->
+        <!-- prettier-ignore -->
+        
+         
+        <h1>Enterprise Edition</h1>
+        <p>Welcome to the COSMOS Enterprise Edition. The Enterprise Edition of COSMOS takes the Open Source Edition and adds a bunch of great features critical for mission operations. These include individual user accounts, Role Based Access Control (RBAC), Kubernetes support, end-to-end encryption, and more! It also allows the licenser to modify and extend COSMOS without publishing their changes.</p>
+
+<!--
+### Enterprise Architecture
+
+![Enterprise Architecture](/img/tools/enterprise_architecture.png)
+-->
+
+<h2 id="feature-comparison">Feature Comparison</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th style="text-align: center">Open Source</th>
+      <th style="text-align: center">Enterprise</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Full set of COSMOS Tools</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td>Full access to COSMOS source code</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td>Single group account</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>Individual user accounts via LDAP</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td>Role based access control <a href="/docs/enterprise/rbac">(RBAC)</a></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td>Multiple <a href="/docs/enterprise/scopes">scopes</a></td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td>End-to-End Encryption</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td>Private source modifications (1)</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td>Priority Support</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+  </tbody>
+</table>
+
+<ol>
+  <li>AGPLv3 requires publishing source code modifications</li>
+</ol>
+
+      </article>
+    </div>
+
+    <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <!-- Only display the version links for versioned content -->
+    
+
+    <!-- prettier-ignore -->
+    
+    <h4>Enterprise</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/enterprise/scopes">Scopes</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/enterprise/rbac">Role Based Access Control</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+  </aside>
+</div>
+
+
+    <div class="clear"></div>
+  </div>
+</section>
+
+
+  <script>
+  (function() {
+    var cx = '001663949569052626382:-enhin1layy';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<footer role="contentinfo">
+  <div class="grid wider">
+    <div class="unit one-third center-on-mobiles">
+      <p>The contents of this website are &copy;&nbsp;2022 <a href="http://www.ballaerospace.com/" target="_blank">Ball Aerospace</a> under the terms of the <a href="https://github.com/BallAerospace/COSMOS/blob/master/LICENSE.txt" target="_blank">GPLv3&nbsp;License</a>.</p>
+      <p>Site design derived from the <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> project documentation which is licensed under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE" target="_blank">MIT License</a>.</p>
+    </div>
+    <div class="unit two-thirds align-right center-on-mobiles">
+      <p>
+        <gcse:search></gcse:search>
+        Proudly hosted by
+        <a href="https://github.com" target="_blank">
+          <img src="/img/footer-logo.png" width="100" height="30" alt="GitHub Social coding">
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  var anchorForId = function (id) {
+    var anchor = document.createElement("a");
+    anchor.className = "header-link";
+    anchor.href      = "#" + id;
+    anchor.innerHTML = "<span class=\"sr-only\">Permalink</span><i class=\"fa fa-link\"></i>";
+    anchor.title = "Permalink";
+    return anchor;
+  };
+
+  var linkifyAnchors = function (level, containingElement) {
+    var headers = containingElement.getElementsByTagName("h" + level);
+    for (var h = 0; h < headers.length; h++) {
+      var header = headers[h];
+
+      if (typeof header.id !== "undefined" && header.id !== "") {
+        header.appendChild(anchorForId(header.id));
+      }
+    }
+  };
+
+  document.onreadystatechange = function () {
+    if (this.readyState === "complete") {
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("news")[0];
+      if (!contentBlock) {
+        return;
+      }
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, contentBlock);
+      }
+    }
+  };
+</script>
+
+  
+<!-- Google Analytics (http://google.com/analytics) -->
+<script>
+  !(function (j, e, k, y, l, L) {
+    (j.GoogleAnalyticsObject = y),
+      j[y] ||
+        (j[y] = function () {
+          (j[y].q = j[y].q || []).push(arguments);
+        }),
+      (j[y].l = +new Date()),
+      (l = e.createElement(k)),
+      (L = e.getElementsByTagName(k)[0]),
+      (l.src = "//www.google-analytics.com/analytics.js"),
+      L.parentNode.insertBefore(l, L);
+  })(window, document, "script", "ga");
+
+  ga("create", "UA-60103689-1", "cosmosc2.com");
+  ga("send", "pageview");
+</script>
+
+
+
+</body>
+</html>
