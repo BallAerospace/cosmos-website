@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Upgrading and the Gemfile</title>
+  <title>Papers</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.1">
@@ -99,27 +99,33 @@
           <span class="version-badge">v4</span>
         </div>
          
-        <h1>Upgrading and the Gemfile</h1>
-        <p>Upgrading COSMOS to the latest version is easy. Every COSMOS project comes with what is called a Gemfile. The Gemfile is used to track the library dependencies of your COSMOS project.
-If your project requires a gem that is not a standard COSMOS dependency, be sure to add it to your Gemfile to track that it is a requirement of your project. In any case, to upgrade to the latest
-version of COSMOS all you need to do is run:</p>
+        <h1>Papers</h1>
+        <h2 id="amos-2017">AMOS 2017</h2>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">bundle update cosmos</code></pre></figure>
+<ul>
+  <li><a href="https://amostech.com/TechnicalPapers/2017/SSA/Thomas_J.pdf">A Cloud-based, Open-Source, Command-and-Control Software Paradigm for Space Situational Awareness (SSA)</a></li>
+</ul>
 
-<p>And that should get the latest version installed (unless your Gemfile has locked COSMOS to a specific version). After upgrading, you should also look at the <a href="/news/releases">COSMOS release notes</a> to see if any other migration is required. If you would like to lock COSMOS (or any other gem) to a specific version, you can also do that with your Gemfile. Here is an example Gemfile that
-locks COSMOS to version 4.4.0, shows the ruby-termios gem requirement on non-windows systems, and also adds a project specific requirement for the sshkit gem.</p>
+<h2 id="small-sat-2016">Small Sat 2016</h2>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem 'cosmos', '4.4.0'
-gem 'ruby-termios' if RbConfig::CONFIG['target_os'] !~ /mswin|mingw|cygwin/i
-gem 'sshkit'
-</code></pre></div></div>
+<ul>
+  <li><a href="https://digitalcommons.usu.edu/smallsat/2016/TS9GroundSystems/3/">Ball Aerospace COSMOS Open Source Command and Control System</a></li>
+</ul>
 
-<p>Finally, whenever you receive a new COSMOS project, running the following command will ensure you have everything you need installed to run that configuration.</p>
+<h2 id="aerospace-testing-seminar-2015">Aerospace Testing Seminar 2015</h2>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">bundle <span class="nb">install</span></code></pre></figure>
+<ul>
+  <li><a href="/assets/Ball_Aerospaces_COSMOS_Open_Source_Test_System.pdf">Ball Aerospace’s COSMOS Open Source Test System</a></li>
+  <li><a href="/assets/System_Level_Integration_And_Test_Leveraging_Software_Unit_Testing_Techniques.pdf">System Level Integration and Test Leveraging Software Unit Testing Techniques</a></li>
+  <li><a href="/assets/The_Hidden_Benefits_of_Automated_Testing.pdf">The Hidden Benefits of Automated Testing</a></li>
+</ul>
 
-<p>For more information on Gemfiles and managing dependencies for a COSMOS (or any other Ruby-based) project see the bundler documentation at:
-<a href="http://bundler.io">Bundler Docs</a></p>
+<div class="note">
+  <h5>Giving a presentation on COSMOS? Please let us know!</h5>
+  <p>
+    We love seeing how people are using Ball Aerospace COSMOS to solve their problems.  Please email <a href="mailto:rmelton@ball.com">rmelton@ball.com</a> and let us know about your presentation.
+  </p>
+</div>
 
       </article>
     </div>
@@ -220,7 +226,7 @@ gem 'sshkit'
       
     
       
-  <li class="current">
+  <li class="">
     <a href="/docs/v4/upgrading">Upgrading and the Gemfile</a>
   </li>
   <!-- prettier-ignore -->
@@ -2478,7 +2484,7 @@ gem 'sshkit'
       
     
       
-  <li class="">
+  <li class="current">
     <a href="/docs/v4/papers">Papers</a>
   </li>
   <!-- prettier-ignore -->

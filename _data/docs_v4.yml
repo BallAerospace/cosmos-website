@@ -56,3 +56,9 @@
     - packet_item_class
     - json_api
     - logging
+
+- title: Meta
+  docs:
+    - contributing
+    - papers
+    - xtce

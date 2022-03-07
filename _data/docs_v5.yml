@@ -45,3 +45,9 @@
     - json_api
     - streaming_api
     - log_structure
+
+- title: Meta
+  docs:
+    - contributing
+    - papers
+    - xtce

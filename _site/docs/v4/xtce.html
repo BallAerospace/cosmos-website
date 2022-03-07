@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Upgrading and the Gemfile</title>
+  <title>XTCE Support</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.1">
@@ -99,27 +99,127 @@
           <span class="version-badge">v4</span>
         </div>
          
-        <h1>Upgrading and the Gemfile</h1>
-        <p>Upgrading COSMOS to the latest version is easy. Every COSMOS project comes with what is called a Gemfile. The Gemfile is used to track the library dependencies of your COSMOS project.
-If your project requires a gem that is not a standard COSMOS dependency, be sure to add it to your Gemfile to track that it is a requirement of your project. In any case, to upgrade to the latest
-version of COSMOS all you need to do is run:</p>
+        <h1>XTCE Support</h1>
+        <p>Ball Aerospace COSMOS now has support for the <a href="https://www.omg.org/xtce/index.htm" target="_blank">XTCE Command and Telemetry Definition Standard</a>. This is an open standard designed to allow command and telemetry definitions to be transferred between different ground systems. COSMOS can run directly using the .xtce files, or can convert them into the COSMOS configuration file format.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">bundle update cosmos</code></pre></figure>
+<h2 id="running-cosmos-using-an-xtce-definition-file">Running COSMOS using an .xtce definition file</h2>
 
-<p>And that should get the latest version installed (unless your Gemfile has locked COSMOS to a specific version). After upgrading, you should also look at the <a href="/news/releases">COSMOS release notes</a> to see if any other migration is required. If you would like to lock COSMOS (or any other gem) to a specific version, you can also do that with your Gemfile. Here is an example Gemfile that
-locks COSMOS to version 4.4.0, shows the ruby-termios gem requirement on non-windows systems, and also adds a project specific requirement for the sshkit gem.</p>
+<p>A single .xtce file containing the command and telemetry definitions for a target can be used in place of the normal COSMOS command and telemetry definition files. Simply place the target’s .xtce file in the target’s cmd_tlm folder and COSMOS will use it for the command and telemetry definitions.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem 'cosmos', '4.4.0'
-gem 'ruby-termios' if RbConfig::CONFIG['target_os'] !~ /mswin|mingw|cygwin/i
-gem 'sshkit'
+<h2 id="converting-a-xtce-file-into-a-cosmos-configuration">Converting a .xtce file into a COSMOS configuration</h2>
+
+<p>Use the following command to convert a .xtce file into COSMOS configuration files. The converted configuration files will be placed into a target folder in the given output directory.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xtce_converter --import &lt;xtce_filename&gt; &lt;output_dir&gt;
 </code></pre></div></div>
 
-<p>Finally, whenever you receive a new COSMOS project, running the following command will ensure you have everything you need installed to run that configuration.</p>
+<h2 id="converting-a-cosmos-configuration-to-xtce">Converting a COSMOS Configuration to XTCE</h2>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">bundle <span class="nb">install</span></code></pre></figure>
+<p>Use the following command to convert your current cosmos project into .xtce files, one per target. The converted .xtce files will be placed into a target folder in the given output directory.</p>
 
-<p>For more information on Gemfiles and managing dependencies for a COSMOS (or any other Ruby-based) project see the bundler documentation at:
-<a href="http://bundler.io">Bundler Docs</a></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xtce_converter --export &lt;output_dir&gt;
+</code></pre></div></div>
+
+<h2 id="high-level-overview-of-current-support">High-level Overview of Current Support</h2>
+
+<ol>
+  <li>Integer, Float, Enumerated, String, and Binary Parameter/Argument Types are Supported</li>
+  <li>All DataEncodings are supported</li>
+  <li>Telemetry and Commands are Supported</li>
+  <li>Packet Identification is supported</li>
+  <li>States are supported</li>
+  <li>Units are supported</li>
+  <li>PolynomialCalibrators are supported</li>
+  <li>Only one SpaceSystem per .xtce file</li>
+  <li>Packets should not have gaps between items</li>
+</ol>
+
+<h2 id="supported-elements-and-attributes">Supported Elements and Attributes</h2>
+
+<p>The following elements and associated attributes are currently supported.</p>
+
+<ul>
+  <li>SpaceSystem</li>
+  <li>TelemetryMetaData</li>
+  <li>CommandMetaData</li>
+  <li>ParameterTypeSet</li>
+  <li>EnumerationList</li>
+  <li>ParameterSet</li>
+  <li>ContainerSet</li>
+  <li>EntryList</li>
+  <li>DefaultCalibrator</li>
+  <li>DefaultAlarm</li>
+  <li>RestrictionCriteria</li>
+  <li>ComparisonList</li>
+  <li>MetaCommandSet</li>
+  <li>DefaultCalibrator</li>
+  <li>ArgumentTypeSet</li>
+  <li>ArgumentList</li>
+  <li>ArgumentAssignmentList</li>
+  <li>EnumeratedParameterType</li>
+  <li>EnumeratedArgumentType</li>
+  <li>IntegerParameterType</li>
+  <li>IntegerArgumentType</li>
+  <li>FloatParameterType</li>
+  <li>FloatArgumentType</li>
+  <li>StringParameterType</li>
+  <li>StringArgumentType</li>
+  <li>BinaryParameterType</li>
+  <li>BinaryArgumentType</li>
+  <li>IntegerDataEncoding</li>
+  <li>FloatDataEncoding</li>
+  <li>StringDataEncoding</li>
+  <li>BinaryDataEncoding’</li>
+  <li>SizeInBits</li>
+  <li>FixedValue</li>
+  <li>UnitSet</li>
+  <li>Unit</li>
+  <li>PolynomialCalibrator</li>
+  <li>Term</li>
+  <li>StaticAlarmRanges</li>
+  <li>WarningRange</li>
+  <li>CriticalRange</li>
+  <li>ValidRange</li>
+  <li>Enumeration</li>
+  <li>Parameter</li>
+  <li>Argument</li>
+  <li>ParameterProperties</li>
+  <li>SequenceContainer</li>
+  <li>BaseContainer</li>
+  <li>LongDescription</li>
+  <li>ParameterRefEntry</li>
+  <li>ArgumentRefEntry</li>
+  <li>BaseMetaCommand</li>
+  <li>Comparison</li>
+  <li>MetaCommand</li>
+  <li>BaseMetaCommand</li>
+  <li>CommandContainer</li>
+  <li>ArgumentAssignment</li>
+</ul>
+
+<h2 id="ignored-elements">Ignored Elements</h2>
+
+<p>The following elements are simply ignored by COSMOS:</p>
+
+<ul>
+  <li>Header</li>
+  <li>AliasSet</li>
+  <li>Alias</li>
+</ul>
+
+<h2 id="unsupported-elements">Unsupported Elements</h2>
+
+<p>Any elements not listed above are currently unsupported. Near term support for the following elements and features are planned and priority will be determined by user requests.</p>
+
+<ul>
+  <li>SplineCalibrator</li>
+  <li>Alternate methods of specifying offsets into containers</li>
+  <li>Output to the XUSP standard</li>
+  <li>Additional Data Types</li>
+  <li>Container References</li>
+</ul>
+
+<p>If there is a particular element or feature you need supported please submit a ticket on Github.</p>
 
       </article>
     </div>
@@ -220,7 +320,7 @@ gem 'sshkit'
       
     
       
-  <li class="current">
+  <li class="">
     <a href="/docs/v4/upgrading">Upgrading and the Gemfile</a>
   </li>
   <!-- prettier-ignore -->
@@ -2574,7 +2674,7 @@ gem 'sshkit'
       
     
       
-  <li class="">
+  <li class="current">
     <a href="/docs/v4/xtce">XTCE Support</a>
   </li>
   <!-- prettier-ignore -->
