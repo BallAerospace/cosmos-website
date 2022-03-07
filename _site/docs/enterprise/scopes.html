@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Ball Aerospace COSMOS</title>
+  <title>Scopes</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -22,10 +22,10 @@
   <header role="banner">
   <nav class="mobile-nav show-on-mobiles">
     <ul>
-  <li class="current">
+  <li class="">
     <a href="/">Home</a>
   </li>
-  <li class="">
+  <li class="current">
     <span class="hide-on-mobiles"><a href="/docs/enterprise/">Enterprise</a></span>
     <span class="show-on-mobiles"><a href="/docs/enterprise/">EE</a></span>
   </li>
@@ -58,10 +58,10 @@
     </div>
     <nav class="main-nav unit three-fourths hide-on-mobiles">
       <ul>
-  <li class="current">
+  <li class="">
     <a href="/">Home</a>
   </li>
-  <li class="">
+  <li class="current">
     <span class="hide-on-mobiles"><a href="/docs/enterprise/">Enterprise</a></span>
     <span class="show-on-mobiles"><a href="/docs/enterprise/">EE</a></span>
   </li>
@@ -87,203 +87,76 @@
 </header>
 
 
-  <section class="intro">
+  <section class="docs">
   <div class="grid wider">
-    <div class="unit whole center-on-mobiles">
-      <p class="first">
-        The User Interface for Command and Control of Embedded Systems
-      </p>
+    <div class="unit four-fifths">
+      <article>
+        <!-- Get version but ignore the "docs" collection -->
+        <!-- prettier-ignore -->
+        
+         
+        <h1>Scopes</h1>
+        <p>Scopes can be thought of as a fully contained COSMOS installation. Any gems or plugins (and thus targets, interfaces, etc) installed to a scope are local to that scope. That means you can create multiple scopes for different test setups, programs, etc without complexifying or corrupting an existing COSMOS setup.</p>
+
+<h3 id="creating-and-using-scopes">Creating and Using Scopes</h3>
+
+<p>To create a new scope you must have the super admin role. Go to the Admin page and select the Scopes tab. Click Add and create a new name for the Scope. A useful naming conventions could be “<Program Name="">_<Usage>", e.g. Gladiator_SWTB, Gladiator_TVAC, Gladiator_EMI, etc.</Usage></Program></p>
+
+<p>Once scopes are created the show up in the Scope drop down list. Selecting a different scope unloads all the plugins (target, interfaces, etc) from COSMOS and loads the new one. This is a significant operation in that we shut down all existing connections and microservices and start new ones. Plan on this taking a few minutes depending on the complexity of your scope (number of plugin targets and interfaces).</p>
+
+      </article>
     </div>
-  </div>
-</section>
-<section class="announcement" style="margin-top: -10px">
-  <div class="grid wider" style="margin: 0px auto; max-width: 650px">
-    <div
-      class="unit whole center-on-mobiles"
-      style="padding: 0px 20px; max-width: 650px; margin: 0px auto 10px"
-    >
-      <p
-        style="
-          margin: 0px;
-          color: #72a4ff;
-          background: white;
-          text-align: center;
-          border-radius: 15px;
-          text-shadow: none;
-          padding: 10px;
-          font-size: 18px;
-          border: 1px solid #72a4ff;
-          font-weight: bold;
-        "
-      >
-        <a href="/docs/v5/gettingstarted"
-          >COSMOS 5 has been released!</a
-        >
-      </p>
-    </div>
-  </div>
-</section>
-<section class="features">
-  <div class="grid wider">
-    <div class="unit one-third">
-      <h2>Full Lifecycle</h2>
-      <p>
-        Use the same interface from <em>test to operations</em>. Test
-        automation, data display, graphs and more.
-      </p>
-      <a href="/docs/requirements">How COSMOS works &rarr;</a>
-    </div>
-    <div class="unit one-third">
-      <h2>Open Source</h2>
-      <p>
-        All of the code is open source - no surprises, easy to debug, and fully
-        documented.
-      </p>
-      <a href="https://github.com/BallAerospace/COSMOS" target="_blank"
-        >View Source &rarr;</a
-      >
-    </div>
-    <div class="unit one-third">
-      <h2>Support Available</h2>
-      <p>
-        Commercial licenses, support contracts, and complete configuration
-        support available.
-      </p>
-      <a href="/help">Contact Us &rarr;</a>
-    </div>
+
+    <div class="unit one-fifth hide-on-mobiles">
+  <aside>
+    <!-- Only display the version links for versioned content -->
+    
+
+    <!-- prettier-ignore -->
+    
+    <h4>Enterprise</h4>
+    <!-- prettier-ignore -->
+    <!-- prettier-ignore -->
+
+
+<ul>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+  <li class="current">
+    <a href="/docs/enterprise/scopes">Scopes</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+  <li class="">
+    <a href="/docs/enterprise/rbac">Role Based Access Control</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+</ul>
+
+    
+  </aside>
+</div>
+
+
     <div class="clear"></div>
-  </div>
-</section>
-<section class="quickstart">
-  <div class="grid wider">
-    <div class="unit golden-small center-on-mobiles">
-      <h3>Get up and running <em>in&nbsp;seconds</em>.</h3>
-      <div style="text-align: center; margin-top: 6px; font-size: 16px">
-        (See <a href="/docs/v5/installation">Full Installation Instructions</a>)
-      </div>
-    </div>
-    <div class="unit golden-large code">
-      <p class="title">Quick-start Instructions</p>
-      <div class="shell">
-        <p class="line">
-          <span class="command"># On Windows:</span>
-        </p>
-        <p class="line">
-          <span class="command"
-            ><span class="path">C:\></span>cosmos-control start</span
-          >
-        </p>
-        <p class="line">
-          <span class="command"># On Linux/Mac:</span>
-        </p>
-        <p class="line" style="word-wrap: break-word">
-          <span class="command" style="width: 100%"
-            ><span class="path">$</span>./cosmos-control.sh start</span
-          >
-        </p>
-        <p class="line">
-          <span class="output"># => Now open a browser to localhost:2900</span>
-        </p>
-      </div>
-    </div>
-    <div class="clear"></div>
-  </div>
-</section>
-<div class="grid wider" style="margin: 0px auto; padding: 20px">
-  <section class="video-container myvideo">
-    <center>
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/RLWo61exn-o"
-        frameborder="0"
-        allowfullscreen
-      ></iframe>
-    </center>
-  </section>
-  <!--
-  <a href="https://www.youtube.com/watch?v=U1sbak6QZ5w"
-    >COSMOS in 5 Minutes Video</a
-  ><br />
-  <a href="/assets/COSMOS_Flyer.pdf">Download Datasheet</a><br />
-  -->
-</div>
-<div
-  class="grid wider no-stacking-on-mobiles"
-  style="margin: 0px auto; padding: 20px"
->
-  <h2 style="margin-bottom: 10px">Used By:</h2>
-  <div class="unit one-third">
-    <img
-      src="/img/ball.jpg"
-      style="width: 200px; margin: 0px auto; display: block"
-    />
-  </div>
-  <div class="unit one-third">
-    <img
-      src="/img/nasa.gif"
-      style="width: 200px; margin: 0px auto; display: block"
-    />
-  </div>
-  <div class="unit one-third">
-    <img
-      src="/img/BCT.png"
-      style="width: 200px; margin: 0px auto; display: block"
-    />
-  </div>
-  <div class="clear"></div>
-</div>
-<div
-  class="grid wider no-stacking-on-mobiles"
-  style="margin: 0px auto; padding: 20px; margin-bottom: 0px"
->
-  <div class="unit one-third">
-    <img
-      src="/img/johnh.gif"
-      style="width: 200px; margin: 0px auto; display: block"
-    />
-  </div>
-  <div class="unit one-third">
-    <img
-      src="/img/lockheed.png"
-      style="width: 200px; margin: 0px auto; display: block"
-    />
-  </div>
-  <div class="unit one-third">
-    <img
-      src="/img/sdlusu.gif"
-      style="width: 200px; margin: 0px auto; display: block"
-    />
-  </div>
-  <div class="clear"></div>
-  <h3 style="margin-bottom: 10px">And Many Others...</h3>
-  <div class="clear"></div>
-</div>
-<section class="announcement" style="margin-top: 40px">
-  <div class="grid wider" style="margin: 0px auto; max-width: 650px">
-    <div
-      class="unit whole center-on-mobiles"
-      style="padding: 0px 20px; max-width: 650px; margin: 0px auto 10px"
-    >
-      <p
-        style="
-          margin: 0px;
-          color: #72a4ff;
-          background: white;
-          text-align: center;
-          border-radius: 15px;
-          text-shadow: none;
-          padding: 10px;
-          font-size: 18px;
-          border: 1px solid #72a4ff;
-          font-weight: bold;
-        "
-      >
-        <a href="/news/2016/02/27/fukuoka-award/"
-          >2016 Fukuoka Ruby Award Winner</a
-        >
-      </p>
-    </div>
   </div>
 </section>
 
