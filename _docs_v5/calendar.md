@@ -6,7 +6,7 @@ toc: true
 
 ## Introduction
 
-Calendar allows for the simple execution of commands and scripts. This uses the microservice operator in cosmos to run a multi-threaded application to listen for updates to the timelie schedule and execute on about a seconds accuracy.
+Calendar visualizes metadata, narrative, and timeline information in one easy to understand place. Timelines allow for the simple execution of commands and scripts based on future dates and times.
 
 ![Calendar](/img/v5/calendar/calendar.png)
 
@@ -20,7 +20,7 @@ Calendar allows for the simple execution of commands and scripts. This uses the 
 
 ### Metadata
 
-All Metadata is stored into a single sort set in the backend at millisecond resolution so you can now record any external data outside of the target / packet.  
+Metadata allows you to record arbitrary data into the COSMOS system. For example, you could ask the user for inputs which fall outside the available target telemetry including user defined IDs, environmental factors, procedural steps, etc. This allows for searching metadata based on these fields and correlating the related telemetry data.
 
 ### Narrative
 
@@ -28,14 +28,14 @@ A simple way to record events on the calendar, for example a test window or anyt
 
 ### Activity
 
-Scheduled on a timeline these can run single commands or kick off scripts to run.
+Scheduled on a timeline these can run single commands or single Cosmos to run a script.
 
 ### Adding Timelines
 
 Adding a Timeline to Cosmos.
 
- - Each timeline consists on several threads so be careful of your compute resources you have as you can overwhelm cosmos with lots of these.
- - Also note can not have over lapping activities on a single calendar.
+ - Each timeline consists of several threads so be careful of your compute resources you have as you can overwhelm cosmos with lots of these.
+ - Note you can not have overlapping activities on a single calendar.
 
 ### Timeline lifecycle
 

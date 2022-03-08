@@ -6,14 +6,18 @@ toc: true
 
 ## Introduction
 
-Autonomic allows for the simple execution of commands and scripts based on stream based input. This uses the microservice operator in cosmos to run a multi-threaded application to listen for updates on and execute on about a seconds accuracy.
+Autonomic allows for the simple execution of commands and scripts based on user-defined rules.
 
 
-### Overview and TriggerGroups
+### Overview
 
-Triggers are organized into groups, these groups are to ensure that we can scale as the number of subscriptions to the data can be a bottleneck.
+Autonomic operates with some basic building blocks: Trigger Groups, Triggers, and Reactions. Triggers are simply logical blocks which evaluate true or false. Reactions can be linked to one or many Triggers and specify an action to perform. Together they allow for an action to be taken based on anything going on in your system.
 
 ![Autonomic](/img/v5/autonomic/autonomic.png)
+
+### TriggerGroups
+
+Triggers are organized into groups, these groups are to ensure that we can scale as the number of triggers with the incoming telemetry. Each group consists of several threads so be careful of your compute resources you have as you can overwhelm Cosmos with lots of these.
 
 ```json
 {
@@ -23,7 +27,7 @@ Triggers are organized into groups, these groups are to ensure that we can scale
 
 ### Triggers
 
-Triggers are are logical components that are evaluated to true or false.
+Triggers are logical components that are evaluated to true or false.
 
 ![Triggers](/img/v5/autonomic/triggers.png)
 
@@ -48,7 +52,7 @@ Triggers are are logical components that are evaluated to true or false.
 
 ### Reactions
 
-Reactions wait for triggers to be evaluated and perform actions based on what you tell them.
+Reactions wait for triggers to be evaluated to true and perform actions such as sending a command or running a script.
 
 ![Reactions](/img/v5/autonomic/reactions.png)
 
