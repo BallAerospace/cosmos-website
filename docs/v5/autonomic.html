@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Logging</title>
+  <title>Autonomic</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -100,63 +100,99 @@
         </div>
          
         <div class="toc"><ul id="toc" class="section-nav">
-<li class="toc-entry toc-h3"><a href="#decom_logs--raw_logs">decom_logs &amp; raw_logs</a></li>
-<li class="toc-entry toc-h3"><a href="#text_logs">text_logs</a>
+<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a>
 <ul>
-<li class="toc-entry toc-h4"><a href="#cosmos_log_messages">cosmos_log_messages</a></li>
-<li class="toc-entry toc-h4"><a href="#cosmos_notifications">cosmos_notifications</a></li>
+<li class="toc-entry toc-h3"><a href="#overview">Overview</a></li>
+<li class="toc-entry toc-h3"><a href="#triggergroups">TriggerGroups</a></li>
+<li class="toc-entry toc-h3"><a href="#triggers">Triggers</a></li>
+<li class="toc-entry toc-h3"><a href="#reactions">Reactions</a></li>
+<li class="toc-entry toc-h3"><a href="#autonomic-lifecycle">Autonomic lifecycle</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#tool_logs">tool_logs</a></li>
 </ul></div>
         
-        <h1>Logging</h1>
-        <p>COSMOS 5 includes the open source <a href="https://min.io/">minio</a> software which is a high-performance S3 compatible object storage. Browse to http://localhost:2900/minio and enter the username and password which are stored in the root .env file as COSMOS_MINIO_USERNAME and COSMOS_MINIO_PASSWORD.</p>
+        <h1>Autonomic</h1>
+        <h2 id="introduction">
+<a class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
-<p>You should see the MinIO Browser and the list of buckets:</p>
+<p>Autonomic allows for the simple execution of commands and scripts based on user-defined rules.</p>
 
-<p><img src="/img/v5/logging/browser.png" alt="MinIO Browser"></p>
+<h3 id="overview">
+<a class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h3>
 
-<p>Note the logs bucket is organized by scopes of which there initially is just one: DEFAULT. Clicking that shows the decom_logs, raw_logs, text_logs and tool_logs.</p>
+<p>Autonomic operates with some basic building blocks: Trigger Groups, Triggers, and Reactions. Triggers are simply logical blocks which evaluate true or false. Reactions can be linked to one or many Triggers and specify an action to perform. Together they allow for an action to be taken based on anything going on in your system.</p>
 
-<h3 id="decom_logs--raw_logs">
-<a class="anchor" href="#decom_logs--raw_logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>decom_logs &amp; raw_logs</h3>
+<p><img src="/img/v5/autonomic/autonomic.png" alt="Autonomic"></p>
 
-<p>The decom_logs and raw_logs folders contain the decommutated and raw command and telemetry data. Both are further broken down by target, packet, then date. For example, browsing into the raw_logs/tlm/INST/HEALTH_STATUS:</p>
+<h3 id="triggergroups">
+<a class="anchor" href="#triggergroups" aria-hidden="true"><span class="octicon octicon-link"></span></a>TriggerGroups</h3>
 
-<p><img src="/img/v5/logging/raw_tlm_logs.png" alt="raw_tlm_logs"></p>
+<p>Triggers are organized into groups, these groups are to ensure that we can scale as the number of triggers with the incoming telemetry. Each group consists of several threads so be careful of your compute resources you have as you can overwhelm Cosmos with lots of these.</p>
 
-<p>Note the presence of both .bin files and .idx files. The .bin files contain the raw binary data  while the idx files are index files designed to allow quick binary searches on the corresponding packet logs. For more information about the structure of these files see the <a href="/docs/v5/log-structure">Log Structure</a> developer documentation.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"system42"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
-<p>The default settings for the Logging microservice is to start a new log file every 10 minutes or 50MB, which ever comes first. In the case of the low data rate demo, the 10 minute mark is hit first.</p>
+<h3 id="triggers">
+<a class="anchor" href="#triggers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Triggers</h3>
 
-<div class="note unreleased">
-  <p>Decribe how to change the logging parameters</p>
-</div>
+<p>Triggers are logical components that are evaluated to true or false.</p>
 
-<h3 id="text_logs">
-<a class="anchor" href="#text_logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>text_logs</h3>
+<p><img src="/img/v5/autonomic/triggers.png" alt="Triggers"></p>
 
-<p>The text_logs folder contains cosmos_log_messages and cosmos_notifications.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"system42"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TBD"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"left"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"item"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INST"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"packet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADCS"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"item"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POSX"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"raw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"operation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"right"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
-<h4 id="cosmos_log_messages">
-<a class="anchor" href="#cosmos_log_messages" aria-hidden="true"><span class="octicon octicon-link"></span></a>cosmos_log_messages</h4>
+<h3 id="reactions">
+<a class="anchor" href="#reactions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reactions</h3>
 
-<p>The cosmos_log_messages folder contains text files which are again sorted by date and timestamped. These log messages come from the various microservices including the server and the target microservices. Thus these logs contain all the commands sent (in plain text) and telemetry checked.</p>
+<p>Reactions wait for triggers to be evaluated to true and perform actions such as sending a command or running a script.</p>
 
-<h4 id="cosmos_notifications">
-<a class="anchor" href="#cosmos_notifications" aria-hidden="true"><span class="octicon octicon-link"></span></a>cosmos_notifications</h4>
+<p><img src="/img/v5/autonomic/reactions.png" alt="Reactions"></p>
 
-<p>The cosmos_notifications folder contains all the notifications which are accessible from the Bell icon in the status bar.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INST command"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"snooze"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"review"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"triggers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"system42"</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"command"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INST CLEAR"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
-<p><img src="/img/v5/logging/notifications.png" alt="notifications"></p>
+<h3 id="autonomic-lifecycle">
+<a class="anchor" href="#autonomic-lifecycle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Autonomic lifecycle</h3>
 
-<h3 id="tool_logs">
-<a class="anchor" href="#tool_logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>tool_logs</h3>
+<blockquote>
+  <p>TODO</p>
+</blockquote>
 
-<p>The tool_logs directory contains logs from the various COSMOS tools. Note that if you have not yet run any tools you may not see this directory as it is created on demand. Tool sub-directories are also created on demand. For example, after running a script in Script Runner a new ‘sr’ subdirectory appears which contains the script runner log resulting from running the script. In some cases logs in this directory may also be directly available from the tool itself. In the Script Runner case, the Log Messages pane below the script holds the output messages from the last script. Clicking the Download link allows you to download these messages as a file.</p>
-
-<p><img src="/img/v5/logging/log_messages.png" alt="log_messages"></p>
+<p><img src="/img/v5/autonomic/autonomic_lifecycle.png" alt="Autonomic Lifecycle"></p>
 
       </article>
     </div>
@@ -1083,7 +1119,7 @@
       
     
       
-  <li class="">
+  <li class="current">
     <a href="/docs/v5/autonomic">Autonomic</a>
   </li>
   <!-- prettier-ignore -->
@@ -1153,7 +1189,7 @@
       
     
       
-  <li class="current">
+  <li class="">
     <a href="/docs/v5/logging">Logging</a>
   </li>
   <!-- prettier-ignore -->
