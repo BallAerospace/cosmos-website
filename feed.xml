@@ -11,8 +11,8 @@
     <title xml:lang="en">Ball Aerospace COSMOS News</title>
     <atom:link type="application/atom+xml" href="http://cosmosc2/feed.xml" rel="self"/>
     <link>http://cosmosc2.com/</link>
-    <pubDate>Wed, 09 Mar 2022 16:26:07 +0000</pubDate>
-    <lastBuildDate>Wed, 09 Mar 2022 16:26:07 +0000</lastBuildDate>
+    <pubDate>Wed, 09 Mar 2022 17:56:06 +0000</pubDate>
+    <lastBuildDate>Wed, 09 Mar 2022 17:56:06 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.2.2</generator>
     <description>The User Interface for Embedded Systems</description>
