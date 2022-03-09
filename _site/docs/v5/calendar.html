@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Logging</title>
+  <title>Calendar</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -100,63 +100,78 @@
         </div>
          
         <div class="toc"><ul id="toc" class="section-nav">
-<li class="toc-entry toc-h3"><a href="#decom_logs--raw_logs">decom_logs &amp; raw_logs</a></li>
-<li class="toc-entry toc-h3"><a href="#text_logs">text_logs</a>
+<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a></li>
+<li class="toc-entry toc-h2"><a href="#types-of-events">Types of Events</a>
 <ul>
-<li class="toc-entry toc-h4"><a href="#cosmos_log_messages">cosmos_log_messages</a></li>
-<li class="toc-entry toc-h4"><a href="#cosmos_notifications">cosmos_notifications</a></li>
+<li class="toc-entry toc-h3"><a href="#metadata">Metadata</a></li>
+<li class="toc-entry toc-h3"><a href="#narrative">Narrative</a></li>
+<li class="toc-entry toc-h3"><a href="#activity">Activity</a></li>
+<li class="toc-entry toc-h3"><a href="#adding-timelines">Adding Timelines</a></li>
+<li class="toc-entry toc-h3"><a href="#timeline-lifecycle">Timeline lifecycle</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#tool_logs">tool_logs</a></li>
 </ul></div>
         
-        <h1>Logging</h1>
-        <p>COSMOS 5 includes the open source <a href="https://min.io/">minio</a> software which is a high-performance S3 compatible object storage. Browse to http://localhost:2900/minio and enter the username and password which are stored in the root .env file as COSMOS_MINIO_USERNAME and COSMOS_MINIO_PASSWORD.</p>
+        <h1>Calendar</h1>
+        <h2 id="introduction">
+<a class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
-<p>You should see the MinIO Browser and the list of buckets:</p>
+<p>Calendar visualizes metadata, narrative, and timeline information in one easy to understand place. Timelines allow for the simple execution of commands and scripts based on future dates and times.</p>
 
-<p><img src="/img/v5/logging/browser.png" alt="MinIO Browser"></p>
+<p><img src="/img/v5/calendar/calendar.png" alt="Calendar"></p>
 
-<p>Note the logs bucket is organized by scopes of which there initially is just one: DEFAULT. Clicking that shows the decom_logs, raw_logs, text_logs and tool_logs.</p>
+<h2 id="types-of-events">
+<a class="anchor" href="#types-of-events" aria-hidden="true"><span class="octicon octicon-link"></span></a>Types of Events</h2>
 
-<h3 id="decom_logs--raw_logs">
-<a class="anchor" href="#decom_logs--raw_logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>decom_logs &amp; raw_logs</h3>
+<ul>
+  <li>
+    <p>Metadata</p>
+  </li>
+  <li>
+    <p>Narrative</p>
+  </li>
+  <li>
+    <p>Activity</p>
+  </li>
+</ul>
 
-<p>The decom_logs and raw_logs folders contain the decommutated and raw command and telemetry data. Both are further broken down by target, packet, then date. For example, browsing into the raw_logs/tlm/INST/HEALTH_STATUS:</p>
+<h3 id="metadata">
+<a class="anchor" href="#metadata" aria-hidden="true"><span class="octicon octicon-link"></span></a>Metadata</h3>
 
-<p><img src="/img/v5/logging/raw_tlm_logs.png" alt="raw_tlm_logs"></p>
+<p>Metadata allows you to record arbitrary data into the COSMOS system. For example, you could ask the user for inputs which fall outside the available target telemetry including user defined IDs, environmental factors, procedural steps, etc. This allows for searching metadata based on these fields and correlating the related telemetry data.</p>
 
-<p>Note the presence of both .bin files and .idx files. The .bin files contain the raw binary data  while the idx files are index files designed to allow quick binary searches on the corresponding packet logs. For more information about the structure of these files see the <a href="/docs/v5/log-structure">Log Structure</a> developer documentation.</p>
+<h3 id="narrative">
+<a class="anchor" href="#narrative" aria-hidden="true"><span class="octicon octicon-link"></span></a>Narrative</h3>
 
-<p>The default settings for the Logging microservice is to start a new log file every 10 minutes or 50MB, which ever comes first. In the case of the low data rate demo, the 10 minute mark is hit first.</p>
+<p>A simple way to record events on the calendar, for example a test window or anything else…</p>
 
-<div class="note unreleased">
-  <p>Decribe how to change the logging parameters</p>
-</div>
+<h3 id="activity">
+<a class="anchor" href="#activity" aria-hidden="true"><span class="octicon octicon-link"></span></a>Activity</h3>
 
-<h3 id="text_logs">
-<a class="anchor" href="#text_logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>text_logs</h3>
+<p>Scheduled on a timeline these can run single commands or run a script.</p>
 
-<p>The text_logs folder contains cosmos_log_messages and cosmos_notifications.</p>
+<h3 id="adding-timelines">
+<a class="anchor" href="#adding-timelines" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Timelines</h3>
 
-<h4 id="cosmos_log_messages">
-<a class="anchor" href="#cosmos_log_messages" aria-hidden="true"><span class="octicon octicon-link"></span></a>cosmos_log_messages</h4>
+<p>Adding a Timeline to Cosmos.</p>
 
-<p>The cosmos_log_messages folder contains text files which are again sorted by date and timestamped. These log messages come from the various microservices including the server and the target microservices. Thus these logs contain all the commands sent (in plain text) and telemetry checked.</p>
+<ul>
+  <li>Each timeline consists of several threads so be careful of your compute resources you have as you can overwhelm cosmos with lots of these.</li>
+  <li>Note you can not have overlapping activities on a single calendar.</li>
+</ul>
 
-<h4 id="cosmos_notifications">
-<a class="anchor" href="#cosmos_notifications" aria-hidden="true"><span class="octicon octicon-link"></span></a>cosmos_notifications</h4>
+<h3 id="timeline-lifecycle">
+<a class="anchor" href="#timeline-lifecycle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Timeline lifecycle</h3>
 
-<p>The cosmos_notifications folder contains all the notifications which are accessible from the Bell icon in the status bar.</p>
+<p>When a user creates a timeline, the cosmos operator see a new microservice has been created. This signals the operator to start a new microservice, the timeline microservice. The timeline microservice is the main thread of execution for the timeline. This starts a scheduler manager thread. The scheduler manger thread contains a thread pool that hosts more then one thread to run the activity. The scheduler manger will evaluate the schedule and based on the start time of the activity it will add the activity to the queue.</p>
 
-<p><img src="/img/v5/logging/notifications.png" alt="notifications"></p>
+<p>The main thread will block on the web socket to listen to request changes to the timeline, these could be adding, removing, or updating activities. The main thread will make the changes to the in memory schedule if these changes are within the hour of the current time. When the web socket gets an update it has an action lookup table. These actions are “created”, “updated”, “deleted”, ect… Some actions require updating the schedule from the database to ensure the schedule and the database are always in synk.</p>
 
-<h3 id="tool_logs">
-<a class="anchor" href="#tool_logs" aria-hidden="true"><span class="octicon octicon-link"></span></a>tool_logs</h3>
+<p>The schedule thread checks every second to make sure if a task can be run. If the start time is equal or less then the last 15 seconds it will then check the previously queued jobs list in the schedule. If the activity has not been queued and is not fulfilled the activity will be queued, this adds an event to the activity but is not saved to the database. (TODO) This could be improved upon as a way to wake the thread when a change to the schedule happens or when a job needs to run.</p>
 
-<p>The tool_logs directory contains logs from the various COSMOS tools. Note that if you have not yet run any tools you may not see this directory as it is created on demand. Tool sub-directories are also created on demand. For example, after running a script in Script Runner a new ‘sr’ subdirectory appears which contains the script runner log resulting from running the script. In some cases logs in this directory may also be directly available from the tool itself. In the Script Runner case, the Log Messages pane below the script holds the output messages from the last script. Clicking the Download link allows you to download these messages as a file.</p>
+<p>The workers are plain and simple, they block on the queue until an activity is placed on the queue. Once a job is pulled from the queue they check the type and run the activity. The thread will mark the activity fulfillment true and update the database record with the complete. If the worker gets an error while trying to run the task the activity will NOT be fulfilled and record the error in the database.</p>
 
-<p><img src="/img/v5/logging/log_messages.png" alt="log_messages"></p>
+<p><img src="/img/v5/calendar/timeline_lifecycle.png" alt="Timeline Lifecycle"></p>
 
       </article>
     </div>
@@ -1001,7 +1016,7 @@
       
     
       
-  <li class="">
+  <li class="current">
     <a href="/docs/v5/calendar">Calendar</a>
   </li>
   <!-- prettier-ignore -->
@@ -1153,7 +1168,7 @@
       
     
       
-  <li class="current">
+  <li class="">
     <a href="/docs/v5/logging">Logging</a>
   </li>
   <!-- prettier-ignore -->
