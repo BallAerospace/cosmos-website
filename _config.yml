@@ -5,7 +5,8 @@ excerpt_separator: ""
 
 google_analytics_id: UA-60103689-1
 
-repository: https://github.com/BallAerospace/COSMOS
+cosmos: https://github.com/BallAerospace/COSMOS
+repository: https://github.com/BallAerospace/cosmos-website
 
 plugins:
   - jekyll-toc

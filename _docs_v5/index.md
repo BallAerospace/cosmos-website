@@ -50,7 +50,18 @@ hazardous. Here's what to look out for.
     are not yet released.</p>
 </div>
 
-If you come across anything along the way that we haven't covered, or if you
-know of a tip you think others would find handy, please [file an
-issue]({{ site.repository }}/issues/new/choose) and we'll see about
-including it in this guide.
+<div class="note">
+  <h5>Find a problem in the documentation?</h5>
+  <p>
+    Please <a
+    href="{{ site.repository }}/issues/new/choose">create an issue</a> on
+    GitHub describing what we can do to make it better.
+  </p>
+  <h5>Let us know what could be better!</h5>
+  <p>
+    Both using and hacking on COSMOS should be fun, simple, and easy, so if for
+    some reason you find it's a pain, please <a
+    href="{{ site.cosmos }}/issues/new/choose">create an issue</a> on
+    GitHub describing your experience so we can make it better.
+  </p>
+</div>
