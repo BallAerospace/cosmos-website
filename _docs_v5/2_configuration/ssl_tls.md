@@ -4,8 +4,6 @@ title: SSL-TLS
 toc: true
 ---
 
-## SSL-TLS 
-
 With moving cosmos to container based service, we do not support ssl/tls out of the box you need to set this part up. So here is some information on enabling SSL and TLS. If you want to read more you can go to the Traefik [docs](https://doc.traefik.io/traefik/routing/entrypoints/#tls)
 
 ### Generate the certificate
@@ -122,19 +120,20 @@ entrypoints:
 
 Now you can run `./cosmos-control.sh start` and it should work....
 
-## Let's Encrypt (with manual challenge).
+Let's Encrypt (with manual challenge).
+---
 
 #### KEY
 
 privkey.pem is the "key" file
 
-Sometimes it is improperly named as cert.key or example.com.key.
+Sometimes it is named as cert.key or example.com.key.
 
 #### CRT
 
 fullchain.pem is your "crt" file.
 
-Sometimes it is improperly named as example.com.crt.
+Sometimes it is named as example.com.crt.
 
 #### CRT/KEY Bundle
 
@@ -160,7 +159,52 @@ You can inspect the cert only like so:
 openssl x509 -in cert.pem -text -noout
 ```
 
-## TLS1.2 INADEQUATE_SECURITY Errors
+Extracting the certificate and keys from a .pfx file
+---
+
+The .pfx file, which is in a PKCS#12 format, contains the SSL certificate (public keys) and the corresponding private keys. Sometimes, you might have to import the certificate and private keys separately in an unencrypted plain text format to use it on another system. This topic provides instructions on how to convert the .pfx file to .crt and .key files.
+
+### Extract .crt and .key files from .pfx file
+
+> PREREQUISITE: Ensure OpenSSL is installed in the server that contains the SSL certificate.
+
+1. Start OpenSSL from the OpenSSL\bin folder.
+
+1. Open the command prompt and go to the folder that contains your .pfx file.
+
+1. Run the following command to extract the private key:
+
+```
+openssl pkcs12 -in [yourfile.pfx] -nocerts -out [drlive.key]
+```
+
+You will be prompted to type the import password. Type the password that you used to protect your keypair when you created the .pfx file. You will be prompted again to provide a new password to protect the .key file that you are creating. Store the password to your key file in a secure place to avoid misuse.
+
+1. Run the following command to extract the certificate:
+
+```
+openssl pkcs12 -in [yourfile.pfx] -clcerts -nokeys -out [drlive.crt]
+```
+
+1. Run the following command to decrypt the private key:
+
+```
+openssl rsa -in [drlive.key] -out [drlive-decrypted.key]
+```
+
+Type the password that you created to protect the private key file in the previous step.
+The .crt file and the decrypted and encrypted .key files are available in the path, where you started OpenSSL.
+
+### Convert .pfx file to .pem format
+
+There might be instances where you might have to convert the .pfx file into .pem format. Run the following command to convert it into PEM format.
+
+```
+openssl rsa -in [keyfile-encrypted.key] -outform PEM -out [keyfile-encrypted-pem.key]
+```
+
+TLS1.2 INADEQUATE_SECURITY Errors
+---
 
 - https://doc.traefik.io/traefik/https/tls/#cipher-suites
 - https://pkg.go.dev/crypto/tls#pkg-constants
