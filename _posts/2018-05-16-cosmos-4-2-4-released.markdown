@@ -11,7 +11,7 @@ This is the second patch release for 4.2. It greatly improves the ingest speed f
 
 The highlight of COSMOS 4.2 is a new tool called the Data Archival and Retrieval Tool (DART). DART is a long term trending database built on top of the PostgreSql database. It integrates directly with TlmGrapher, TlmExtractor, CmdExtractor, DataViewer, and Replay, allowing you to do historical queries of logged telemetry (and commands) by specifying a time range. Queries are super fast and it performs automatic data reduction at minute/hour/day granularity. Consider setting it up for your project and start data mining today!
 
-See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/home/
+See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/v4/
 
 ### New Features:
 
@@ -41,4 +41,4 @@ rake db:migrate
 rake db:seed
 ```
 
-See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/home/
+See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/v4/
