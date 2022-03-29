@@ -25,6 +25,6 @@ ITEM DEPLOYED? 0 0 DERIVED "Deployed status"
   GENERIC_READ_CONVERSION_END
 ```
 
-Note that this is probably overkill in this case because the conversion could just as easily be applied directly to the item. The raw value could then be obtained by calling tlm_raw("TGT PKT DEPLOYED") (see [tlm_raw](http://cosmosc2.com/docs/scripting#tlmraw)).
+Note that this is probably overkill in this case because the conversion could just as easily be applied directly to the item. The raw value could then be obtained by calling tlm_raw("TGT PKT DEPLOYED") (see [tlm_raw](http://cosmosc2.com/docs/v4/scripting#tlmraw)).
 
 These practices are similar to the Ruby convention of using methods with an exclamation point (bang) to indicate a dangerous method which typically directly modifies its caller. Ruby also has a convention of methods with question marks returning a boolean true or false value. Read more in the [Ruby documentation](http://docs.ruby-lang.org/en/trunk/syntax/methods_rdoc.html).

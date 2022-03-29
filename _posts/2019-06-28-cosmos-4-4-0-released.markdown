@@ -82,4 +82,4 @@ The faster identification in ticket #911 does come with a potentially breaking c
 
 To upgrade to the latest version of COSMOS, run "bundle update cosmos" in your COSMOS project folder.
 
-See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/home/
+See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/v4/

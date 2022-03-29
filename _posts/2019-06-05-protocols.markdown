@@ -16,7 +16,7 @@ COSMOS comes with a number of built-in protocols that are used directly with the
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
 ```
 
-The built-in protocols are fully described on the [Protocols](/docs/protocols) page and also mentioned on the [Interfaces](/docs/v4/interfaces#protocols) page.
+The built-in protocols are fully described on the [Protocols](/docs/v4/protocols) page and also mentioned on the [Interfaces](/docs/v4/interfaces#protocols) page.
 
 ### Custom Protocols
 

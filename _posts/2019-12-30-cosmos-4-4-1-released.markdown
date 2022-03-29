@@ -55,4 +55,4 @@ To upgrade to the latest version of COSMOS, run "bundle update cosmos" in your C
 
 The faster identification in ticket #911 does come with a potentially breaking change. The improvement requires that all packets for a given target be identified using the same fields (bit offset, bit_size, and type). This is the typical configuration, and breaking this pattern is typically a dangerous/bad choice for interfaces anyways, but previously COSMOS did default to handling packets being potentially identified using different fields in the same target. If you have a target that still requires that functionality, you need to declare CMD_UNIQUE_ID_MODE, and/or TLM_UNIQUE_ID_MODE in the target's target.txt file to indicate it should use the slower identification method.
 
-See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/home/
+See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/v4/

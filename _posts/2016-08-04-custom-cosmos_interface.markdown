@@ -8,7 +8,7 @@ categories: [post]
 
 <div class="note warning">
   <h5>Interfaces were changed dramatically in <a href="/news/2017/08/04/cosmos-4-0-0-released/">COSMOS 4.0.0</a></h5>
-  <p>This article only applies to pre-4.0.0 COSMOS releases. For current COSMOS releases please see the new <a href="/docs/v4/interfaces/">Interface</a> and <a href="/docs/protocols/">Protocol</a> documentation.</p>
+  <p>This article only applies to pre-4.0.0 COSMOS releases. For current COSMOS releases please see the new <a href="/docs/v4/interfaces/">Interface</a> and <a href="/docs/v4/protocols/">Protocol</a> documentation.</p>
 </div>
 
 One of our Ball Aerospace engineers asked how they could add a checksum to an existing COSMOS interface when talking to their target. COSMOS does not support this directly so it requires creating a custom interface. While this might sound daunting, the COSMOS interfaces were designed just for this type of extension and provide hooks for customization.

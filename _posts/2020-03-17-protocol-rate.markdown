@@ -10,11 +10,11 @@ Protocols were introduced into COSMOS in version 4.0.0 and were previously discu
 
 ### The Problem
 
-One COSMOS server was connected to a high speed telemetry target that was generating telemetry at 10Hz. Another COSMOS server was [chained](/docs/chaining/) to this and did not need this high speed data. How do you reduce the data rate coming into the chained server?
+One COSMOS server was connected to a high speed telemetry target that was generating telemetry at 10Hz. Another COSMOS server was [chained](/docs/v4/chaining/) to this and did not need this high speed data. How do you reduce the data rate coming into the chained server?
 
 ### The Solution
 
-We can first model the chaining using the COSMOS demo. The format for the cmd_tlm_server.txt file is given in the [chaining documentation](https://cosmosc2.com/docs/chaining#example-cmdtlmserver-configuration-for-child-cmd_tlm_server_chaintxt) and already exists in the COSMOS demo. The demo also includes a deconflicting port definition file in system_alt_ports.txt. To start the two server instances from the command line we can type:
+We can first model the chaining using the COSMOS demo. The format for the cmd_tlm_server.txt file is given in the [chaining documentation](https://cosmosc2.com/docs/v4/chaining#example-cmdtlmserver-configuration-for-child-cmd_tlm_server_chaintxt) and already exists in the COSMOS demo. The demo also includes a deconflicting port definition file in system_alt_ports.txt. To start the two server instances from the command line we can type:
 
 ```
 ruby demo\tools\CmdTlmServer
@@ -26,7 +26,7 @@ And in another terminal start the chained server:
 ruby demo\tools\CmdTlmServer --system system_alt_ports.txt --config cmd_tlm_server_chain.txt
 ```
 
-Now we need to implement a custom protocol to slow down the telemetry rate on the chained server. Note that the built-in protocols are fully described on the [Protocols](/docs/protocols) page and also mentioned on the [Interfaces](/docs/v4/interfaces#protocols) page.
+Now we need to implement a custom protocol to slow down the telemetry rate on the chained server. Note that the built-in protocols are fully described on the [Protocols](/docs/v4/protocols) page and also mentioned on the [Interfaces](/docs/v4/interfaces#protocols) page.
 
 ### Custom Protocols
 
