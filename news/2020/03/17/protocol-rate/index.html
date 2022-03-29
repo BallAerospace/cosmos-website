@@ -286,11 +286,11 @@
 
 <h3 id="the-problem">The Problem</h3>
 
-<p>One COSMOS server was connected to a high speed telemetry target that was generating telemetry at 10Hz. Another COSMOS server was <a href="/docs/chaining/">chained</a> to this and did not need this high speed data. How do you reduce the data rate coming into the chained server?</p>
+<p>One COSMOS server was connected to a high speed telemetry target that was generating telemetry at 10Hz. Another COSMOS server was <a href="/docs/v4/chaining/">chained</a> to this and did not need this high speed data. How do you reduce the data rate coming into the chained server?</p>
 
 <h3 id="the-solution">The Solution</h3>
 
-<p>We can first model the chaining using the COSMOS demo. The format for the cmd_tlm_server.txt file is given in the <a href="https://cosmosc2.com/docs/chaining#example-cmdtlmserver-configuration-for-child-cmd_tlm_server_chaintxt">chaining documentation</a> and already exists in the COSMOS demo. The demo also includes a deconflicting port definition file in system_alt_ports.txt. To start the two server instances from the command line we can type:</p>
+<p>We can first model the chaining using the COSMOS demo. The format for the cmd_tlm_server.txt file is given in the <a href="https://cosmosc2.com/docs/v4/chaining#example-cmdtlmserver-configuration-for-child-cmd_tlm_server_chaintxt">chaining documentation</a> and already exists in the COSMOS demo. The demo also includes a deconflicting port definition file in system_alt_ports.txt. To start the two server instances from the command line we can type:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby demo\tools\CmdTlmServer
 </code></pre></div></div>
@@ -300,7 +300,7 @@
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby demo\tools\CmdTlmServer --system system_alt_ports.txt --config cmd_tlm_server_chain.txt
 </code></pre></div></div>
 
-<p>Now we need to implement a custom protocol to slow down the telemetry rate on the chained server. Note that the built-in protocols are fully described on the <a href="/docs/protocols">Protocols</a> page and also mentioned on the <a href="/docs/v4/interfaces#protocols">Interfaces</a> page.</p>
+<p>Now we need to implement a custom protocol to slow down the telemetry rate on the chained server. Note that the built-in protocols are fully described on the <a href="/docs/v4/protocols">Protocols</a> page and also mentioned on the <a href="/docs/v4/interfaces#protocols">Interfaces</a> page.</p>
 
 <h3 id="custom-protocols">Custom Protocols</h3>
 

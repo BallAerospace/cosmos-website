@@ -11,8 +11,8 @@
     <title xml:lang="en">Ball Aerospace COSMOS News</title>
     <atom:link type="application/atom+xml" href="http://cosmosc2/feed.xml" rel="self"/>
     <link>http://cosmosc2.com/</link>
-    <pubDate>Wed, 09 Mar 2022 17:56:06 +0000</pubDate>
-    <lastBuildDate>Wed, 09 Mar 2022 17:56:06 +0000</lastBuildDate>
+    <pubDate>Tue, 29 Mar 2022 13:14:34 +0000</pubDate>
+    <lastBuildDate>Tue, 29 Mar 2022 13:14:34 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.2.2</generator>
     <description>The User Interface for Embedded Systems</description>
@@ -642,7 +642,7 @@ Recommended Resources allocated to Docker: 8GB RAM, 2+ CPUs, 100GB Disk&lt;/p&gt
 
 &lt;p&gt;The &lt;a href=&quot;/docs/v4/tools#command-and-telemetry-server&quot;&gt;CmdTlmServer&lt;/a&gt; creates a new thread for each interface that was defined by the configuration text files. It calls connect() and then continuously calls the interface’s read() method which returns a packet. Typically the packets are unidentified meaning they don’t have an assigned target or packet name. At that point the interface thread loops through all the targets assigned to the interface to identify the packet. More on that later.&lt;/p&gt;
 
-&lt;p&gt;The implementation of the interface’s read() method first calls read_interface() which subclasses must implement to return raw data. Once it has the raw data, read_interface() should call read_interface_base(data) which updates internal counters. The read() method then loops through all the defined &lt;a href=&quot;/docs/protocols/&quot;&gt;protocols&lt;/a&gt; for that interface which can add or subtract data and/or modify the packet. Ultimately a &lt;a href=&quot;/docs/v4/packet-class/&quot;&gt;Packet&lt;/a&gt; instance is returned.&lt;/p&gt;
+&lt;p&gt;The implementation of the interface’s read() method first calls read_interface() which subclasses must implement to return raw data. Once it has the raw data, read_interface() should call read_interface_base(data) which updates internal counters. The read() method then loops through all the defined &lt;a href=&quot;/docs/v4/protocols/&quot;&gt;protocols&lt;/a&gt; for that interface which can add or subtract data and/or modify the packet. Ultimately a &lt;a href=&quot;/docs/v4/packet-class/&quot;&gt;Packet&lt;/a&gt; instance is returned.&lt;/p&gt;
 
 &lt;p&gt;The packet identification process is implemented in &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/blob/cosmos4/lib/cosmos/packets/telemetry.rb#L252&quot;&gt;System.telemetry.identify!()&lt;/a&gt;. The identify!() method loops through all the given targets looking to identify the data. There are two ways to identify a packet. The new way, which was implemented in &lt;a href=&quot;/news/2019/06/28/cosmos-4-4-0-released/&quot;&gt;COSMOS 4.4&lt;/a&gt;, utilizes a lookup hash which is created for each target. This requires that every packet in the target has the same ID_ITEMS (same type, size, location) defined for each packet which is generally good practice. If you have hundreds of small packets associated with a single target it’s especially important to utilize this new lookup method. The old identification method is still available if you put TLM_UNIQUE_ID_MODE in the target’s target.txt file. In this mode, each packet’s ID_ITEMS are read and individually checked for a match.&lt;/p&gt;
 
@@ -695,11 +695,11 @@ end
 
 &lt;h3 id=&quot;the-problem&quot;&gt;The Problem&lt;/h3&gt;
 
-&lt;p&gt;One COSMOS server was connected to a high speed telemetry target that was generating telemetry at 10Hz. Another COSMOS server was &lt;a href=&quot;/docs/chaining/&quot;&gt;chained&lt;/a&gt; to this and did not need this high speed data. How do you reduce the data rate coming into the chained server?&lt;/p&gt;
+&lt;p&gt;One COSMOS server was connected to a high speed telemetry target that was generating telemetry at 10Hz. Another COSMOS server was &lt;a href=&quot;/docs/v4/chaining/&quot;&gt;chained&lt;/a&gt; to this and did not need this high speed data. How do you reduce the data rate coming into the chained server?&lt;/p&gt;
 
 &lt;h3 id=&quot;the-solution&quot;&gt;The Solution&lt;/h3&gt;
 
-&lt;p&gt;We can first model the chaining using the COSMOS demo. The format for the cmd_tlm_server.txt file is given in the &lt;a href=&quot;https://cosmosc2.com/docs/chaining#example-cmdtlmserver-configuration-for-child-cmd_tlm_server_chaintxt&quot;&gt;chaining documentation&lt;/a&gt; and already exists in the COSMOS demo. The demo also includes a deconflicting port definition file in system_alt_ports.txt. To start the two server instances from the command line we can type:&lt;/p&gt;
+&lt;p&gt;We can first model the chaining using the COSMOS demo. The format for the cmd_tlm_server.txt file is given in the &lt;a href=&quot;https://cosmosc2.com/docs/v4/chaining#example-cmdtlmserver-configuration-for-child-cmd_tlm_server_chaintxt&quot;&gt;chaining documentation&lt;/a&gt; and already exists in the COSMOS demo. The demo also includes a deconflicting port definition file in system_alt_ports.txt. To start the two server instances from the command line we can type:&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ruby demo\tools\CmdTlmServer
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -709,7 +709,7 @@ end
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ruby demo\tools\CmdTlmServer --system system_alt_ports.txt --config cmd_tlm_server_chain.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Now we need to implement a custom protocol to slow down the telemetry rate on the chained server. Note that the built-in protocols are fully described on the &lt;a href=&quot;/docs/protocols&quot;&gt;Protocols&lt;/a&gt; page and also mentioned on the &lt;a href=&quot;/docs/v4/interfaces#protocols&quot;&gt;Interfaces&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;Now we need to implement a custom protocol to slow down the telemetry rate on the chained server. Note that the built-in protocols are fully described on the &lt;a href=&quot;/docs/v4/protocols&quot;&gt;Protocols&lt;/a&gt; page and also mentioned on the &lt;a href=&quot;/docs/v4/interfaces#protocols&quot;&gt;Interfaces&lt;/a&gt; page.&lt;/p&gt;
 
 &lt;h3 id=&quot;custom-protocols&quot;&gt;Custom Protocols&lt;/h3&gt;
 
@@ -855,7 +855,7 @@ SEND
 
 &lt;p&gt;The faster identification in ticket #911 does come with a potentially breaking change. The improvement requires that all packets for a given target be identified using the same fields (bit offset, bit_size, and type). This is the typical configuration, and breaking this pattern is typically a dangerous/bad choice for interfaces anyways, but previously COSMOS did default to handling packets being potentially identified using different fields in the same target. If you have a target that still requires that functionality, you need to declare CMD_UNIQUE_ID_MODE, and/or TLM_UNIQUE_ID_MODE in the target’s target.txt file to indicate it should use the slower identification method.&lt;/p&gt;
 
-&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/home/&lt;/p&gt;
+&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/v4/&lt;/p&gt;
 </description>
     </item>
     
@@ -923,7 +923,7 @@ SEND
 
 &lt;p&gt;The faster identification in ticket #911 does come with a potentially breaking change. The improvement requires that all packets for a given target be identified using the same fields (bit offset, bit_size, and type). This is the typical configuration, and breaking this pattern is typically a dangerous/bad choice for interfaces anyways, but previously COSMOS did default to handling packets being potentially identified using different fields in the same target. If you have a target that still requires that functionality, you need to declare CMD_UNIQUE_ID_MODE, and/or TLM_UNIQUE_ID_MODE in the target’s target.txt file to indicate it should use the slower identification method.&lt;/p&gt;
 
-&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/home/&lt;/p&gt;
+&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/v4/&lt;/p&gt;
 </description>
     </item>
     
@@ -937,7 +937,7 @@ SEND
       <category>post</category>
       
       <guid isPermaLink="true">http://cosmosc2.com/news/2019/10/21/cosmos-amos/</guid>
-      <description>&lt;p&gt;Ryan recently attended the Advanced Maui Optical and Space Surveillance Technologies Conference (&lt;a href=&quot;https://amostech.com/&quot;&gt;AMOS&lt;/a&gt;) in September. He was selected for a poster presentation based on the paper entitled &lt;a href=&quot;/assets/2017_AMOS_Paper.pdf&quot;&gt;“An open source long term archiving and trending solution for SSA”&lt;/a&gt;. It was based on the COSMOS &lt;a href=&quot;/docs/dart_overview/&quot;&gt;DART&lt;/a&gt; tool which supports long term storage and trending of command and telemetry data. If you look at the official &lt;a href=&quot;/assets/RPT_2019_AMOS_SUMMARY.pdf&quot;&gt;AMOS Summary&lt;/a&gt; you might also spot him (hint: Thursday)!&lt;/p&gt;
+      <description>&lt;p&gt;Ryan recently attended the Advanced Maui Optical and Space Surveillance Technologies Conference (&lt;a href=&quot;https://amostech.com/&quot;&gt;AMOS&lt;/a&gt;) in September. He was selected for a poster presentation based on the paper entitled &lt;a href=&quot;/assets/2017_AMOS_Paper.pdf&quot;&gt;“An open source long term archiving and trending solution for SSA”&lt;/a&gt;. It was based on the COSMOS &lt;a href=&quot;/docs/v4/dart-overview/&quot;&gt;DART&lt;/a&gt; tool which supports long term storage and trending of command and telemetry data. If you look at the official &lt;a href=&quot;/assets/RPT_2019_AMOS_SUMMARY.pdf&quot;&gt;AMOS Summary&lt;/a&gt; you might also spot him (hint: Thursday)!&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/2019_10_21_ryan_amos.jpg&quot; alt=&quot;Ryan at AMOS&quot; /&gt;&lt;br /&gt;
 &lt;em&gt;Ryan at the Poster Session, AMOS 2019&lt;/em&gt;&lt;/p&gt;
@@ -1039,7 +1039,7 @@ SEND
 
 &lt;p&gt;To upgrade to the latest version of COSMOS, run “bundle update cosmos” in your COSMOS project folder.&lt;/p&gt;
 
-&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/home/&lt;/p&gt;
+&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/v4/&lt;/p&gt;
 </description>
     </item>
     
@@ -1062,7 +1062,7 @@ SEND
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The built-in protocols are fully described on the &lt;a href=&quot;/docs/protocols&quot;&gt;Protocols&lt;/a&gt; page and also mentioned on the &lt;a href=&quot;/docs/v4/interfaces#protocols&quot;&gt;Interfaces&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;The built-in protocols are fully described on the &lt;a href=&quot;/docs/v4/protocols&quot;&gt;Protocols&lt;/a&gt; page and also mentioned on the &lt;a href=&quot;/docs/v4/interfaces#protocols&quot;&gt;Interfaces&lt;/a&gt; page.&lt;/p&gt;
 
 &lt;h3 id=&quot;custom-protocols&quot;&gt;Custom Protocols&lt;/h3&gt;
 
@@ -1278,7 +1278,7 @@ TELEMETRY inst2_tlm.txt
       <category>post</category>
       
       <guid isPermaLink="true">http://cosmosc2.com/news/2018/09/14/cosmos-dockercon/</guid>
-      <description>&lt;p&gt;Ball Aerospace COSMOS has been featured in a &lt;a href=&quot;https://www.youtube.com/watch?v=RnWXOAplvjY&amp;amp;feature=youtu.be&amp;amp;t=9m&quot;&gt;presentation&lt;/a&gt; by Chris Heistand from &lt;a href=&quot;http://www.jhuapl.edu/&quot;&gt;John Hopkins Applied Physics Laboratory&lt;/a&gt;. He’s working on the &lt;a href=&quot;http://dart.jhuapl.edu/&quot;&gt;Double Asteroid Redirection Test (DART)&lt;/a&gt; not to be confused with COSMOS &lt;a href=&quot;/docs/dart_overview&quot;&gt;DART&lt;/a&gt;. They have setup COSMOS to run in a Docker container which X fowards to a X11Server VNC container which they then use a VNC Client to connect to. Pretty cool stuff which we we will hopefully have more out of the box support for in the future. Stay tuned!&lt;/p&gt;
+      <description>&lt;p&gt;Ball Aerospace COSMOS has been featured in a &lt;a href=&quot;https://www.youtube.com/watch?v=RnWXOAplvjY&amp;amp;feature=youtu.be&amp;amp;t=9m&quot;&gt;presentation&lt;/a&gt; by Chris Heistand from &lt;a href=&quot;http://www.jhuapl.edu/&quot;&gt;John Hopkins Applied Physics Laboratory&lt;/a&gt;. He’s working on the &lt;a href=&quot;http://dart.jhuapl.edu/&quot;&gt;Double Asteroid Redirection Test (DART)&lt;/a&gt; not to be confused with COSMOS &lt;a href=&quot;/docs/v4/dart-overview&quot;&gt;DART&lt;/a&gt;. They have setup COSMOS to run in a Docker container which X fowards to a X11Server VNC container which they then use a VNC Client to connect to. Pretty cool stuff which we we will hopefully have more out of the box support for in the future. Stay tuned!&lt;/p&gt;
 </description>
     </item>
     
@@ -1341,7 +1341,7 @@ The COSMOS log file format and predentified protocol formats have changed to sup
 
 &lt;p&gt;To upgrade to the latest version of COSMOS, run “bundle update cosmos” in your COSMOS project folder.&lt;/p&gt;
 
-&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/home/&lt;/p&gt;
+&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/v4/&lt;/p&gt;
 </description>
     </item>
     
@@ -1359,7 +1359,7 @@ The COSMOS log file format and predentified protocol formats have changed to sup
 
 &lt;p&gt;The highlight of COSMOS 4.2 is a new tool called the Data Archival and Retrieval Tool (DART). DART is a long term trending database built on top of the PostgreSql database. It integrates directly with TlmGrapher, TlmExtractor, CmdExtractor, DataViewer, and Replay, allowing you to do historical queries of logged telemetry (and commands) by specifying a time range. Queries are super fast and it performs automatic data reduction at minute/hour/day granularity. Consider setting it up for your project and start data mining today!&lt;/p&gt;
 
-&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/home/&lt;/p&gt;
+&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/v4/&lt;/p&gt;
 
 &lt;h3 id=&quot;new-features&quot;&gt;New Features:&lt;/h3&gt;
 
@@ -1394,7 +1394,7 @@ In a terminal in your COSMOS project folder run:&lt;/p&gt;
 rake db:seed
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/home/&lt;/p&gt;
+&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/v4/&lt;/p&gt;
 </description>
     </item>
     
@@ -1410,7 +1410,7 @@ rake db:seed
       <guid isPermaLink="true">http://cosmosc2.com/news/2018/04/17/cosmos-4-2-3-released/</guid>
       <description>&lt;p&gt;COSMOS 4.2 is here! This is the first true patch release for 4.2. The highlight of COSMOS 4.2 is a new tool called the Data Archival and Retrieval Tool (DART). DART is a long term trending database built on top of the PostgreSql database. It integrates directly with TlmGrapher, TlmExtractor, CmdExtractor, DataViewer, and Replay, allowing you to do historical queries of logged telemetry (and commands) by specifying a time range. Queries are super fast and it performs automatic data reduction at minute/hour/day granularity. Consider setting it up for your project and start data mining today!&lt;/p&gt;
 
-&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/home/&lt;/p&gt;
+&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/v4/&lt;/p&gt;
 
 &lt;h3 id=&quot;new-features&quot;&gt;New Features:&lt;/h3&gt;
 
@@ -1436,7 +1436,7 @@ rake db:seed
 
 &lt;p&gt;To upgrade to the latest version of COSMOS, run “bundle update cosmos” in your COSMOS project folder.&lt;/p&gt;
 
-&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/home/&lt;/p&gt;
+&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/v4/&lt;/p&gt;
 </description>
     </item>
     
@@ -1452,7 +1452,7 @@ rake db:seed
       <guid isPermaLink="true">http://cosmosc2.com/news/2018/04/11/cosmos-4-2-2-released/</guid>
       <description>&lt;p&gt;COSMOS 4.2 is here! Thirty four tickets went into this release, but the highlight is a new tool called the Data Archival and Retrieval Tool (DART). DART is a long term trending database built on top of the PostgreSql database. It integrates directly with TlmGrapher, TlmExtractor, CmdExtractor, DataViewer, and Replay, allowing you to do historical queries of logged telemetry (and commands) by specifying a time range. Queries are super fast and it performs automatic data reduction at minute/hour/day granularity. Consider setting it up for your project and start data mining today!&lt;/p&gt;
 
-&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/home/&lt;/p&gt;
+&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/v4/&lt;/p&gt;
 
 &lt;h3 id=&quot;new-features&quot;&gt;New Features:&lt;/h3&gt;
 
@@ -1508,7 +1508,7 @@ rake db:seed
 
 &lt;p&gt;To upgrade to the latest version of COSMOS, run “bundle update cosmos” in your COSMOS project folder.&lt;/p&gt;
 
-&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/home/&lt;/p&gt;
+&lt;p&gt;See the COSMOS documentation for directions on setting up DART: http://cosmosc2.com/docs/v4/&lt;/p&gt;
 </description>
     </item>
     
@@ -2748,7 +2748,7 @@ vncconfig -iconic &amp;amp;
       <category>post</category>
       
       <guid isPermaLink="true">http://cosmosc2.com/news/2017/06/19/template_protocol/</guid>
-      <description>&lt;p&gt;The &lt;a href=&quot;/docs/protocols#template-protocol&quot;&gt;Template Protocol&lt;/a&gt; is probably one of the more confusing protocols in the COSMOS protocol library but it is extremely helpful when implementing string based protocols such as Standard Commands for Programmable Instruments (SCPI; often pronounced “skippy”).&lt;/p&gt;
+      <description>&lt;p&gt;The &lt;a href=&quot;/docs/v4/protocols#template-protocol&quot;&gt;Template Protocol&lt;/a&gt; is probably one of the more confusing protocols in the COSMOS protocol library but it is extremely helpful when implementing string based protocols such as Standard Commands for Programmable Instruments (SCPI; often pronounced “skippy”).&lt;/p&gt;
 
 &lt;p&gt;For this example we’ll assume we’re trying to talk to a SCPI enabled power supply such as the Keysight N6700. We start by creating a directory under our config/targets called POWER. The supply has a TCP/IP interface so we’ll use the &lt;a href=&quot;/docs/v4/interfaces#tcpip-client-interface&quot;&gt;TCP/IP Client Interface&lt;/a&gt; to connect to it. Thus we create our POWER/cmd_tlm_server.txt file as follows:&lt;/p&gt;
 
@@ -2756,7 +2756,7 @@ vncconfig -iconic &amp;amp;
   TARGET POWER
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This definition declares an interface named POWER_INT using the TCP/IP client interface which connects to ‘127.0.0.1’ (obviously you’ll change this to your actual power supply IP addres) using a write and read port of 5025 (standard SCPI ports for Keysight instruments) with a write timeout of 10s and no read timeout (block on read). We specify the TEMPLATE protocol with both write and read termination characters of 0x0A (ASCII newline). Note the &lt;a href=&quot;/docs/protocols#template-protocol&quot;&gt;TEMPLATE protocol&lt;/a&gt; takes many additional parameters to allow you to work with off nominal protocol conditions.&lt;/p&gt;
+&lt;p&gt;This definition declares an interface named POWER_INT using the TCP/IP client interface which connects to ‘127.0.0.1’ (obviously you’ll change this to your actual power supply IP addres) using a write and read port of 5025 (standard SCPI ports for Keysight instruments) with a write timeout of 10s and no read timeout (block on read). We specify the TEMPLATE protocol with both write and read termination characters of 0x0A (ASCII newline). Note the &lt;a href=&quot;/docs/v4/protocols#template-protocol&quot;&gt;TEMPLATE protocol&lt;/a&gt; takes many additional parameters to allow you to work with off nominal protocol conditions.&lt;/p&gt;
 
 &lt;p&gt;Now you can define your target’s command and telemetry definitions. We’ll create example commands which get and set the voltage setting in our power supply. Create a POWER/cmd_tlm/cmd.txt file which has the following:&lt;/p&gt;
 
@@ -3384,7 +3384,7 @@ COMMAND INST ABORT BIG_ENDIAN &quot;Aborts a collect on the instrument&quot;
       <guid isPermaLink="true">http://cosmosc2.com/news/2016/08/22/custom-widgets/</guid>
       <description>&lt;p&gt;Sometimes we receive requests to make custom COSMOS widgets or to modify existing COSMOS widgets to add certain looks or functionality. While this is a project we’re happy to perform for our customers, it’s also something that can be done by end users willing to dig into some of the Qt and COSMOS documentation. In this post, I’m going to describe how to create a custom COSMOS widget.&lt;/p&gt;
 
-&lt;p&gt;When asked to perform customizations like this I first bring up the COSMOS Demo. We try to include all the COSMOS features in the Demo so end users have concrete examples to follow instead of relying solely on the excellent documentation at &lt;a href=&quot;http://cosmosc2.com/docs/home&quot;&gt;cosmosc2.com&lt;/a&gt;. Obviously you must first have COSMOS installed so follow the &lt;a href=&quot;http://cosmosc2.com/docs/v4/installation/&quot;&gt;installation instructions&lt;/a&gt; and then launch the Demo by running the Launcher in the Demo folder. Here is how the server appears on my Windows machine:&lt;/p&gt;
+&lt;p&gt;When asked to perform customizations like this I first bring up the COSMOS Demo. We try to include all the COSMOS features in the Demo so end users have concrete examples to follow instead of relying solely on the excellent documentation at &lt;a href=&quot;http://cosmosc2.com/docs/v4&quot;&gt;cosmosc2.com&lt;/a&gt;. Obviously you must first have COSMOS installed so follow the &lt;a href=&quot;http://cosmosc2.com/docs/v4/installation/&quot;&gt;installation instructions&lt;/a&gt; and then launch the Demo by running the Launcher in the Demo folder. Here is how the server appears on my Windows machine:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/2016_08_22_server.png&quot; alt=&quot;COSMOS Demo Server&quot; /&gt;&lt;/p&gt;
 
@@ -3522,7 +3522,7 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
       <guid isPermaLink="true">http://cosmosc2.com/news/2016/08/04/custom-cosmos_interface/</guid>
       <description>&lt;div class=&quot;note warning&quot;&gt;
   &lt;h5&gt;Interfaces were changed dramatically in &lt;a href=&quot;/news/2017/08/04/cosmos-4-0-0-released/&quot;&gt;COSMOS 4.0.0&lt;/a&gt;&lt;/h5&gt;
-  &lt;p&gt;This article only applies to pre-4.0.0 COSMOS releases. For current COSMOS releases please see the new &lt;a href=&quot;/docs/v4/interfaces/&quot;&gt;Interface&lt;/a&gt; and &lt;a href=&quot;/docs/protocols/&quot;&gt;Protocol&lt;/a&gt; documentation.&lt;/p&gt;
+  &lt;p&gt;This article only applies to pre-4.0.0 COSMOS releases. For current COSMOS releases please see the new &lt;a href=&quot;/docs/v4/interfaces/&quot;&gt;Interface&lt;/a&gt; and &lt;a href=&quot;/docs/v4/protocols/&quot;&gt;Protocol&lt;/a&gt; documentation.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;One of our Ball Aerospace engineers asked how they could add a checksum to an existing COSMOS interface when talking to their target. COSMOS does not support this directly so it requires creating a custom interface. While this might sound daunting, the COSMOS interfaces were designed just for this type of extension and provide hooks for customization.&lt;/p&gt;
@@ -3603,7 +3603,7 @@ ITEM DEPLOYED? 0 0 DERIVED &quot;Deployed status&quot;
   GENERIC_READ_CONVERSION_END
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Note that this is probably overkill in this case because the conversion could just as easily be applied directly to the item. The raw value could then be obtained by calling tlm_raw(“TGT PKT DEPLOYED”) (see &lt;a href=&quot;http://cosmosc2.com/docs/scripting#tlmraw&quot;&gt;tlm_raw&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Note that this is probably overkill in this case because the conversion could just as easily be applied directly to the item. The raw value could then be obtained by calling tlm_raw(“TGT PKT DEPLOYED”) (see &lt;a href=&quot;http://cosmosc2.com/docs/v4/scripting#tlmraw&quot;&gt;tlm_raw&lt;/a&gt;).&lt;/p&gt;
 
 &lt;p&gt;These practices are similar to the Ruby convention of using methods with an exclamation point (bang) to indicate a dangerous method which typically directly modifies its caller. Ruby also has a convention of methods with question marks returning a boolean true or false value. Read more in the &lt;a href=&quot;http://docs.ruby-lang.org/en/trunk/syntax/methods_rdoc.html&quot;&gt;Ruby documentation&lt;/a&gt;.&lt;/p&gt;
 </description>
@@ -3715,7 +3715,7 @@ ITEM DEPLOYED? 0 0 DERIVED &quot;Deployed status&quot;
       <guid isPermaLink="true">http://cosmosc2.com/news/2016/02/27/xtce-support/</guid>
       <description>&lt;p&gt;Ball Aerospace COSMOS now has support for the &lt;a href=&quot;http://www.omg.org/space/xtce/&quot; target=&quot;_blank&quot;&gt;XTCE Command and Telemetry Definition Standard&lt;/a&gt;. This is an open standard designed to allow command and telemetry definitions to be transferred between different ground systems. COSMOS can run directly using the .xtce files, or can convert them into the COSMOS configuration file format.&lt;/p&gt;
 
-&lt;p&gt;See the docs for more information: &lt;a href=&quot;/docs/xtce&quot;&gt;XTCE Support&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;See the docs for more information: &lt;a href=&quot;/docs/v5/xtce&quot;&gt;XTCE Support&lt;/a&gt;&lt;/p&gt;
 
 </description>
     </item>
