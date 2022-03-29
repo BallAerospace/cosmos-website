@@ -66,11 +66,11 @@ Start Time and End Time are simple text fields. If you enter an invalid time, Da
 
 ### Adding Targets Packets Items
 
-Data Extractor provides Target, Packet, Item drop downs to select the items you want to export. When you select a Target the Packet drop down defaults to \[All\] which sets the button to "Add Target". This would add EVERY item defined in EVERY packet in the target. NOTE: This can be a LOT of telemetry points but any added point can be removed.
+Data Extractor provides Target, Packet, Item drop downs to select the items you want to export. When you select a Target the Packet drop down defaults to \[All\] which sets the button to "Add Target". This would add EVERY item defined in EVERY packet in the target. Note: This can be a LOT of telemetry points but any added point can be removed.
 
 ![Select Target](/img/v5/data_extractor/select_target.png)
 
-When you select a Packet the Item drop down defaults to \[All\] which sets the button to "Add Packet". This would add EVERY item defined in the specified packet. NOTE: This can be a LOT of telemetry points but any added point can be removed.
+When you select a Packet the Item drop down defaults to \[All\] which sets the button to "Add Packet". This would add EVERY item defined in the specified packet. Note: This can be a LOT of telemetry points but any added point can be removed.
 
 ![Select Packet](/img/v5/data_extractor/select_packet.png)
 

@@ -59,7 +59,7 @@ TELEMETRY SYSTEM META BIG_ENDIAN "System Meta Data Telemetry Packet"
   APPEND_ITEM OPERATOR_NAME 512 STRING "Operator Name"
 ```
 
-Here we see the demo defining their own new metadata item called OPERATOR_NAME after the standard COSMOS items. Note that the definition of the standard COSMOS items is important! If you misspell an item, declare the wrong data type, or have the size wrong, COSMOS will warn you that the definition is incorrect and then define the standard set of items as described above. Thus if you're trying to create additional items and do not see them, make sure you haven't defined the COSMOS standard items incorrectly. (NOTE: COSMOS 4.1.2 fixed a [bug](https://github.com/BallAerospace/COSMOS/issues/690) in this automatic generation of metadata items)
+Here we see the demo defining their own new metadata item called OPERATOR_NAME after the standard COSMOS items. Note that the definition of the standard COSMOS items is important! If you misspell an item, declare the wrong data type, or have the size wrong, COSMOS will warn you that the definition is incorrect and then define the standard set of items as described above. Thus if you're trying to create additional items and do not see them, make sure you haven't defined the COSMOS standard items incorrectly. (Note: COSMOS 4.1.2 fixed a [bug](https://github.com/BallAerospace/COSMOS/issues/690) in this automatic generation of metadata items)
 
 You can also see the use of the META READ_ONLY keyword being used in the demo configuration. This means that the metadata dialog which is opened when the COLLECT_METADATA keyword is used will display these items as read only as shown below:
 
