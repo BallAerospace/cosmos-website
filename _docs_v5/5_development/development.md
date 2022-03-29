@@ -14,13 +14,13 @@ The core COSMOS team develops with the [Visual Studio Code](https://code.visuals
 
 # Building COSMOS
 
-NOTE: We primarily develop COSMOS in Windows so the commands here will reference batch files but the same files exist in Linux as shell scripts.
+Note: We primarily develop COSMOS in Windows so the commands here will reference batch files but the same files exist in Linux as shell scripts.
 
 Build COSMOS using the `cosmos-control.bat` script:
 
     > cosmos-control.bat build
 
-This will pull all the COSMOS container dependencies and build our local containers. NOTE: This can take a long time especially for your first build!
+This will pull all the COSMOS container dependencies and build our local containers. Note: This can take a long time especially for your first build!
 
 Once the build completes you can see the built images with the following command:
 

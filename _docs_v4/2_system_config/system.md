@@ -17,7 +17,7 @@ Configuration file formats for the following are provided:
 
 The COSMOS system configuration is performed by system.txt in the config/system directory. This file declares all the targets that will be used by COSMOS as well as top level configuration information which is primarily used by the Command and Telemetry Server.
 
-By default, all COSMOS tools use the config/system/system.txt file. However, all tools can take a custom system configuration file by passing the "–system <filename>" option to the tool when it starts. NOTE: Mixing system configuration files between tools can be confusing as some tools could be configured with more or less targets than the Command and Telemetry Server. However, this is the only way to control which targets, ports, paths, and log writers are used by the various tools.
+By default, all COSMOS tools use the config/system/system.txt file. However, all tools can take a custom system configuration file by passing the "–system <filename>" option to the tool when it starts. Note: Mixing system configuration files between tools can be confusing as some tools could be configured with more or less targets than the Command and Telemetry Server. However, this is the only way to control which targets, ports, paths, and log writers are used by the various tools.
 
 {% cosmos_meta system.yaml %}
 
