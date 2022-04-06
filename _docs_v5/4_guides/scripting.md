@@ -72,7 +72,7 @@ clear_collects('INST')
 clear_collects('INST2')
 ```
 
-This example shows several features of COSMOS scripting in action. Notice the difference between 'load' and 'load*utility'. The first is to load additional scripts which will NOT be shown in Script Runner when executing. This is a good place to put code which takes a long time to run such as image analysis or other looping code where you just want the output. 'load_utility' will visually execute the code line by line to show the user what is happening. Read [Require vs Load](/news/2017/11/13/require_vs_load/) for \_much* more information.
+This example shows several features of COSMOS scripting in action. Notice the difference between 'load' and 'load_utility'. The first is to load additional scripts which will NOT be shown in Script Runner when executing. This is a good place to put code which takes a long time to run such as image analysis or other looping code where you just want the output. 'load_utility' will visually execute the code line by line to show the user what is happening. Read [Require vs Load](/news/2017/11/13/require_vs_load/) for much more detail.
 
 Next we declare our constants and create an array of strings which we store in OUR_TARGETS. Notice the constant is all uppercase with underscores.
 
@@ -246,15 +246,119 @@ Next is a tool bar that displays the currently executing script and three button
 
 Third is the display of the actual script. While the script is not running, you may edit and compose scripts in this area. A handy code completion feature is provided that will list out the available commands or telemetry points as you are writing your script. Simply begin writing a cmd( or tlm( line to bring up code completion. This feature greatly reduces typos in command and telemetry mnemonics.
 
-<div class="note unreleased">
-  <p>Code Completion not yet implemented in COSMOS 5</p>
-</div>
-
 Finally, displayed is the log messages. All commands that are sent, errors that occur, and user puts statements appear in this area.
 
 ## Test Procedure API
 
 The following methods are designed to be used in test procedures. However, they can also be used in custom built COSMOS tools. Please see the COSMOS Tool API section for methods that are more efficient to use in custom tools.
+
+### Migration from COSMOS v4
+
+The following API methods are either deprecated (will not be ported to COSMOS 5) or currently unimplemented (eventually will be ported to COSMOS 5):
+
+| Method                     | Tool | Status |
+| -------------------------- | -----| ------ |
+| clear                      | Telemetry Viewer | Unimplemented |
+| clear_all                  | Telemetry Viewer | Unimplemented |
+| clear_disconnected_targets | Script Runner |  Unimplemented |
+| close_local_screens        | Telemetry Viewer | Unimplemented |
+| cmd_tlm_clear_counters     | Command and Telemetry Server | Unimplemented |
+| cmd_tlm_reload             | Command and Telemetry Server | Unimplemented |
+| display                    | Telemetry Viewer | Unimplemented |
+| get_all_packet_logger_info | Command and Telemetry Server | Deprecated |
+| get_background_tasks       | Command and Telemetry Server | Deprecated |
+| get_cmd_list               | Command and Telemetry Server | Deprecated, use get_all_commands |
+| get_cmd_log_filename       | Command and Telemetry Server | Deprecated |
+| get_cmd_param_list         | Command and Telemetry Server | Deprecated use get_command |
+| get_all_interface_info     | Command and Telemetry Server | Deprecated, use get_interface |
+| get_disconnected_targets   | Script Runner | Unimplemented |
+| get_interface_info         | Command and Telemetry Server | Deprecated, use get_interface |
+| get_interface_targets      | Command and Telemetry Server | Deprecated |
+| get_output_logs_filenames | Command and Telemetry Server | Deprecated |
+| get_packet_data | Command and Telemetry Server | Deprecated |
+| get_packet_logger_info | Command and Telemetry Server | Deprecated |
+| get_packet_loggers | Command and Telemetry Server | Deprecated |
+| get_replay_mode | Replay | Deprecated |
+| get_router_info | Command and Telemetry Server | Deprecated, use get_router |
+| get_screen_definition | Telemetry Viewer | Unimplemented |
+| get_screen_list | Telemetry Viewer | Unimplemented |
+| get_scriptrunner_message_log_filename | Command and Telemetry Server | Deprecated |
+| get_server_message | Command and Telemetry Server | Deprecated |
+| get_server_message_log_filename | Command and Telemetry Server | Deprecated |
+| get_server_status | Command and Telemetry Server | Unimplemented |
+| get_target_ignored_items | Command and Telemetry Server | Deprecated, use get_target |
+| get_target_ignored_parameters | Command and Telemetry Server | Deprecated, use get_target |
+| get_target_info | Command and Telemetry Server | Deprecated, use get_target |
+| get_tlm_details | Command and Telemetry Server | Deprecated |
+| get_tlm_item_list | Command and Telemetry Server | Deprecated |
+| get_tlm_list | Command and Telemetry Server | Deprecated |
+| get_tlm_log_filename | Command and Telemetry Server | Deprecated |
+| interface_state | Command and Telemetry Server | Deprecated, use get_interface |
+| local_screen | Script Runner | Unimplemented |
+| map_target_to_interface | Command and Telemetry Server | Unimplemented |
+| override_tlm_raw  | Command and Telemetry Server | Deprecated, use override_tlm |
+| open_file_dialog | Script Runner | Unimplemented |
+| open_files_dialog | Script Runner | Unimplemented |
+| open_directory_dialog | Script Runner | Unimplemented |
+| replay_move_end | Replay | Deprecated |
+| replay_move_index | Replay | Deprecated |
+| replay_move_start | Replay | Deprecated |
+| replay_play | Replay | Deprecated |
+| replay_reverse_play | Replay | Deprecated |
+| replay_select_file | Replay | Deprecated |
+| replay_set_playback_delay | Replay | Deprecated |
+| replay_status | Replay | Deprecated |
+| replay_step_back | Replay | Deprecated |
+| replay_step_forward | Replay | Deprecated |
+| replay_stop | Replay | Deprecated |
+| router_state | Command and Telemetry Server | Deprecated, use get_router |
+| run_mode | Script Runner | Unimplemented |
+| save_file_dialog | Script Runner | Unimplemented |
+| script_disconnect | Script Runner | Unimplemented |
+| set_disconnected_targets | Script Runner | Unimplemented |
+| set_replay_mode | Replay | Deprecated |
+| set_stdout_max_lines | Script Runner | Unimplemented |
+| set_tlm_raw  | Script Runner | Deprecated, use set_tlm |
+| show_backtrace | Script Runner | Unimplemented |
+| shutdown_cmd_tlm | Command and Telemetry Server | Deprecated |
+| start_cmd_log | Command and Telemetry Server | Deprecated |
+| start_logging | Command and Telemetry Server | Deprecated |
+| start_new_scriptrunner_message_log | Command and Telemetry Server | Deprecated |
+| start_new_server_message_log | Command and Telemetry Server | Deprecated |
+| start_tlm_log | Command and Telemetry Server | Deprecated |
+| step_mode | Script Runner | Unimplemented |
+| stop_background_task | Command and Telemetry Server | Deprecated |
+| stop_cmd_log | Command and Telemetry Server | Deprecated |
+| stop_logging | Command and Telemetry Server | Deprecated |
+| stop_tlm_log | Command and Telemetry Server | Deprecated |
+| subscribe_limits_events | Command and Telemetry Server | Unimplemented |
+| subscribe_packet_data | Command and Telemetry Server | Deprecated, use subscribe_packets |
+| subscribe_server_messages | Command and Telemetry Server | Unimplemented |
+| unsubscribe_limits_events | Command and Telemetry Server | Deprecated |
+| unsubscribe_packet_data | Command and Telemetry Server | Deprecated |
+| unsubscribe_server_messages | Command and Telemetry Server | Deprecated |
+
+The following API methods are new in COSMOS 5:
+
+| Method                     | Tool |
+| -------------------------- | -----|
+| get_all_commands | Command and Telemetry Server |
+| get_all_telemetry | Command and Telemetry Server |
+| get_command | Command and Telemetry Server |
+| get_interface | Command and Telemetry Server |
+| get_item | Command and Telemetry Server |
+| get_metadata | Command and Telemetry Server |
+| get_router | Command and Telemetry Server |
+| get_setting | Command and Telemetry Server |
+| get_settings | Command and Telemetry Server |
+| get_target | Command and Telemetry Server |
+| get_target_file | Script Runner |
+| get_telemetry | Command and Telemetry Server |
+| input_metadata  | Script Runner |
+| list_configs | Various |
+| list_settings | Command and Telemetry Server |
+| load_config | Various |
+| save_setting | Command and Telemetry Server |
 
 ## Retrieving User Input
 
@@ -262,7 +366,7 @@ These methods allow the user to enter values that are needed by the script.
 
 ### ask
 
-The ask method prompts the user for input with a question. User input is automatically converted from a string to the appropriate data type. For example if the user enters "1", the number 1 as an integer will be returned.
+Prompts the user for input with a question. User input is automatically converted from a string to the appropriate data type. For example if the user enters "1", the number 1 as an integer will be returned.
 
 Syntax:
 
@@ -287,7 +391,7 @@ password = ask("Enter your password", false, true)
 
 ### ask_string
 
-The ask_string method prompts the user for input with a question. User input is always returned as a string. For exampe if the user enters "1", the string "1" will be returned.
+Prompts the user for input with a question. User input is always returned as a string. For exampe if the user enters "1", the string "1" will be returned.
 
 Syntax:
 
@@ -345,13 +449,37 @@ when 'Two'
 end
 ```
 
+### get_target_file
+
+Return a file handle to a file in the target directory
+
+Syntax:
+
+```ruby
+get_target_file("<File Path>")
+```
+
+| Parameter | Description                                                                                                                              |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| File Path | The path to the file in the target directory. Should assume to start with a TARGET name, e.g. INST/procedures/proc.rb |                                                    |
+| File Modifier | 'b' indicates the file is binary data |
+
+Example:
+
+```ruby
+file = get_target_file("INST/data/attitude.bin", 'b')
+puts file.read().formatted
+file = get_target_file("INST/procedures/checks.rb")
+puts file.read()
+```
+
 ## Providing information to the user
 
 These methods notify the user that something has occurred.
 
 ### prompt
 
-The prompt method displays a message to the user and waits for them to press an ok button.
+Displays a message to the user and waits for them to press an ok button.
 
 Syntax:
 
@@ -375,7 +503,7 @@ These methods provide capability to send commands to a target and receive inform
 
 ### cmd
 
-The cmd method sends a specified command.
+Sends a specified command.
 
 Syntax:
 
@@ -400,7 +528,7 @@ cmd("INST", "COLLECT", "DURATION" => 10, "TYPE" => "NORMAL")
 
 ### cmd_no_range_check
 
-The cmd_no_range_check method sends a specified command without performing range checking on its parameters. This should only be used when it is necessary to intentionally send a bad command parameter to test a target.
+Sends a specified command without performing range checking on its parameters. This should only be used when it is necessary to intentionally send a bad command parameter to test a target.
 
 Syntax:
 
@@ -425,7 +553,7 @@ cmd_no_range_check("INST", "COLLECT", "DURATION" => 11, "TYPE" => "NORMAL")
 
 ### cmd_no_hazardous_check
 
-The cmd_no_hazardous_check method sends a specified command without performing the notification if it is a hazardous command. This should only be used when it is necessary to fully automate testing involving hazardous commands.
+Sends a specified command without performing the notification if it is a hazardous command. This should only be used when it is necessary to fully automate testing involving hazardous commands.
 
 Syntax:
 
@@ -450,7 +578,7 @@ cmd_no_hazardous_check("INST", "CLEAR")
 
 ### cmd_no_checks
 
-The cmd_no_checks method sends a specified command without performing the parameter range checks or notification if it is a hazardous command. This should only be used when it is necessary to fully automate testing involving hazardous commands that intentially have invalid parameters.
+Sends a specified command without performing the parameter range checks or notification if it is a hazardous command. This should only be used when it is necessary to fully automate testing involving hazardous commands that intentially have invalid parameters.
 
 Syntax:
 
@@ -475,7 +603,7 @@ cmd_no_checks("INST", "COLLECT", "DURATION" => 11, "TYPE" => "SPECIAL")
 
 ### cmd_raw
 
-The cmd_raw method sends a specified command without running conversions.
+Sends a specified command without running conversions.
 
 Syntax:
 
@@ -500,7 +628,7 @@ cmd_raw("INST", "COLLECT", "DURATION" => 10, TYPE => 0)
 
 ### cmd_raw_no_range_check
 
-The cmd_raw_no_range_check method sends a specified command without running conversions or performing range checking on its parameters. This should only be used when it is necessary to intentionally send a bad command parameter to test a target.
+Sends a specified command without running conversions or performing range checking on its parameters. This should only be used when it is necessary to intentionally send a bad command parameter to test a target.
 
 Syntax:
 
@@ -525,7 +653,7 @@ cmd_raw_no_range_check("INST", "COLLECT", "DURATION" => 11, "TYPE" => 0)
 
 ### cmd_raw_no_hazardous_check
 
-The cmd_raw_no_hazardous_check method sends a specified command without running conversions or performing the notification if it is a hazardous command. This should only be used when it is necessary to fully automate testing involving hazardous commands.
+Sends a specified command without running conversions or performing the notification if it is a hazardous command. This should only be used when it is necessary to fully automate testing involving hazardous commands.
 
 Syntax:
 
@@ -550,7 +678,7 @@ cmd_raw_no_hazardous_check("INST", "CLEAR")
 
 ### cmd_raw_no_checks
 
-The cmd_raw_no_checks method sends a specified command without running conversions or performing the parameter range checks or notification if it is a hazardous command. This should only be used when it is necessary to fully automate testing involving hazardous commands that intentially have invalid parameters.
+Sends a specified command without running conversions or performing the parameter range checks or notification if it is a hazardous command. This should only be used when it is necessary to fully automate testing involving hazardous commands that intentially have invalid parameters.
 
 Syntax:
 
@@ -575,7 +703,7 @@ cmd_raw_no_checks("INST", "COLLECT", "DURATION" => 11, "TYPE" => 1)
 
 ### send_raw
 
-The send_raw method sends raw data on an interface.
+Sends raw data on an interface.
 
 Syntax:
 
@@ -596,7 +724,7 @@ send_raw("INST_INT", data)
 
 ### get_all_commands (since 5.0.0)
 
-The get_all_commands method returns an array of the commands that are available for a particular target. The returned array is an array of hashes which fully describe the command packet.
+Returns an array of the commands that are available for a particular target. The returned array is an array of hashes which fully describe the command packet.
 
 Syntax:
 
@@ -627,7 +755,7 @@ pp cmd_list
 
 ### get_command (since 5.0.0)
 
-The get_command method returns a command hash which fully describes the command packet.
+Returns a command hash which fully describes the command packet.
 
 Syntax:
 
@@ -659,7 +787,7 @@ pp cmd
 
 ### get_parameter (since 5.0.0)
 
-The get_parameter method returns a hash of the given command parameter
+Returns a hash of the given command parameter
 
 Syntax:
 
@@ -694,7 +822,7 @@ pp param
 
 ### get_cmd_buffer
 
-The get_cmd_buffer method returns the raw packet buffer as a Ruby string.
+Returns the raw packet buffer as a Ruby string.
 
 Syntax:
 
@@ -716,7 +844,7 @@ buffer.unpack('C*') # See the Ruby documentation for class String method unpack
 
 ### get_cmd_hazardous
 
-The get_cmd_hazardous method returns true/false indicating whether a particular command is flagged as hazardous.
+Returns true/false indicating whether a particular command is flagged as hazardous.
 
 Syntax:
 
@@ -738,7 +866,7 @@ hazardous = get_cmd_hazardous("INST", "COLLECT", {'TYPE' => 'SPECIAL'})
 
 ### get_cmd_value
 
-The get_cmd_value method returns reads a value from the most recently sent command packet. The pseudo-parameters 'PACKET_TIMESECONDS', 'PACKET_TIMEFORMATTED', 'RECEIVED_COUNT', 'RECEIVED_TIMEFORMATTED', and 'RECEIVED_TIMESECONDS' are also supported.
+Returns reads a value from the most recently sent command packet. The pseudo-parameters 'PACKET_TIMESECONDS', 'PACKET_TIMEFORMATTED', 'RECEIVED_COUNT', 'RECEIVED_TIMEFORMATTED', and 'RECEIVED_TIMESECONDS' are also supported.
 
 Syntax:
 
@@ -761,7 +889,7 @@ value = get_cmd_value("INST", "COLLECT", "TEMP")
 
 ### get_cmd_time
 
-The get_cmd_time method returns the time of the most recent command sent.
+Returns the time of the most recent command sent.
 
 Syntax:
 
@@ -784,7 +912,7 @@ target_name, command_name, time = get_cmd_time("INST", "COLLECT") # Name of the 
 
 ### get_cmd_cnt
 
-The get_cmd_cnt method returns the number of times a specified command has been sent.
+Returns the number of times a specified command has been sent.
 
 Syntax:
 
@@ -805,7 +933,7 @@ cmd_cnt = get_cmd_cnt("INST", "COLLECT") # Number of times the INST COLLECT comm
 
 ### get_all_cmd_info
 
-The get_all_cmd_info method returns the number of times each command has been sent. The return value is an array of arrays where each subarray contains the target name, command name, and packet count for a command.
+Returns the number of times each command has been sent. The return value is an array of arrays where each subarray contains the target name, command name, and packet count for a command.
 
 Syntax / Example:
 
@@ -822,7 +950,7 @@ These methods allow the user to interact with telemetry items.
 
 ### check
 
-The check method performs a verification of a telemetry item using its converted telemetry type. If the verification fails then the script will be paused with an error. If no comparision is given to check then the telemetry item is simply printed to the script output. Note: In most cases using wait_check is a better choice than using check.
+Performs a verification of a telemetry item using its converted telemetry type. If the verification fails then the script will be paused with an error. If no comparision is given to check then the telemetry item is simply printed to the script output. Note: In most cases using wait_check is a better choice than using check.
 
 Syntax:
 
@@ -845,7 +973,7 @@ check("INST HEALTH_STATUS COLLECTS > 1")
 
 ### check_raw
 
-The check_raw method performs a verification of a telemetry item using its raw telemetry type. If the verification fails then the script will be paused with an error. If no comparision is given to check then the telemetry item is simply printed to the script output. Note: In most cases using wait_check_raw is a better choice than using check_raw.
+Performs a verification of a telemetry item using its raw telemetry type. If the verification fails then the script will be paused with an error. If no comparision is given to check then the telemetry item is simply printed to the script output. Note: In most cases using wait_check_raw is a better choice than using check_raw.
 
 Syntax:
 
@@ -868,7 +996,7 @@ check_raw("INST HEALTH_STATUS COLLECTS > 1")
 
 ### check_formatted
 
-The check_formatted method performs a verification of a telemetry item using its formatted telemetry type. If the verification fails then the script will be paused with an error. If no comparision is given to check then the telemetry item is simply printed to the script output.
+Performs a verification of a telemetry item using its formatted telemetry type. If the verification fails then the script will be paused with an error. If no comparision is given to check then the telemetry item is simply printed to the script output.
 
 Syntax:
 
@@ -891,7 +1019,7 @@ check_formatted("INST HEALTH_STATUS COLLECTS == '1'")
 
 ### check_with_units
 
-The check_with_units method performs a verification of a telemetry item using its formatted with units telemetry type. If the verification fails then the script will be paused with an error. If no comparision is given to check then the telemetry item is simply printed to the script output.
+Performs a verification of a telemetry item using its formatted with units telemetry type. If the verification fails then the script will be paused with an error. If no comparision is given to check then the telemetry item is simply printed to the script output.
 
 Syntax:
 
@@ -914,7 +1042,7 @@ check_with_units("INST HEALTH_STATUS COLLECTS == '1'")
 
 ### check_tolerance
 
-The check_tolerance method checks a converted telemetry item against an expected value with a tolerance. If the verification fails then the script will be paused with an error. Note: In most cases using wait_check_tolerance is a better choice than using check_tolerance.
+Checks a converted telemetry item against an expected value with a tolerance. If the verification fails then the script will be paused with an error. Note: In most cases using wait_check_tolerance is a better choice than using check_tolerance.
 
 Syntax:
 
@@ -938,7 +1066,7 @@ check_tolerance("INST HEALTH_STATUS COLLECTS", 10.0, 5.0)
 
 ### check_tolerance_raw
 
-The check_tolerance_raw method checks a raw telemetry item against an expected value with a tolerance. If the verification fails then the script will be paused with an error. Note: In most cases using wait_check_tolerance_raw is a better choice than using check_tolerance_raw.
+Checks a raw telemetry item against an expected value with a tolerance. If the verification fails then the script will be paused with an error. Note: In most cases using wait_check_tolerance_raw is a better choice than using check_tolerance_raw.
 
 Syntax:
 
@@ -962,7 +1090,7 @@ check_tolerance_raw("INST HEALTH_STATUS COLLECTS", 10.0, 5.0)
 
 ### check_expression
 
-The check_expression method evaluates an expression. If the expression evaluates to false the script will be paused with an error. This method can be used to perform more complicated comparisons than using check as shown in the example. Note: In most cases using [wait_check_expression](#waitcheckexpression) is a better choice than using check_expression.
+Evaluates an expression. If the expression evaluates to false the script will be paused with an error. This method can be used to perform more complicated comparisons than using check as shown in the example. Note: In most cases using [wait_check_expression](#waitcheckexpression) is a better choice than using check_expression.
 
 Remember that everything inside the check_expression string will be evaluated directly by the Ruby interpreter and thus must be valid syntax. A common mistake is to check a variable like so:
 
@@ -992,7 +1120,7 @@ check_expression("tlm('INST HEALTH_STATUS COLLECTS') > 5 and tlm('INST HEALTH_ST
 
 ### check_exception
 
-The check_exception method executes a method and expects an exception to be raised. If the method does not raise an exception, a CheckError is raised.
+Executes a method and expects an exception to be raised. If the method does not raise an exception, a CheckError is raised.
 
 Syntax:
 
@@ -1013,7 +1141,7 @@ check_exception("cmd", "INST", "COLLECT", "TYPE"=>"NORMAL")
 
 ### tlm
 
-The tlm method reads the converted form of a specified telemetry item.
+Reads the converted form of a specified telemetry item.
 
 Syntax:
 
@@ -1037,7 +1165,7 @@ raw_value = tlm("INST HEALTH_STATUS COLLECTS", type: :RAW)
 
 ### tlm_raw
 
-The tlm_raw method reads the raw form of a specified telemetry item.
+Reads the raw form of a specified telemetry item.
 
 Syntax:
 
@@ -1059,7 +1187,7 @@ value = tlm_raw("INST HEALTH_STATUS COLLECTS")
 
 ### tlm_formatted
 
-The tlm_formatted method reads the formatted form of a specified telemetry item.
+Reads the formatted form of a specified telemetry item.
 
 Syntax:
 
@@ -1081,7 +1209,7 @@ value = tlm_formatted("INST HEALTH_STATUS COLLECTS")
 
 ### tlm_with_units
 
-The tlm_with_units method reads the formatted with units form of a specified telemetry item.
+Reads the formatted with units form of a specified telemetry item.
 
 Syntax:
 
@@ -1103,7 +1231,7 @@ value = tlm_with_units("INST HEALTH_STATUS COLLECTS")
 
 ### tlm_variable
 
-The tlm_variable method reads a specified telemetry item with a variable value type. This method is deprecated now that tlm() itself takes a type keyword to request the type of telemetry.
+Reads a specified telemetry item with a variable value type. This method is deprecated now that tlm() itself takes a type keyword to request the type of telemetry.
 
 Syntax:
 
@@ -1126,7 +1254,7 @@ value = tlm_variable("INST HEALTH_STATUS COLLECTS", :RAW)
 
 ### get_tlm_buffer
 
-The get_tlm_buffer method returns the raw packet buffer as a Ruby string.
+Returns the raw packet buffer as a Ruby string.
 
 Syntax:
 
@@ -1148,7 +1276,7 @@ buffer.unpack('C*') # See the Ruby documentation for class String method unpack
 
 ### get_tlm_packet
 
-The get_tlm_packet method returns the names, values, and limits states of all telemetry items in a specified packet. The value is returned as an array of arrays with each entry containing [item_name, item_value, limits_state].
+Returns the names, values, and limits states of all telemetry items in a specified packet. The value is returned as an array of arrays with each entry containing [item_name, item_value, limits_state].
 
 Syntax:
 
@@ -1170,7 +1298,7 @@ names_values_and_limits_states = get_tlm_packet("INST", "HEALTH_STATUS", type: :
 
 ### get_tlm_values (modified in 5.0.0)
 
-The get_tlm_values method returns the values and current limits state for a specified set of telemetry items. Items can be in any telemetry packet in the system. They can all be retrieved using the same value type or a specific value type can be specified for each item.
+Returns the values and current limits state for a specified set of telemetry items. Items can be in any telemetry packet in the system. They can all be retrieved using the same value type or a specific value type can be specified for each item.
 
 Syntax:
 
@@ -1189,7 +1317,7 @@ pp values # [[-100.0, :RED_LOW], [0, :RED_LOW]]
 
 ### get_all_telemetry (since 5.0.0)
 
-The get_all_telemetry method returns an array of all target packet hashes.
+Returns an array of all target packet hashes.
 
 Syntax:
 
@@ -1220,7 +1348,7 @@ pp packets
 
 ### get_telemetry (since 5.0.0)
 
-The get_telemetry method returns a packet hash.
+Returns a packet hash.
 
 Syntax:
 
@@ -1259,7 +1387,7 @@ pp packet
 
 ### get_item (since 5.0.0)
 
-The get_item method returns an item hash.
+Returns an item hash.
 
 Syntax:
 
@@ -1290,7 +1418,7 @@ pp item
 
 ### get_tlm_cnt
 
-The get_tlm_cnt method returns the number of times a specified telemetry packet has been received.
+Returns the number of times a specified telemetry packet has been received.
 
 Syntax:
 
@@ -1311,7 +1439,7 @@ tlm_cnt = get_tlm_cnt("INST", "HEALTH_STATUS") # Number of times the INST HEALTH
 
 ### get_all_tlm_info
 
-The get_all_tlm_info method returns the number of times each telemetry packet has been received. The return value is an array of arrays where each subarray contains the target name, telemetry packet name, and packet count for a telemetry packet.
+Returns the number of times each telemetry packet has been received. The return value is an array of arrays where each subarray contains the target name, telemetry packet name, and packet count for a telemetry packet.
 
 Syntax / Example:
 
@@ -1324,7 +1452,7 @@ end
 
 ### set_tlm
 
-The set_tlm method sets a telemetry item value in the Command and Telemetry Server. This value will be overwritten if a new packet is received from an interface. For that reason this method is most useful if interfaces are disconnected or for testing via the Script Runner disconnect mode. Manually setting telemetry values allows for the execution of many logical paths in scripts.
+Sets a telemetry item value in the Command and Telemetry Server. This value will be overwritten if a new packet is received from an interface. For that reason this method is most useful if interfaces are disconnected or for testing via the Script Runner disconnect mode. Manually setting telemetry values allows for the execution of many logical paths in scripts.
 
 Syntax:
 
@@ -1351,7 +1479,7 @@ check_raw("INST HEALTH_STATUS COLLECTS == 10")
 
 ### inject_tlm
 
-The inject_tlm method injects a packet into the system as if it was received from an interface.
+Injects a packet into the system as if it was received from an interface.
 
 Syntax:
 
@@ -1374,7 +1502,7 @@ inject_tlm("INST", "PARAMS", {'VALUE1' => 5.0, 'VALUE2' => 7.0})
 
 ### override_tlm
 
-The override_tlm method sets the converted value for a telmetry point in the Command and Telemetry Server. This value will be maintained even if a new packet is received on the interface unless the override is canceled with the normalize_tlm method.
+Sets the converted value for a telmetry point in the Command and Telemetry Server. This value will be maintained even if a new packet is received on the interface unless the override is canceled with the normalize_tlm method.
 
 Syntax:
 
@@ -1399,7 +1527,7 @@ override_tlm("INST HEALTH_STATUS TEMP2 = 0", type: :RAW)
 
 ### normalize_tlm
 
-The normalize_tlm method clears the override of a telmetry point in the Command and Telemetry Server.
+Clears the override of a telmetry point in the Command and Telemetry Server.
 
 Syntax:
 
@@ -1427,7 +1555,7 @@ Methods for subscribing to specific packets of data. This provides an interface 
 
 ### subscribe_packets (since 5.0.0)
 
-The subscribe_packets method allows the user to listen for one or more telemetry packets of data to arrive. A unique id is returned which is used to retrieve the data.
+Allows the user to listen for one or more telemetry packets of data to arrive. A unique id is returned which is used to retrieve the data.
 
 Syntax:
 
@@ -1480,7 +1608,7 @@ These methods allow the user to pause the script to wait for telemetry to change
 
 ### wait
 
-The wait method pauses the script for a configurable amount of time (minimum 10ms) or until a converted telemetry item meets given criteria. It supports three different syntaxes as shown. If no parameters are given then an infinite wait occurs until the user presses Go. Note that on a timeout, wait does not stop the script, usually wait_check is a better choice.
+Pauses the script for a configurable amount of time (minimum 10ms) or until a converted telemetry item meets given criteria. It supports three different syntaxes as shown. If no parameters are given then an infinite wait occurs until the user presses Go. Note that on a timeout, wait does not stop the script, usually wait_check is a better choice.
 
 Syntax:
 
@@ -1516,7 +1644,7 @@ wait("INST HEALTH_STATUS COLLECTS == 3", 10)
 
 ### wait_raw
 
-The wait_raw method pauses the script for a configurable amount of time or until a raw telemetry item meets given criteria. It supports two different syntaxes as shown. If no parameters are given then an infinite wait occurs until the user presses Go. Note that on a timeout, wait_raw does not stop the script, usually wait_check_raw is a better choice.
+Pauses the script for a configurable amount of time or until a raw telemetry item meets given criteria. It supports two different syntaxes as shown. If no parameters are given then an infinite wait occurs until the user presses Go. Note that on a timeout, wait_raw does not stop the script, usually wait_check_raw is a better choice.
 
 Syntax:
 
@@ -1550,7 +1678,7 @@ wait_raw("INST HEALTH_STATUS COLLECTS == 3", 10)
 
 ### wait_tolerance
 
-The wait_tolerance method pauses the script for a configurable amount of time or until a converted telemetry item meets equals an expected value within a tolerance. Note that on a timeout, wait_tolerance does not stop the script, usually wait_check_tolerance is a better choice.
+Pauses the script for a configurable amount of time or until a converted telemetry item meets equals an expected value within a tolerance. Note that on a timeout, wait_tolerance does not stop the script, usually wait_check_tolerance is a better choice.
 
 Syntax:
 
@@ -1576,7 +1704,7 @@ wait_tolerance("INST HEALTH_STATUS COLLECTS", 10.0, 5.0, 10)
 
 ### wait_tolerance_raw
 
-The wait_tolerance_raw method pauses the script for a configurable amount of time or until a raw telemetry item meets equals an expected value within a tolerance. Note that on a timeout, wait_tolerance_raw does not stop the script, usually wait_check_tolerance_raw is a better choice.
+Pauses the script for a configurable amount of time or until a raw telemetry item meets equals an expected value within a tolerance. Note that on a timeout, wait_tolerance_raw does not stop the script, usually wait_check_tolerance_raw is a better choice.
 
 Syntax:
 
@@ -1602,7 +1730,7 @@ wait_tolerance_raw("INST HEALTH_STATUS COLLECTS", 10.0, 5.0, 10)
 
 ### wait_expression
 
-The wait_expression method pauses the script until an expression is evaluated to be true or a timeout occurs. If a timeout occurs the script will continue. This method can be used to perform more complicated comparisons than using wait as shown in the example. Note that on a timeout, wait_expression does not stop the script, usually [wait_check_expression](#waitcheckexpression) is a better choice.
+Pauses the script until an expression is evaluated to be true or a timeout occurs. If a timeout occurs the script will continue. This method can be used to perform more complicated comparisons than using wait as shown in the example. Note that on a timeout, wait_expression does not stop the script, usually [wait_check_expression](#waitcheckexpression) is a better choice.
 
 Syntax:
 
@@ -1624,7 +1752,7 @@ wait_expression("tlm('INST HEALTH_STATUS COLLECTS') > 5 and tlm('INST HEALTH_STA
 
 ### wait_packet
 
-The wait_packet method pauses the script until a certain number of packets have been received. If a timeout occurs the script will continue. Note that on a timeout, wait_packet does not stop the script, usually wait_check_packet is a better choice.
+Pauses the script until a certain number of packets have been received. If a timeout occurs the script will continue. Note that on a timeout, wait_packet does not stop the script, usually wait_check_packet is a better choice.
 
 Syntax:
 
@@ -1648,7 +1776,7 @@ wait_packet('INST', 'HEALTH_STATUS', 5, 10) # Wait for 5 INST HEALTH_STATUS pack
 
 ### wait_check
 
-The wait_check method combines the wait and check keywords into one. This pauses the script until the converted value of a telemetry item meets given criteria or times out. On a timeout the script stops.
+Combines the wait and check keywords into one. This pauses the script until the converted value of a telemetry item meets given criteria or times out. On a timeout the script stops.
 
 Syntax:
 
@@ -1673,7 +1801,7 @@ wait_check("INST HEALTH_STATUS COLLECTS > 5", 10)
 
 ### wait_check_raw
 
-The wait_check_raw method combines the wait_raw and check_raw keywords into one. This pauses the script until the raw value of a telemetry item meets given criteria or times out. On a timeout the script stops.
+Combines the wait_raw and check_raw keywords into one. This pauses the script until the raw value of a telemetry item meets given criteria or times out. On a timeout the script stops.
 
 Syntax:
 
@@ -1698,7 +1826,7 @@ wait_check_raw("INST HEALTH_STATUS COLLECTS > 5", 10)
 
 ### wait_check_tolerance
 
-The wait_check_tolerance method pauses the script for a configurable amount of time or until a converted telemetry item equals an expected value within a tolerance. On a timeout the script stops.
+Pauses the script for a configurable amount of time or until a converted telemetry item equals an expected value within a tolerance. On a timeout the script stops.
 
 Syntax:
 
@@ -1724,7 +1852,7 @@ wait_check_tolerance("INST HEALTH_STATUS COLLECTS", 10.0, 5.0, 10)
 
 ### wait_check_tolerance_raw
 
-The wait_check_tolerance_raw method pauses the script for a configurable amount of time or until a raw telemetry item meets equals an expected value within a tolerance. On a timeout the script stops.
+Pauses the script for a configurable amount of time or until a raw telemetry item meets equals an expected value within a tolerance. On a timeout the script stops.
 
 Syntax:
 
@@ -1750,7 +1878,7 @@ wait_check_tolerance_raw("INST HEALTH_STATUS COLLECTS", 10.0, 5.0, 10)
 
 ### wait_check_expression
 
-The wait_check_expression method pauses the script until an expression is evaluated to be true or a timeout occurs. If a timeout occurs the script will stop. This method can be used to perform more complicated comparisons than using wait as shown in the example. Also see the syntax notes for [check_expression](#checkexpression).
+Pauses the script until an expression is evaluated to be true or a timeout occurs. If a timeout occurs the script will stop. This method can be used to perform more complicated comparisons than using wait as shown in the example. Also see the syntax notes for [check_expression](#checkexpression).
 
 Syntax:
 
@@ -1772,7 +1900,7 @@ wait_check_expression("tlm('INST HEALTH_STATUS COLLECTS') > 5 and tlm('INST HEAL
 
 ### wait_check_packet
 
-The wait_check_packet method pauses the script until a certain number of packets have been received. If a timeout occurs the script will stop.
+Pauses the script until a certain number of packets have been received. If a timeout occurs the script will stop.
 
 Syntax:
 
@@ -1826,7 +1954,7 @@ enabled = limits_enabled?("INST HEALTH_STATUS TEMP1")
 
 ### enable_limits
 
-The enable_limits method enables limits monitoring for the specified telemetry item.
+Enables limits monitoring for the specified telemetry item.
 
 Syntax:
 
@@ -1848,7 +1976,7 @@ enable_limits("INST HEALTH_STATUS TEMP1")
 
 ### disable_limits
 
-The disable_limits method disables limits monitoring for the specified telemetry item.
+Disables limits monitoring for the specified telemetry item.
 
 Syntax:
 
@@ -1870,7 +1998,7 @@ disable_limits("INST HEALTH_STATUS TEMP1")
 
 ### enable_limits_group
 
-The enable_limits_group method enables limits monitoring on a set of telemetry items specified in a limits group.
+Enables limits monitoring on a set of telemetry items specified in a limits group.
 
 Syntax:
 
@@ -1890,7 +2018,7 @@ enable_limits_group("SAFE_MODE")
 
 ### disable_limits_group
 
-The disable_limits_group method disables limits monitoring on a set of telemetry items specified in a limits group.
+Disables limits monitoring on a set of telemetry items specified in a limits group.
 
 Syntax:
 
@@ -1910,7 +2038,7 @@ disable_limits_group("SAFE_MODE")
 
 ### get_limits_groups
 
-The get_limits_groups method returns the list of limits groups in the system.
+Returns the list of limits groups in the system.
 
 Syntax / Example:
 
@@ -1920,7 +2048,7 @@ limits_groups = get_limits_groups()
 
 ### set_limits_set
 
-The set_limits_set method sets the current limits set. The default limits set is :DEFAULT.
+Sets the current limits set. The default limits set is :DEFAULT.
 
 Syntax:
 
@@ -1940,7 +2068,7 @@ set_limits_set("DEFAULT")
 
 ### get_limits_set
 
-The get_limits_set method returns the name of the current limits set. The default limits set is :DEFAULT.
+Returns the name of the current limits set. The default limits set is :DEFAULT.
 
 Syntax / Example:
 
@@ -1950,7 +2078,7 @@ limits_set = get_limits_set()
 
 ### get_limits_sets
 
-The get_limits_sets method returns the list of limits sets in the system.
+Returns the list of limits sets in the system.
 
 Syntax / Example:
 
@@ -1960,7 +2088,7 @@ limits_sets = get_limits_sets()
 
 ### get_limits
 
-The get_limits method returns limits settings for a telemetry point.
+Returns limits settings for a telemetry point.
 
 Syntax:
 
@@ -2014,7 +2142,7 @@ set_limits('INST', 'HEALTH_STATUS', 'TEMP1', -10.0, 0.0, 50.0, 60.0, 30.0, 40.0,
 
 ### get_out_of_limits
 
-The get_out_of_limits method returns an array with the target_name, packet_name, item_name, and limits_state of all items that are out of their limits ranges.
+Returns an array with the target_name, packet_name, item_name, and limits_state of all items that are out of their limits ranges.
 
 Syntax / Example:
 
@@ -2024,7 +2152,7 @@ out_of_limits_items = get_out_of_limits()
 
 ### get_overall_limits_state
 
-The get_overall_limits_state method returns the overall limits state for the COSMOS system. Returns :GREEN, :YELLOW, :RED, or :STALE.
+Returns the overall limits state for the COSMOS system. Returns :GREEN, :YELLOW, :RED, or :STALE.
 
 Syntax:
 
@@ -2045,7 +2173,7 @@ overall_limits_state = get_overall_limits_state([['INST', 'HEALTH_STATUS', 'TEMP
 
 ### get_stale
 
-The get_stale method returns a list of stale packets. The return value is an array of arrays where each subarray contains the target name and packet name for a stale packet.
+Returns a list of stale packets. The return value is an array of arrays where each subarray contains the target name and packet name for a stale packet.
 
 Syntax:
 
@@ -2071,7 +2199,7 @@ inst_stale_packets = get_stale(target_name: "INST")
 
 ### get_limits_events
 
-The get_limits_events method returns limits events based on an offset returned from the last time it was called.
+Returns limits events based on an offset returned from the last time it was called.
 
 Syntax:
 
@@ -2121,7 +2249,7 @@ Methods for getting knowledge about targets.
 
 ### get_target_list
 
-The get_target_list method returns a list of the targets in the system in an array.
+Returns a list of the targets in the system in an array.
 
 Syntax / Example:
 
@@ -2131,7 +2259,7 @@ targets = get_target_list()
 
 ### get_target
 
-The get_target method returns a target hash containing all the information about the target.
+Returns a target hash containing all the information about the target.
 
 Syntax:
 `get_target("<Target Name>")`
@@ -2181,7 +2309,7 @@ pp target
 
 ### get_all_target_info
 
-The get_all_target_info method returns information about all targets. The return value is an array of arrays where each subarray contains the target name, interface name, command count, and telemetry count for a target.
+Returns information about all targets. The return value is an array of arrays where each subarray contains the target name, interface name, command count, and telemetry count for a target.
 
 Syntax / Example:
 
@@ -2198,7 +2326,7 @@ These methods allow the user to manipulate COSMOS interfaces.
 
 ### connect_interface
 
-The connect_interface method connects to targets associated with a COSMOS interface.
+Connects to targets associated with a COSMOS interface.
 
 Syntax:
 
@@ -2219,7 +2347,7 @@ connect_interface("INT1")
 
 ### disconnect_interface
 
-The disconnect_interface method disconnects from targets associated with a COSMOS interface.
+Disconnects from targets associated with a COSMOS interface.
 
 Syntax:
 
@@ -2239,7 +2367,7 @@ disconnect_interface("INT1")
 
 ### get_interface_names
 
-The get_interface_names method returns a list of the interfaces in the system in an array.
+Returns a list of the interfaces in the system in an array.
 
 Syntax / Example:
 
@@ -2249,7 +2377,7 @@ interface_names = get_interface_names()
 
 ### get_interface (since 5.0.0)
 
-The get_interface method returns an interface status including the as built interface and its current status (cmd/tlm counters, etc).
+Returns an interface status including the as built interface and its current status (cmd/tlm counters, etc).
 
 Syntax:
 `get_interface("<Interface Name>")`
@@ -2288,7 +2416,7 @@ pp interface
 
 ### start_raw_logging_interface
 
-The start_raw_logging_interface method starts logging of raw data on one or all interfaces. This is for debugging purposes only.
+Starts logging of raw data on one or all interfaces. This is for debugging purposes only.
 
 Syntax:
 
@@ -2308,7 +2436,7 @@ start_raw_logging_interface("int1")
 
 ### stop_raw_logging_interface
 
-The stop_raw_logging_interface method stops logging of raw data on one or all interfaces. This is for debugging purposes only.
+Stops logging of raw data on one or all interfaces. This is for debugging purposes only.
 
 Syntax:
 
@@ -2328,7 +2456,7 @@ stop_raw_logging_interface("int1")
 
 ### get_all_interface_info
 
-The get_all_interface_info method returns information about all interfaces. The return value is an array of arrays where each subarray contains the interface name, connection state, number of connected clients, transmit queue size, receive queue size, bytes transmitted, bytes received, command count, and telemetry count.
+Returns information about all interfaces. The return value is an array of arrays where each subarray contains the interface name, connection state, number of connected clients, transmit queue size, receive queue size, bytes transmitted, bytes received, command count, and telemetry count.
 
 Syntax / Example:
 
@@ -2347,7 +2475,7 @@ These methods allow the user to manipulate COSMOS routers.
 
 ### connect_router
 
-The connect_router method connects a COSMOS router.
+Connects a COSMOS router.
 
 Syntax:
 
@@ -2368,7 +2496,7 @@ connect_ROUTER("INT1_ROUTER")
 
 ### disconnect_router
 
-The disconnect_router method disconnects a COSMOS router.
+Disconnects a COSMOS router.
 
 Syntax:
 
@@ -2388,7 +2516,7 @@ disconnect_router("INT1_ROUTER")
 
 ### get_router_names
 
-The get_router_names method returns a list of the routers in the system in an array.
+Returns a list of the routers in the system in an array.
 
 Syntax / Example:
 
@@ -2396,9 +2524,48 @@ Syntax / Example:
 router_names = get_router_names()
 ```
 
+### get_router (since 5.0.0)
+
+Returns a router status including the as built router and its current status (cmd/tlm counters, etc).
+
+Syntax:
+`get_router("<Router Name>")`
+
+| Parameter      | Description            |
+| -------------- | ---------------------- |
+| Router Name | Name of the router. |
+
+Example:
+
+```ruby
+router = get_router("ROUTER_INT")
+pp router
+#{"name"=>"ROUTER_INT",
+# "config_params"=>["router.rb"],
+# "target_names"=>["INST"],
+# "connect_on_startup"=>true,
+# "auto_reconnect"=>true,
+# "reconnect_delay"=>5.0,
+# "disable_disconnect"=>false,
+# "options"=>[],
+# "protocols"=>[],
+# "log"=>true,
+# "log_raw"=>false,
+# "plugin"=>nil,
+# "updated_at"=>1613076213535979900,
+# "state"=>"CONNECTED",
+# "clients"=>0,
+# "txsize"=>0,
+# "rxsize"=>0,
+# "txbytes"=>0,
+# "rxbytes"=>0,
+# "txcnt"=>0,
+# "rxcnt"=>0}
+```
+
 ### get_all_router_info
 
-The get_all_router_info method returns information about all routers. The return value is an array of arrays where each subarray contains the router name, connection state, number of connected clients, transmit queue size, receive queue size, bytes transmitted, bytes received, packets received, and packets sent.
+Returns information about all routers. The return value is an array of arrays where each subarray contains the router name, connection state, number of connected clients, transmit queue size, receive queue size, bytes transmitted, bytes received, packets received, and packets sent.
 
 Syntax / Example:
 
@@ -2413,7 +2580,7 @@ end
 
 ### start_raw_logging_router
 
-The start_raw_logging_router method starts logging of raw data on one or all routers. This is for debugging purposes only.
+Starts logging of raw data on one or all routers. This is for debugging purposes only.
 
 Syntax:
 
@@ -2433,7 +2600,7 @@ start_raw_logging_router("router1")
 
 ### stop_raw_logging_router
 
-The stop_raw_logging_router method stops logging of raw data on one or all routers. This is for debugging purposes only.
+Stops logging of raw data on one or all routers. This is for debugging purposes only.
 
 Syntax:
 
@@ -2457,7 +2624,7 @@ These methods allow the user to bring in files of subroutines and execute other 
 
 ### start
 
-The start method starts execution of another high level test procedure. No parameters can be given to high level test procedures. If parameters are necessary, then consider using a subroutine.
+Starts execution of another high level test procedure. No parameters can be given to high level test procedures. If parameters are necessary, then consider using a subroutine.
 
 Syntax:
 
@@ -2477,7 +2644,7 @@ start("test1.rb")
 
 ### load_utility
 
-The load_utility method reads in a script file that contains useful subroutines for use in your test procedure. When these subroutines run in ScriptRunner or TestRunner, their lines will be highlighted. If you want to import subroutines but do not want their lines to be highlighted in ScriptRunner or TestRunner, use the standard Ruby 'load' or 'require' statement.
+Reads in a script file that contains useful subroutines for use in your test procedure. When these subroutines run in ScriptRunner or TestRunner, their lines will be highlighted. If you want to import subroutines but do not want their lines to be highlighted in ScriptRunner or TestRunner, use the standard Ruby 'load' or 'require' statement.
 
 Syntax:
 
@@ -2505,7 +2672,7 @@ These methods allow the user to open, close or create unique telemetry screens f
 
 ### display
 
-The display method opens a telemetry screen at the specified position.
+Opens a telemetry screen at the specified position.
 
 Syntax:
 
@@ -2527,7 +2694,7 @@ display("INST ADCS", 100, 200)
 
 ### clear
 
-The clear method closes an open telemetry screen.
+Closes an open telemetry screen.
 
 Syntax:
 
@@ -2547,7 +2714,7 @@ clear("INST ADCS")
 
 ### clear_all
 
-The clear_all method closes all open screens or all screens of a particular target.
+Closes all open screens or all screens of a particular target.
 
 Syntax:
 
@@ -2833,7 +3000,7 @@ show_backtrace(false) # Disables showing backtrace for every error
 
 ### shutdown_cmd_tlm
 
-The shutdown_cmd_tlm method disconnects from the Command and Telemetry Server. This is good practice to do before your tool shuts down.
+Disconnects from the Command and Telemetry Server. This is good practice to do before your tool shuts down.
 
 Syntax / Example:
 
@@ -2843,7 +3010,7 @@ shutdown_cmd_tlm()
 
 ### set_cmd_tlm_disconnect
 
-The set_cmd_tlm_disconnect method puts scripting into or out of disconnect mode. In disconnect mode, messages are not sent to CmdTlmServer. Instead things are reported as nominally succeeding. Disconnect mode is useful for dry-running scripts without having a connected CmdTlmServer.
+Puts scripting into or out of disconnect mode. In disconnect mode, messages are not sent to CmdTlmServer. Instead things are reported as nominally succeeding. Disconnect mode is useful for dry-running scripts without having a connected CmdTlmServer.
 
 Syntax:
 
@@ -2864,7 +3031,7 @@ set_cmd_tlm_disconnect(true)
 
 ### get_cmd_tlm_disconnect
 
-The get_cmd_tlm_disconnect method returns true if currently in disconnect mode.
+Returns true if currently in disconnect mode.
 
 Syntax / Example:
 
