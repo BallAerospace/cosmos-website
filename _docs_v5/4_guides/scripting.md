@@ -270,7 +270,7 @@ The following API methods are either deprecated (will not be ported to COSMOS 5)
 | get_cmd_list               | Command and Telemetry Server | Deprecated, use get_all_commands |
 | get_cmd_log_filename       | Command and Telemetry Server | Deprecated |
 | get_cmd_param_list         | Command and Telemetry Server | Deprecated use get_command |
-| get_all_interface_info     | Command and Telemetry Server | Deprecated, use get_inter |
+| get_all_interface_info     | Command and Telemetry Server | Deprecated, use get_interface |
 | get_disconnected_targets   | Script Runner | Unimplemented |
 | get_interface_info         | Command and Telemetry Server | Deprecated, use get_interface |
 | get_interface_targets      | Command and Telemetry Server | Deprecated |
@@ -300,10 +300,6 @@ The following API methods are either deprecated (will not be ported to COSMOS 5)
 | open_file_dialog | Script Runner | Unimplemented |
 | open_files_dialog | Script Runner | Unimplemented |
 | open_directory_dialog | Script Runner | Unimplemented |
-| prompt_combo_box | Script Runner | Unimplemented |
-| prompt_message_box | Script Runner | Unimplemented |
-| prompt_to_continue | Script Runner | Unimplemented |
-| prompt_vertical_message_box | Script Runner | Unimplemented |
 | replay_move_end | Replay | Deprecated |
 | replay_move_index | Replay | Deprecated |
 | replay_move_start | Replay | Deprecated |
@@ -321,7 +317,7 @@ The following API methods are either deprecated (will not be ported to COSMOS 5)
 | script_disconnect | Script Runner | Unimplemented |
 | set_disconnected_targets | Script Runner | Unimplemented |
 | set_replay_mode | Replay | Deprecated |
-| set_stdout_max_lines | Script Runner | Deprecated |
+| set_stdout_max_lines | Script Runner | Unimplemented |
 | set_tlm_raw  | Script Runner | Deprecated, use set_tlm |
 | show_backtrace | Script Runner | Unimplemented |
 | shutdown_cmd_tlm | Command and Telemetry Server | Deprecated |
