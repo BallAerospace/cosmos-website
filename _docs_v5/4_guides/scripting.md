@@ -346,22 +346,23 @@ The following API methods are new in COSMOS 5:
 
 | Method                     | Tool |
 | -------------------------- | -----|
-| get_all_commands | Command and Telemetry Server
-| get_all_telemetry | Command and Telemetry Server
-| get_command | Command and Telemetry Server
-| get_interface | Command and Telemetry Server
-| get_item | Command and Telemetry Server
-| get_metadata | Command and Telemetry Server
-| get_router | Command and Telemetry Server
-| get_setting | Command and Telemetry Server
-| get_settings | Command and Telemetry Server
-| get_target | Command and Telemetry Server
-| get_telemetry | Command and Telemetry Server
-| input_metadata  | Script Runner
-| list_configs | Various
-| list_settings | Command and Telemetry Server
-| load_config | Various
-| save_setting | Command and Telemetry Server
+| get_all_commands | Command and Telemetry Server |
+| get_all_telemetry | Command and Telemetry Server |
+| get_command | Command and Telemetry Server |
+| get_interface | Command and Telemetry Server |
+| get_item | Command and Telemetry Server |
+| get_metadata | Command and Telemetry Server |
+| get_router | Command and Telemetry Server |
+| get_setting | Command and Telemetry Server |
+| get_settings | Command and Telemetry Server |
+| get_target | Command and Telemetry Server |
+| get_target_file | Script Runner |
+| get_telemetry | Command and Telemetry Server |
+| input_metadata  | Script Runner |
+| list_configs | Various |
+| list_settings | Command and Telemetry Server |
+| load_config | Various |
+| save_setting | Command and Telemetry Server |
 
 ## Retrieving User Input
 
