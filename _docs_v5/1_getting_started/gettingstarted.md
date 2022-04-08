@@ -21,12 +21,16 @@ Welcome to the COSMOS system... Let's get started! This guide is a high level ov
 
 <div class="note info">
   <h5>Browser version issue</h5>
-  <p style="margin-bottom:20px;">When you try to load the page and it fails to load, check with the built-in web development tools / DevTools. We have seen some strange things with version of browsers. You can build to a version of browser if you need to by reading about the <a href="https://github.com/browserslist/browserslist">browserslist</a>. </p>
+  <p style="margin-bottom:20px;">
+  When you try to load the page and it fails to load, check with the built-in web development tools / DevTools. We have seen some strange things with version of browsers. You can build to a version of browser if you need to by reading about the <a href="https://github.com/browserslist/browserslist">browserslist</a>. Some examples would be...
+  </p>
+  <code>
+    unexpected token ||=
+  </code>
 
   <p style="margin-left:20px;margin-bottom:20px;">
-    Note: Currently we support 20 versions of edge, but only the last two version of all other supported browsers. <a href="https://github.com/BallAerospace/COSMOS/blob/master/cosmos-init/plugins/cosmosc2-tool-base/.browserslistrc">.browserlistrc</a> You can change this and rebuild the image.
+     To fix this make sure your browsers is compliant with the current settings in the <a href="https://github.com/BallAerospace/COSMOS/blob/master/cosmos-init/plugins/cosmosc2-tool-base/.browserslistrc">.browserlistrc</a> file. You can change this and rebuild the image. Note: This can cause build speeds to increase or decrease.
     <br/>
-    <code>last 20 edge versions</code>
   </p>
 </div>
 
