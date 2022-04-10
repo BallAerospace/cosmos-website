@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>JSON API</title>
+  <title>Podman</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -101,198 +101,71 @@
           <span class="version-badge">v5</span>
         </div>
          
-        <h1>JSON API</h1>
-        <div class="note">
-  <h5>This documentation is for COSMOS Developers</h5>
-  <p>If you’re looking for the methods available to write test procedures using the COSMOS scripting API, refer to the <a href="/docs/v5/scripting">Scripting Guide</a> page. If you’re trying to interface to a COSMOS Command and Telemetry Server from an external application using any language then this is the right place.</p>
-</div>
+        <h1>Podman</h1>
+        <h3 id="cosmos-using-rootless-podman-and-docker-compose">COSMOS Using Rootless Podman and Docker-Compose</h3>
 
-<p>This document provides the information necessary for external applications to interact with the COSMOS Command and Telemetry Server using the COSMOS API. External applications written in any language can send commands and retrieve individual telemetry points using this API. External applications also have the option of connecting to the COSMOS Command and Telemetry server to interact with raw tcp/ip streams of commands/telemetry. However, the COSMOS JSON API removes the requirement that external applications have knowledge of the binary formats of packets.</p>
-
-<h2 id="swagger-openapi-documentation">Swagger OpenApi Documentation</h2>
-
-<p>Current work is being done to document all api endpoints in cosmos. More information can be found at <a href="//github.com/BallAerospace/cosmos-api">cosmos-api</a></p>
-
-<h2 id="authorization">Authorization</h2>
-
-<p>The HTTP Authorization request header contains the credentials to authenticate a user agent with a server, usually, but not necessarily, after the server has responded with a 401 Unauthorized status and the WWW-Authenticate header.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Authorization: &lt;token/password&gt;
-</code></pre></div></div>
-
-<h2 id="json-rpc-20">JSON-RPC 2.0</h2>
-
-<p>The COSMOS API implements a relaxed version of the <a href="http://www.jsonrpc.org/specification">JSON-RPC 2.0 Specification</a>. Requests with an “id” of NULL are not supported. Numbers can contain special non-string literal’s such as NaN, and +/-inf. Request params must be specified by-position, by-name is not supported. Section 6 of the spec, Batch Operations, is not supported.</p>
-
-<h2 id="socket-connections">Socket Connections</h2>
-
-<p>The COSMOS Command and Telemetry Server listens for connections to the COSMOS API on an HTTP server (default port of 7777).</p>
-
-<h2 id="supported-methods">Supported Methods</h2>
-
-<p>The list of methods supported by the COSMOS API may be found in the <a href="https://github.com/BallAerospace/COSMOS/tree/master/cosmos/lib/cosmos/api">api</a> source code on Github. The @api_whitelist variable is initialized with an array of all methods accepted by the CTS. This page will not show the full argument list for every method in the API, but it should be noted that the JSON API methods correspond to the COSMOS scripting API methods documented in the <a href="/docs/v5/scripting">Scripting Guide</a>. This page will show a few example JSON requests and responses, and the scripting guide can be used as a reference to extrapolate how to build requests and parse responses for methods not explicitly documented here.</p>
-
-<h2 id="existing-implementations">Existing Implementations</h2>
-
-<p>The COSMOS JSON API has been implemented in the following languages:</p>
-
-<ul>
-  <li><a href="https://github.com/BallAerospace/python-ballcosmos">Python</a></li>
-</ul>
-
-<h2 id="example-usage">Example Usage</h2>
-
-<h3 id="sending-commands">Sending Commands</h3>
-
-<p>The following methods are used to send commands: cmd, cmd_no_range_check, cmd_no_hazardous_check, cmd_no_checks</p>
-
-<p>The cmd method sends a command to a COSMOS target in the system. The cmd_no_range_check method does the same but ignores parameter range errors. The cmd_no_hazardous_check method does the same, but allows hazardous commands to be sent. The cmd_no_checks method does the same but allows hazardous commands to be sent, and ignores range errors.</p>
-
-<p>Two parameter syntaxes are supported.</p>
-
-<p>The first is a single string of the form “TARGET_NAME COMMAND_NAME with PARAMETER_NAME_1 PARAMETER_VALUE_1, PARAMETER_NAME_2 PARAMETER_VALUE_2, …” The “with …” portion of the string is optional. Any unspecified parameters will be given default values.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Data Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>command_string</td>
-      <td>string</td>
-      <td>A single string containing all required information for the command</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>The second is two or three parameters with the first parameter being a string denoting the target name, the second being a string with the command name, and an optional third being a hash of parameter names/values. This format should be used if the command contains parameters that take binary data that is not capable of being expressed as ASCII text. The cmd and cmd_no_range_check methods will fail on all attempts to send a command that has been marked hazardous. To send hazardous commands, the cmd_no_hazardous_check, or cmd_no_checks methods must be used.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Data Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>target_name</td>
-      <td>String</td>
-      <td>Name of the target to send the command to</td>
-    </tr>
-    <tr>
-      <td>command_name</td>
-      <td>String</td>
-      <td>The name of the command</td>
-    </tr>
-    <tr>
-      <td>command_params</td>
-      <td>Hash</td>
-      <td>Optional hash of command parameters</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--</span><span class="o">&gt;</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"method"</span>: <span class="s2">"cmd"</span>, <span class="s2">"params"</span>: <span class="o">[</span><span class="s2">"INST COLLECT with DURATION 1.0, TEMP 0.0, TYPE 'NORMAL'"</span><span class="o">]</span>, <span class="s2">"id"</span>: 1<span class="o">}</span>
-&lt;<span class="nt">--</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"result"</span>: <span class="o">[</span><span class="s2">"INST"</span>, <span class="s2">"COLLECT"</span>, <span class="o">{</span><span class="s2">"DURATION"</span>: 1.0, <span class="s2">"TEMP"</span>: 0.0, <span class="s2">"TYPE"</span>: <span class="s2">"NORMAL"</span><span class="o">}]</span>, <span class="s2">"id"</span>: 1<span class="o">}</span>
-
-<span class="nt">--</span><span class="o">&gt;</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"method"</span>: <span class="s2">"cmd"</span>, <span class="s2">"params"</span>: <span class="o">[</span><span class="s2">"INST"</span>, <span class="s2">"COLLECT"</span>, <span class="o">{</span><span class="s2">"DURATION"</span>: 1.0, <span class="s2">"TEMP"</span>: 0.0, <span class="s2">"TYPE"</span>: <span class="s2">"NORMAL"</span><span class="o">}]</span>, <span class="s2">"id"</span>: 1<span class="o">}</span>
-&lt;<span class="nt">--</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"result"</span>: <span class="o">[</span><span class="s2">"INST"</span>, <span class="s2">"COLLECT"</span>, <span class="o">{</span><span class="s2">"DURATION"</span>: 1.0, <span class="s2">"TEMP"</span>: 0.0, <span class="s2">"TYPE"</span>: <span class="s2">"NORMAL"</span><span class="o">}]</span>, <span class="s2">"id"</span>: 1<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="getting-telemetry">Getting Telemetry</h3>
-
-<p>The following methods are used to get telemetry: tlm, tlm_raw, tlm_formatted, tlm_with_units</p>
-
-<p>The tlm method returns the current converted value of a telemetry point. The tlm_raw method returns the current raw value of a telemetry point. The tlm_formatted method returns the current formatted value of a telemetry point. The tlm_with_units method returns the current formatted value of a telemetry point with its units appended to the end.</p>
-
-<p>Two parameter syntaxes are supported.</p>
-
-<p>The first is a single string of the form “TARGET_NAME PACKET_NAME ITEM_NAME”</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Data Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>tlm_string</td>
-      <td>String</td>
-      <td>A single string containing all required information for the telemetry item</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>The second is three parameters with the first parameter being a string denoting the target name, the second being a string with the packet name, and the third being a string with the item name.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Data Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>target_name</td>
-      <td>String</td>
-      <td>Name of the target to get the telemetry value from</td>
-    </tr>
-    <tr>
-      <td>packet_name</td>
-      <td>String</td>
-      <td>Name of the packet to get the telemetry value from</td>
-    </tr>
-    <tr>
-      <td>item_name</td>
-      <td>String</td>
-      <td>Name of the telemetry item</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Example Usage:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--</span><span class="o">&gt;</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"method"</span>: <span class="s2">"tlm"</span>, <span class="s2">"params"</span>: <span class="o">[</span><span class="s2">"INST HEALTH_STATUS TEMP1"</span><span class="o">]</span>, <span class="s2">"id"</span>: 2<span class="o">}</span>
-&lt;<span class="nt">--</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"result"</span>: 94.9438, <span class="s2">"id"</span>: 2<span class="o">}</span>
-
-<span class="nt">--</span><span class="o">&gt;</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"method"</span>: <span class="s2">"tlm"</span>, <span class="s2">"params"</span>: <span class="o">[</span><span class="s2">"INST"</span>, <span class="s2">"HEALTH_STATUS"</span>, <span class="s2">"TEMP1"</span><span class="o">]</span>, <span class="s2">"id"</span>: 2<span class="o">}</span>
-&lt;<span class="nt">--</span> <span class="o">{</span><span class="s2">"jsonrpc"</span>: <span class="s2">"2.0"</span>, <span class="s2">"result"</span>: 94.9438, <span class="s2">"id"</span>: 2<span class="o">}</span>
-</code></pre></div></div>
-
-<h2 id="further-debugging">Further Debugging</h2>
-
-<p>If developing an interface for the JSON API from another language, the best way to debug is to send the same messages from the supported Ruby interface first, like the following. By enabling the debug mode, you can see the exact request and response sent from the Ruby Implementation.</p>
+<p>Podman is an alternative container technology to Docker that is actively promoted by RedHat. The key benefit is that Podman can run without a root-level daemon service, making it significantly more secure by design, over standard Docker. However, it is a little more complicated to use. These directions will get you up and running with Podman. Note that the docker-compose tool version 1.x is compatible with Podman 3.x, so that will still be used in this configuration. The following directions were written against RHEL 8.5, but should be similar on other operating systems.</p>
 
 <ol>
-  <li>Launch CmdTlmServer</li>
-  <li>From a command line, launch ScriptRunner: ruby ScriptRunner</li>
-  <li>Run a script like the following:</li>
+  <li>
+    <p>Install Prerequisite Packages</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo yum groupinstall "Development Tools"
+sudo yum install podman-docker podman-plugins
+curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64 -o docker-compose
+mv docker-compose /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Start rootless podman socket service</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl enable --now --user podman.socket
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Put the following into your .bashrc file (or .bash_profile or whatever)</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export DOCKER_HOST="unix:$XDG_RUNTIME_DIR/podman/podman.sock"
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Source the profile file for your current terminal</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source .bashrc
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Get COSMOS - A release or the current main branch (main branch shown)</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir git
+cd git
+git clone https://github.com/BallAerospace/COSMOS.git
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Optional - Set Default Container Registry</p>
+
+    <p>If you don’t want podman to keep querying you for which registry to use, you can create a $HOME/.config/containers/registries.conf and modify to just have the main docker registry (or modify the /etc/containers/registries.conf file directly)</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir -p $HOME/.config/containers
+cp /etc/containers/registries.conf $HOME/.config/containers/.
+</code></pre></div>    </div>
+
+    <p>Then edit the unqualified-search-registries = line to just have the registry you care about (probably docker.io)</p>
+  </li>
+  <li>
+    <p>Run COSMOS</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd COSMOS
+./cosmos-control.sh start
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Wait until everything is built and running and then goto http://localhost:2900 in your browser</p>
+  </li>
 </ol>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">JsonDRb</span><span class="p">.</span><span class="nf">debug</span> <span class="o">=</span> <span class="kp">true</span>
-<span class="n">cmd</span><span class="p">(</span><span class="s2">"INST ARYCMD with ARRAY [1, 2, 3]"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ol>
-  <li>The following will be printed to the terminal where you launched ScriptRunner:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Request:
-<span class="o">{</span><span class="s2">"jsonrpc"</span>:<span class="s2">"2.0"</span>,<span class="s2">"method"</span>:<span class="s2">"cmd"</span>,<span class="s2">"params"</span>:[<span class="s2">"INST ARYCMD with ARRAY [1, 2, 3]"</span><span class="o">]</span>,<span class="s2">"id"</span>:0<span class="o">}</span>
-Response:
-<span class="o">{</span><span class="s2">"jsonrpc"</span>:<span class="s2">"2.0"</span>,<span class="s2">"id"</span>:0,<span class="s2">"result"</span>:[<span class="s2">"INST"</span>,<span class="s2">"ARYCMD"</span>,<span class="o">{</span><span class="s2">"ARRAY"</span>:[1,2,3]<span class="o">}]}</span>
-</code></pre></div></div>
 
       </article>
     </div>
@@ -433,7 +306,7 @@ Response:
       
     
       
-  <li class="">
+  <li class="current">
     <a href="http://localhost:4000/docs/v5/podman">Podman</a>
   </li>
   <!-- prettier-ignore -->
@@ -1781,7 +1654,7 @@ Response:
       
     
       
-  <li class="current">
+  <li class="">
     <a href="http://localhost:4000/docs/v5/json-api">JSON API</a>
   </li>
   <!-- prettier-ignore -->

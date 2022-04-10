@@ -5,6 +5,7 @@
     - gettingstarted
     - upgrading
     - requirements
+    - podman
 
 - title: Configuration
   docs:
