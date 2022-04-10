@@ -104,18 +104,35 @@
         <h1>Podman</h1>
         <h3 id="cosmos-using-rootless-podman-and-docker-compose">COSMOS Using Rootless Podman and Docker-Compose</h3>
 
+<div class="note info">
+  <h5>Optional Installation Option</h5>
+  <p style="margin-bottom:20px;">These directions are for installing and running COSMOS using Podman instead of Docker. If you have Docker available, that is a simpler method.</p>
+</div>
+
 <p>Podman is an alternative container technology to Docker that is actively promoted by RedHat. The key benefit is that Podman can run without a root-level daemon service, making it significantly more secure by design, over standard Docker. However, it is a little more complicated to use. These directions will get you up and running with Podman. Note that the docker-compose tool version 1.x is compatible with Podman 3.x, so that will still be used in this configuration. The following directions were written against RHEL 8.5, but should be similar on other operating systems.</p>
 
 <ol>
   <li>
     <p>Install Prerequisite Packages</p>
 
+    <p>Note: This downloads and installs docker-compose from the latest 1.x release on Github. If your operating system has a docker-compose package, it will be easier to install using that instead. RHEL8 does not have a docker-compose package.</p>
+
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo yum groupinstall "Development Tools"
 sudo yum install podman-docker podman-plugins
 curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64 -o docker-compose
-mv docker-compose /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+sudo mv docker-compose /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Configure Host OS for Redis</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su
+echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled
+echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag
+sysctl -w vm.max_map_count=262144
+exit
 </code></pre></div>    </div>
   </li>
   <li>
@@ -139,9 +156,7 @@ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
   <li>
     <p>Get COSMOS - A release or the current main branch (main branch shown)</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir git
-cd git
-git clone https://github.com/BallAerospace/COSMOS.git
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/BallAerospace/COSMOS.git
 </code></pre></div>    </div>
   </li>
   <li>

@@ -13,8 +13,8 @@ The following sections describe how to get COSMOS installed on various operating
 
 Install [Docker](https://docs.docker.com/get-docker/) and install [Docker Compose](https://docs.docker.com/compose/install/).
 
-* Minimum Resources allocated to Docker: 8GB RAM, 1 CPU, 80GB Disk
-* Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+- Minimum Resources allocated to Docker: 8GB RAM, 1 CPU, 80GB Disk
+- Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
 
 **Note:** As of December 2021 the COSMOS Docker containers are based on the Alpine Docker image.
 
@@ -61,8 +61,8 @@ You will need to create new ones with the names above and set their value to the
 </div>
 
 <div class="note info">
-  <h5>Classified Installation</h5>
-  <p style="margin-bottom:20px;">If you're building in a classified environment or want to use a private Rubygems, NPM or APK server (e.g. Nexus), you can update the following environment variables: RUBYGEMS_URL, NPM_URL, APK_URL, and more in the <a href="https://github.com/BallAerospace/COSMOS/blob/master/.env">.env</a> file. Example values:</p>
+  <h5>Offline Installation</h5>
+  <p style="margin-bottom:20px;">If you're building in a offline environment or want to use a private Rubygems, NPM or APK server (e.g. Nexus), you can update the following environment variables: RUBYGEMS_URL, NPM_URL, APK_URL, and more in the <a href="https://github.com/BallAerospace/COSMOS/blob/master/.env">.env</a> file. Example values:</p>
 
   <p style="margin-left:20px;margin-bottom:20px;">
     ALPINE_VERSION=3.15<br/>
@@ -74,7 +74,6 @@ You will need to create new ones with the names above and set their value to the
 
   <p style="margin-bottom:20px;">Create a zip file which can be transferred by running <code>cosmos-control.bat util zip</code></p>
   <p style="margin-bottom:20px;">If you're on Unix, once you unzip the file run the following: <code>find . -name "*.sh" | xargs chmod +x</code></p>
-  <p>Also note you may be unable to find the justincormack/nsenter1 container. If so just comment out those lines in scripts/linux/cosmos_setup.sh</p>
 </div>
 
 ### RUN
@@ -86,6 +85,7 @@ If you see an error indicating docker daemon is not running ensure Docker and Do
 `cosmos-control.*` can help solve some of the short falls of docker-compose when building the containers.
 
 `cosmos-control.*` takes multiple arguments. Run with no arguments for help. An example run of cosmos-control.bat with no arguments will show a usage guide.
+
 ```
 .\cosmos-control.bat
 Usage: "cosmos-control.bat" [start, stop, cleanup, build, run, deploy, util]
@@ -140,4 +140,3 @@ Continue to [Getting Started](/docs/v5/gettingstarted).
     GitHub describing your experience so we can make it better.
   </p>
 </div>
-

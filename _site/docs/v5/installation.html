@@ -162,8 +162,8 @@ You will need to create new ones with the names above and set their value to the
 </div>
 
 <div class="note info">
-  <h5>Classified Installation</h5>
-  <p style="margin-bottom:20px;">If you're building in a classified environment or want to use a private Rubygems, NPM or APK server (e.g. Nexus), you can update the following environment variables: RUBYGEMS_URL, NPM_URL, APK_URL, and more in the <a href="https://github.com/BallAerospace/COSMOS/blob/master/.env">.env</a> file. Example values:</p>
+  <h5>Offline Installation</h5>
+  <p style="margin-bottom:20px;">If you're building in a offline environment or want to use a private Rubygems, NPM or APK server (e.g. Nexus), you can update the following environment variables: RUBYGEMS_URL, NPM_URL, APK_URL, and more in the <a href="https://github.com/BallAerospace/COSMOS/blob/master/.env">.env</a> file. Example values:</p>
 
   <p style="margin-left:20px;margin-bottom:20px;">
     ALPINE_VERSION=3.15<br />
@@ -175,7 +175,6 @@ You will need to create new ones with the names above and set their value to the
 
   <p style="margin-bottom:20px;">Create a zip file which can be transferred by running <code>cosmos-control.bat util zip</code></p>
   <p style="margin-bottom:20px;">If you're on Unix, once you unzip the file run the following: <code>find . -name "*.sh" | xargs chmod +x</code></p>
-  <p>Also note you may be unable to find the justincormack/nsenter1 container. If so just comment out those lines in scripts/linux/cosmos_setup.sh</p>
 </div>
 
 <h3 id="run">RUN</h3>
@@ -187,6 +186,7 @@ You will need to create new ones with the names above and set their value to the
 <p><code class="language-plaintext highlighter-rouge">cosmos-control.*</code> can help solve some of the short falls of docker-compose when building the containers.</p>
 
 <p><code class="language-plaintext highlighter-rouge">cosmos-control.*</code> takes multiple arguments. Run with no arguments for help. An example run of cosmos-control.bat with no arguments will show a usage guide.</p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.\cosmos-control.bat
 Usage: "cosmos-control.bat" [start, stop, cleanup, build, run, deploy, util]
 *  build: build the containers for cosmos
@@ -238,7 +238,6 @@ Usage: "cosmos-control.bat" [start, stop, cleanup, build, run, deploy, util]
     GitHub describing your experience so we can make it better.
   </p>
 </div>
-
 
       </article>
     </div>

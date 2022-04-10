@@ -5,9 +5,16 @@ title: Podman
 
 ### COSMOS Using Rootless Podman and Docker-Compose
 
+<div class="note info">
+  <h5>Optional Installation Option</h5>
+  <p style="margin-bottom:20px;">These directions are for installing and running COSMOS using Podman instead of Docker. If you have Docker available, that is a simpler method.</p>
+</div>
+
 Podman is an alternative container technology to Docker that is actively promoted by RedHat. The key benefit is that Podman can run without a root-level daemon service, making it significantly more secure by design, over standard Docker. However, it is a little more complicated to use. These directions will get you up and running with Podman. Note that the docker-compose tool version 1.x is compatible with Podman 3.x, so that will still be used in this configuration. The following directions were written against RHEL 8.5, but should be similar on other operating systems.
 
 1. Install Prerequisite Packages
+
+   Note: This downloads and installs docker-compose from the latest 1.x release on Github. If your operating system has a docker-compose package, it will be easier to install using that instead. RHEL8 does not have a docker-compose package.
 
    ```
    sudo yum groupinstall "Development Tools"
