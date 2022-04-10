@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Autonomic</title>
+  <title>Podman</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -101,100 +101,79 @@
           <span class="version-badge">v5</span>
         </div>
          
-        <div class="toc"><ul id="toc" class="section-nav">
-<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#overview">Overview</a></li>
-<li class="toc-entry toc-h3"><a href="#triggergroups">TriggerGroups</a></li>
-<li class="toc-entry toc-h3"><a href="#triggers">Triggers</a></li>
-<li class="toc-entry toc-h3"><a href="#reactions">Reactions</a></li>
-<li class="toc-entry toc-h3"><a href="#autonomic-lifecycle">Autonomic lifecycle</a></li>
-</ul>
-</li>
-</ul></div>
-        
-        <h1>Autonomic</h1>
-        <h2 id="introduction">
-<a class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
+        <h1>Podman</h1>
+        <h3 id="cosmos-using-rootless-podman-and-docker-compose">COSMOS Using Rootless Podman and Docker-Compose</h3>
 
-<p>Autonomic allows for the simple execution of commands and scripts based on user-defined rules.</p>
+<p>Podman is an alternative container technology to Docker that is actively promoted by RedHat. The key benefit is that Podman can run without a root-level daemon service, making it significantly more secure by design, over standard Docker. However, it is a little more complicated to use. These directions will get you up and running with Podman. Note that the docker-compose tool version 1.x is compatible with Podman 3.x, so that will still be used in this configuration. The following directions were written against RHEL 8.5, but should be similar on other operating systems.</p>
 
-<h3 id="overview">
-<a class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h3>
+<ol>
+  <li>
+    <p>Install Prerequisite Packages</p>
 
-<p>Autonomic operates with some basic building blocks: Trigger Groups, Triggers, and Reactions. Triggers are simply logical blocks which evaluate true or false. Reactions can be linked to one or many Triggers and specify an action to perform. Together they allow for an action to be taken based on anything going on in your system.</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo yum groupinstall "Development Tools"
+sudo yum install podman-docker podman-plugins
+curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64 -o docker-compose
+sudo mv docker-compose /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Configure Host OS for Redis</p>
 
-<p><img src="/img/v5/autonomic/autonomic.png" alt="Autonomic"></p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>su
+echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled
+echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag
+sysctl -w vm.max_map_count=262144
+exit
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Start rootless podman socket service</p>
 
-<h3 id="triggergroups">
-<a class="anchor" href="#triggergroups" aria-hidden="true"><span class="octicon octicon-link"></span></a>TriggerGroups</h3>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl enable --now --user podman.socket
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Put the following into your .bashrc file (or .bash_profile or whatever)</p>
 
-<p>Triggers are organized into groups, these groups are to ensure that we can scale as the number of triggers with the incoming telemetry. Each group consists of several threads so be careful of your compute resources you have as you can overwhelm Cosmos with lots of these.</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export DOCKER_HOST="unix:$XDG_RUNTIME_DIR/podman/podman.sock"
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Source the profile file for your current terminal</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"system42"</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source .bashrc
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Get COSMOS - A release or the current main branch (main branch shown)</p>
 
-<h3 id="triggers">
-<a class="anchor" href="#triggers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Triggers</h3>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/BallAerospace/COSMOS.git
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Optional - Set Default Container Registry</p>
 
-<p>Triggers are logical components that are evaluated to true or false.</p>
+    <p>If you don’t want podman to keep querying you for which registry to use, you can create a $HOME/.config/containers/registries.conf and modify to just have the main docker registry (or modify the /etc/containers/registries.conf file directly)</p>
 
-<p><img src="/img/v5/autonomic/triggers.png" alt="Triggers"></p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir -p $HOME/.config/containers
+cp /etc/containers/registries.conf $HOME/.config/containers/.
+</code></pre></div>    </div>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"system42"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TBD"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"left"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"item"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INST"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"packet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADCS"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"item"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POSX"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"raw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"operation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&gt;"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"right"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+    <p>Then edit the unqualified-search-registries = line to just have the registry you care about (probably docker.io)</p>
+  </li>
+  <li>
+    <p>Run COSMOS</p>
 
-<h3 id="reactions">
-<a class="anchor" href="#reactions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reactions</h3>
-
-<p>Reactions wait for triggers to be evaluated to true and perform actions such as sending a command or running a script.</p>
-
-<p><img src="/img/v5/autonomic/reactions.png" alt="Reactions"></p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INST command"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"snooze"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"review"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"triggers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"system42"</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"command"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INST CLEAR"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h3 id="autonomic-lifecycle">
-<a class="anchor" href="#autonomic-lifecycle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Autonomic lifecycle</h3>
-
-<blockquote>
-  <p>TODO</p>
-</blockquote>
-
-<p><img src="/img/v5/autonomic/autonomic_lifecycle.png" alt="Autonomic Lifecycle"></p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd COSMOS
+./cosmos-control.sh start
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Wait until everything is built and running and then goto http://localhost:2900 in your browser</p>
+  </li>
+</ol>
 
       </article>
     </div>
@@ -335,7 +314,7 @@
       
     
       
-  <li class="">
+  <li class="current">
     <a href="/docs/v5/podman">Podman</a>
   </li>
   <!-- prettier-ignore -->
@@ -1119,7 +1098,7 @@
       
     
       
-  <li class="current">
+  <li class="">
     <a href="/docs/v5/autonomic">Autonomic</a>
   </li>
   <!-- prettier-ignore -->
