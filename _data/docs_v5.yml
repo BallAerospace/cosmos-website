@@ -39,6 +39,7 @@
     - scripting_best_practices
     - monitoring
     - cfs
+    - raspberrypi
 
 - title: Development
   docs:
