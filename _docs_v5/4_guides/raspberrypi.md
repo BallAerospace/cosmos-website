@@ -55,6 +55,8 @@ Let's get started!
 1. From SSH, Enter the following commands
 
    ```
+   sudo sysctl -w vm.max_map_count=262144
+   sudo sysctl -w vm.overcommit_memory=1
    sudo apt update
    sudo apt upgrade
    sudo apt install git -y
@@ -68,6 +70,8 @@ Let's get started!
    cd COSMOS
    ./cosmos-control.sh start
    ```
+
+Note: It takes awhile to build COSMOS on a Pi (about an hour). Be patient, and in the future we'll have precompiled containers that will make first launch way faster.
 
 1. After about 2 minutes, open a web browswer on your computer, and goto: http://cosmosc2.local:2900
 
