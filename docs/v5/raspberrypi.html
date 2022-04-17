@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Welcome</title>
+  <title>Raspberry Pi</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -101,67 +101,103 @@
           <span class="version-badge">v5</span>
         </div>
          
-        <h1>Welcome</h1>
-        <p>This site aims to be a comprehensive guide to COSMOS. We’ll cover topics such
-as getting your configuration up and running, developing test and operations scripts,
-building custom telemetry screens, and give you some advice on participating in the future
-development of COSMOS itself.</p>
+        <h1>Raspberry Pi</h1>
+        <h3 id="cosmos-5-running-on-raspberry-pi-4">COSMOS 5 Running on Raspberry Pi 4</h3>
 
-<h2 id="so-what-is-ball-aerospace-cosmos-exactly">So what is Ball Aerospace COSMOS, exactly?</h2>
+<p>The Raspberry Pi 4 is a low-cost powerful ARM-based minicomputer that runs linux. And because it runs modern linux, it can also run COSMOS! These directions will get you up and running.</p>
 
-<p>COSMOS is a suite of applications that can be used to control a set of embedded systems. These systems can be
-anything from test equipment (power supplies, oscilloscopes, switched power strips, UPS devices, etc), to
-development boards (Arduinos, Raspberry Pi, Beaglebone, etc), to satellites.</p>
+<p>What you’ll need:</p>
 
-<h3 id="cosmos-architecture">COSMOS Architecture</h3>
+<ul>
+  <li>Raspberry Pi 4 board (tested with 8GB RAM)</li>
+  <li>A Pi Case but Optional</li>
+  <li>Raspbeerry Pi Power Supply</li>
+  <li>32GB or Larger SD Card - Also faster the better</li>
+  <li>A Laptop with a way to write SD Cards</li>
+</ul>
 
-<p><img src="/img/v5/architecture.png" alt="COSMOS Architecture" /></p>
+<p>Let’s get started!</p>
 
-<p>COSMOS 5 is a cloud native, containerized, microservice oriented command and control system. All the COSMOS microservices are docker containers which is why Docker is shown containing the entire COSMOS system. The green boxes on the left represent external embedded systems (Targets) which COSMOS connects to. The Redis data store contains the configuration for all the microservices, the current value table, as well as data streams containing decommutated data. The Minio data store contains plugins, targets, configuration data, text logs as well as binary logs of all the raw, decommutated, and reduced data. Users interact with COSMOS from a web browser which routes through the internal Traefik load balancer.</p>
+<ol>
+  <li>
+    <p>Setup 64-bit Raspian OS Lite on the SD Card</p>
 
-<p>Keep reading for an in-depth discussion of each of the COSMOS Tools.</p>
+    <p>Make sure you have the Raspberry Pi Imager app from: https://www.raspberrypi.com/software/</p>
 
-<h2 id="helpful-hints">Helpful Hints</h2>
+    <ol>
+      <li>Insert the SD Card into your computer (Note this process will erase all data on the SD card!)</li>
+      <li>Open the Raspberry Pi Imager App</li>
+      <li>Click the “Choose OS” Button</li>
+      <li>Select “Raspberry Pi OS (other)”</li>
+      <li>Select “Raspberry Pi OS Lite (64-bit)”</li>
+      <li>Click the “Choose Storage” Button</li>
+      <li>Select Your SD Card</li>
+      <li>Click the Gear Icon</li>
+      <li>If prompted if you would like to prefill the Wifi information, select OK</li>
+      <li>Click all the checkboxes, except for “Enable Telemetry”</li>
+      <li>Set the hostname to: cosmosc2.local</li>
+      <li>You can either use Password auth, or public-key only if your computer is already setup for passwordless SSH</li>
+      <li>Set the username and password. The default username is pi, you should also set a password to make the system secure</li>
+      <li>Fill in your Wifi info, and set the country appropriately (ie. US)</li>
+      <li>Set the correct time zone</li>
+      <li>Click “Save” when everything is filled out</li>
+      <li>Click the “Write” button, Yes to Are You Sure, and Wait for it to complete</li>
+    </ol>
+  </li>
+  <li>
+    <p>Make sure the Raspberry Pi is NOT powered on</p>
+  </li>
+  <li>
+    <p>Remove the SD Card from your computer and insert into the Raspberry Pi</p>
+  </li>
+  <li>
+    <p>Apply power to the Raspberry Pi and wait approximately 1 minute for it to boot</p>
+  </li>
+  <li>
+    <p>SSH to your raspberry Pi</p>
 
-<p>Throughout this guide there are a number of small-but-handy pieces of
-information that can make using COSMOS easier, more interesting, and less
-hazardous. Here’s what to look out for.</p>
+    <ol>
+      <li>
+        <p>Open a terminal window and use ssh to connect to your Pi</p>
 
-<div class="note">
-  <h5>ProTips™ help you get more from COSMOS</h5>
-  <p>These are tips and tricks that will help you be a COSMOS wizard!</p>
-</div>
+        <ol>
+          <li>On Mac / Linux: ssh pi@cosmosc2.local</li>
+          <li>On Windows, use Putty to connect. You will probably have to install Bonjour for Windows for .local addresses to work as well.</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>From SSH, Enter the following commands</p>
 
-<div class="note info">
-  <h5>Notes are handy pieces of information</h5>
-  <p>These are for the extra tidbits sometimes necessary to understand
-     COSMOS.</p>
-</div>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo sysctl -w vm.max_map_count=262144
+sudo sysctl -w vm.overcommit_memory=1
+sudo apt update
+sudo apt upgrade
+sudo apt install git -y
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker $USER
+newgrp docker
+sudo apt-get install libffi-dev libssl-dev python3-dev python3 python3-pip -y
+sudo pip3 install docker-compose
+git clone https://github.com/BallAerospace/COSMOS.git
+cd COSMOS
+./cosmos-control.sh start
+</code></pre></div>    </div>
+  </li>
+</ol>
 
-<div class="note warning">
-  <h5>Warnings help you not blow things up</h5>
-  <p>Be aware of these messages if you wish to avoid certain death.</p>
-</div>
+<p>Note: It takes awhile to build COSMOS on a Pi (about an hour). Be patient, and in the future we’ll have precompiled containers that will make first launch way faster.</p>
 
-<div class="note unreleased">
-  <h5>You'll see this by a feature that hasn't been released</h5>
-  <p>Some pieces of this website are for future versions of COSMOS that
-    are not yet released.</p>
-</div>
-
-<div class="note">
-  <h5>Find a problem in the documentation?</h5>
-  <p>
-    Please <a href="https://github.com/BallAerospace/cosmos-website/issues/new/choose">create an issue</a> on
-    GitHub describing what we can do to make it better.
-  </p>
-  <h5>Let us know what could be better!</h5>
-  <p>
-    Both using and hacking on COSMOS should be fun, simple, and easy, so if for
-    some reason you find it's a pain, please <a href="https://github.com/BallAerospace/COSMOS/issues/new/choose">create an issue</a> on
-    GitHub describing your experience so we can make it better.
-  </p>
-</div>
+<ol>
+  <li>
+    <p>After about 2 minutes, open a web browswer on your computer, and goto: http://cosmosc2.local:2900</p>
+  </li>
+  <li>
+    <p>Congratulations! You now have COSMOS 5 running on a Raspberry Pi!</p>
+  </li>
+</ol>
 
       </article>
     </div>
@@ -1488,7 +1524,7 @@ hazardous. Here’s what to look out for.</p>
       
     
       
-  <li class="">
+  <li class="current">
     <a href="/docs/v5/raspberrypi">Raspberry Pi</a>
   </li>
   <!-- prettier-ignore -->
