@@ -256,109 +256,111 @@ The following methods are designed to be used in test procedures. However, they 
 
 The following API methods are either deprecated (will not be ported to COSMOS 5) or currently unimplemented (eventually will be ported to COSMOS 5):
 
-| Method                     | Tool | Status |
-| -------------------------- | -----| ------ |
-| clear                      | Telemetry Viewer | Unimplemented |
-| clear_all                  | Telemetry Viewer | Unimplemented |
-| clear_disconnected_targets | Script Runner |  Unimplemented |
-| close_local_screens        | Telemetry Viewer | Unimplemented |
-| cmd_tlm_clear_counters     | Command and Telemetry Server | Unimplemented |
-| cmd_tlm_reload             | Command and Telemetry Server | Unimplemented |
-| display                    | Telemetry Viewer | Unimplemented |
-| get_all_packet_logger_info | Command and Telemetry Server | Deprecated |
-| get_background_tasks       | Command and Telemetry Server | Deprecated |
-| get_cmd_list               | Command and Telemetry Server | Deprecated, use get_all_commands |
-| get_cmd_log_filename       | Command and Telemetry Server | Deprecated |
-| get_cmd_param_list         | Command and Telemetry Server | Deprecated use get_command |
-| get_all_interface_info     | Command and Telemetry Server | Deprecated, use get_interface |
-| get_disconnected_targets   | Script Runner | Unimplemented |
-| get_interface_info         | Command and Telemetry Server | Deprecated, use get_interface |
-| get_interface_targets      | Command and Telemetry Server | Deprecated |
-| get_output_logs_filenames | Command and Telemetry Server | Deprecated |
-| get_packet_data | Command and Telemetry Server | Deprecated |
-| get_packet_logger_info | Command and Telemetry Server | Deprecated |
-| get_packet_loggers | Command and Telemetry Server | Deprecated |
-| get_replay_mode | Replay | Deprecated |
-| get_router_info | Command and Telemetry Server | Deprecated, use get_router |
-| get_screen_definition | Telemetry Viewer | Unimplemented |
-| get_screen_list | Telemetry Viewer | Unimplemented |
-| get_scriptrunner_message_log_filename | Command and Telemetry Server | Deprecated |
-| get_server_message | Command and Telemetry Server | Deprecated |
-| get_server_message_log_filename | Command and Telemetry Server | Deprecated |
-| get_server_status | Command and Telemetry Server | Unimplemented |
-| get_target_ignored_items | Command and Telemetry Server | Deprecated, use get_target |
-| get_target_ignored_parameters | Command and Telemetry Server | Deprecated, use get_target |
-| get_target_info | Command and Telemetry Server | Deprecated, use get_target |
-| get_tlm_details | Command and Telemetry Server | Deprecated |
-| get_tlm_item_list | Command and Telemetry Server | Deprecated |
-| get_tlm_list | Command and Telemetry Server | Deprecated |
-| get_tlm_log_filename | Command and Telemetry Server | Deprecated |
-| interface_state | Command and Telemetry Server | Deprecated, use get_interface |
-| local_screen | Script Runner | Unimplemented |
-| map_target_to_interface | Command and Telemetry Server | Unimplemented |
-| override_tlm_raw  | Command and Telemetry Server | Deprecated, use override_tlm |
-| open_file_dialog | Script Runner | Unimplemented |
-| open_files_dialog | Script Runner | Unimplemented |
-| open_directory_dialog | Script Runner | Unimplemented |
-| replay_move_end | Replay | Deprecated |
-| replay_move_index | Replay | Deprecated |
-| replay_move_start | Replay | Deprecated |
-| replay_play | Replay | Deprecated |
-| replay_reverse_play | Replay | Deprecated |
-| replay_select_file | Replay | Deprecated |
-| replay_set_playback_delay | Replay | Deprecated |
-| replay_status | Replay | Deprecated |
-| replay_step_back | Replay | Deprecated |
-| replay_step_forward | Replay | Deprecated |
-| replay_stop | Replay | Deprecated |
-| router_state | Command and Telemetry Server | Deprecated, use get_router |
-| run_mode | Script Runner | Unimplemented |
-| save_file_dialog | Script Runner | Unimplemented |
-| script_disconnect | Script Runner | Unimplemented |
-| set_disconnected_targets | Script Runner | Unimplemented |
-| set_replay_mode | Replay | Deprecated |
-| set_stdout_max_lines | Script Runner | Unimplemented |
-| set_tlm_raw  | Script Runner | Deprecated, use set_tlm |
-| show_backtrace | Script Runner | Unimplemented |
-| shutdown_cmd_tlm | Command and Telemetry Server | Deprecated |
-| start_cmd_log | Command and Telemetry Server | Deprecated |
-| start_logging | Command and Telemetry Server | Deprecated |
-| start_new_scriptrunner_message_log | Command and Telemetry Server | Deprecated |
-| start_new_server_message_log | Command and Telemetry Server | Deprecated |
-| start_tlm_log | Command and Telemetry Server | Deprecated |
-| step_mode | Script Runner | Unimplemented |
-| stop_background_task | Command and Telemetry Server | Deprecated |
-| stop_cmd_log | Command and Telemetry Server | Deprecated |
-| stop_logging | Command and Telemetry Server | Deprecated |
-| stop_tlm_log | Command and Telemetry Server | Deprecated |
-| subscribe_limits_events | Command and Telemetry Server | Unimplemented |
-| subscribe_packet_data | Command and Telemetry Server | Deprecated, use subscribe_packets |
-| subscribe_server_messages | Command and Telemetry Server | Unimplemented |
-| unsubscribe_limits_events | Command and Telemetry Server | Deprecated |
-| unsubscribe_packet_data | Command and Telemetry Server | Deprecated |
-| unsubscribe_server_messages | Command and Telemetry Server | Deprecated |
+| Method                                | Tool                         | Status                            |
+| ------------------------------------- | ---------------------------- | --------------------------------- |
+| clear                                 | Telemetry Viewer             | Unimplemented                     |
+| clear_all                             | Telemetry Viewer             | Unimplemented                     |
+| clear_disconnected_targets            | Script Runner                | Unimplemented                     |
+| close_local_screens                   | Telemetry Viewer             | Unimplemented                     |
+| cmd_tlm_clear_counters                | Command and Telemetry Server | Unimplemented                     |
+| cmd_tlm_reload                        | Command and Telemetry Server | Unimplemented                     |
+| display                               | Telemetry Viewer             | Unimplemented                     |
+| get_all_packet_logger_info            | Command and Telemetry Server | Deprecated                        |
+| get_background_tasks                  | Command and Telemetry Server | Deprecated                        |
+| get_cmd_list                          | Command and Telemetry Server | Deprecated, use get_all_commands  |
+| get_cmd_log_filename                  | Command and Telemetry Server | Deprecated                        |
+| get_cmd_param_list                    | Command and Telemetry Server | Deprecated use get_command        |
+| get_all_interface_info                | Command and Telemetry Server | Deprecated, use get_interface     |
+| get_disconnected_targets              | Script Runner                | Unimplemented                     |
+| get_interface_info                    | Command and Telemetry Server | Deprecated, use get_interface     |
+| get_interface_targets                 | Command and Telemetry Server | Deprecated                        |
+| get_output_logs_filenames             | Command and Telemetry Server | Deprecated                        |
+| get_packet_data                       | Command and Telemetry Server | Deprecated                        |
+| get_packet_logger_info                | Command and Telemetry Server | Deprecated                        |
+| get_packet_loggers                    | Command and Telemetry Server | Deprecated                        |
+| get_replay_mode                       | Replay                       | Deprecated                        |
+| get_router_info                       | Command and Telemetry Server | Deprecated, use get_router        |
+| get_screen_definition                 | Telemetry Viewer             | Unimplemented                     |
+| get_screen_list                       | Telemetry Viewer             | Unimplemented                     |
+| get_scriptrunner_message_log_filename | Command and Telemetry Server | Deprecated                        |
+| get_server_message                    | Command and Telemetry Server | Deprecated                        |
+| get_server_message_log_filename       | Command and Telemetry Server | Deprecated                        |
+| get_server_status                     | Command and Telemetry Server | Unimplemented                     |
+| get_target_ignored_items              | Command and Telemetry Server | Deprecated, use get_target        |
+| get_target_ignored_parameters         | Command and Telemetry Server | Deprecated, use get_target        |
+| get_target_info                       | Command and Telemetry Server | Deprecated, use get_target        |
+| get_tlm_details                       | Command and Telemetry Server | Deprecated                        |
+| get_tlm_item_list                     | Command and Telemetry Server | Deprecated                        |
+| get_tlm_list                          | Command and Telemetry Server | Deprecated                        |
+| get_tlm_log_filename                  | Command and Telemetry Server | Deprecated                        |
+| interface_state                       | Command and Telemetry Server | Deprecated, use get_interface     |
+| local_screen                          | Script Runner                | Unimplemented                     |
+| map_target_to_interface               | Command and Telemetry Server | Unimplemented                     |
+| override_tlm_raw                      | Command and Telemetry Server | Deprecated, use override_tlm      |
+| open_file_dialog                      | Script Runner                | Unimplemented                     |
+| open_files_dialog                     | Script Runner                | Unimplemented                     |
+| open_directory_dialog                 | Script Runner                | Unimplemented                     |
+| replay_move_end                       | Replay                       | Deprecated                        |
+| replay_move_index                     | Replay                       | Deprecated                        |
+| replay_move_start                     | Replay                       | Deprecated                        |
+| replay_play                           | Replay                       | Deprecated                        |
+| replay_reverse_play                   | Replay                       | Deprecated                        |
+| replay_select_file                    | Replay                       | Deprecated                        |
+| replay_set_playback_delay             | Replay                       | Deprecated                        |
+| replay_status                         | Replay                       | Deprecated                        |
+| replay_step_back                      | Replay                       | Deprecated                        |
+| replay_step_forward                   | Replay                       | Deprecated                        |
+| replay_stop                           | Replay                       | Deprecated                        |
+| router_state                          | Command and Telemetry Server | Deprecated, use get_router        |
+| run_mode                              | Script Runner                | Unimplemented                     |
+| save_file_dialog                      | Script Runner                | Unimplemented                     |
+| script_disconnect                     | Script Runner                | Unimplemented                     |
+| set_disconnected_targets              | Script Runner                | Unimplemented                     |
+| set_replay_mode                       | Replay                       | Deprecated                        |
+| set_stdout_max_lines                  | Script Runner                | Unimplemented                     |
+| set_tlm_raw                           | Script Runner                | Deprecated, use set_tlm           |
+| show_backtrace                        | Script Runner                | Unimplemented                     |
+| shutdown_cmd_tlm                      | Command and Telemetry Server | Deprecated                        |
+| start_cmd_log                         | Command and Telemetry Server | Deprecated                        |
+| start_logging                         | Command and Telemetry Server | Deprecated                        |
+| start_new_scriptrunner_message_log    | Command and Telemetry Server | Deprecated                        |
+| start_new_server_message_log          | Command and Telemetry Server | Deprecated                        |
+| start_tlm_log                         | Command and Telemetry Server | Deprecated                        |
+| step_mode                             | Script Runner                | Unimplemented                     |
+| stop_background_task                  | Command and Telemetry Server | Deprecated                        |
+| stop_cmd_log                          | Command and Telemetry Server | Deprecated                        |
+| stop_logging                          | Command and Telemetry Server | Deprecated                        |
+| stop_tlm_log                          | Command and Telemetry Server | Deprecated                        |
+| subscribe_limits_events               | Command and Telemetry Server | Unimplemented                     |
+| subscribe_packet_data                 | Command and Telemetry Server | Deprecated, use subscribe_packets |
+| subscribe_server_messages             | Command and Telemetry Server | Unimplemented                     |
+| unsubscribe_limits_events             | Command and Telemetry Server | Deprecated                        |
+| unsubscribe_packet_data               | Command and Telemetry Server | Deprecated                        |
+| unsubscribe_server_messages           | Command and Telemetry Server | Deprecated                        |
 
 The following API methods are new in COSMOS 5:
 
-| Method                     | Tool |
-| -------------------------- | -----|
-| get_all_commands | Command and Telemetry Server |
-| get_all_telemetry | Command and Telemetry Server |
-| get_command | Command and Telemetry Server |
-| get_interface | Command and Telemetry Server |
-| get_item | Command and Telemetry Server |
-| get_metadata | Command and Telemetry Server |
-| get_router | Command and Telemetry Server |
-| get_setting | Command and Telemetry Server |
-| get_settings | Command and Telemetry Server |
-| get_target | Command and Telemetry Server |
-| get_target_file | Script Runner |
-| get_telemetry | Command and Telemetry Server |
-| input_metadata  | Script Runner |
-| list_configs | Various |
-| list_settings | Command and Telemetry Server |
-| load_config | Various |
-| save_setting | Command and Telemetry Server |
+| Method             | Tool                         |
+| ------------------ | ---------------------------- |
+| get_all_commands   | Command and Telemetry Server |
+| get_all_telemetry  | Command and Telemetry Server |
+| get_command        | Command and Telemetry Server |
+| get_interface      | Command and Telemetry Server |
+| get_item           | Command and Telemetry Server |
+| get_metadata       | Command and Telemetry Server |
+| get_router         | Command and Telemetry Server |
+| get_setting        | Command and Telemetry Server |
+| get_settings       | Command and Telemetry Server |
+| get_target         | Command and Telemetry Server |
+| get_target_file    | Script Runner                |
+| put_target_file    | Script Runner                |
+| delete_target_file | Script Runner                |
+| get_telemetry      | Command and Telemetry Server |
+| input_metadata     | Script Runner                |
+| list_configs       | Various                      |
+| list_settings      | Command and Telemetry Server |
+| load_config        | Various                      |
+| save_setting       | Command and Telemetry Server |
 
 ## Retrieving User Input
 
@@ -456,21 +458,70 @@ Return a file handle to a file in the target directory
 Syntax:
 
 ```ruby
-get_target_file("<File Path>")
+get_target_file("<File Path>", original: false)
 ```
 
-| Parameter | Description                                                                                                                              |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| File Path | The path to the file in the target directory. Should assume to start with a TARGET name, e.g. INST/procedures/proc.rb |                                                    |
-| File Modifier | 'b' indicates the file is binary data |
+| Parameter | Description                                                                                                           |
+| --------- | --------------------------------------------------------------------------------------------------------------------- |
+| path      | The path to the file in the target directory. Should assume to start with a TARGET name, e.g. INST/procedures/proc.rb |
+| original  | Whether to get the original file from the plug-in, or any modifications to the file                                   |
 
 Example:
 
 ```ruby
-file = get_target_file("INST/data/attitude.bin", 'b')
-puts file.read().formatted
-file = get_target_file("INST/procedures/checks.rb")
+file = get_target_file("INST/data/attitude.bin")
+puts file.read().formatted # format a binary file
+file.unlink # delete file
+file = get_target_file("INST/procedures/checks.rb", original: true)
 puts file.read()
+file.unlink # delete file
+```
+
+### put_target_file
+
+Writes a file to the target directory
+
+Syntax:
+
+```ruby
+put_target_file("<File Path>", "IO or String")
+```
+
+| Parameter | Description                                                                                                                                                                                                                                                                      |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path      | The path to the file in the target directory. Should assume to start with a TARGET name, e.g. INST/procedures/proc.rb. The file can previously exist or not. Note: The original file from the plug-in will not be modified, however existing modified files will be overwritten. |
+| data      | The data can be an IO object or String                                                                                                                                                                                                                                           |
+
+Example:
+
+```ruby
+put_target_file("INST/test1.txt", "this is a string test")
+file = Tempfile.new('test')
+file.write("this is a Io test")
+file.rewind
+put_target_file("INST/test2.txt", file)
+put_target_file("INST/test3.bin", "\x00\x01\x02\x03\xFF\xEE\xDD\xCC") # binary
+```
+
+### delete_target_file
+
+Delete a file in the target directory
+
+Syntax:
+
+```ruby
+delete_target_file("<File Path>")
+```
+
+| Parameter | Description                                                                                                                                                                                                                                   |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path      | The path to the file in the target directory. Should assume to start with a TARGET name, e.g. INST/procedures/proc.rb. Note: Only files created with put_target_file can be deleted. Original files from the plugin installation will remain. |
+
+Example:
+
+```ruby
+put_target_file("INST/delete_me.txt", "to be deleted")
+delete_target_file("INST/delete_me.txt")
 ```
 
 ## Providing information to the user
@@ -2531,8 +2582,8 @@ Returns a router status including the as built router and its current status (cm
 Syntax:
 `get_router("<Router Name>")`
 
-| Parameter      | Description            |
-| -------------- | ---------------------- |
+| Parameter   | Description         |
+| ----------- | ------------------- |
 | Router Name | Name of the router. |
 
 Example:
