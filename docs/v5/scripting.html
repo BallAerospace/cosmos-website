@@ -141,6 +141,8 @@
 <li class="toc-entry toc-h3"><a href="#vertical_message_box">vertical_message_box</a></li>
 <li class="toc-entry toc-h3"><a href="#combo_box">combo_box</a></li>
 <li class="toc-entry toc-h3"><a href="#get_target_file">get_target_file</a></li>
+<li class="toc-entry toc-h3"><a href="#put_target_file">put_target_file</a></li>
+<li class="toc-entry toc-h3"><a href="#delete_target_file">delete_target_file</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#providing-information-to-the-user">Providing information to the user</a>
@@ -1066,6 +1068,14 @@
       <td>Script Runner</td>
     </tr>
     <tr>
+      <td>put_target_file</td>
+      <td>Script Runner</td>
+    </tr>
+    <tr>
+      <td>delete_target_file</td>
+      <td>Script Runner</td>
+    </tr>
+    <tr>
       <td>get_telemetry</td>
       <td>Command and Telemetry Server</td>
     </tr>
@@ -1236,7 +1246,7 @@
 
 <p>Syntax:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_target_file</span><span class="p">(</span><span class="s2">"&lt;File Path&gt;"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">get_target_file</span><span class="p">(</span><span class="s2">"&lt;File Path&gt;"</span><span class="p">,</span> <span class="ss">original: </span><span class="kp">false</span><span class="p">)</span>
 </code></pre></div></div>
 
 <table>
@@ -1244,29 +1254,98 @@
     <tr>
       <th>Parameter</th>
       <th>Description</th>
-      <th> </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>File Path</td>
+      <td>path</td>
       <td>The path to the file in the target directory. Should assume to start with a TARGET name, e.g. INST/procedures/proc.rb</td>
-      <td> </td>
     </tr>
     <tr>
-      <td>File Modifier</td>
-      <td>‘b’ indicates the file is binary data</td>
-      <td> </td>
+      <td>original</td>
+      <td>Whether to get the original file from the plug-in, or any modifications to the file</td>
     </tr>
   </tbody>
 </table>
 
 <p>Example:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">file</span> <span class="o">=</span> <span class="n">get_target_file</span><span class="p">(</span><span class="s2">"INST/data/attitude.bin"</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">)</span>
-<span class="nb">puts</span> <span class="n">file</span><span class="p">.</span><span class="nf">read</span><span class="p">().</span><span class="nf">formatted</span>
-<span class="n">file</span> <span class="o">=</span> <span class="n">get_target_file</span><span class="p">(</span><span class="s2">"INST/procedures/checks.rb"</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">file</span> <span class="o">=</span> <span class="n">get_target_file</span><span class="p">(</span><span class="s2">"INST/data/attitude.bin"</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">file</span><span class="p">.</span><span class="nf">read</span><span class="p">().</span><span class="nf">formatted</span> <span class="c1"># format a binary file</span>
+<span class="n">file</span><span class="p">.</span><span class="nf">unlink</span> <span class="c1"># delete file</span>
+<span class="n">file</span> <span class="o">=</span> <span class="n">get_target_file</span><span class="p">(</span><span class="s2">"INST/procedures/checks.rb"</span><span class="p">,</span> <span class="ss">original: </span><span class="kp">true</span><span class="p">)</span>
 <span class="nb">puts</span> <span class="n">file</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
+<span class="n">file</span><span class="p">.</span><span class="nf">unlink</span> <span class="c1"># delete file</span>
+</code></pre></div></div>
+
+<h3 id="put_target_file">
+<a class="anchor" href="#put_target_file" aria-hidden="true"><span class="octicon octicon-link"></span></a>put_target_file</h3>
+
+<p>Writes a file to the target directory</p>
+
+<p>Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">put_target_file</span><span class="p">(</span><span class="s2">"&lt;File Path&gt;"</span><span class="p">,</span> <span class="s2">"IO or String"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>path</td>
+      <td>The path to the file in the target directory. Should assume to start with a TARGET name, e.g. INST/procedures/proc.rb. The file can previously exist or not. Note: The original file from the plug-in will not be modified, however existing modified files will be overwritten.</td>
+    </tr>
+    <tr>
+      <td>data</td>
+      <td>The data can be an IO object or String</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">put_target_file</span><span class="p">(</span><span class="s2">"INST/test1.txt"</span><span class="p">,</span> <span class="s2">"this is a string test"</span><span class="p">)</span>
+<span class="n">file</span> <span class="o">=</span> <span class="no">Tempfile</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'test'</span><span class="p">)</span>
+<span class="n">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="s2">"this is a Io test"</span><span class="p">)</span>
+<span class="n">file</span><span class="p">.</span><span class="nf">rewind</span>
+<span class="n">put_target_file</span><span class="p">(</span><span class="s2">"INST/test2.txt"</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+<span class="n">put_target_file</span><span class="p">(</span><span class="s2">"INST/test3.bin"</span><span class="p">,</span> <span class="s2">"</span><span class="se">\x00\x01\x02\x03\xFF\xEE\xDD\xCC</span><span class="s2">"</span><span class="p">)</span> <span class="c1"># binary</span>
+</code></pre></div></div>
+
+<h3 id="delete_target_file">
+<a class="anchor" href="#delete_target_file" aria-hidden="true"><span class="octicon octicon-link"></span></a>delete_target_file</h3>
+
+<p>Delete a file in the target directory</p>
+
+<p>Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">delete_target_file</span><span class="p">(</span><span class="s2">"&lt;File Path&gt;"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>path</td>
+      <td>The path to the file in the target directory. Should assume to start with a TARGET name, e.g. INST/procedures/proc.rb. Note: Only files created with put_target_file can be deleted. Original files from the plugin installation will remain.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">put_target_file</span><span class="p">(</span><span class="s2">"INST/delete_me.txt"</span><span class="p">,</span> <span class="s2">"to be deleted"</span><span class="p">)</span>
+<span class="n">delete_target_file</span><span class="p">(</span><span class="s2">"INST/delete_me.txt"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h2 id="providing-information-to-the-user">
