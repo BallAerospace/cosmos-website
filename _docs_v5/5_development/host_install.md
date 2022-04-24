@@ -16,33 +16,33 @@ Let's get started.
 
 2. Start by downloading the latest working version of COSMOS from Github
 
-```
-cd ~
-git clone https://github.com/BallAerospace/COSMOS.git
-```
+   ```
+   cd ~
+   git clone https://github.com/BallAerospace/COSMOS.git
+   ```
 
 3. Run the COSMOS installation script
 
-If you are feeling brave, you can run the one large installer script that installs everything in one step:
+   If you are feeling brave, you can run the one large installer script that installs everything in one step:
 
-```
-cd COSMOS/examples/hostinstall/centos7
-./cosmosc2_install.sh
-```
+   ```
+   cd COSMOS/examples/hostinstall/centos7
+   ./cosmosc2_install.sh
+   ```
 
-Or, you may want to break it down to the same steps that are in that script, and make sure each individual step is successful:
+   Or, you may want to break it down to the same steps that are in that script, and make sure each individual step is successful:
 
-```
-cd COSMOS/examples/hostinstall/centos7
-./cosmosc2_install_packages.sh
-./cosmosc2_install_ruby.sh
-./cosmosc2_install_redis.sh
-./cosmosc2_install_minio.sh
-./cosmosc2_install_traefik.sh
-./cosmosc2_install_cosmosc2.sh
-./cosmosc2_start_services.sh
-./cosmosc2_first_init.sh
-```
+   ```
+   cd COSMOS/examples/hostinstall/centos7
+   ./cosmosc2_install_packages.sh
+   ./cosmosc2_install_ruby.sh
+   ./cosmosc2_install_redis.sh
+   ./cosmosc2_install_minio.sh
+   ./cosmosc2_install_traefik.sh
+   ./cosmosc2_install_cosmosc2.sh
+   ./cosmosc2_start_services.sh
+   ./cosmosc2_first_init.sh
+   ```
 
 4. If all was successful, you should be able to open Firefox, and goto: http://localhost:2900. Congrats you have COSMOS running directly on a host.
 
