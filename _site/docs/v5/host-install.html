@@ -121,26 +121,26 @@
   </li>
   <li>
     <p>Start by downloading the latest working version of COSMOS from Github</p>
-  </li>
-</ol>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ~
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>cd ~
 git clone https://github.com/BallAerospace/COSMOS.git
-</code></pre></div></div>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Run the COSMOS installation script</p>
 
-<ol>
-  <li>Run the COSMOS installation script</li>
-</ol>
+    <p>If you are feeling brave, you can run the one large installer script that installs everything in one step:</p>
 
-<p>If you are feeling brave, you can run the one large installer script that installs everything in one step:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd COSMOS/examples/hostinstall/centos7
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>cd COSMOS/examples/hostinstall/centos7
 ./cosmosc2_install.sh
-</code></pre></div></div>
+</code></pre></div>    </div>
 
-<p>Or, you may want to break it down to the same steps that are in that script, and make sure each individual step is successful:</p>
+    <p>Or, you may want to break it down to the same steps that are in that script, and make sure each individual step is successful:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd COSMOS/examples/hostinstall/centos7
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>cd COSMOS/examples/hostinstall/centos7
 ./cosmosc2_install_packages.sh
 ./cosmosc2_install_ruby.sh
 ./cosmosc2_install_redis.sh
@@ -149,9 +149,8 @@ git clone https://github.com/BallAerospace/COSMOS.git
 ./cosmosc2_install_cosmosc2.sh
 ./cosmosc2_start_services.sh
 ./cosmosc2_first_init.sh
-</code></pre></div></div>
-
-<ol>
+</code></pre></div>    </div>
+  </li>
   <li>
     <p>If all was successful, you should be able to open Firefox, and goto: http://localhost:2900. Congrats you have COSMOS running directly on a host.</p>
   </li>
