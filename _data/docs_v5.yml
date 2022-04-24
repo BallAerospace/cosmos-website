@@ -48,6 +48,7 @@
     - json_api
     - streaming_api
     - log_structure
+    - host_install
 
 - title: Meta
   docs:
