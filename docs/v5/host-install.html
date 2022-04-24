@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Tools</title>
+  <title>Host Install</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -102,154 +102,63 @@
         </div>
          
         <div class="toc"><ul id="toc" class="section-nav">
-<li class="toc-entry toc-h2"><a href="#navigation">Navigation</a></li>
-<li class="toc-entry toc-h2"><a href="#command-and-telemetry-server">Command and Telemetry Server</a></li>
-<li class="toc-entry toc-h2"><a href="#limits-monitor">Limits Monitor</a></li>
-<li class="toc-entry toc-h2"><a href="#command-sender">Command Sender</a></li>
-<li class="toc-entry toc-h2"><a href="#script-runner">Script Runner</a></li>
-<li class="toc-entry toc-h2"><a href="#packet-viewer">Packet Viewer</a></li>
-<li class="toc-entry toc-h2"><a href="#telemetry-viewer">Telemetry Viewer</a></li>
-<li class="toc-entry toc-h2"><a href="#telemetry-grapher">Telemetry Grapher</a></li>
-<li class="toc-entry toc-h2"><a href="#data-extractor">Data Extractor</a></li>
-<li class="toc-entry toc-h2"><a href="#data-viewer">Data Viewer</a></li>
-<li class="toc-entry toc-h2"><a href="#timeline">Timeline</a></li>
+<li class="toc-entry toc-h2"><a href="#installing-cosmos-directly-onto-a-host-no-containers">Installing COSMOS Directly onto a Host (No Containers)</a></li>
 </ul></div>
         
-        <h1>Tools</h1>
-        <h2 id="navigation">
-<a class="anchor" href="#navigation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Navigation</h2>
+        <h1>Host Install</h1>
+        <h2 id="installing-cosmos-directly-onto-a-host-no-containers">
+<a class="anchor" href="#installing-cosmos-directly-onto-a-host-no-containers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing COSMOS Directly onto a Host (No Containers)</h2>
 
-<p>The left side of every COSMOS web page can be opened up to display the available tools.
-This list is updated when new COSMOS gems are installed which add tools.</p>
+<p>Note: THIS IS NOT A RECOMMENDED CONFIGURATION.</p>
 
-<p><img src="/img/v5/navigation.png" alt="Launcher"></p>
+<p>COSMOS 5 is released as containers and intended to be run as containers. However, for various reasons someone might want to run COSMOS directly on a host. These instructions will walk through getting COSMOS 5 installed and running directly on RHEL 7 or Centos 7. This configuration will create a working install, but falls short of the ideal in that it does not setup the COSMOS processes as proper services on the host OS (that restart themselves on boot, and maintain themselves running in case of errors). Contributions that add that functionality are welcome.</p>
 
-<h2 id="command-and-telemetry-server">
-<a class="anchor" href="#command-and-telemetry-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command and Telemetry Server</h2>
+<p>Let’s get started.</p>
 
-<p>Displays information about the active targets and interfaces.</p>
+<ol>
+  <li>
+    <p>The starting assumption is that you have a fresh install of either RHEL 7 or Centos 7. You are running as a normal user that has sudo permissions, and has git installed.</p>
+  </li>
+  <li>
+    <p>Start by downloading the latest working version of COSMOS from Github</p>
+  </li>
+</ol>
 
-<p><img src="/img/v5/cmd_tlm_server/cmd_tlm_server.png" alt="Command and Telemetry Server"></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd ~
+git clone https://github.com/BallAerospace/COSMOS.git
+</code></pre></div></div>
 
-<ul>
-  <li>Displays interfaces and associated counters</li>
-  <li>Displays raw versions of commands/telemetry packets</li>
-</ul>
+<ol>
+  <li>Run the COSMOS installation script</li>
+</ol>
 
-<h2 id="limits-monitor">
-<a class="anchor" href="#limits-monitor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limits Monitor</h2>
+<p>If you are feeling brave, you can run the one large installer script that installs everything in one step:</p>
 
-<p>Situational awareness of everything that is currently out of limits in your system and everything that has temporarily gone out of limits since it was started.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd COSMOS/examples/hostinstall/centos7
+./cosmosc2_install.sh
+</code></pre></div></div>
 
-<p><img src="/img/v5/limits_monitor/limits_monitor.png" alt="Limits Monitor"></p>
+<p>Or, you may want to break it down to the same steps that are in that script, and make sure each individual step is successful:</p>
 
-<ul>
-  <li>Limits bar widget used to show where in the limits range you are</li>
-  <li>Packets and Items can be ignored</li>
-</ul>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd COSMOS/examples/hostinstall/centos7
+./cosmosc2_install_packages.sh
+./cosmosc2_install_ruby.sh
+./cosmosc2_install_redis.sh
+./cosmosc2_install_minio.sh
+./cosmosc2_install_traefik.sh
+./cosmosc2_install_cosmosc2.sh
+./cosmosc2_start_services.sh
+./cosmosc2_first_init.sh
+</code></pre></div></div>
 
-<h2 id="command-sender">
-<a class="anchor" href="#command-sender" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command Sender</h2>
-
-<p>Easily send individual commands.</p>
-
-<p><img src="/img/v5/command_sender/command_sender.png" alt="Command Sender"></p>
-
-<ul>
-  <li>Select any command by target and command name and then fill out a form with the command parameters</li>
-  <li>Command history can be used to resend the same or slightly modified commands</li>
-</ul>
-
-<h2 id="script-runner">
-<a class="anchor" href="#script-runner" aria-hidden="true"><span class="octicon octicon-link"></span></a>Script Runner</h2>
-
-<p>Develop and execute test procedures with line highlighting, syntax checking, and more. Also supports organization of scripts into repeatable scripts with an auto-generated report.</p>
-
-<p><img src="/img/v5/script_runner/script_runner.png" alt="Script Runner"></p>
-
-<ul>
-  <li>Simple API to send commands and check telemetry</li>
-  <li>Query the user for information</li>
-  <li>Currently executing line is highlighted</li>
-  <li>Full power of the Ruby programming language available</li>
-  <li>Disconnect mode for offline testing</li>
-  <li>Debugger for step execution</li>
-  <li>Script organization by Script, Group, Suite</li>
-  <li>Automatic report generation</li>
-</ul>
-
-<h2 id="packet-viewer">
-<a class="anchor" href="#packet-viewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Packet Viewer</h2>
-
-<p>View any telemetry packet in the system with no extra configuration necessary.</p>
-
-<p><img src="/img/v5/packet_viewer/packet_viewer.png" alt="Packet Viewer"></p>
-
-<ul>
-  <li>Automatically contains all defined targets, packets, and telemetry items</li>
-  <li>Right click to get detailed item information</li>
-</ul>
-
-<h2 id="telemetry-viewer">
-<a class="anchor" href="#telemetry-viewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Telemetry Viewer</h2>
-
-<p>Easily create custom telemetry screens with simple configuration text files.</p>
-
-<p><img src="/img/v5/telemetry_viewer/telemetry_viewer.png" alt="Telemetry Viewer"></p>
-
-<ul>
-  <li>Advanced widgets available to display data</li>
-  <li>Modular to allow for creating your own custom widgets</li>
-</ul>
-
-<h2 id="telemetry-grapher">
-<a class="anchor" href="#telemetry-grapher" aria-hidden="true"><span class="octicon octicon-link"></span></a>Telemetry Grapher</h2>
-
-<p>Realtime or offline graphing of any telemetry item.</p>
-
-<p><img src="/img/v5/telemetry_grapher/telemetry_grapher.png" alt="Telemetry Grapher"></p>
-
-<ul>
-  <li>One or more telemetry points per graph</li>
-  <li>Spread data across multiple graphs</li>
-  <li>Easily save and restore configurations</li>
-</ul>
-
-<h2 id="data-extractor">
-<a class="anchor" href="#data-extractor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Extractor</h2>
-
-<p>Quickly extract command and telemetry into CSV files with just the data you care about.</p>
-
-<p><img src="/img/v5/data_extractor/data_extractor.png" alt="Data Extractor"></p>
-
-<ul>
-  <li>Process items into CSV data for analysis in other tools (Excel, Matlab, etc)</li>
-  <li>Add individual items, whole packets, and every packet from a given target</li>
-</ul>
-
-<h2 id="data-viewer">
-<a class="anchor" href="#data-viewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Viewer</h2>
-
-<p>Quickly view the data you care about.</p>
-
-<p><img src="/img/v5/data_viewer/data_viewer.png" alt="Data Viewer"></p>
-
-<ul>
-  <li>View both raw and decomed data.</li>
-  <li>Save and load configurations.</li>
-</ul>
-
-<h2 id="timeline">
-<a class="anchor" href="#timeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Timeline</h2>
-
-<p>Schedule commands and scripts to be run.</p>
-
-<p><img src="/img/v5/timeline/timeline.png" alt="Timeline"></p>
-
-<ul>
-  <li>View activities and timelines</li>
-  <li>Set times for scripts or cmds to be run</li>
-</ul>
+<ol>
+  <li>
+    <p>If all was successful, you should be able to open Firefox, and goto: http://localhost:2900. Congrats you have COSMOS running directly on a host.</p>
+  </li>
+  <li>
+    <p>As stated at the beginning, this is not currently a supported configuration. Contributions that help to improve it are welcome.</p>
+  </li>
+</ol>
 
       </article>
     </div>
@@ -318,7 +227,7 @@ This list is updated when new COSMOS gems are installed which add tools.</p>
       
     
       
-  <li class="current">
+  <li class="">
     <a href="/docs/v5/tools">Tools</a>
   </li>
   <!-- prettier-ignore -->
@@ -2050,7 +1959,7 @@ This list is updated when new COSMOS gems are installed which add tools.</p>
       
     
       
-  <li class="">
+  <li class="current">
     <a href="/docs/v5/host-install">Host Install</a>
   </li>
   <!-- prettier-ignore -->
