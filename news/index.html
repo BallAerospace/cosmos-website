@@ -98,6 +98,8 @@
     <option value="/news/">Home</option>
     <optgroup label="v1.x">
       
+      <option value="/news/2022/04/28/cosmos-5-0-2-released/">Ball Aerospace COSMOS 5.0.2 Released</option>
+      
       <option value="/news/2022/01/28/cosmos-4-5-2-released/">Ball Aerospace COSMOS 4.5.2 Released</option>
       
       <option value="/news/2021/11/24/cosmos-5-0-1-released/">Ball Aerospace COSMOS 5.0.1 Released</option>
@@ -263,6 +265,116 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    <a href="/news/2022/04/28/cosmos-5-0-2-released/">
+      Ball Aerospace COSMOS 5.0.2 Released
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      release
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      28 Apr 2022
+    </span>
+    <a href="https://github.com/ryanmelt" class="post-author">
+      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
+      ryanmelt
+    </a>
+  </div>
+  <div class="post-content">
+    <p>I’m happy to announce the release of COSMOS 5.0.2! This release brings new tools, lots of bug fixes, and a focus on stability. Everyone is encouraged to upgrade and start running off of the prebuilt containers on Docker Hub.</p>
+
+<h2 id="new-tools">New Tools</h2>
+
+<p>TableManager - Edit your binary configuration tables from COSMOS
+Autonomic (Beta) - Configurable Automation and Reactions
+Calendar (Beta) - Timeline now has a familiar calendar based interface and supports metadata entry</p>
+
+<h2 id="cicd-improvements">CI/CD Improvements</h2>
+
+<p>Tons of great stuff in this release, and it’s been far too long with 647 commits since the 5.0.1 release. Fortunately infrequent releases are over now that our unit test / integration test / and release process have been implemented into the Github Actions CI/CD pipeline.</p>
+
+<p>Additionally we have changed from using Cypress for integration test to Playwright. With this our integration tests are now less flaky, and we are testing both Chrome and Firefox automatically.</p>
+
+<p>We’ve also been doing a lot of development against an internal Git server, but will now be switching back to fully open development on Github to make maximum use of this CI/CD environment.</p>
+
+<h2 id="release-artifacts">Release Artifacts</h2>
+
+<p>A full set of release artifacts is now being pushed for every release.</p>
+
+<ul>
+  <li>Full set of containers to Docker Hub (No more need to build yourself)</li>
+  <li>Main ruby gem and all plugin tools pushed to Rubygems.org</li>
+  <li>@cosmosc2/tool-common npm package</li>
+</ul>
+
+<h2 id="significant-changes">Significant Changes</h2>
+
+<ul>
+  <li>Initial Version of Automated Data Reduction</li>
+  <li>Added IframeWidget</li>
+  <li>Limits sets now supported</li>
+  <li>Add execute selection to script runner</li>
+  <li>Add ImageviewerWidget</li>
+  <li>Implement script edit locks</li>
+  <li>Add menu for find/replace to ScriptRunner</li>
+  <li>Colorblind Mode</li>
+  <li>Upgrade ACE Editor</li>
+  <li>Add Redis command tab to admin</li>
+  <li>Add SR run from cursor functionality</li>
+  <li>Add open/save config to limits monitor</li>
+  <li>Add spacer widget</li>
+  <li>Allow get_tlm_values to return nil if item not yet set</li>
+  <li>Update all of our dependency versions to latest</li>
+  <li>Add matrix to gemspec to support Ruby 3.1</li>
+  <li>Deploy UNKNOWN packet loggers</li>
+  <li>Partially sandbox ScriptRunner</li>
+  <li>Add completed script history table</li>
+  <li>Erb support during plugin install. Asynchronous plugin install. 3rd Party Gem Support.</li>
+  <li>Scriptrunner breakpoints</li>
+  <li>Easy Install In Offline Environments</li>
+  <li>Add Mnemonic Checker to ScriptRunner</li>
+  <li>Fix build on M1 macs</li>
+  <li>Upgrade vue cli v5</li>
+  <li>Add target file methods</li>
+  <li>Support Browsers Going Back 2 Years</li>
+  <li>Remove privileged host setup commands</li>
+  <li>Update Interface Reconnect Logic to Work the Same as COSMOS 4</li>
+</ul>
+
+<h3 id="prerequisites">Prerequisites:</h3>
+
+<p>Docker - Running COSMOS 5 requires a working Docker installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
+
+<p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk</p>
+
+<h3 id="to-run">To Run:</h3>
+
+<ol>
+  <li>Download one of the archives (.zip or .tar.gz from the Github release page) <a href="https://github.com/BallAerospace/COSMOS/releases/tag/v5.0.2">Download Release Here</a></li>
+  <li>Extract the archive somewhere on your host computer</li>
+  <li>Run: docker-compose up -d</li>
+  <li>Connect a web browser to http://localhost:2900</li>
+  <li>Have fun running COSMOS 5!</li>
+</ol>
+
+<p>We will be actively updating documentation on cosmosc2.com to capture all the details on COSMOS 5. So if it isn’t documented yet, we’re getting there! The biggest new documentation is on the new plugin system.</p>
+
+<p>Please try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to COSMOS@ball.com.</p>
+
+<p>Thanks!</p>
+
+<p><strong>Full Changelog</strong>: https://github.com/BallAerospace/COSMOS/compare/v5.0.1…v5.0.2</p>
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     <a href="/news/2022/01/28/cosmos-4-5-2-released/">
@@ -5968,6 +6080,10 @@ change the whole playing field of Operations, Integration, and Test”.</p>
     <ul>
       
       <li class="">
+        <a href="/news/2022/04/28/cosmos-5-0-2-released/">Version 5.0.2</a>
+      </li>
+      
+      <li class="">
         <a href="/news/2022/01/28/cosmos-4-5-2-released/">Version 4.5.2</a>
       </li>
       
@@ -5983,14 +6099,10 @@ change the whole playing field of Operations, Integration, and Test”.</p>
         <a href="/news/2021/08/14/cosmos-5-0-0-released/">Version 5.0.0</a>
       </li>
       
-      <li class="">
-        <a href="/news/2021/04/12/cosmos-5-0-0-beta-2-released/">Version 5.0.0.beta2</a>
-      </li>
-      
     </ul>
     <h4>Other News</h4>
     <ul>
-                     
+                       
       <li class="">
         <a href="/news/2020/09/23/packet-time/">Packet Time</a>
       </li>
