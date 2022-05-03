@@ -1643,7 +1643,7 @@ normalize_tlm("INST HEALTH_STATUS TEMP1", type: :RAW) # clear only the :RAW over
 
 Methods for subscribing to specific packets of data. This provides an interface to ensure that each telemetry packet is received and handled rather than relying on polling where some data may be missed.
 
-### subscribe_packets (since 5.0.0)
+### subscribe_packets (since 5.0.3)
 
 Allows the user to listen for one or more telemetry packets of data to arrive. A unique id is returned which is used to retrieve the data.
 
@@ -1663,7 +1663,7 @@ Example:
 id = subscribe_packets([['INST', 'HEALTH_STATUS'], ['INST', 'ADCS']])
 ```
 
-### get_packets
+### get_packets (since 5.0.3)
 
 Streams packet data from a previous subscription.
 
