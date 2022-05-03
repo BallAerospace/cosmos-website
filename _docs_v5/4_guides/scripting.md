@@ -297,9 +297,7 @@ The following API methods are either deprecated (will not be ported to COSMOS 5)
 | local_screen                          | Script Runner                | Unimplemented                     |
 | map_target_to_interface               | Command and Telemetry Server | Unimplemented                     |
 | override_tlm_raw                      | Command and Telemetry Server | Deprecated, use override_tlm      |
-| open_file_dialog                      | Script Runner                | Unimplemented                     |
-| open_files_dialog                     | Script Runner                | Unimplemented                     |
-| open_directory_dialog                 | Script Runner                | Unimplemented                     |
+| open_directory_dialog                 | Script Runner                | Deprecated                        |
 | replay_move_end                       | Replay                       | Deprecated                        |
 | replay_move_index                     | Replay                       | Deprecated                        |
 | replay_move_start                     | Replay                       | Deprecated                        |
@@ -313,7 +311,7 @@ The following API methods are either deprecated (will not be ported to COSMOS 5)
 | replay_stop                           | Replay                       | Deprecated                        |
 | router_state                          | Command and Telemetry Server | Deprecated, use get_router        |
 | run_mode                              | Script Runner                | Unimplemented                     |
-| save_file_dialog                      | Script Runner                | Unimplemented                     |
+| save_file_dialog                      | Script Runner                | Deprecated                        |
 | script_disconnect                     | Script Runner                | Unimplemented                     |
 | set_disconnected_targets              | Script Runner                | Unimplemented                     |
 | set_replay_mode                       | Replay                       | Deprecated                        |
@@ -522,6 +520,44 @@ Example:
 ```ruby
 put_target_file("INST/delete_me.txt", "to be deleted")
 delete_target_file("INST/delete_me.txt")
+```
+
+### open_file_dialog
+
+### open_files_dialog
+
+The open_file_dialog and open_files_dialog methods create a file dialog box so the user can select a single or multiple files. The selected file(s) is returned.
+
+Note: COSMOS 5 has deprecated the save_file_dialog and open_directory_dialog methods. save_file_dialog can be replaced by put_target_file if you want to write a file back to the target. open_directory_dialog doesn't make sense in new architecture so you must request individual files.
+
+Syntax:
+
+```ruby
+open_file_dialog("<title>", "<message>", filter: "<filter>")
+open_files_dialog("<title>", "<message>", filter: "<filter>")
+```
+
+| Parameter | Description                                                                                                                                                                                                                        |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title     | The title to put on the dialog. Required.                                                                                                                                                                                          |
+| Message   | The message to display in the dialog box. Optional parameter.                                                                                                                                                                      |
+| Filter    | Named parameter to filter allowed file types. Optional parameter, specified as comma delimited file types, e.g. ".txt,.doc". See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept for more information. |
+
+Example:
+
+```ruby
+file = open_file_dialog("Open a single file", "Choose something interesting", filter: ".txt")
+puts file # Ruby File object
+puts file.read
+file.delete
+
+files = open_files_dialog("Open multiple files") # message is optional
+puts files # Array of File objects (even if you select only one)
+files.each do |file|
+  puts file
+  puts file.read
+  file.delete
+end
 ```
 
 ## Providing information to the user
