@@ -143,6 +143,8 @@
 <li class="toc-entry toc-h3"><a href="#get_target_file">get_target_file</a></li>
 <li class="toc-entry toc-h3"><a href="#put_target_file">put_target_file</a></li>
 <li class="toc-entry toc-h3"><a href="#delete_target_file">delete_target_file</a></li>
+<li class="toc-entry toc-h3"><a href="#open_file_dialog">open_file_dialog</a></li>
+<li class="toc-entry toc-h3"><a href="#open_files_dialog">open_files_dialog</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#providing-information-to-the-user">Providing information to the user</a>
@@ -811,19 +813,9 @@
       <td>Deprecated, use override_tlm</td>
     </tr>
     <tr>
-      <td>open_file_dialog</td>
-      <td>Script Runner</td>
-      <td>Unimplemented</td>
-    </tr>
-    <tr>
-      <td>open_files_dialog</td>
-      <td>Script Runner</td>
-      <td>Unimplemented</td>
-    </tr>
-    <tr>
       <td>open_directory_dialog</td>
       <td>Script Runner</td>
-      <td>Unimplemented</td>
+      <td>Deprecated</td>
     </tr>
     <tr>
       <td>replay_move_end</td>
@@ -893,7 +885,7 @@
     <tr>
       <td>save_file_dialog</td>
       <td>Script Runner</td>
-      <td>Unimplemented</td>
+      <td>Deprecated</td>
     </tr>
     <tr>
       <td>script_disconnect</td>
@@ -1346,6 +1338,61 @@
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">put_target_file</span><span class="p">(</span><span class="s2">"INST/delete_me.txt"</span><span class="p">,</span> <span class="s2">"to be deleted"</span><span class="p">)</span>
 <span class="n">delete_target_file</span><span class="p">(</span><span class="s2">"INST/delete_me.txt"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="open_file_dialog">
+<a class="anchor" href="#open_file_dialog" aria-hidden="true"><span class="octicon octicon-link"></span></a>open_file_dialog</h3>
+
+<h3 id="open_files_dialog">
+<a class="anchor" href="#open_files_dialog" aria-hidden="true"><span class="octicon octicon-link"></span></a>open_files_dialog</h3>
+
+<p>The open_file_dialog and open_files_dialog methods create a file dialog box so the user can select a single or multiple files. The selected file(s) is returned.</p>
+
+<p>Note: COSMOS 5 has deprecated the save_file_dialog and open_directory_dialog methods. save_file_dialog can be replaced by put_target_file if you want to write a file back to the target. open_directory_dialog doesn’t make sense in new architecture so you must request individual files.</p>
+
+<p>Syntax:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">open_file_dialog</span><span class="p">(</span><span class="s2">"&lt;title&gt;"</span><span class="p">,</span> <span class="s2">"&lt;message&gt;"</span><span class="p">,</span> <span class="ss">filter: </span><span class="s2">"&lt;filter&gt;"</span><span class="p">)</span>
+<span class="n">open_files_dialog</span><span class="p">(</span><span class="s2">"&lt;title&gt;"</span><span class="p">,</span> <span class="s2">"&lt;message&gt;"</span><span class="p">,</span> <span class="ss">filter: </span><span class="s2">"&lt;filter&gt;"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Title</td>
+      <td>The title to put on the dialog. Required.</td>
+    </tr>
+    <tr>
+      <td>Message</td>
+      <td>The message to display in the dialog box. Optional parameter.</td>
+    </tr>
+    <tr>
+      <td>Filter</td>
+      <td>Named parameter to filter allowed file types. Optional parameter, specified as comma delimited file types, e.g. “.txt,.doc”. See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept for more information.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">file</span> <span class="o">=</span> <span class="n">open_file_dialog</span><span class="p">(</span><span class="s2">"Open a single file"</span><span class="p">,</span> <span class="s2">"Choose something interesting"</span><span class="p">,</span> <span class="ss">filter: </span><span class="s2">".txt"</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">file</span> <span class="c1"># Ruby File object</span>
+<span class="nb">puts</span> <span class="n">file</span><span class="p">.</span><span class="nf">read</span>
+<span class="n">file</span><span class="p">.</span><span class="nf">delete</span>
+
+<span class="n">files</span> <span class="o">=</span> <span class="n">open_files_dialog</span><span class="p">(</span><span class="s2">"Open multiple files"</span><span class="p">)</span> <span class="c1"># message is optional</span>
+<span class="nb">puts</span> <span class="n">files</span> <span class="c1"># Array of File objects (even if you select only one)</span>
+<span class="n">files</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="n">file</span>
+  <span class="nb">puts</span> <span class="n">file</span><span class="p">.</span><span class="nf">read</span>
+  <span class="n">file</span><span class="p">.</span><span class="nf">delete</span>
+<span class="k">end</span>
 </code></pre></div></div>
 
 <h2 id="providing-information-to-the-user">
