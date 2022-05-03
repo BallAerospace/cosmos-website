@@ -12,7 +12,7 @@ Organize and launches all of the applications necessary to control your system.
 
 - Displays an icon, name, and button to launch each application
 - Launch multiple tools with one click
-- Performs CRC verification across the COSMOS core files and your project’s files to make sure nothing has been modified
+- Performs CRC verification across the COSMOS core files and your project's files to make sure nothing has been modified
 - The same config file works across all platforms (Windows, Mac, Linux)
 
 ## Command and Telemetry Server

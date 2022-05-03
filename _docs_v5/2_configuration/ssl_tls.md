@@ -29,7 +29,8 @@ Organizational Unit Name (eg, section) []:.
 Common Name (eg, your name or your server hostname) []: <!-- UPDATE WITH YOUR HOSTNAME HERE -->
 Email Address []:
 ```
-Let’s breakdown the command and understand what each option means:
+
+Let's breakdown the command and understand what each option means:
 
 - `newkey rsa:4096` - Creates a new certificate request and 4096 bit RSA key. The default one is 2048 bits.
 - `x509` - Creates a X.509 Certificate.
@@ -60,6 +61,7 @@ Add the new cert to the traefik Docker container.
 Configure Traefik to use the new cert file.
 
 cosmos-traefik/traefik.yaml
+
 ```diff
 --- a/cosmos-traefik/traefik.yaml
 +++ b/cosmos-traefik/traefik.yaml
@@ -106,8 +108,7 @@ Update traefik to use secure port 443 instead of port 80.
 
 Now you can run `./cosmos-control.sh start` to rebuild the Traefik container and it should include your new cert file.
 
-Let's Encrypt
----
+## Let's Encrypt
 
 #### KEY
 
@@ -145,8 +146,7 @@ You can inspect the cert like so:
 openssl x509 -in cert.pem -text -noout
 ```
 
-Extracting the certificate and keys from a .pfx file
----
+## Extracting the certificate and keys from a .pfx file
 
 The .pfx file, which is in a PKCS#12 format, contains the SSL certificate (public keys) and the corresponding private keys. You might have to import the certificate and private keys separately in an unencrypted plain text format to use it on another system. This topic provides instructions on how to convert the .pfx file to .crt and .key files.
 
@@ -189,8 +189,7 @@ There might be instances where you might have to convert the .pfx file into .pem
 openssl rsa -in [keyfile-encrypted.key] -outform PEM -out [keyfile-encrypted-pem.key]
 ```
 
-TLS1.2 INADEQUATE_SECURITY Errors
----
+## TLS1.2 INADEQUATE_SECURITY Errors
 
 - https://doc.traefik.io/traefik/https/tls/#cipher-suites
 - https://pkg.go.dev/crypto/tls#pkg-constants
