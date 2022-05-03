@@ -6,7 +6,7 @@ toc: true
 
 ## Introduction
 
-This guide aims to provide the best practices for using the scripting capabilities provided by COSMOS. Scripts are used to automate a series of activities for operations or testing. The goal of this document is to ensure scripts are written that are simple, easy to understand, maintainable, and correct. Guidance on some of the key details of using COSMOS's Script Runner is also provided.
+This guide aims to provide the best practices for using the scripting capabilities provided by COSMOS. Scripts are used to automate a series of activities for operations or testing. The goal of this document is to ensure scripts are written that are simple, easy to understand, maintainable, and correct. Guidance on some of the key details of using the COSMOS Script Runner is also provided.
 
 <div style="clear:both;"></div>
 
@@ -190,7 +190,7 @@ COSMOS scripts are normally “instrumented”. This means that each line has so
 
 load_utility (and the deprecated require_utility), bring in instrumented code from other files. When COSMOS runs the code in the other file, Script Runner will dive into the other file and show each line highlighted as it executes. This should be the default way to bring in other files, as it allows continuing if something fails, and provides better visibility to operators.
 
-However, sometimes you don’t want to display code executing from other files. Externally developed ruby libraries generally do not like to be instrumented, and code that contains large loops or that just takes a long time to execute when highlighting lines, will be much faster if included in a method that does not instrument lines. Ruby provides two ways to bring in uninstrumented code. The first is the “load” keyword. Load will bring in the code from another file and will bring in any changes to the file if it is updated on the next call to load. “require” is like load but is optimized to only bring in the code from another file once. Therefore, if you use require and then change the file it requires, you must restart Script Runner to re-require the file and bring in the changes. In general, load is recommended over require for COSMOS scripting. One gotcha with load is that it requires the full filename including extension, while the require keyword does not.
+However, sometimes you don't want to display code executing from other files. Externally developed ruby libraries generally do not like to be instrumented, and code that contains large loops or that just takes a long time to execute when highlighting lines, will be much faster if included in a method that does not instrument lines. Ruby provides two ways to bring in uninstrumented code. The first is the “load” keyword. Load will bring in the code from another file and will bring in any changes to the file if it is updated on the next call to load. “require” is like load but is optimized to only bring in the code from another file once. Therefore, if you use require and then change the file it requires, you must restart Script Runner to re-require the file and bring in the changes. In general, load is recommended over require for COSMOS scripting. One gotcha with load is that it requires the full filename including extension, while the require keyword does not.
 
 Finally, COSMOS scripting has a special syntax for disabling instrumentation in the middle of an instrumented script, with the disable_instrumentation method. This allows you to disable instrumentation for large loops and other activities that are too slow when running instrumented.
 
@@ -242,7 +242,7 @@ While in Debug mode (Script -> Toggle Debug), you can right-click at any point i
 
 Disconnect mode is a feature of Script Runner that allows testing scripts in an environment without real hardware in the loop. Disconnect mode is started by selecting Script -> Toggle Disconnect. Once selected, the user is prompted to select which targets to disconnect. By default, all targets are disconnected, which allows for testing scripts without any real hardware. Optionally, only a subset of targets can be selected which can be useful for trying out scripts in partially integrated environments.
 
-While in disconnect mode, commands to the disconnected targets always succeed. Additionally, all checks of disconnected targets’ telemetry are immediately successful. This allows for a quick run-through of procedures for logic errors and other script specific errors without having to worry about the behavior and proper functioning of hardware.
+While in disconnect mode, commands to the disconnected targets always succeed. Additionally, all checks of disconnected targets' telemetry are immediately successful. This allows for a quick run-through of procedures for logic errors and other script specific errors without having to worry about the behavior and proper functioning of hardware.
 
 ### Auditing your Scripts
 
@@ -317,7 +317,7 @@ end
 
 ### Getting the Most Recent Value of a Telemetry Point from Multiple Packets
 
-Some systems include high rate data points with the same name in every packet. COSMOS supports getting the most recent value of a telemetry point that is in multiple packets using a special packet name of LATEST. Let’s pretend that our target INST has two packets, PACKET1 and PACKET2. Both packets have a telemetry point called TEMP.
+Some systems include high rate data points with the same name in every packet. COSMOS supports getting the most recent value of a telemetry point that is in multiple packets using a special packet name of LATEST. Assume the target INST has two packets, PACKET1 and PACKET2. Both packets have a telemetry point called TEMP.
 
 ```ruby
 # Get the value of TEMP from the most recently received PACKET1
@@ -330,18 +330,17 @@ value = tlm("INST LATEST TEMP")
 
 ### Checking Every Single Sample of a Telemetry Point
 
-When writing COSMOS scripts, checking the most recent value of a telemetry point normally gets the job done. The tlm(), tlm_raw(), etc methods all retrieve the most recent value of a telemetry point. Sometimes you need to perform analysis on every single sample of a telemetry point. This can be done using COSMOS’s packet subscription system. The packet subscription system lets you choose one or more packets and receive them all from a queue. You can then pick out the specific telemetry points you care about from each packet.
+When writing COSMOS scripts, checking the most recent value of a telemetry point normally gets the job done. The tlm(), tlm_raw(), etc methods all retrieve the most recent value of a telemetry point. Sometimes you need to perform analysis on every single sample of a telemetry point. This can be done using the COSMOS packet subscription system. The packet subscription system lets you choose one or more packets and receive them all from a queue. You can then pick out the specific telemetry points you care about from each packet.
 
 ```ruby
-id = subscribe_packet_data([["INST", "HEALTH_STATUS"]])
-total = 0
-100.times do
-  packet = get_packet(id)
-  value = packet.read("TEMP1")
-  total += value
+id = subscribe_packets([['INST', 'HEALTH_STATUS'], ['INST', 'ADCS']])
+wait 1.5
+id, packets = get_packet(id)
+packets.each do |packet|
+  puts "#{packet['PACKET_TIMESECONDS']}: #{packet['target_name']} #{packet['packet_name']}"
 end
-average = total / 100.0
-unsubscribe_packet_data(id)
+# Wait for some time later and re-use the last returned ID
+id, packets = get_packet(id)
 ```
 
 ### Using Variables in Mnemonics
@@ -359,7 +358,7 @@ This can also be useful when looping through a numbered set of telemetry points 
 
 ### Using Custom wait_check_expression
 
-COSMOS’s wait_check_expression (and check_expression) allow you to perform more complicated checks and still stop the script with a CHECK error message if something goes wrong. For example, you can check variables against each other or check a telemetry point against a range. The exact string of text passed to wait_check_expression is repeatedly evaled in Ruby until it passes, or a timeout occurs. It is important to not use Ruby string interpolation #{} within the actual expression or the values inside of the Ruby interpolation syntax #{} will only be evaluated once when it is converted into a string. PROTIP: Using #{} inside a comment inside the expression can give more insight if the expression fails, but be careful as it will show the first evaluation of the values when the check passes which can be confusing if they go from failing to passing after waiting a few seconds.
+The COSMOS wait_check_expression (and check_expression) allow you to perform more complicated checks and still stop the script with a CHECK error message if something goes wrong. For example, you can check variables against each other or check a telemetry point against a range. The exact string of text passed to wait_check_expression is repeatedly evaled in Ruby until it passes, or a timeout occurs. It is important to not use Ruby string interpolation #{} within the actual expression or the values inside of the Ruby interpolation syntax #{} will only be evaluated once when it is converted into a string. PROTIP: Using #{} inside a comment inside the expression can give more insight if the expression fails, but be careful as it will show the first evaluation of the values when the check passes which can be confusing if they go from failing to passing after waiting a few seconds.
 
 ```ruby
 one = 1
@@ -380,7 +379,7 @@ wait_check_expression("one > 0 and one < 10 # init value one = #{one}", 1)
 
 #### Do not use single line if statements
 
-COSMOS scripting instruments each line to catch exceptions if things go wrong. With single line if statements the exception handling doesn’t know which part of the statement failed and cannot properly continue. If an exception is raised in a single line if statement, then the entire script will stop and not be able to continue. Do not use single line if statements in COSMOS scripts. (However, they are fine to use in interfaces and other Ruby code, just not COSMOS scripts).
+COSMOS scripting instruments each line to catch exceptions if things go wrong. With single line if statements the exception handling doesn't know which part of the statement failed and cannot properly continue. If an exception is raised in a single line if statement, then the entire script will stop and not be able to continue. Do not use single line if statements in COSMOS scripts. (However, they are fine to use in interfaces and other Ruby code, just not COSMOS scripts).
 
 Don't do this:
 
@@ -412,7 +411,7 @@ There are three common reasons that checks fail in COSMOS scripts:
 
 2. The range or value checked against was incorrect or too stringent
 
-   Often the actual telemetry value is ok, but the expected value checked against was too tight. Loosen the ranges on checks when it makes sense. Ensure your script is using the wait_check_tolerance() routine when checking floating point numbers and verify you’re using an appropriate tolerance value.
+   Often the actual telemetry value is ok, but the expected value checked against was too tight. Loosen the ranges on checks when it makes sense. Ensure your script is using the wait_check_tolerance() routine when checking floating point numbers and verify you're using an appropriate tolerance value.
 
 3. The check really failed
 
@@ -476,7 +475,7 @@ Starting with COSMOS 4.3, script writers can include temporary screens in their 
 
 ### When to use Modules
 
-Modules in Ruby have two purposes: namespacing and mixins. Namespacing allows having classes and methods with the same name, but with different meanings. For example, if they are namespaced, COSMOS can have a Packet class and another Ruby library can have a Packet class. This isn’t typically useful for COSMOS scripting though.
+Modules in Ruby have two purposes: namespacing and mixins. Namespacing allows having classes and methods with the same name, but with different meanings. For example, if they are namespaced, COSMOS can have a Packet class and another Ruby library can have a Packet class. This isn't typically useful for COSMOS scripting though.
 
 Mixins allow adding common methods to classes without using inheritance. Mixins can be useful to add common functionality to some classes but not others, or to break up classes into multiple files.
 

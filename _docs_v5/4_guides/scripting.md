@@ -275,7 +275,8 @@ The following API methods are either deprecated (will not be ported to COSMOS 5)
 | get_interface_info                    | Command and Telemetry Server | Deprecated, use get_interface     |
 | get_interface_targets                 | Command and Telemetry Server | Deprecated                        |
 | get_output_logs_filenames             | Command and Telemetry Server | Deprecated                        |
-| get_packet_data                       | Command and Telemetry Server | Deprecated                        |
+| get_packet                            | Command and Telemetry Server | Deprecated, use get_packets       |
+| get_packet_data                       | Command and Telemetry Server | Deprecated, use get_packets       |
 | get_packet_logger_info                | Command and Telemetry Server | Deprecated                        |
 | get_packet_loggers                    | Command and Telemetry Server | Deprecated                        |
 | get_replay_mode                       | Replay                       | Deprecated                        |
@@ -346,6 +347,7 @@ The following API methods are new in COSMOS 5:
 | get_interface      | Command and Telemetry Server |
 | get_item           | Command and Telemetry Server |
 | get_metadata       | Command and Telemetry Server |
+| get_packets        | Command and Telemetry Server |
 | get_router         | Command and Telemetry Server |
 | get_setting        | Command and Telemetry Server |
 | get_settings       | Command and Telemetry Server |
@@ -359,6 +361,7 @@ The following API methods are new in COSMOS 5:
 | list_settings      | Command and Telemetry Server |
 | load_config        | Various                      |
 | save_setting       | Command and Telemetry Server |
+| subscribe_packets  | Command and Telemetry Server |
 
 ## Retrieving User Input
 
@@ -1660,32 +1663,35 @@ Example:
 id = subscribe_packets([['INST', 'HEALTH_STATUS'], ['INST', 'ADCS']])
 ```
 
-### get_packet (modified in 5.0.0)
+### get_packets
 
 Streams packet data from a previous subscription.
 
 Syntax:
 
 ```ruby
-get_packet(id) do |packet|
-  puts packet['target_name']
-  puts packet['packet_name']
-  # Many other fields
-end
+get_packets(id, block: nil, count: 1000)
 ```
 
-| Parameter | Description                             |
-| --------- | --------------------------------------- |
-| id        | Unique id returned by subscribe_packets |
+| Parameter | Description                                                                                           |
+| --------- | ----------------------------------------------------------------------------------------------------- |
+| id        | Unique id returned by subscribe_packets                                                               |
+| block     | Number of milliseconds to block while waiting for packets form ANY stream, default nil (do not block) |
+| count     | Maximum number of packets to return from EACH packet stream                                           |
 
 Example:
 
 ```ruby
 id = subscribe_packets([['INST', 'HEALTH_STATUS'], ['INST', 'ADCS']])
-get_packet(id) do |packet|
-  puts packet['target_name']
-  puts packet['packet_name']
-  # Many other fields
+wait 0.1
+id, packets = get_packets(id)
+packets.each do |packet|
+  puts "#{packet['PACKET_TIMESECONDS']}: #{packet['target_name']} #{packet['packet_name']}"
+end
+# Reuse ID from last call, allow for 1s wait, only get 1 packet
+id, packets = get_packets(id, block: 1000, count: 1)
+packets.each do |packet|
+  puts "#{packet['PACKET_TIMESECONDS']}: #{packet['target_name']} #{packet['packet_name']}"
 end
 ```
 
