@@ -153,6 +153,7 @@ Organizational Unit Name <span class="o">(</span>eg, section<span class="o">)</s
 Common Name <span class="o">(</span>eg, your name or your server <span class="nb">hostname</span><span class="o">)</span> <span class="o">[]</span>: &lt;<span class="o">!</span><span class="nt">--</span> UPDATE WITH YOUR HOSTNAME HERE <span class="nt">--</span><span class="o">&gt;</span>
 Email Address <span class="o">[]</span>:
 </code></pre></div></div>
+
 <p>Let’s breakdown the command and understand what each option means:</p>
 
 <ul>
@@ -194,6 +195,7 @@ Email Address <span class="o">[]</span>:
 <p>Configure Traefik to use the new cert file.</p>
 
 <p>cosmos-traefik/traefik.yaml</p>
+
 <div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">--- a/cosmos-traefik/traefik.yaml
 </span><span class="gi">+++ b/cosmos-traefik/traefik.yaml
 </span><span class="p">@@ -3,6 +3,17 @@</span>
