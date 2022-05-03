@@ -172,7 +172,7 @@
         <h2 id="introduction">
 <a class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
-<p>This guide aims to provide the best practices for using the scripting capabilities provided by COSMOS. Scripts are used to automate a series of activities for operations or testing. The goal of this document is to ensure scripts are written that are simple, easy to understand, maintainable, and correct. Guidance on some of the key details of using COSMOS’s Script Runner is also provided.</p>
+<p>This guide aims to provide the best practices for using the scripting capabilities provided by COSMOS. Scripts are used to automate a series of activities for operations or testing. The goal of this document is to ensure scripts are written that are simple, easy to understand, maintainable, and correct. Guidance on some of the key details of using the COSMOS Script Runner is also provided.</p>
 
 <div style="clear:both;"></div>
 
@@ -508,7 +508,7 @@
 <h3 id="getting-the-most-recent-value-of-a-telemetry-point-from-multiple-packets">
 <a class="anchor" href="#getting-the-most-recent-value-of-a-telemetry-point-from-multiple-packets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting the Most Recent Value of a Telemetry Point from Multiple Packets</h3>
 
-<p>Some systems include high rate data points with the same name in every packet. COSMOS supports getting the most recent value of a telemetry point that is in multiple packets using a special packet name of LATEST. Let’s pretend that our target INST has two packets, PACKET1 and PACKET2. Both packets have a telemetry point called TEMP.</p>
+<p>Some systems include high rate data points with the same name in every packet. COSMOS supports getting the most recent value of a telemetry point that is in multiple packets using a special packet name of LATEST. Assume the target INST has two packets, PACKET1 and PACKET2. Both packets have a telemetry point called TEMP.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Get the value of TEMP from the most recently received PACKET1</span>
 <span class="n">value</span> <span class="o">=</span> <span class="n">tlm</span><span class="p">(</span><span class="s2">"INST PACKET1 TEMP"</span><span class="p">)</span>
@@ -521,17 +521,16 @@
 <h3 id="checking-every-single-sample-of-a-telemetry-point">
 <a class="anchor" href="#checking-every-single-sample-of-a-telemetry-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>Checking Every Single Sample of a Telemetry Point</h3>
 
-<p>When writing COSMOS scripts, checking the most recent value of a telemetry point normally gets the job done. The tlm(), tlm_raw(), etc methods all retrieve the most recent value of a telemetry point. Sometimes you need to perform analysis on every single sample of a telemetry point. This can be done using COSMOS’s packet subscription system. The packet subscription system lets you choose one or more packets and receive them all from a queue. You can then pick out the specific telemetry points you care about from each packet.</p>
+<p>When writing COSMOS scripts, checking the most recent value of a telemetry point normally gets the job done. The tlm(), tlm_raw(), etc methods all retrieve the most recent value of a telemetry point. Sometimes you need to perform analysis on every single sample of a telemetry point. This can be done using the COSMOS packet subscription system. The packet subscription system lets you choose one or more packets and receive them all from a queue. You can then pick out the specific telemetry points you care about from each packet.</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">id</span> <span class="o">=</span> <span class="n">subscribe_packet_data</span><span class="p">([[</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">]])</span>
-<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="mi">100</span><span class="p">.</span><span class="nf">times</span> <span class="k">do</span>
-  <span class="n">packet</span> <span class="o">=</span> <span class="n">get_packet</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-  <span class="n">value</span> <span class="o">=</span> <span class="n">packet</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="s2">"TEMP1"</span><span class="p">)</span>
-  <span class="n">total</span> <span class="o">+=</span> <span class="n">value</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">id</span> <span class="o">=</span> <span class="n">subscribe_packets</span><span class="p">([[</span><span class="s1">'INST'</span><span class="p">,</span> <span class="s1">'HEALTH_STATUS'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'INST'</span><span class="p">,</span> <span class="s1">'ADCS'</span><span class="p">]])</span>
+<span class="n">wait</span> <span class="mf">1.5</span>
+<span class="nb">id</span><span class="p">,</span> <span class="n">packets</span> <span class="o">=</span> <span class="n">get_packet</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<span class="n">packets</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">packet</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">packet</span><span class="p">[</span><span class="s1">'PACKET_TIMESECONDS'</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">packet</span><span class="p">[</span><span class="s1">'target_name'</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">packet</span><span class="p">[</span><span class="s1">'packet_name'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
 <span class="k">end</span>
-<span class="n">average</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="mf">100.0</span>
-<span class="n">unsubscribe_packet_data</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<span class="c1"># Wait for some time later and re-use the last returned ID</span>
+<span class="nb">id</span><span class="p">,</span> <span class="n">packets</span> <span class="o">=</span> <span class="n">get_packet</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="using-variables-in-mnemonics">
@@ -550,7 +549,7 @@
 <h3 id="using-custom-wait_check_expression">
 <a class="anchor" href="#using-custom-wait_check_expression" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using Custom wait_check_expression</h3>
 
-<p>COSMOS’s wait_check_expression (and check_expression) allow you to perform more complicated checks and still stop the script with a CHECK error message if something goes wrong. For example, you can check variables against each other or check a telemetry point against a range. The exact string of text passed to wait_check_expression is repeatedly evaled in Ruby until it passes, or a timeout occurs. It is important to not use Ruby string interpolation #{} within the actual expression or the values inside of the Ruby interpolation syntax #{} will only be evaluated once when it is converted into a string. PROTIP: Using #{} inside a comment inside the expression can give more insight if the expression fails, but be careful as it will show the first evaluation of the values when the check passes which can be confusing if they go from failing to passing after waiting a few seconds.</p>
+<p>The COSMOS wait_check_expression (and check_expression) allow you to perform more complicated checks and still stop the script with a CHECK error message if something goes wrong. For example, you can check variables against each other or check a telemetry point against a range. The exact string of text passed to wait_check_expression is repeatedly evaled in Ruby until it passes, or a timeout occurs. It is important to not use Ruby string interpolation #{} within the actual expression or the values inside of the Ruby interpolation syntax #{} will only be evaluated once when it is converted into a string. PROTIP: Using #{} inside a comment inside the expression can give more insight if the expression fails, but be careful as it will show the first evaluation of the values when the check passes which can be confusing if they go from failing to passing after waiting a few seconds.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">one</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">two</span> <span class="o">=</span> <span class="mi">2</span>
