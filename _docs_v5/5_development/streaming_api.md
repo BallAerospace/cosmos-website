@@ -72,13 +72,13 @@ this.subscription.perform('add', {
 Mode is either RAW, DECOM, REDUCED_MINUTE, REDUCED_HOUR, or REDUCED_DAY and all items/packets requested in a single add must be in the same mode. However different modes can be used across calls to add.
 
 Items are requested by keys of the form: `<CMD or TLM>__<TARGET NAME>__<PACKET NAME>__<ITEM NAME>__<VALUE TYPE>`
-For example TLM**INST**ADCS**Q1**RAW.
+For example TLM\_\_INST\_\_ADCS\_\_Q1\_\_RAW.
 
 Value type should be one of: RAW, CONVERTED, FORMATTED, or WITH_UNITS
 
 Each field is separated by two underscores \_\_.
 
-Entire packets can also be requested by keys of the form: `<CMD or TLM>__<TARGET NAME>__<PACKET NAME>__<VALUE TYPE>`. For Raw mode, VALUE TYPE should be set to RAW or omitted (e.g. TLM**INST**ADCS**RAW or TLM**INST\_\_ADCS).
+Entire packets can also be requested by keys of the form: `<CMD or TLM>__<TARGET NAME>__<PACKET NAME>__<VALUE TYPE>`. For Raw mode, VALUE TYPE should be set to RAW or omitted (e.g. TLM\_\_INST\_\_ADCS\_\_RAW or TLM\_\_INST\_\_ADCS).
 start_time and end_time are standard COSMOS 64-bit integer timestamps in nanoseconds since the Unix Epoch (midnight January 1st, 1970). If start_time is null, that indicates to start streaming from the current time in realtime, indefinitely until items are removed, or the subscription is unsubscribed. end_time is ignored if start_time is null. If start_time is given and end_time is null, that indicates to playback from the given starttime and then continue indefinitely in realtime. If both start_time and end_time are given, then that indicates a temporary playback of historical data.
 
 Data returned by the streaming API is handled by the received callback in Javascript. Data is returned as a JSON Array, with a JSON object in the array for each packet returned. Results are batched, and the current implementation will return up to 100 packets in each batch (the array will have 100 entries). 100 packets per batch is not guaranteed, and batches may take on varying sizes based on the size of the data returned, or other factors. An empty array indicates that all data has been sent for a purely historical query and can be used as an end of data indicator.
@@ -100,19 +100,19 @@ For decommutated items, each packet is represented as a JSON object with a 'time
 ]
 ```
 
-For raw packets, each packet is represented as a JSON object with a time field holding the COSMOS nanosecond timestamp of the packet, a packet field holding the topic the packet was read from in the form of SCOPE**TELEMETRY**TARGETNAME\_\_PACKETNAME, and a buffer field holding a BASE64 encoded copy of the packet data.
+For raw packets, each packet is represented as a JSON object with a time field holding the COSMOS nanosecond timestamp of the packet, a packet field holding the topic the packet was read from in the form of SCOPE\_\_TELEMETRY\_\_TARGETNAME\_\_PACKETNAME, and a buffer field holding a BASE64 encoded copy of the packet data.
 
 ```
 [
   {
     time: 1234657585858,
     packet: 'DEFAULT__TELEMETRY__INST__ADCS,
-    buffer: “SkdfjGodkdfjdfoekfsg”,
+    buffer: 'SkdfjGodkdfjdfoekfsg',
   },
   {
     time: 1234657585859,
     packet: 'DEFAULT__TELEMETRY__INST__ADCS',
-    buffer: “3i5n49dmnfg9fl32k3”,
+    buffer: '3i5n49dmnfg9fl32k3',
   },
 ]
 ```
