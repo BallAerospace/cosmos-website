@@ -110,7 +110,7 @@ module Jekyll
               @level += 1
             end
             @modifiers[keyword] = modifiers.keys
-            page << "\n#{'#' * @level} #{keyword} Modifiers\n"
+            page << "\n#{'#' * (@level - 1)} #{keyword} Modifiers\n"
             page << "The following keywords must follow a #{keyword} keyword.\n"
             build_page(modifiers, page)
           end

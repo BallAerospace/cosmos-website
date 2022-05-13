@@ -50,14 +50,15 @@ The TCPIP client interface connects to a TCPIP socket to send commands and recei
 | Protocol Arguments | See Protocols for the arguments each stream protocol takes.                        | No       |
 
 cmd_tlm_server.txt Examples:
+
 ```bash
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil BURST 4 0xDEADBEEF
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil FIXED 6 0 nil true
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 10.0 TERMINATED 0x0D0A 0x0D0A true 0 0xF005BA11
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 10.0 TEMPLATE 0xA 0xA
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil PREIDENTIFIED 0xCAFEBABE
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 10.0 # no built-in protocol
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil FIXED 6 0 nil true
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 TERMINATED 0x0D0A 0x0D0A true 0 0xF005BA11
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 TEMPLATE 0xA 0xA
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil PREIDENTIFIED 0xCAFEBABE
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 # no built-in protocol
 ```
 
 See [INTERFACE](/docs/v5/plugin#interface) for a description of the INTERFACE keyword. See [Interface Modifiers](/docs/v5/plugin#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword.
@@ -76,6 +77,7 @@ The TCPIP server interface creates a TCPIP server which listens for incoming con
 | Protocol Arguments | See Protocols for the arguments each stream protocol takes.                        | No       |
 
 cmd_tlm_server.txt Examples:
+
 ```bash
 INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
 INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8080 10.0 nil BURST 4 0xDEADBEEF
@@ -104,8 +106,9 @@ The UDP interface uses UDP packets to send and receive telemetry from the target
 | Read Timeout      | Number of seconds to wait before aborting the read                                                                 | No       | nil (block on read)                           |
 
 cmd_tlm_server.txt Example:
+
 ```bash
-INTERFACE INTERFACE_NAME udp_interface.rb localhost 8080 8081 8082 nil 128 10.0 nil
+INTERFACE INTERFACE_NAME udp_interface.rb host.docker.internal 8080 8081 8082 nil 128 10.0 nil
 ```
 
 See [INTERFACE](/docs/v5/plugin#interface) for a description of the INTERFACE keyword. See [Interface Modifiers](/docs/v5/plugin#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword.
@@ -127,6 +130,7 @@ The serial interface connects to a target over a serial port. COSMOS provides dr
 | Protocol Arguments | See Protocols for the arguments each stream protocol takes.                                   | No       |
 
 cmd_tlm_server.txt Examples:
+
 ```bash
 INTERFACE INTERFACE_NAME serial_interface.rb COM1 COM1 9600 NONE 1 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
 INTERFACE INTERFACE_NAME serial_interface.rb /dev/ttyS1 /dev/ttyS1 38400 ODD 1 10.0 nil BURST 4 0xDEADBEEF
@@ -148,6 +152,7 @@ See [INTERFACE](/docs/v5/plugin#interface) for a description of the INTERFACE ke
 The CmdTlmServer interface provides a connection to the COSMOS Command and Telemetry Server. This allows scripts and other COSMOS tools to send commands to the CmdTlmServer to enable and disable logging. It also allows scripts and other tools to receive a COSMOS version information packet and a limits change packet which is sent when any telemetry items change limits states. The CmdTlmServer interface can be used by any COSMOS configuration.
 
 cmd_tlm_server.txt Example:
+
 ```bash
 INTERFACE COSMOSINT cmd_tlm_server_interface.rb
 ```
@@ -174,9 +179,10 @@ The LINC interface uses a single TCPIP socket to talk to a Ball Aerospace LINC L
 | Fieldname Cmd Length | Fieldname of the length field                                                                                                                                        | No       | 'HDR_LENGTH'        |
 
 cmd_tlm_server.txt Examples:
+
 ```bash
-INTERFACE INTERFACE_NAME linc_interface.rb localhost 8080
-INTERFACE INTERFACE_NAME linc_interface.rb localhost 8080 true 5 nil 5 0 16 4 HDR_GUID BIG_ENDIAN HDR_LENGTH
+INTERFACE INTERFACE_NAME linc_interface.rb host.docker.internal 8080
+INTERFACE INTERFACE_NAME linc_interface.rb host.docker.internal 8080 true 5 nil 5 0 16 4 HDR_GUID BIG_ENDIAN HDR_LENGTH
 ```
 
 See [INTERFACE](/docs/v5/plugin#interface) for a description of the INTERFACE keyword. See [Interface Modifiers](/docs/v5/plugin#interface-modifiers) for a description of the keywords which can follow the INTERFACE keyword.
@@ -201,11 +207,11 @@ Protocols define the behaviour of an Interface, including differentiating packet
 These protocols are declared directly after the interface:
 
 ```bash
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil BURST 4 0xDEADBEEF
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil FIXED 6 0 nil true
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 10.0 TERMINATED 0x0D0A 0x0D0A true 0 0xF005BA11
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 10.0 TEMPLATE 0xA 0xA
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil PREIDENTIFIED 0xCAFEBABE
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil FIXED 6 0 nil true
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 TERMINATED 0x0D0A 0x0D0A true 0 0xF005BA11
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 TEMPLATE 0xA 0xA
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil PREIDENTIFIED 0xCAFEBABE
 ```
 
 COSMOS also defines the following helper protocols:
@@ -219,7 +225,7 @@ COSMOS also defines the following helper protocols:
 These protocols are declared after the INTERFACE:
 
 ```bash
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil BURST 4 0xDEADBEEF
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
 TARGET TGT
 PROTOCOL READ OverrideProtocol
 PROTOCOL WRITE CrcProtocol CRC # See the documentation for parameters
