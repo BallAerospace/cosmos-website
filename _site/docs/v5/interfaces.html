@@ -218,13 +218,14 @@
 </table>
 
 <p>cmd_tlm_server.txt Examples:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil BURST 4 0xDEADBEEF
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil FIXED 6 0 nil <span class="nb">true
-</span>INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 10.0 TERMINATED 0x0D0A 0x0D0A <span class="nb">true </span>0 0xF005BA11
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 10.0 TEMPLATE 0xA 0xA
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil PREIDENTIFIED 0xCAFEBABE
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 10.0 <span class="c"># no built-in protocol</span>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil FIXED 6 0 nil <span class="nb">true
+</span>INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 TERMINATED 0x0D0A 0x0D0A <span class="nb">true </span>0 0xF005BA11
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 TEMPLATE 0xA 0xA
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil PREIDENTIFIED 0xCAFEBABE
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 <span class="c"># no built-in protocol</span>
 </code></pre></div></div>
 
 <p>See <a href="/docs/v5/plugin#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugin#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
@@ -277,6 +278,7 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 10.0
 </table>
 
 <p>cmd_tlm_server.txt Examples:</p>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
 INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8080 10.0 nil BURST 4 0xDEADBEEF
 INTERFACE INTERFACE_NAME tcpip_server_interface.rb 8080 8080 10.0 nil FIXED 6 0 nil <span class="nb">true
@@ -355,7 +357,8 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb 8080 8080 10.0 10.0 <span cla
 </table>
 
 <p>cmd_tlm_server.txt Example:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME udp_interface.rb localhost 8080 8081 8082 nil 128 10.0 nil
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME udp_interface.rb host.docker.internal 8080 8081 8082 nil 128 10.0 nil
 </code></pre></div></div>
 
 <p>See <a href="/docs/v5/plugin#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugin#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
@@ -423,6 +426,7 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb 8080 8080 10.0 10.0 <span cla
 </table>
 
 <p>cmd_tlm_server.txt Examples:</p>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME serial_interface.rb COM1 COM1 9600 NONE 1 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
 INTERFACE INTERFACE_NAME serial_interface.rb /dev/ttyS1 /dev/ttyS1 38400 ODD 1 10.0 nil BURST 4 0xDEADBEEF
 INTERFACE INTERFACE_NAME serial_interface.rb COM2 COM2 19200 EVEN 1 10.0 nil FIXED 6 0 nil <span class="nb">true
@@ -444,6 +448,7 @@ INTERFACE INTERFACE_NAME serial_interface.rb COM4 COM4 115200 NONE 1 10.0 10.0 <
 <p>The CmdTlmServer interface provides a connection to the COSMOS Command and Telemetry Server. This allows scripts and other COSMOS tools to send commands to the CmdTlmServer to enable and disable logging. It also allows scripts and other tools to receive a COSMOS version information packet and a limits change packet which is sent when any telemetry items change limits states. The CmdTlmServer interface can be used by any COSMOS configuration.</p>
 
 <p>cmd_tlm_server.txt Example:</p>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE COSMOSINT cmd_tlm_server_interface.rb
 </code></pre></div></div>
 
@@ -540,8 +545,9 @@ INTERFACE INTERFACE_NAME serial_interface.rb COM4 COM4 115200 NONE 1 10.0 10.0 <
 </table>
 
 <p>cmd_tlm_server.txt Examples:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME linc_interface.rb localhost 8080
-INTERFACE INTERFACE_NAME linc_interface.rb localhost 8080 <span class="nb">true </span>5 nil 5 0 16 4 HDR_GUID BIG_ENDIAN HDR_LENGTH
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME linc_interface.rb host.docker.internal 8080
+INTERFACE INTERFACE_NAME linc_interface.rb host.docker.internal 8080 <span class="nb">true </span>5 nil 5 0 16 4 HDR_GUID BIG_ENDIAN HDR_LENGTH
 </code></pre></div></div>
 
 <p>See <a href="/docs/v5/plugin#interface">INTERFACE</a> for a description of the INTERFACE keyword. See <a href="/docs/v5/plugin#interface-modifiers">Interface Modifiers</a> for a description of the keywords which can follow the INTERFACE keyword.</p>
@@ -593,11 +599,11 @@ INTERFACE INTERFACE_NAME linc_interface.rb localhost 8080 <span class="nb">true 
 
 <p>These protocols are declared directly after the interface:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil BURST 4 0xDEADBEEF
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil FIXED 6 0 nil <span class="nb">true
-</span>INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 10.0 TERMINATED 0x0D0A 0x0D0A <span class="nb">true </span>0 0xF005BA11
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 10.0 TEMPLATE 0xA 0xA
-INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil PREIDENTIFIED 0xCAFEBABE
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil FIXED 6 0 nil <span class="nb">true
+</span>INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 TERMINATED 0x0D0A 0x0D0A <span class="nb">true </span>0 0xF005BA11
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 10.0 TEMPLATE 0xA 0xA
+INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil PREIDENTIFIED 0xCAFEBABE
 </code></pre></div></div>
 
 <p>COSMOS also defines the following helper protocols:</p>
@@ -627,7 +633,7 @@ INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil 
 
 <p>These protocols are declared after the INTERFACE:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8080 10.0 nil BURST 4 0xDEADBEEF
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_client_interface.rb host.docker.internal 8080 8080 10.0 nil BURST 4 0xDEADBEEF
 TARGET TGT
 PROTOCOL READ OverrideProtocol
 PROTOCOL WRITE CrcProtocol CRC <span class="c"># See the documentation for parameters</span>
