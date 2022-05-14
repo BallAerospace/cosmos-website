@@ -11,8 +11,8 @@
     <title xml:lang="en">Ball Aerospace COSMOS News</title>
     <atom:link type="application/atom+xml" href="http://cosmosc2/feed.xml" rel="self"/>
     <link>http://cosmosc2.com/</link>
-    <pubDate>Fri, 13 May 2022 17:18:04 +0000</pubDate>
-    <lastBuildDate>Fri, 13 May 2022 17:18:04 +0000</lastBuildDate>
+    <pubDate>Sat, 14 May 2022 00:14:14 +0000</pubDate>
+    <lastBuildDate>Sat, 14 May 2022 00:14:14 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.2.2</generator>
     <description>The User Interface for Embedded Systems</description>
@@ -24,6 +24,71 @@
       <width>144</width>
       <height>73</height>
     </image>
+    
+    <item>
+      <title>Ball Aerospace COSMOS 5.0.3 Released</title>
+      <link>http://cosmosc2.com/news/2022/05/13/cosmos-5-0-3-released/</link>
+      <pubDate>Fri, 13 May 2022 13:00:00 +0000</pubDate>
+      <dc:creator>ryanmelt</dc:creator>
+      
+      
+      <category>release</category>
+      
+      <guid isPermaLink="true">http://cosmosc2.com/news/2022/05/13/cosmos-5-0-3-released/</guid>
+      <description>&lt;p&gt;I’m happy to announce the release of COSMOS 5.0.3!   This release updates dependencies, has a few bug fixes, and improves UI performance.
+Most importantly, the user interface better handles having many thousands of telemetry points.  Everyone is encouraged to upgrade and start running off of the prebuilt containers on Docker Hub.&lt;/p&gt;
+
+&lt;h2 id=&quot;whats-changed&quot;&gt;What’s Changed&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Script file chooser dialogs added&lt;/li&gt;
+  &lt;li&gt;Cypress Integration Tests Fully Removed (Replaced with Playwright)&lt;/li&gt;
+  &lt;li&gt;Redis Aof persistence removed (Helps Raspberry Pi a lot)&lt;/li&gt;
+  &lt;li&gt;TlmGrapher right click Improvements&lt;/li&gt;
+  &lt;li&gt;Fix get_packet API&lt;/li&gt;
+  &lt;li&gt;Disallow bracket in target, packet, packet item names&lt;/li&gt;
+  &lt;li&gt;Fix Redis command tab&lt;/li&gt;
+  &lt;li&gt;Fix Environment Variables in Test Runner&lt;/li&gt;
+  &lt;li&gt;Allow util save and load script to take version&lt;/li&gt;
+  &lt;li&gt;TargetPacketItemChooser performance improvements&lt;/li&gt;
+  &lt;li&gt;Fix Test Suite results parsing&lt;/li&gt;
+  &lt;li&gt;Paginate CmdTlmServer and PacketViewer&lt;/li&gt;
+  &lt;li&gt;inject_tlm enhancements&lt;/li&gt;
+  &lt;li&gt;Rework cleanup to be configurable and default to off&lt;/li&gt;
+  &lt;li&gt;Added Ruby block support to wait_check by @andyp13&lt;/li&gt;
+  &lt;li&gt;Lots of dependency versions updated to latest&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;migration-notes&quot;&gt;Migration Notes:&lt;/h3&gt;
+
+&lt;p&gt;If upgrading from an earlier version, you will need to go the Admin -&amp;gt; Microservices tab and manually delete the DEFAULT__CLEANUP__S3 microservice.&lt;/p&gt;
+
+&lt;h3 id=&quot;prerequisites&quot;&gt;Prerequisites:&lt;/h3&gt;
+
+&lt;p&gt;Docker - Running COSMOS 5 requires a working Docker installation.  Typically Docker Desktop on Windows / Mac.  Plain Docker or Podman also works on linux.  We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!&lt;/p&gt;
+
+&lt;p&gt;Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&gt;
+
+&lt;h3 id=&quot;to-run&quot;&gt;To Run:&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Download one of the archives (.zip or .tar.gz from the Github release page) &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/releases/tag/v5.0.3&quot;&gt;Download Release Here&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Extract the archive somewhere on your host computer&lt;/li&gt;
+  &lt;li&gt;Run: docker-compose up -d&lt;/li&gt;
+  &lt;li&gt;Connect a web browser to http://localhost:2900&lt;/li&gt;
+  &lt;li&gt;Have fun running COSMOS 5!&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;We will be actively updating documentation on cosmosc2.com to capture all the details on COSMOS 5.  So if it isn’t documented yet, we’re getting there!  The biggest new documentation is on the new plugin system.&lt;/p&gt;
+
+&lt;p&gt;Please try it out and let us know what you think!  Please submit any issues as Github tickets, or any generic feedback to COSMOS@ball.com.&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: https://github.com/BallAerospace/COSMOS/compare/v5.0.2…v5.0.3&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Ball Aerospace COSMOS 5.0.2 Released</title>
