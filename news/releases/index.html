@@ -98,6 +98,8 @@
     <option value="/news/">Home</option>
     <optgroup label="v1.x">
       
+      <option value="/news/2022/05/24/cosmos-5-0-4-released/">Ball Aerospace COSMOS 5.0.4 Released</option>
+      
       <option value="/news/2022/05/13/cosmos-5-0-3-released/">Ball Aerospace COSMOS 5.0.3 Released</option>
       
       <option value="/news/2022/04/28/cosmos-5-0-2-released/">Ball Aerospace COSMOS 5.0.2 Released</option>
@@ -267,6 +269,93 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    <a href="/news/2022/05/24/cosmos-5-0-4-released/">
+      Ball Aerospace COSMOS 5.0.4 Released
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      release
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      24 May 2022
+    </span>
+    <a href="https://github.com/ryanmelt" class="post-author">
+      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
+      ryanmelt
+    </a>
+  </div>
+  <div class="post-content">
+    <p>I’m happy to announce the release of COSMOS 5.0.4! This release updates dependencies, has some important bug fixes, and improves overall performance.</p>
+
+<p>The most obvious change from this release is that the Redis process has been broken into two. We now run a cosmos-redis service and a cosmos-redis-ephemeral service. This allows us to configure Redis to only backup configuration data, and not streaming target data, greatly reducing the cost of redis persistence and greatly improving performance.</p>
+
+<h2 id="whats-changed">What’s Changed</h2>
+
+<h3 id="tickets">Tickets</h3>
+
+<ul>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1647">#1647 Allow setting variables in TlmViewer screens</a></li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1640">#1640 Decom error adding key during iteration</a></li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1636">#1636 Break Redis into Ephemeral and Persistence Services</a></li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1633">#1633 Reducer errors when using loadsim target with default settings</a></li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1627">#1627 Displayed COSMOS version number doesn’t update after upgrading</a></li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1625">#1625 Large DataExtractor queries appear to timeout</a></li>
+</ul>
+
+<h3 id="pull-requests">Pull Requests</h3>
+
+<ul>
+  <li>Take microservice name from ENV, fix topics by @jasonatball in https://github.com/BallAerospace/COSMOS/pull/1628</li>
+  <li>ERB should support minus sign at end trim mode to suppress blank lines by @ryanatball in https://github.com/BallAerospace/COSMOS/pull/1637</li>
+  <li>Split redis by @ryanatball in https://github.com/BallAerospace/COSMOS/pull/1643</li>
+  <li>add mutex to metric by @ryanatball in https://github.com/BallAerospace/COSMOS/pull/1644</li>
+  <li>Add codecov.yml by @jasonatball in https://github.com/BallAerospace/COSMOS/pull/1651</li>
+  <li>Metadata by @jasonatball in https://github.com/BallAerospace/COSMOS/pull/1642</li>
+  <li>Initial package audit script. by @ryanatball in https://github.com/BallAerospace/COSMOS/pull/1649</li>
+  <li>fix s3 file cache sharing temp folder across processes by @ryanatball in https://github.com/BallAerospace/COSMOS/pull/1650</li>
+  <li>Allow button widget vars and fix radio groups by @jasonatball in https://github.com/BallAerospace/COSMOS/pull/1652</li>
+  <li>Data extractor disconnects by @ryanatball in https://github.com/BallAerospace/COSMOS/pull/1653</li>
+  <li>Bump alpine build, move ruby-dev to cosmos-ruby by @jasonatball in https://github.com/BallAerospace/COSMOS/pull/1655</li>
+</ul>
+
+<h3 id="migration-notes">Migration Notes:</h3>
+
+<p>If you are upgrading and already have a local compose.yaml file, then you will need to manually add the cosmos-redis-ephemeral service, like it is defined in the compose.yaml file in the release.</p>
+
+<h3 id="prerequisites">Prerequisites:</h3>
+
+<p>Docker - Running COSMOS 5 requires a working Docker installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
+
+<p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk</p>
+
+<h3 id="to-run">To Run:</h3>
+
+<ol>
+  <li>Download one of the archives (.zip or .tar.gz from the Github release page) <a href="https://github.com/BallAerospace/COSMOS/releases/tag/v5.0.4">Download Release Here</a></li>
+  <li>Extract the archive somewhere on your host computer</li>
+  <li>Run: docker-compose up -d</li>
+  <li>Connect a web browser to http://localhost:2900</li>
+  <li>Have fun running COSMOS 5!</li>
+</ol>
+
+<p>We will be actively updating documentation on cosmosc2.com to capture all the details on COSMOS 5. So if it isn’t documented yet, we’re getting there! The biggest new documentation is on the new plugin system.</p>
+
+<p>Please try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to COSMOS@ball.com.</p>
+
+<p>Thanks!</p>
+
+<p><strong>Full Changelog</strong>: https://github.com/BallAerospace/COSMOS/compare/v5.0.3…v5.0.4</p>
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     <a href="/news/2022/05/13/cosmos-5-0-3-released/">
@@ -3357,6 +3446,10 @@ change the whole playing field of Operations, Integration, and Test”.</p>
     <ul>
       
       <li class="">
+        <a href="/news/2022/05/24/cosmos-5-0-4-released/">Version 5.0.4</a>
+      </li>
+      
+      <li class="">
         <a href="/news/2022/05/13/cosmos-5-0-3-released/">Version 5.0.3</a>
       </li>
       
@@ -3372,14 +3465,10 @@ change the whole playing field of Operations, Integration, and Test”.</p>
         <a href="/news/2021/11/24/cosmos-5-0-1-released/">Version 5.0.1</a>
       </li>
       
-      <li class="">
-        <a href="/news/2021/09/21/cosmos-4-5-1-released/">Version 4.5.1</a>
-      </li>
-      
     </ul>
     <h4>Other News</h4>
     <ul>
-                         
+                           
       <li class="">
         <a href="/news/2020/09/23/packet-time/">Packet Time</a>
       </li>

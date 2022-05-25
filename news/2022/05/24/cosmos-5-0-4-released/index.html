@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Protocols</title>
+  <title>Ball Aerospace COSMOS 5.0.4 Released</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -270,79 +270,85 @@
       <div class="unit four-fifths">
         <article>
   <h2>
-    Protocols
-    <a href="/news/2019/06/05/protocols/" class="permalink" title="Permalink">∞</a>
+    Ball Aerospace COSMOS 5.0.4 Released
+    <a href="/news/2022/05/24/cosmos-5-0-4-released/" class="permalink" title="Permalink">∞</a>
   </h2>
   <span class="post-category">
     <span class="label">
-      post
+      release
     </span>
   </span>
   <div class="post-meta">
     <span class="post-date">
-      05 Jun 2019
+      24 May 2022
     </span>
-    <a href="https://github.com/jmthomas" class="post-author">
-      <img src="https://github.com/jmthomas.png" class="avatar" alt="jmthomas avatar" width="24" height="24">
-      jmthomas
+    <a href="https://github.com/ryanmelt" class="post-author">
+      <img src="https://github.com/ryanmelt.png" class="avatar" alt="ryanmelt avatar" width="24" height="24">
+      ryanmelt
     </a>
   </div>
   <div class="post-content">
-    <p>Protocols were introduced into COSMOS in version 4.0.0. Protocols consist of the code that make sense of the incoming byte stream before it is turned into packets. They work hand in hand with the COSMOS interface that connects to the target, whether it is TCP/IP, UDP, or serial. The new COSMOS protocol system makes it possible to add and layer protocols into a COSMOS interface.</p>
+    <p>I’m happy to announce the release of COSMOS 5.0.4! This release updates dependencies, has some important bug fixes, and improves overall performance.</p>
 
-<h3 id="built-in-protocols">Built-in Protocols</h3>
+<p>The most obvious change from this release is that the Redis process has been broken into two. We now run a cosmos-redis service and a cosmos-redis-ephemeral service. This allows us to configure Redis to only backup configuration data, and not streaming target data, greatly reducing the cost of redis persistence and greatly improving performance.</p>
 
-<p>COSMOS comes with a number of built-in protocols that are used directly with the COSMOS provided interfaces. In fact, when you declare your interface you’re required to specify a protocol. For example, the following code declares a TCP/IP client with a LENGTH protocol.</p>
+<h2 id="whats-changed">What’s Changed</h2>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
-</code></pre></div></div>
+<h3 id="tickets">Tickets</h3>
 
-<p>The built-in protocols are fully described on the <a href="/docs/v4/protocols">Protocols</a> page and also mentioned on the <a href="/docs/v4/interfaces#protocols">Interfaces</a> page.</p>
+<ul>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1647">#1647 Allow setting variables in TlmViewer screens</a></li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1640">#1640 Decom error adding key during iteration</a></li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1636">#1636 Break Redis into Ephemeral and Persistence Services</a></li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1633">#1633 Reducer errors when using loadsim target with default settings</a></li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1627">#1627 Displayed COSMOS version number doesn’t update after upgrading</a></li>
+  <li><a href="https://github.com/BallAerospace/COSMOS/issues/1625">#1625 Large DataExtractor queries appear to timeout</a></li>
+</ul>
 
-<h3 id="custom-protocols">Custom Protocols</h3>
+<h3 id="pull-requests">Pull Requests</h3>
 
-<p>The built-in protocols are enough to support almost all of the data streams that you’ll encounter from a target. However, sometimes you need to massage the data a little by stripping off data or adding headers. This is when you should create a custom protocol. Custom protocols have 4 methods they can override to modify the incoming telemetry data or outgoing command data. They are read_data(data), write_data(data) and read_packet(packet) write_packet(packet). The ‘data’ methods operate on the raw binary data and are used when adding or removing raw bytes from the stream. The ‘packet’ methods operate on the data after it has been identified and converted to a COSMOS <a href="/docs/v4/packet-class/">Packet</a>.</p>
+<ul>
+  <li>Take microservice name from ENV, fix topics by @jasonatball in https://github.com/BallAerospace/COSMOS/pull/1628</li>
+  <li>ERB should support minus sign at end trim mode to suppress blank lines by @ryanatball in https://github.com/BallAerospace/COSMOS/pull/1637</li>
+  <li>Split redis by @ryanatball in https://github.com/BallAerospace/COSMOS/pull/1643</li>
+  <li>add mutex to metric by @ryanatball in https://github.com/BallAerospace/COSMOS/pull/1644</li>
+  <li>Add codecov.yml by @jasonatball in https://github.com/BallAerospace/COSMOS/pull/1651</li>
+  <li>Metadata by @jasonatball in https://github.com/BallAerospace/COSMOS/pull/1642</li>
+  <li>Initial package audit script. by @ryanatball in https://github.com/BallAerospace/COSMOS/pull/1649</li>
+  <li>fix s3 file cache sharing temp folder across processes by @ryanatball in https://github.com/BallAerospace/COSMOS/pull/1650</li>
+  <li>Allow button widget vars and fix radio groups by @jasonatball in https://github.com/BallAerospace/COSMOS/pull/1652</li>
+  <li>Data extractor disconnects by @ryanatball in https://github.com/BallAerospace/COSMOS/pull/1653</li>
+  <li>Bump alpine build, move ruby-dev to cosmos-ruby by @jasonatball in https://github.com/BallAerospace/COSMOS/pull/1655</li>
+</ul>
 
-<h4 id="removing-data">Removing Data</h4>
+<h3 id="migration-notes">Migration Notes:</h3>
 
-<p>A recent program was interfacing to a particular device that was sending the ASCII ETX character (0x03) at the end of the data. This character wasn’t needed and was confusing a legacy application that was parsing the raw data. A custom protocol was created to simply strip off this byte from the data stream.</p>
+<p>If you are upgrading and already have a local compose.yaml file, then you will need to manually add the cosmos-redis-ephemeral service, like it is defined in the compose.yaml file in the release.</p>
 
-<p>In the target’s lib directory the strip_etx_protocol.rb file was created. Since the protocol had to simply strip off a single byte, it overrides the read_data(data) method.</p>
+<h3 id="prerequisites">Prerequisites:</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'cosmos/interfaces/protocols/protocol'
-class StripEtxProtocol &lt; Protocol
-  def read_data(data)
-    if data[-1] == "\x03"
-      return super(data[0..-2])
-    else
-      return super(data)
-    end
-  end
-end
-</code></pre></div></div>
+<p>Docker - Running COSMOS 5 requires a working Docker installation. Typically Docker Desktop on Windows / Mac. Plain Docker or Podman also works on linux. We actively develop and run with Docker Desktop on Mac/Windows, and Linux on Raspberry Pi, so if you have any issues on another platform, please let us know by submitting a ticket!</p>
 
-<p>Ruby can index from the back of the array with -1, -2, etc. Thus if the last byte (-1) is a binary 0x03, the protocol returns the data from 0 up to and including the second to last byte (-2). This was added to the interface by declaring it as a READ protocol since it is only modifying the incoming telemetry data.</p>
+<p>Minimum Resources allocated to Docker: 4GB RAM, 1 CPU, 80GB Disk
+Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACE DEV_INT &lt;interface params&gt;
-  PROTOCOL READ StripEtxProtocol
-</code></pre></div></div>
+<h3 id="to-run">To Run:</h3>
 
-<h4 id="adding-data">Adding Data</h4>
+<ol>
+  <li>Download one of the archives (.zip or .tar.gz from the Github release page) <a href="https://github.com/BallAerospace/COSMOS/releases/tag/v5.0.4">Download Release Here</a></li>
+  <li>Extract the archive somewhere on your host computer</li>
+  <li>Run: docker-compose up -d</li>
+  <li>Connect a web browser to http://localhost:2900</li>
+  <li>Have fun running COSMOS 5!</li>
+</ol>
 
-<p>If you need to add framing data or other bits of protocol to your outgoing data you can create a custom protocol.</p>
+<p>We will be actively updating documentation on cosmosc2.com to capture all the details on COSMOS 5. So if it isn’t documented yet, we’re getting there! The biggest new documentation is on the new plugin system.</p>
 
-<p>In the target’s lib directory create a file called framing_protocol.rb. Since the protocol is adding data to the outgoing stream, we override the write_data(data) method.</p>
+<p>Please try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to COSMOS@ball.com.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'cosmos/interfaces/protocols/protocol'
-class FramingProtocol &lt; Protocol
-  HEADER = "\xDE\xAD\xBE\xEF" # Binary header data
-  def write_data(data)
-    super(HEADER + data)
-  end
-end
-</code></pre></div></div>
+<p>Thanks!</p>
 
-<p>If you have a question, find a bug, or want a feature please use our <a href="https://github.com/BallAerospace/COSMOS/issues">Github Issues</a>. If you would like more information about a COSMOS training or support contract please contact us at <a href="mailto:cosmos@ballaerospace.com">cosmos@ballaerospace.com</a>.</p>
+<p><strong>Full Changelog</strong>: https://github.com/BallAerospace/COSMOS/compare/v5.0.3…v5.0.4</p>
 
   </div>
 </article>
@@ -362,7 +368,7 @@ end
     <h4>Recent Releases</h4>
     <ul>
       
-      <li class="">
+      <li class="current">
         <a href="/news/2022/05/24/cosmos-5-0-4-released/">Version 5.0.4</a>
       </li>
       
@@ -402,7 +408,7 @@ end
         <a href="/news/2019/10/21/cosmos-amos/">AMOS 2019</a>
       </li>
           
-      <li class="current">
+      <li class="">
         <a href="/news/2019/06/05/protocols/">Protocols</a>
       </li>
         
