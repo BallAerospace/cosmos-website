@@ -15,6 +15,17 @@ Install [Docker](https://docs.docker.com/get-docker/) and install [Docker Compos
 
 - Minimum Resources allocated to Docker: 8GB RAM, 1 CPU, 80GB Disk
 - Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
+- Docker on Windows with WSL2:
+
+  - WSL2 consumes 50% of total memory on Windows or 8GB, whichever is less. However, on Windows builds before 20175 (use `winver` to check) it consumes 80% of your total memory. This can have a negative effect on Windows performance!
+  - On Windows builds < 20175 or for more fine grained control, create C:\\Users\\\<username\>\\[.wslconfig](https://docs.microsoft.com/en-us/windows/wsl/wsl-config). Suggested contents on a 32GB machine:
+
+        [wsl2]
+        memory=16GB
+        swap=0
+
+- Modifying Docker connection timeouts (very rarely needed):
+  - Docker will close idle (no data) connections after a period of 5 minutes. If you want to support a COSMOS configuration consisting of completely idle targets (no cmd/tlm) for greater than 5 minutes you can modify this setting. Find the file at C:\\Users\\\<username\>\\AppData\\Roaming\\Docker\\settings.json. Modify the value `vpnKitMaxPortIdleTime` to change the timeout. **Note:** 0 means no timeout (idle connections not dropped)
 
 **Note:** As of December 2021 the COSMOS Docker containers are based on the Alpine Docker image.
 
