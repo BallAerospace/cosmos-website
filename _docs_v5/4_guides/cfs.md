@@ -49,13 +49,13 @@ cosmos-control.sh stop
 
 To run [NASA cFS](https://github.com/nasa/cFS) as a Docker container do the following:
 
-### Clone CFS
+### Clone cFS
 
 ```bash
 git clone --recurse-submodules https://github.com/nasa/cFS.git
 ```
 
-### Create Dockerfile in CFS dir
+### Create Dockerfile in cFS dir
 
 ```docker
 FROM ubuntu:22.10 AS builder
@@ -92,7 +92,7 @@ WORKDIR /cFS/build/exe/cpu1
 ENTRYPOINT [ "./core-cpu1" ]
 ```
 
-### Build and run CFS
+### Build and run cFS
 
 Note we're connecting to the COSMOS network (`docker network ls`) and exposing the cFS ports.
 
@@ -115,7 +115,7 @@ should create the plugin structure.
 $PATH_TO_COSMOS/cosmos-control.sh cosmos generate plugin CFS
 ```
 
-Also, change the rights of this newly created plugin, because the COSMOS script
+If you're on Linux, change the rights of this newly created plugin, because the COSMOS script
 creates the plugin to be owned by the root user.
 
 ```bash
@@ -249,8 +249,8 @@ TELEMETRY CFS HK BIG_ENDIAN "housekeeping telemetry"
 Build the plugin from the base of your plugin folder:
 
 ```bash
-# cd cosmos-plugins/cosmos-cfs
-. $PATH_TO_COSMOS/cosmos-control.sh cosmos rake build VERSION=1.0.0
+# cd cosmos-cfs
+$PATH_TO_COSMOS/cosmos-control.sh cosmos rake build VERSION=1.0.0
 ```
 
 <div class="note info">
@@ -306,7 +306,7 @@ docker network inspect cosmos_default
 ```
 
 When using this plugin, make sure to change the `ip` variable during uploading
-to fit where cFS is running on. In the example above you would set it to 172.20.0.9.
+to match where cFS is running. In the example above you would set it to 172.20.0.9.
 `port_tm` is the port number on which cFS is sending the telemetry messages.
 `port_tc` indicates the port on cFS is listening for telecommands.
 
