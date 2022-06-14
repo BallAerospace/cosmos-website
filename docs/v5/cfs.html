@@ -103,17 +103,16 @@
          
         <div class="toc"><ul id="toc" class="section-nav">
 <li class="toc-entry toc-h2"><a href="#working-configuration">Working configuration</a></li>
-<li class="toc-entry toc-h2"><a href="#setting-up-cfs">Setting up cFS</a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#installing-cfs-dependencies">Installing cFS dependencies</a></li>
-<li class="toc-entry toc-h3"><a href="#cloning-and-running-cfs">Cloning and running cFS</a></li>
-</ul>
-</li>
 <li class="toc-entry toc-h2"><a href="#setting-up-cosmos">Setting up COSMOS</a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#installing-cosmos-dependencies">Installing COSMOS dependencies</a></li>
-<li class="toc-entry toc-h3"><a href="#installing-cosmos">Installing COSMOS</a></li>
 <li class="toc-entry toc-h3"><a href="#configuring-cosmos">Configuring COSMOS</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#setting-up-cfs">Setting up cFS</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#clone-cfs">Clone cFS</a></li>
+<li class="toc-entry toc-h3"><a href="#create-dockerfile-in-cfs-dir">Create Dockerfile in cFS dir</a></li>
+<li class="toc-entry toc-h3"><a href="#build-and-run-cfs">Build and run cFS</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#creating-a-cosmos-plugin-for-tmtc-interface-with-cfs">Creating a COSMOS plugin for TM/TC interface with cFS</a></li>
@@ -139,112 +138,99 @@
 <p>This tutorial has been tested using the following components:</p>
 
 <ul>
-  <li>Ubuntu 20.04 - minimal (fresh installation) [cFS and COSMOS on same machine,
-cFS and COSMOS on different machines]
-    <ul>
-      <li>Docker version 20.10.7, build 20.10.7-0ubuntu1~20.04.1</li>
-      <li>docker-compose version 1.25.0, build unknown</li>
-    </ul>
-  </li>
-  <li>Ubuntu 18.04 - minimal (fresh installation) [cFS and COSMOS on same machine]
-    <ul>
-      <li>Docker version 20.10.7, build 20.10.7-0ubuntu1~18.04.1</li>
-      <li>docker-compose version 1.17.1, build unknown</li>
-    </ul>
-  </li>
-  <li>COSMOS v5 master-branch commit: 94c22fa570</li>
-  <li>cFS master-branch commit: fe54f66926</li>
+  <li>COSMOS v5 release <a href="https://github.com/BallAerospace/COSMOS/releases/tag/v5.0.4">5.0.4</a>
+</li>
+  <li>cFS master-branch commit: 561b128 (June 1, 2022)</li>
+  <li>Docker Desktop 4.9.0 on Windows</li>
 </ul>
 
 <p>Replace all <code class="language-plaintext highlighter-rouge">&lt;xxxxxx&gt;</code> with your matching paths and names. Example: <code class="language-plaintext highlighter-rouge">&lt;USERNAME&gt;</code>.</p>
 
-<h2 id="setting-up-cfs">
-<a class="anchor" href="#setting-up-cfs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up cFS</h2>
-
-<p>To install NASA cFS, you can follow the instructions on
-<a href="https://github.com/nasa/cFS">https://github.com/nasa/cFS</a>. The instructions in short:</p>
-
-<h3 id="installing-cfs-dependencies">
-<a class="anchor" href="#installing-cfs-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing cFS dependencies</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt upgrade <span class="nt">-y</span>
-<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> <span class="se">\</span>
-   cmake <span class="se">\</span>
-   git
-</code></pre></div></div>
-
-<h3 id="cloning-and-running-cfs">
-<a class="anchor" href="#cloning-and-running-cfs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cloning and running cFS</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/nasa/cFS.git
-<span class="nb">cd </span>cFS
-git submodule init
-git submodule update
-
-<span class="nb">cp </span>cfe/cmake/Makefile.sample Makefile
-<span class="nb">cp</span> <span class="nt">-r</span> cfe/cmake/sample_defs sample_defs
-
-make <span class="nv">SIMULATION</span><span class="o">=</span>native prep
-make
-make <span class="nb">install
-cd </span>build/exe/cpu1/
-./core-cpu1
-</code></pre></div></div>
-
 <h2 id="setting-up-cosmos">
 <a class="anchor" href="#setting-up-cosmos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up COSMOS</h2>
 
-<p>For the installation, the official <a href="/docs/v5/installation">guide</a> was used.
-Here are the highlights.</p>
-
-<h3 id="installing-cosmos-dependencies">
-<a class="anchor" href="#installing-cosmos-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing COSMOS dependencies</h3>
-
-<p>Prepare system. Install Docker (see the installation
-<a href="https://phoenixnap.com/kb/how-to-install-docker-on-ubuntu-18-04">guide</a>
-for more details) and put your user into the group <code class="language-plaintext highlighter-rouge">docker</code>. After that, logout
-and login again for the changes to take effect.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt upgrade <span class="nt">-y</span>
-<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> <span class="se">\</span>
-   curl <span class="se">\</span>
-   docker.io <span class="se">\</span>
-   docker-compose <span class="se">\</span>
-   git
-<span class="nb">sudo </span>usermod <span class="nt">-aG</span> docker &lt;USERNAME&gt;
-</code></pre></div></div>
-
-<h3 id="installing-cosmos">
-<a class="anchor" href="#installing-cosmos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing COSMOS</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH_TO_COSMOS</span><span class="o">=</span>&lt;path where to clone COSMOS&gt;
-git clone https://github.com/BallAerospace/COSMOS.git <span class="nv">$PATH_TO_COSMOS</span>
-</code></pre></div></div>
+<p>Install COSMOS according to the official <a href="/docs/v5/installation">installation</a> instructions.</p>
 
 <h3 id="configuring-cosmos">
 <a class="anchor" href="#configuring-cosmos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuring COSMOS</h3>
 
-<p>Change the Docker configuration for the interoperability with NASA cFS. For 
-subscribing to the telemetry, you have to append a port binding in the file 
-<code class="language-plaintext highlighter-rouge">compose.yaml</code> under the section <code class="language-plaintext highlighter-rouge">cosmos-operator</code>. The port number has to 
+<p>Change the Docker configuration for the interoperability with NASA cFS. For
+subscribing to the telemetry, you have to append a port binding in the file
+<code class="language-plaintext highlighter-rouge">compose.yaml</code> under the section <code class="language-plaintext highlighter-rouge">cosmos-operator</code>. The port number has to
 match with the port number cFS is sending the telemetry on.</p>
 
-<p>In the COSMOS folder:</p>
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ports</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="s2">"</span><span class="s">1235:1235/udp"</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">cosmos-operator</span><span class="pi">:</span>
+  <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">1235:1235/udp"</span>
 </code></pre></div></div>
 
 <p>Run COSMOS, the first run takes a while (~15 min).</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="nv">$PATH_TO_COSMOS</span>
-<span class="nb">.</span> cosmos-control.sh start
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cosmos-control.sh start
 </code></pre></div></div>
 
 <p>When started, connect with a browser to <a href="http://localhost:2900">http://localhost:2900</a>.</p>
 
 <p>For shutting down COSMOS:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">.</span> cosmos-control.sh stop
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cosmos-control.sh stop
+</code></pre></div></div>
+
+<h2 id="setting-up-cfs">
+<a class="anchor" href="#setting-up-cfs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up cFS</h2>
+
+<p>To run <a href="https://github.com/nasa/cFS">NASA cFS</a> as a Docker container do the following:</p>
+
+<h3 id="clone-cfs">
+<a class="anchor" href="#clone-cfs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Clone cFS</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="nt">--recurse-submodules</span> https://github.com/nasa/cFS.git
+</code></pre></div></div>
+
+<h3 id="create-dockerfile-in-cfs-dir">
+<a class="anchor" href="#create-dockerfile-in-cfs-dir" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create Dockerfile in cFS dir</h3>
+
+<div class="language-docker highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:22.10</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">builder</span>
+
+<span class="k">ARG</span><span class="s"> DEBIAN_FRONTEND=noninteractive</span>
+<span class="k">ARG</span><span class="s"> SIMULATION=native</span>
+<span class="k">ENV</span><span class="s"> SIMULATION=${SIMULATION}</span>
+<span class="k">ARG</span><span class="s"> BUILDTYPE=debug</span>
+<span class="k">ENV</span><span class="s"> BUILDTYPE=${BUILDTYPE}</span>
+<span class="k">ARG</span><span class="s"> OMIT_DEPRECATED=true</span>
+<span class="k">ENV</span><span class="s"> OMIT_DEPRECATED=${OMIT_DEPRECATED}</span>
+
+<span class="k">RUN </span><span class="se">\
+</span>  apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
+</span>  apt-get <span class="nt">-y</span> upgrade <span class="o">&amp;&amp;</span> <span class="se">\
+</span>  apt-get <span class="nb">install</span> <span class="nt">-y</span> build-essential git cmake <span class="o">&amp;&amp;</span> <span class="se">\
+</span>  <span class="nb">rm</span> <span class="nt">-rf</span> /var/lib/apt/lists/<span class="k">*</span>
+
+<span class="k">WORKDIR</span><span class="s"> /cFS</span>
+<span class="k">COPY</span><span class="s"> . .</span>
+
+<span class="k">RUN </span>git submodule init <span class="se">\
+</span>  <span class="o">&amp;&amp;</span> git submodule update <span class="se">\
+</span>  <span class="o">&amp;&amp;</span> <span class="nb">cp </span>cfe/cmake/Makefile.sample Makefile <span class="se">\
+</span>  <span class="o">&amp;&amp;</span> <span class="nb">cp</span> <span class="nt">-r</span> cfe/cmake/sample_defs .
+
+<span class="k">RUN </span>make prep
+<span class="k">RUN </span>make
+<span class="k">RUN </span>make <span class="nb">install</span>
+
+<span class="k">FROM</span><span class="s"> ubuntu:22.10</span>
+<span class="k">COPY</span><span class="s"> --from=builder /cFS/build /cFS/build</span>
+<span class="k">WORKDIR</span><span class="s"> /cFS/build/exe/cpu1</span>
+<span class="k">ENTRYPOINT</span><span class="s"> [ "./core-cpu1" ]</span>
+</code></pre></div></div>
+
+<h3 id="build-and-run-cfs">
+<a class="anchor" href="#build-and-run-cfs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build and run cFS</h3>
+
+<p>Note we’re connecting to the COSMOS network (<code class="language-plaintext highlighter-rouge">docker network ls</code>) and exposing the cFS ports.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build <span class="nt">-t</span> cfs <span class="nb">.</span>
+docker run <span class="nt">--cap-add</span> CAP_SYS_RESOURCE <span class="nt">--net</span><span class="o">=</span>cosmos_default <span class="nt">--name</span> cfs <span class="nt">-p1234</span>:1234 <span class="nt">-p1235</span>:1235 cfs
 </code></pre></div></div>
 
 <h2 id="creating-a-cosmos-plugin-for-tmtc-interface-with-cfs">
@@ -253,23 +239,18 @@ match with the port number cFS is sending the telemetry on.</p>
 <p>The detailed instructions how to create a plugin, can be found
 <a href="/docs/v5/gettingstarted">here</a>, in the chapter “Interfacing with Your Hardware”.</p>
 
-<p>Create a directory where you would like your COSMOS plugin to be stored.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>cosmos-plugins
-<span class="nb">cd </span>cosmos-plugins
-</code></pre></div></div>
-
-<p>Create a plugin with the name <code class="language-plaintext highlighter-rouge">SAMPLE</code>. <code class="language-plaintext highlighter-rouge">SAMPLE</code> is the name of the plugin and
+<p>Create a new plugin with the name <code class="language-plaintext highlighter-rouge">CFS</code>. <code class="language-plaintext highlighter-rouge">CFS</code> is the name of the plugin and
 must be in capital letters according to the COSMOS documentation. This command
 should create the plugin structure.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">.</span> <span class="nv">$PATH_TO_COSMOS</span>/cosmos-control.sh cosmos generate plugin SAMPLE
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># cd .. to the location of the cfs dir</span>
+<span class="nv">$PATH_TO_COSMOS</span>/cosmos-control.sh cosmos generate plugin CFS
 </code></pre></div></div>
 
-<p>Also, change the rights of this newly created plugin, because the COSMOS script
+<p>If you’re on Linux, change the rights of this newly created plugin, because the COSMOS script
 creates the plugin to be owned by the root user.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo chown</span> <span class="nt">-R</span> &lt;USERNAME&gt;:&lt;USERGROUP&gt; cosmos-sample
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo chown</span> <span class="nt">-R</span> &lt;USERNAME&gt;:&lt;USERGROUP&gt; cosmos-cfs
 </code></pre></div></div>
 
 <p>In this newly created plugin, change the <code class="language-plaintext highlighter-rouge">plugin.txt</code> file, so that the
@@ -277,43 +258,43 @@ communication happens over UDP. <code class="language-plaintext highlighter-roug
 sends the telemetry messages. <code class="language-plaintext highlighter-rouge">port_tc</code> indicates the port on which cFS listens to the
 telecommands.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VARIABLE ip localhost
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VARIABLE ip 127.0.0.1
 VARIABLE port_tm 1235
 VARIABLE port_tc 1234
-VARIABLE sample_target_name SAMPLE
+VARIABLE cfs_target_name CFS
 
-TARGET SAMPLE &lt;%<span class="o">=</span> sample_target_name %&gt;
+TARGET CFS &lt;%<span class="o">=</span> cfs_target_name %&gt;
 <span class="c"># hostname   write_dest_port   read_port   write_src_port   interface_address   ttl   write_timeout   read_timeout   bind_address</span>
-INTERFACE &lt;%<span class="o">=</span> sample_target_name %&gt;_INT udp_interface.rb &lt;%<span class="o">=</span> ip %&gt; &lt;%<span class="o">=</span> port_tc %&gt; &lt;%<span class="o">=</span> port_tm %&gt; nil nil 128 nil nil
-  MAP_TARGET &lt;%<span class="o">=</span> sample_target_name %&gt;
+INTERFACE &lt;%<span class="o">=</span> cfs_target_name %&gt;_INT udp_interface.rb &lt;%<span class="o">=</span> ip %&gt; &lt;%<span class="o">=</span> port_tc %&gt; &lt;%<span class="o">=</span> port_tm %&gt; nil nil 128 nil nil
+  MAP_TARGET &lt;%<span class="o">=</span> cfs_target_name %&gt;
 </code></pre></div></div>
 
 <p>Note that the two arguments to the <code class="language-plaintext highlighter-rouge">TARGET</code> parameter are:</p>
 
 <ol>
   <li>
-    <p>the physical target name that should match the name of the plugin, i.e. <code class="language-plaintext highlighter-rouge">SAMPLE</code>.
+    <p>the physical target name that should match the name of the plugin, i.e. <code class="language-plaintext highlighter-rouge">CFS</code>.
 This name must match the folder name in the <code class="language-plaintext highlighter-rouge">targets</code> folder. Example: for the
-<code class="language-plaintext highlighter-rouge">SAMPLE</code> plugin, the target specifications must be under
-<code class="language-plaintext highlighter-rouge">cosmos-plugins/cosmos-sample/targets/SAMPLE</code>. If you don’t follow this
+<code class="language-plaintext highlighter-rouge">CFS</code> plugin, the target specifications must be under
+<code class="language-plaintext highlighter-rouge">cosmos-cfs/targets/CFS</code>. If you don’t follow this
 convention, the server will refuse to install your plugin at the following steps.</p>
   </li>
   <li>
-    <p>the name of your target how it is shown in the user interface.</p>
+    <p>the name of your target and how it is shown in the user interface.</p>
   </li>
 </ol>
 
-<p>In this example, we keep both names to be <code class="language-plaintext highlighter-rouge">SAMPLE</code>.</p>
+<p>In this example, we keep both names to be <code class="language-plaintext highlighter-rouge">CFS</code>.</p>
 
 <h2 id="creating-tmtc-definitions">
 <a class="anchor" href="#creating-tmtc-definitions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating TM/TC definitions</h2>
 
 <p>Change to the target folder and remove the existing files and create own files.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>cosmos-plugins/cosmos-sample/targets/SAMPLE/cmd_tlm
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>cosmos-cfs/targets/CFS/cmd_tlm
 <span class="nb">rm</span> <span class="k">*</span>
-<span class="nb">touch </span>sample_cmds.txt
-<span class="nb">touch </span>sample_tlm.txt
+<span class="nb">touch </span>cfs_cmds.txt
+<span class="nb">touch </span>cfs_tlm.txt
 <span class="nb">touch </span>to_lab_cmds.txt
 </code></pre></div></div>
 
@@ -321,16 +302,17 @@ convention, the server will refuse to install your plugin at the following steps
 content.</p>
 
 <p><code class="language-plaintext highlighter-rouge">to_lab_cmds.txt</code>:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COMMAND TO_LAB TO_LAB_ENABLE BIG_ENDIAN <span class="s2">"TO_Lab enable telemetry"</span>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COMMAND CFS TO_LAB_ENABLE BIG_ENDIAN <span class="s2">"Enable telemetry"</span>
   <span class="c">#                   NAME      BITS TYPE   min VAL     max VAL    init VAL  DESCRIPTION</span>
   APPEND_ID_PARAMETER STREAM_ID  16  UINT   0x1880      0x1880     0x1880    <span class="s2">"Stream ID"</span>
-      FORMAT_STRING <span class="s2">"0x%04X"</span>
+    FORMAT_STRING <span class="s2">"0x%04X"</span>
   APPEND_PARAMETER    SEQUENCE   16  UINT   0xC000      MAX_UINT16 0xC000    <span class="s2">""</span>
-      FORMAT_STRING <span class="s2">"0x%04X"</span>
+    FORMAT_STRING <span class="s2">"0x%04X"</span>
   APPEND_PARAMETER    PKT_LEN    16  UINT   0x0001      0xFFFF     0x0012    <span class="s2">"length of the packet"</span>
   APPEND_PARAMETER    CMD_ID      8  UINT   6           6          6         <span class="s2">""</span>
   APPEND_PARAMETER    CHECKSUM    8  UINT   MIN_UINT8   MAX_UINT8  0x98      <span class="s2">""</span>
-      FORMAT_STRING <span class="s2">"0x%2X"</span>
+    FORMAT_STRING <span class="s2">"0x%2X"</span>
   APPEND_PARAMETER    DEST_IP   144  STRING <span class="s2">"127.0.0.1"</span>                      <span class="s2">"Destination IP, i.e. 172.16.9.112, pc-57"</span>
 </code></pre></div></div>
 
@@ -342,10 +324,11 @@ content.</p>
   `DEST_IP` field.</p>
 </div>
 
-<p><code class="language-plaintext highlighter-rouge">sample_cmds.txt</code>:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COMMAND SAMPLE SAMPLE_NOOP BIG_ENDIAN <span class="s2">"Sample_app NOOP Command"</span>
+<p><code class="language-plaintext highlighter-rouge">cfs_cmds.txt</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COMMAND CFS NOOP BIG_ENDIAN <span class="s2">"NOOP Command"</span>
   <span class="c"># cFS primary header</span>
-  APPEND_ID_PARAMETER    STREAM_ID   16   UINT   0x1882      0x1882      0x1882      <span class="s2">"SAMPLE Packet Identification"</span>
+  APPEND_ID_PARAMETER    STREAM_ID   16   UINT   0x1882      0x1882      0x1882      <span class="s2">"Packet Identification"</span>
       FORMAT_STRING <span class="s2">"0x%04X"</span>
   APPEND_PARAMETER       SEQUENCE    16   UINT   MIN_UINT16  MAX_UINT16  0xC000      <span class="s2">""</span>
       FORMAT_STRING <span class="s2">"0x%04X"</span>
@@ -354,8 +337,8 @@ content.</p>
   APPEND_PARAMETER       CMD_ID       8   UINT   0           0           0           <span class="s2">""</span>
   APPEND_PARAMETER       CHECKSUM     8   UINT   MIN_UINT8   MAX_UINT8   MIN_UINT8   <span class="s2">""</span>
 
-COMMAND SAMPLE SAMPLE_RESET BIG_ENDIAN <span class="s2">"Sample_app Reset Counters Command"</span>
-  APPEND_ID_PARAMETER    STREAM_ID   16   UINT   0x1882      0x1882      0x1882      <span class="s2">"SAMPLE Packet Identification"</span>
+COMMAND CFS RESET BIG_ENDIAN <span class="s2">"Reset Counters Command"</span>
+  APPEND_ID_PARAMETER    STREAM_ID   16   UINT   0x1882      0x1882      0x1882      <span class="s2">"Packet Identification"</span>
       FORMAT_STRING <span class="s2">"0x%04X"</span>
   APPEND_PARAMETER       SEQUENCE    16   UINT   MIN_UINT16  MAX_UINT16  0xC000      <span class="s2">""</span>
       FORMAT_STRING <span class="s2">"0x%04X"</span>
@@ -363,8 +346,8 @@ COMMAND SAMPLE SAMPLE_RESET BIG_ENDIAN <span class="s2">"Sample_app Reset Counte
   APPEND_PARAMETER       CMD_ID       8   UINT   1           1           1           <span class="s2">""</span>
   APPEND_PARAMETER       CHECKSUM     8   UINT   MIN_UINT8   MAX_UINT8   MIN_UINT8   <span class="s2">""</span>
 
-COMMAND SAMPLE SAMPLE_PROCESS BIG_ENDIAN <span class="s2">"Sample_app Process Command"</span>
-  APPEND_ID_PARAMETER    STREAM_ID   16   UINT   0x1882      0x1882      0x1882      <span class="s2">"SAMPLE Packet Identification"</span>
+COMMAND CFS PROCESS BIG_ENDIAN <span class="s2">"Process Command"</span>
+  APPEND_ID_PARAMETER    STREAM_ID   16   UINT   0x1882      0x1882      0x1882      <span class="s2">"Packet Identification"</span>
       FORMAT_STRING <span class="s2">"0x%04X"</span>
   APPEND_PARAMETER       SEQUENCE    16   UINT   MIN_UINT16  MAX_UINT16  0xC000      <span class="s2">""</span>
       FORMAT_STRING <span class="s2">"0x%04X"</span>
@@ -373,8 +356,9 @@ COMMAND SAMPLE SAMPLE_PROCESS BIG_ENDIAN <span class="s2">"Sample_app Process Co
   APPEND_PARAMETER       CHECKSUM     8   UINT   MIN_UINT8   MAX_UINT8   MIN_UINT8   <span class="s2">""</span>
 </code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">sample_tlm.txt</code>:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TELEMETRY SAMPLE SAMPLE_HK BIG_ENDIAN <span class="s2">"Sample_app housekeeping telemetry"</span>
+<p><code class="language-plaintext highlighter-rouge">cfs_tlm.txt</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TELEMETRY CFS HK BIG_ENDIAN <span class="s2">"housekeeping telemetry"</span>
   <span class="c">#                NAME       BITS  TYPE    ID      DESCRIPTION</span>
   APPEND_ID_ITEM   STREAM_ID   16   UINT    0x0883  <span class="s2">"Stream ID"</span>
     FORMAT_STRING <span class="s2">"0x%04X"</span>
@@ -397,8 +381,8 @@ COMMAND SAMPLE SAMPLE_PROCESS BIG_ENDIAN <span class="s2">"Sample_app Process Co
 
 <p>Build the plugin from the base of your plugin folder:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># cd cosmos-plugins/cosmos-sample</span>
-<span class="nb">.</span> <span class="nv">$PATH_TO_COSMOS</span>/cosmos-control.sh cosmos rake build <span class="nv">VERSION</span><span class="o">=</span>1.0.0
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># cd cosmos-cfs</span>
+<span class="nv">$PATH_TO_COSMOS</span>/cosmos-control.sh cosmos rake build <span class="nv">VERSION</span><span class="o">=</span>1.0.0
 </code></pre></div></div>
 
 <div class="note info">
@@ -427,15 +411,41 @@ the page.</p>
 <a href="http://localhost:2900/tools/admin">http://localhost:2900/tools/admin</a>.</p>
 
 <p>Click on the clip icon and navigate to where your plugin is stored and select
-the <code class="language-plaintext highlighter-rouge">cosmos-sample-1.0.0.xxx.gem</code> file. Right of the selection line click on <code class="language-plaintext highlighter-rouge">UPLOAD</code>.</p>
+the <code class="language-plaintext highlighter-rouge">cosmos-cfs-1.0.0.xxx.gem</code> file. Right of the selection line click on <code class="language-plaintext highlighter-rouge">UPLOAD</code>.</p>
+
+<p>Determine the IP address the cFS container and COSMOS operator container are running at:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker network <span class="nb">ls
+</span>NETWORK ID     NAME             DRIVER    SCOPE
+d842f813f1c7   cosmos_default   bridge    <span class="nb">local
+
+</span>docker network inspect cosmos_default
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"Name"</span>: <span class="s2">"cosmos_default"</span>,
+        ...
+        <span class="s2">"Containers"</span>: <span class="o">{</span>
+            <span class="s2">"03cb6bf1b27c631fad1366e9342aeaa5b80f458a437195e4a95e674bb5f5983d"</span>: <span class="o">{</span>
+                <span class="s2">"Name"</span>: <span class="s2">"cfs"</span>,
+                <span class="s2">"IPv4Address"</span>: <span class="s2">"172.20.0.9/16"</span>,
+            <span class="o">}</span>,
+            <span class="s2">"ceb9ea99b00849fd8867dcd1646838fef3471f7d64b69014703dbedbcc8147fc"</span>: <span class="o">{</span>
+                <span class="s2">"Name"</span>: <span class="s2">"cosmos_cosmos-operator_1"</span>,
+                <span class="s2">"IPv4Address"</span>: <span class="s2">"172.20.0.8/16"</span>,
+            <span class="o">}</span>
+        <span class="o">}</span>
+        ...
+    <span class="o">}</span>
+<span class="o">]</span>
+</code></pre></div></div>
 
 <p>When using this plugin, make sure to change the <code class="language-plaintext highlighter-rouge">ip</code> variable during uploading
-to fit where cFS is running on. <code class="language-plaintext highlighter-rouge">port_tm</code> is the port number on which cFS is
-sending the telemetry messages. <code class="language-plaintext highlighter-rouge">port_tc</code> indicates the port on cFS is listening
-for telecommands.</p>
+to match where cFS is running. In the example above you would set it to 172.20.0.9.
+<code class="language-plaintext highlighter-rouge">port_tm</code> is the port number on which cFS is sending the telemetry messages.
+<code class="language-plaintext highlighter-rouge">port_tc</code> indicates the port on cFS is listening for telecommands.</p>
 
-<p>Under <code class="language-plaintext highlighter-rouge">sample_target_name</code> you can change the target name of this plugin. This
-step is optional as long as you are fine with your plugin showing up as <code class="language-plaintext highlighter-rouge">SAMPLE</code>.</p>
+<p>Under <code class="language-plaintext highlighter-rouge">cfs_target_name</code> you can change the target name of this plugin. This
+step is optional as long as you are fine with your plugin showing up as <code class="language-plaintext highlighter-rouge">CFS</code>.</p>
 
 <p><img src="/img/v5/cFS_COSMOS_setup/Plugin-Variables.png" alt="Plugin Variable Settings" title="Plugin Variable Settings"></p>
 
@@ -453,12 +463,10 @@ step is optional as long as you are fine with your plugin showing up as <code cl
 the plugin's .gem file. Make sure your configuration is typo-free.</p>
 </div>
 
-<p>To enable telemetry, go to the browser and connect to
-<a href="http://localhost:2900/tools/cmdsender/SAMPLE/TO_LAB_ENABLE">http://localhost:2900/tools/cmdsender/SAMPLE/TO_LAB_ENABLE</a>
-where you should change the <code class="language-plaintext highlighter-rouge">DEST_IP</code> to the IP address that COSMOS is running
-on and send the command.</p>
+<p>In the example above, the operator image is running at 172.20.0.8. To enable telemetry, go to the browser and connect to
+<a href="http://localhost:2900/tools/cmdsender/CFS/TO_LAB_ENABLE">http://localhost:2900/tools/cmdsender/CFS/TO_LAB_ENABLE</a>. Change the <code class="language-plaintext highlighter-rouge">DEST_IP</code> to the IP address of the operator image (172.20.0.8) and send the command.</p>
 
-<p>Under <a href="http://localhost:2900/tools/cmdtlmserver/tlm-packets">http://localhost:2900/tools/cmdtlmserver/tlm-packets</a>, you should see the incoming packets.</p>
+<p>Under <a href="http://localhost:2900/tools/cmdtlmserver/tlm-packets">http://localhost:2900/tools/cmdtlmserver/tlm-packets</a>, you should see the incoming packets. Note in the CmdTlmServer you will also see CFS_INT UNKNOWN packets because we did not define the full cFS packet set. That exercise is left to the reader.</p>
 
       </article>
     </div>
