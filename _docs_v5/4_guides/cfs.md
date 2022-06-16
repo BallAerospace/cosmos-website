@@ -313,7 +313,7 @@ to match where cFS is running. In the example above you would set it to 172.20.0
 Under `cfs_target_name` you can change the target name of this plugin. This
 step is optional as long as you are fine with your plugin showing up as `CFS`.
 
-![Plugin Variable Settings](/img/v5/cFS_COSMOS_setup/Plugin-Variables.png "Plugin Variable Settings")
+![Plugin Variable Settings](/img/v5/guides/plugin-variables.png)
 
 <div class="note warning">
   <h5>Port subscription</h5>
