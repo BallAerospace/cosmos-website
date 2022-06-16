@@ -14,15 +14,15 @@ A single .xtce file containing the command and telemetry definitions for a targe
 Use the following command to convert a .xtce file into COSMOS configuration files. The converted configuration files will be placed into a target folder in the given output directory.
 
 ```
-xtce_converter --import <xtce_filename> <output_dir>
+cosmos-control.bat cosmos xtce_converter --import <xtce_filename> --output <output_dir>
 ```
 
 ## Converting a COSMOS Configuration to XTCE
 
-Use the following command to convert your current cosmos project into .xtce files, one per target. The converted .xtce files will be placed into a target folder in the given output directory.
+Use the following command to convert your cosmos plugin into .xtce files, one per target. The converted .xtce files will be placed into a target folder in the given output directory.
 
 ```
-xtce_converter --export <output_dir>
+cosmos-control.bat cosmos xtce_converter --plugin <plugin.gem> --output <output_dir>
 ```
 
 ## High-level Overview of Current Support
