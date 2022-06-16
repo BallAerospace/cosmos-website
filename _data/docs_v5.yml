@@ -35,6 +35,7 @@
 - title: Guides
   docs:
     - logging
+    - custom_widgets
     - scripting
     - scripting_best_practices
     - monitoring
