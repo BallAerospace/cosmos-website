@@ -120,6 +120,7 @@
 <li class="toc-entry toc-h2"><a href="#target-1">TARGET</a></li>
 <li class="toc-entry toc-h2"><a href="#microservice-1">MICROSERVICE</a></li>
 <li class="toc-entry toc-h2"><a href="#tool-1">TOOL</a></li>
+<li class="toc-entry toc-h2"><a href="#widget">WIDGET</a></li>
 <li class="toc-entry toc-h2"><a href="#interface-modifiers">INTERFACE Modifiers</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#map_target">MAP_TARGET</a></li>
@@ -507,6 +508,32 @@ This file follows the standard COSMOS configuration file format of keywords foll
 
 <p>Example Usage:</p>
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">TOOL DEMO Demo</code></pre></figure>
+
+<h2 id="widget">
+<a class="anchor" href="#widget" aria-hidden="true"><span class="octicon octicon-link"></span></a>WIDGET</h2>
+<p><strong>Define a custom widget</strong></p>
+
+<p>Defines a custom widget that can be used in Telemetry Viewer screens.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Widget Name</td>
+      <td>The name of the widget wil be used to build a path to the widget implementation. For example, <code class="language-plaintext highlighter-rouge">WIDGET HELLOWORLD</code> will find the as-built file tools/widgets/HelloworldWidget/HelloworldWidget.umd.min.js. See the <a href="/docs/v5/custom-widgets">Custom Widgets</a> guide for more details.</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example Usage:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">WIDGET HELLOWORLD</code></pre></figure>
 
 <h2 id="interface-modifiers">
 <a class="anchor" href="#interface-modifiers" aria-hidden="true"><span class="octicon octicon-link"></span></a>INTERFACE Modifiers</h2>
