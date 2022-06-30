@@ -11,8 +11,8 @@
     <title xml:lang="en">Ball Aerospace COSMOS News</title>
     <atom:link type="application/atom+xml" href="https://ballaerospace.github.io/cosmos-website/feed.xml" rel="self"/>
     <link>https://ballaerospace.github.io/cosmos-website/</link>
-    <pubDate>Thu, 30 Jun 2022 20:43:49 +0000</pubDate>
-    <lastBuildDate>Thu, 30 Jun 2022 20:43:49 +0000</lastBuildDate>
+    <pubDate>Thu, 30 Jun 2022 22:12:55 +0000</pubDate>
+    <lastBuildDate>Thu, 30 Jun 2022 22:12:55 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.2.2</generator>
     <description>The User Interface for Embedded Systems</description>
@@ -3622,11 +3622,11 @@ COMMAND INST ABORT BIG_ENDIAN &quot;Aborts a collect on the instrument&quot;
 
 &lt;p&gt;When asked to perform customizations like this I first bring up the COSMOS Demo. We try to include all the COSMOS features in the Demo so end users have concrete examples to follow instead of relying solely on the excellent documentation at &lt;a href=&quot;http://cosmosc2.com/docs/v4&quot;&gt;cosmosc2.com&lt;/a&gt;. Obviously you must first have COSMOS installed so follow the &lt;a href=&quot;http://cosmosc2.com/docs/v4/installation/&quot;&gt;installation instructions&lt;/a&gt; and then launch the Demo by running the Launcher in the Demo folder. Here is how the server appears on my Windows machine:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cosmos-website/img/2016_08_22_server.png&quot; alt=&quot;COSMOS Demo Server&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2016_08_22_server.png&quot; alt=&quot;COSMOS Demo Server&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;I’m going to create a custom widget in the INST target to display some of the Array data in a table. If you first launch the Telemetry Viewer and open the INST ARRAY screen you should see the following:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cosmos-website/img/2016_08_22_inst_array.png&quot; alt=&quot;COSMOS Inst Array&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2016_08_22_inst_array.png&quot; alt=&quot;COSMOS Inst Array&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This screen is already using the Array widget to display this data in a text box. We will add our new widget to the top of the screen which will display the data in a table. Let’s add the line to the screen which will call our new widget. Edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;demo/config/targets/INST/screens/array.txt&lt;/code&gt; and add the following line in the middle:&lt;/p&gt;
 
@@ -3667,7 +3667,7 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 
 &lt;p&gt;Now if you stop and restart the Telemetry Viewer (so it can re-require the new widget code) it should display an empty table:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cosmos-website/img/2016_08_22_inst_array2.png&quot; alt=&quot;COSMOS Inst Array&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2016_08_22_inst_array2.png&quot; alt=&quot;COSMOS Inst Array&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;To actually populate it with data we must follow the Cosmos Widget conventions. First of all by including Widget you include all the &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/blob/cosmos4/lib/cosmos/tools/tlm_viewer/widgets/widget.rb&quot;&gt;Widget&lt;/a&gt; code which creates two key class methods: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout_manager?&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;takes_value?&lt;/code&gt;. These must be overridden to return true if your widget is either a layout or takes a value respectively. Since our widget will be taking the array data as a value we must override &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;takes_value?&lt;/code&gt;:&lt;/p&gt;
 
@@ -3694,7 +3694,7 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 
 &lt;p&gt;The data value passed to the method is the same target, packet, and item used in the screen definition. In our value= method we are using our stored instance variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@rows&lt;/code&gt; to index into the array data and create new &lt;a href=&quot;http://doc.qt.io/qt-4.8/qtablewidgetitem.html&quot;&gt;Qt::TableWidgetItem&lt;/a&gt; instances to store the data. TableWidgetItems expect Strings to be passed so I call to_s on the data item to ensure it is a String. If you now re-launch Telemetry Viewer you should see the values populated in the table:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cosmos-website/img/2016_08_22_inst_array3.png&quot; alt=&quot;COSMOS Inst Array&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2016_08_22_inst_array3.png&quot; alt=&quot;COSMOS Inst Array&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;At this point you could be done. But wait! The Array widget below the table fades darker to implement “aging”, showing the user the values haven’t changed. How do we implement “aging” in our new widget? To start we require the aging_widget and include the AgingWidget module. Then we must call the setup_aging method in our initialize method as well as redefine the process_settings method:&lt;/p&gt;
 
@@ -3738,7 +3738,7 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 
 &lt;p&gt;The end result is aging:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/cosmos-website/img/2016_08_22_inst_array4.png&quot; alt=&quot;COSMOS Inst Array&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2016_08_22_inst_array4.png&quot; alt=&quot;COSMOS Inst Array&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Note that if you have a widget that implements aging and limits you’ll want to keep the value returned by super and use it in your widget. If you don’t want the aging routine to directly use your data value you can pass a string as the second parameter, e.g. super(data, text). This text string will be modified with the color blind settings. Basically that means that whatever the calculated &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@foreground&lt;/code&gt; color string is, a corresponding text character is added (R=Red, G=Green, etc) to aid people who can’t distinguish colors. See &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/blob/cosmos4/lib/cosmos/tools/tlm_viewer/widgets/aging_widget.rb&quot;&gt;aging_widget.rb&lt;/a&gt; for more details.&lt;/p&gt;
 
