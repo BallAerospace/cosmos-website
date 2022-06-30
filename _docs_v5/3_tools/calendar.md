@@ -8,7 +8,7 @@ toc: true
 
 Calendar visualizes metadata, narrative, and timeline information in one easy to understand place. Timelines allow for the simple execution of commands and scripts based on future dates and times.
 
-![Calendar](/img/v5/calendar/calendar.png)
+![Calendar]({{site.baseurl}}/img/v5/calendar/calendar.png)
 
 ## Types of Events
 
@@ -47,4 +47,4 @@ The schedule thread checks every second to make sure if a task can be run. If th
 
 The workers are plain and simple, they block on the queue until an activity is placed on the queue. Once a job is pulled from the queue they check the type and run the activity. The thread will mark the activity fulfillment true and update the database record with the complete. If the worker gets an error while trying to run the task the activity will NOT be fulfilled and record the error in the database.
 
-![Timeline Lifecycle](/img/v5/calendar/timeline_lifecycle.png)
+![Timeline Lifecycle]({{site.baseurl}}/img/v5/calendar/timeline_lifecycle.png)

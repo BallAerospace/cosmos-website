@@ -6,11 +6,11 @@ author: jmthomas
 categories: [post]
 ---
 
-Protocols were introduced into COSMOS in version 4.0.0 and were previously discussed in [this post](/news/2019/06/05/protocols/). We recently had a question at Ball about how to reduce the telemetry rate of a high speed target so I thought I would walk through the problem and solution.
+Protocols were introduced into COSMOS in version 4.0.0 and were previously discussed in [this post]({{site.baseurl}}/news/2019/06/05/protocols/). We recently had a question at Ball about how to reduce the telemetry rate of a high speed target so I thought I would walk through the problem and solution.
 
 ### The Problem
 
-One COSMOS server was connected to a high speed telemetry target that was generating telemetry at 10Hz. Another COSMOS server was [chained](/docs/v4/chaining/) to this and did not need this high speed data. How do you reduce the data rate coming into the chained server?
+One COSMOS server was connected to a high speed telemetry target that was generating telemetry at 10Hz. Another COSMOS server was [chained]({{site.baseurl}}/docs/v4/chaining/) to this and did not need this high speed data. How do you reduce the data rate coming into the chained server?
 
 ### The Solution
 
@@ -26,7 +26,7 @@ And in another terminal start the chained server:
 ruby demo\tools\CmdTlmServer --system system_alt_ports.txt --config cmd_tlm_server_chain.txt
 ```
 
-Now we need to implement a custom protocol to slow down the telemetry rate on the chained server. Note that the built-in protocols are fully described on the [Protocols](/docs/v4/protocols) page and also mentioned on the [Interfaces](/docs/v4/interfaces#protocols) page.
+Now we need to implement a custom protocol to slow down the telemetry rate on the chained server. Note that the built-in protocols are fully described on the [Protocols]({{site.baseurl}}/docs/v4/protocols) page and also mentioned on the [Interfaces]({{site.baseurl}}/docs/v4/interfaces#protocols) page.
 
 ### Custom Protocols
 
@@ -117,7 +117,7 @@ SEND
 ```
 
 And the server "Tlm Packets" tab should show the ADCS count incrementing at 1Hz.
-![Server Tlm Packets](/img/2020_03_17_server.png)<br/>
+![Server Tlm Packets]({{site.baseurl}}/img/2020_03_17_server.png)<br/>
 _Chained Server Tlm Packets tab_
 
 This protocol is extremely simple but it accomplishes the task at hand. Remember protocols can be layered and operate in order so keeping them simple helps with debugging and reusability.

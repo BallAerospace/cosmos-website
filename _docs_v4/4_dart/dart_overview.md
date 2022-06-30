@@ -10,7 +10,7 @@ DART (Data Archival Retrieval Trending) is the COSMOS tool to support long term 
 
 The following diagram shows how DART integrates into a COSMOS System:
 
-<img src="/img/DART_Architecture.png" alt="DART Architecture">
+<img src="{{site.baseurl}}/img/DART_Architecture.png" alt="DART Architecture">
 
 Key aspects of this architecture:
 

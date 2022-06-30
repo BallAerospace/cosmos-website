@@ -7,7 +7,7 @@ version: 4.1.0
 categories: [post]
 ---
 
-COSMOS 4.1 has been released and several new noteworthy features were released which weren't fully captured by the recent [release description](/news/2017/11/17/cosmos-4-1-0-released/). This post will break down the highlights from the new features, maintence items, and bug fixes from the 4.1.0 release.
+COSMOS 4.1 has been released and several new noteworthy features were released which weren't fully captured by the recent [release description]({{site.baseurl}}/news/2017/11/17/cosmos-4-1-0-released/). This post will break down the highlights from the new features, maintence items, and bug fixes from the 4.1.0 release.
 
 ## Replay Tool Enhancements
 
@@ -15,17 +15,17 @@ I think the best new feature in COSMOS 4.1.0 is the ability of the Reply tool to
 
 Replay also got a cosmetic upgrade to look more like the Command and Telemetry Server. Here's the new Replay in action:
 
-![Replay](/img/2017_11_28_replay.png)
+![Replay]({{site.baseurl}}/img/2017_11_28_replay.png)
 
 Replay now has tabs for Targets, Cmd Packets, Tlm Packets, Routers, and Status which correspond to the same tabs in the Server. These tabs count the number of packets being processed by Replay. Thus if you rewind the file and play it back, the counts simply keep incrementing.
 
 Here's a screenshot of Packet Viewer displaying data in this new Replay mode:
 
-![Packet Viewer Replay](/img/2017_11_28_packet_viewer_replay.png)
+![Packet Viewer Replay]({{site.baseurl}}/img/2017_11_28_packet_viewer_replay.png)
 
 Here's another screenshot of Telemetry Grapher displaying data in this new Replay mode:
 
-![Packet Viewer Replay](/img/2017_11_28_tlm_grapher_replay.png)
+![Packet Viewer Replay]({{site.baseurl}}/img/2017_11_28_tlm_grapher_replay.png)
 
 You'll notice the tools have a new File menu option to toggle the Replay mode which displays a green "Replay Mode" bar to visually indicate the tool is no longer processing real-time data.
 
@@ -41,16 +41,16 @@ As an example of how these saved configurations work, consider that you collect 
 
 Issue [#620](https://github.com/BallAerospace/COSMOS/issues/620) was to move the Script Runner Step button next to the Start, Pause, Stop buttons rather than down in the debugging pane. This should make it a lot easier to use the Step feature when debugging scripts. Here's a screenshot of a simple script I started using the Step button (available when you enable Debugging via the Script / Toggle Debug menu).
 
-![Script Runner Debug](/img/2017_11_28_script_runner_debug.png)
+![Script Runner Debug]({{site.baseurl}}/img/2017_11_28_script_runner_debug.png)
 
 Issue [#619](https://github.com/BallAerospace/COSMOS/issues/619) was implemented to prevent Script Runner from instrumenting comments and whitespace when running scripts. This should also make debugging scripts easier as you don't have to step over a bunch of comments or whitespace.
 
 ## API over HTTP
 
-As Ryan mentioned in the [4.1 Release Notes](/news/2017/11/17/cosmos-4-1-0-released/), issue [#510](https://github.com/BallAerospace/COSMOS/issues/510) was created to move the COSMOS API from our custom protocol to HTTP. While this change is transparent to the user, it should make it easier for other languages and tools to interface with the COSMOS system in the future.
+As Ryan mentioned in the [4.1 Release Notes]({{site.baseurl}}/news/2017/11/17/cosmos-4-1-0-released/), issue [#510](https://github.com/BallAerospace/COSMOS/issues/510) was created to move the COSMOS API from our custom protocol to HTTP. While this change is transparent to the user, it should make it easier for other languages and tools to interface with the COSMOS system in the future.
 
 ## Bug Fixes
 
-There were a number of bug fixes as noted in the [4.1 Release Notes](/news/2017/11/17/cosmos-4-1-0-released/). [#617](https://github.com/BallAerospace/COSMOS/issues/617) and [#659](https://github.com/BallAerospace/COSMOS/issues/659) were both related to Ruby 2.4.2 which is the new Ruby version in COSMOS 4.0. Ruby 2.4 is the latest version of Ruby which provides performance improvements you can read about on [ruby-lang.org](https://www.ruby-lang.org/en/news/2016/12/25/ruby-2-4-0-released/). [#616](https://github.com/BallAerospace/COSMOS/issues/616) addresses an annoying message generating by QT on Windows 10. [#655](https://github.com/BallAerospace/COSMOS/issues/655) addresses an issue with using COLLECT_METADATA in the basic "install" version of COSMOS. [#633](https://github.com/BallAerospace/COSMOS/issues/633) fix a bug where the prompt_vertical_message_box and prompt_combo_box scripting methods were mutating the input parameters. If you're using those scripting methods, you should upgrade to COSMOS 4.1.
+There were a number of bug fixes as noted in the [4.1 Release Notes]({{site.baseurl}}/news/2017/11/17/cosmos-4-1-0-released/). [#617](https://github.com/BallAerospace/COSMOS/issues/617) and [#659](https://github.com/BallAerospace/COSMOS/issues/659) were both related to Ruby 2.4.2 which is the new Ruby version in COSMOS 4.0. Ruby 2.4 is the latest version of Ruby which provides performance improvements you can read about on [ruby-lang.org](https://www.ruby-lang.org/en/news/2016/12/25/ruby-2-4-0-released/). [#616](https://github.com/BallAerospace/COSMOS/issues/616) addresses an annoying message generating by QT on Windows 10. [#655](https://github.com/BallAerospace/COSMOS/issues/655) addresses an issue with using COLLECT_METADATA in the basic "install" version of COSMOS. [#633](https://github.com/BallAerospace/COSMOS/issues/633) fix a bug where the prompt_vertical_message_box and prompt_combo_box scripting methods were mutating the input parameters. If you're using those scripting methods, you should upgrade to COSMOS 4.1.
 
 There were a number of other enhancements and bug fixes but the previous list is a compelling reason to upgrade to COSMOS 4.1 today!

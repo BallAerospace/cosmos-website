@@ -16,7 +16,7 @@ Replace all `<xxxxxx>` with your matching paths and names. Example: `<USERNAME>`
 
 ## Setting up COSMOS
 
-Install COSMOS according to the official [installation](/docs/v5/installation) instructions.
+Install COSMOS according to the official [installation]({{site.baseurl}}/docs/v5/installation) instructions.
 
 ### Configuring COSMOS
 
@@ -104,7 +104,7 @@ docker run --cap-add CAP_SYS_RESOURCE --net=cosmos_default --name cfs -p1234:123
 ## Creating a COSMOS plugin for TM/TC interface with cFS
 
 The detailed instructions how to create a plugin, can be found
-[here](/docs/v5/gettingstarted), in the chapter "Interfacing with Your Hardware".
+[here]({{site.baseurl}}/docs/v5/gettingstarted), in the chapter "Interfacing with Your Hardware".
 
 Create a new plugin with the name `CFS`. `CFS` is the name of the plugin and
 must be in capital letters according to the COSMOS documentation. This command
@@ -264,7 +264,7 @@ $PATH_TO_COSMOS/cosmos-control.sh cosmos rake build VERSION=1.0.0
 <div class="note info">
   <h5>Plugin parameters</h5>
   <p>Multiple parameters are available for the plugin configuration. See the
-    <a href="/docs/v5/plugins">plugin</a> page.</p>
+    <a href="{{site.baseurl}}/docs/v5/plugins">plugin</a> page.</p>
 </div>
 
 ## Uploading the plugin
@@ -313,7 +313,7 @@ to match where cFS is running. In the example above you would set it to 172.20.0
 Under `cfs_target_name` you can change the target name of this plugin. This
 step is optional as long as you are fine with your plugin showing up as `CFS`.
 
-![Plugin Variable Settings](/img/v5/guides/plugin-variables.png)
+![Plugin Variable Settings]({{site.baseurl}}/img/v5/guides/plugin-variables.png)
 
 <div class="note warning">
   <h5>Port subscription</h5>

@@ -19,4 +19,4 @@ Role Based Access Control allows you to assign roles to individual users in COSM
 | system_set  | Connect and disconnect interfaces and routers | x | x | x |
 | admin       | Upload, install and delete plugins and gems. Execute arbitrary Redis commands. Change Admin settings. | | |  x |
 
-Note that these roles and permissions are all scoped to the current [Scope](/docs/enterprise/scopes). There is also a special admin role scoped to `ALLSCOPES` which means it can delete scopes, plugins, and gems across all scopes.
+Note that these roles and permissions are all scoped to the current [Scope]({{site.baseurl}}/docs/enterprise/scopes). There is also a special admin role scoped to `ALLSCOPES` which means it can delete scopes, plugins, and gems across all scopes.

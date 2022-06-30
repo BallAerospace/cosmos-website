@@ -245,13 +245,13 @@ ScriptRunner includes several tools to help audit your scripts both before and a
 
 The Ruby Syntax Check tool is found under the Script Menu. This tool uses the ruby executable with the -c flag to run a syntax check on your script. If any syntax errors are found the exact message presented by the Ruby interpreter is shown to the user. These can be cryptic, but the most common faults are not closing a quoted string, forgetting an “end” keyword, or using a block but forgetting the proceeding “do” keyword.
 
- <img src="/img/syntax_check.png" alt="Syntax Check">
+ <img src="{{site.baseurl}}/img/syntax_check.png" alt="Syntax Check">
 
 #### Mnemonic Check
 
 The mnemonic check uses an algorithm to scan through your script for command and telemetry mnemonics and make sure they are known to COSMOS.
 
- <img src="/img/mnemonic_check.png" alt="Mnemonic Check">
+ <img src="{{site.baseurl}}/img/mnemonic_check.png" alt="Mnemonic Check">
 
 #### Generate Cmd/Tlm Audit
 
@@ -305,7 +305,7 @@ end
 
 In TestRunner, there is a checkbox at the top of the tool called “Manual” that affects this $manual variable directly. In ScriptRunner you can also use the $manual pattern, but will need to build in an ask() at the top of your script to ask if the user wants to run manual steps, and then set the \$manual variable appropriately.
 
- <img src="/img/test_runner_checkboxes.png" alt="TestRunner Checkboxes">
+ <img src="{{site.baseurl}}/img/test_runner_checkboxes.png" alt="TestRunner Checkboxes">
 
 ### Outputing Extra Information to a TestRunner Test Report
 
@@ -363,7 +363,7 @@ def example(target_name, temp_number)
 end
 ```
 
-This can also be useful when looping through a numbered set of telemetry points but be considerate of the downsides of looping as discussed in the [Looping vs Unrolled Loops](/docs/v4/scripting_best_practices#looping-vs-unrolled-loops) section.
+This can also be useful when looping through a numbered set of telemetry points but be considerate of the downsides of looping as discussed in the [Looping vs Unrolled Loops]({{site.baseurl}}/docs/v4/scripting_best_practices#looping-vs-unrolled-loops) section.
 
 ### Using Custom wait_check_expression
 
@@ -500,7 +500,7 @@ puts ss[0][0][0]
 
 ### Script specific screens
 
-Starting with COSMOS 4.3, script writers can include temporary screens in their COSMOS scripts that show just the specific values relative to the script. They can even display local variables as shown below. This can be a fantastic way to display just the telemetry that is specifically relevant to what you are operating or testing. Screen definitions take the same format as normal COSMOS screens with the addition of using target name LOCAL and packet name LOCAL to gain access to script local variables. See the [local_screen](/docs/v4/scripting#local_screen-since-430) documentation in the [Scripting Guide](/docs/v4/scripting).
+Starting with COSMOS 4.3, script writers can include temporary screens in their COSMOS scripts that show just the specific values relative to the script. They can even display local variables as shown below. This can be a fantastic way to display just the telemetry that is specifically relevant to what you are operating or testing. Screen definitions take the same format as normal COSMOS screens with the addition of using target name LOCAL and packet name LOCAL to gain access to script local variables. See the [local_screen]({{site.baseurl}}/docs/v4/scripting#local_screen-since-430) documentation in the [Scripting Guide]({{site.baseurl}}/docs/v4/scripting).
 
 ### When to use Modules
 
@@ -523,4 +523,4 @@ end
 
 ## Further Reading
 
-Please see the [Scripting Guide](/docs/v4/scripting) for the full list of available scripting methods provided by COSMOS.
+Please see the [Scripting Guide]({{site.baseurl}}/docs/v4/scripting) for the full list of available scripting methods provided by COSMOS.

@@ -8,7 +8,7 @@ Welcome to the COSMOS Enterprise Edition. The Enterprise Edition of COSMOS takes
 <!--
 ### Enterprise Architecture
 
-![Enterprise Architecture](/img/tools/enterprise_architecture.png)
+![Enterprise Architecture]({{site.baseurl}}/img/tools/enterprise_architecture.png)
 -->
 
 ## Feature Comparison
@@ -19,8 +19,8 @@ Welcome to the COSMOS Enterprise Edition. The Enterprise Edition of COSMOS takes
 | Full access to COSMOS source code | x | x |
 | Single group account | x | |
 | Individual user accounts via LDAP | | x |
-| Role based access control [(RBAC)](/docs/enterprise/rbac) | | x |
-| Multiple [scopes](/docs/enterprise/scopes) | | x |
+| Role based access control [(RBAC)]({{site.baseurl}}/docs/enterprise/rbac) | | x |
+| Multiple [scopes]({{site.baseurl}}/docs/enterprise/scopes) | | x |
 | End-to-End Encryption | | x |
 | Private source modifications (1) | | x |
 | Priority Support | | x |

@@ -46,7 +46,7 @@ The COSMOS system uses several terms that are important to understand. The follo
 
 The following diagram shows how the 15 applications that make up the COSMOS system relate to each other and to the targets that COSMOS is controlling.
 
-<img src="/img/COSMOS_Architecture.png" alt="COSMOS Architecture">
+<img src="{{site.baseurl}}/img/COSMOS_Architecture.png" alt="COSMOS Architecture">
 
 Key aspects of this architecture:
 

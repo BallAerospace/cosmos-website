@@ -22,7 +22,7 @@ So when would you want to create and use multiple system.txt files? Since system
 
 ## target.txt
 
-The parsing of a COSMOS target is controlled by the target.txt file found at the root of the target directory. The COMMANDS and TELEMETRY keywords tell COSMOS which [Command](/docs/v4/command) and [Telemetry](/docs/v4/telemetry) files to parse. For example from the COSMOS demo INST [target.txt](https://github.com/BallAerospace/COSMOS/blob/cosmos4/demo/config/targets/INST/target.txt)
+The parsing of a COSMOS target is controlled by the target.txt file found at the root of the target directory. The COMMANDS and TELEMETRY keywords tell COSMOS which [Command]({{site.baseurl}}/docs/v4/command) and [Telemetry]({{site.baseurl}}/docs/v4/telemetry) files to parse. For example from the COSMOS demo INST [target.txt](https://github.com/BallAerospace/COSMOS/blob/cosmos4/demo/config/targets/INST/target.txt)
 
 ```
 COMMANDS inst_cmds.txt
@@ -105,7 +105,7 @@ TELEMETRY INST HEALTH_STATUS BIG_ENDIAN "Health and status from the target"
   APPEND_ITEM TEMP1            16 UINT     "Temperature #1"
 ```
 
-Create another file called inst_tlm_override.txt and start overriding telemetry using the [SELECT_TELEMETRY](/docs/v4/telemetry#select_telemetry) and [SELECT_ITEM](/docs/v4/telemetry#select_item) keywords. Note that the filename is important because by default COSMOS processes cmd/tlm definition files in alphabetical order. For example, if you have a telemetry file named "telemetry.txt" and created a file called "override.txt", you would get an error because the telemetry file will not be processed before the override.
+Create another file called inst_tlm_override.txt and start overriding telemetry using the [SELECT_TELEMETRY]({{site.baseurl}}/docs/v4/telemetry#select_telemetry) and [SELECT_ITEM]({{site.baseurl}}/docs/v4/telemetry#select_item) keywords. Note that the filename is important because by default COSMOS processes cmd/tlm definition files in alphabetical order. For example, if you have a telemetry file named "telemetry.txt" and created a file called "override.txt", you would get an error because the telemetry file will not be processed before the override.
 
 ```
 SELECT_TELEMETRY INST HEALTH_STATUS

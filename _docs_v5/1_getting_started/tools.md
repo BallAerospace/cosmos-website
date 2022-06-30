@@ -9,13 +9,13 @@ toc: true
 The left side of every COSMOS web page can be opened up to display the available tools.
 This list is updated when new COSMOS gems are installed which add tools.
 
-![Launcher](/img/v5/navigation.png)
+![Launcher]({{site.baseurl}}/img/v5/navigation.png)
 
 ## Command and Telemetry Server
 
 Displays information about the active targets and interfaces.
 
-![Command and Telemetry Server](/img/v5/cmd_tlm_server/cmd_tlm_server.png)
+![Command and Telemetry Server]({{site.baseurl}}/img/v5/cmd_tlm_server/cmd_tlm_server.png)
 
 - Displays interfaces and associated counters
 - Displays raw versions of commands/telemetry packets
@@ -24,7 +24,7 @@ Displays information about the active targets and interfaces.
 
 Situational awareness of everything that is currently out of limits in your system and everything that has temporarily gone out of limits since it was started.
 
-![Limits Monitor](/img/v5/limits_monitor/limits_monitor.png)
+![Limits Monitor]({{site.baseurl}}/img/v5/limits_monitor/limits_monitor.png)
 
 - Limits bar widget used to show where in the limits range you are
 - Packets and Items can be ignored
@@ -33,7 +33,7 @@ Situational awareness of everything that is currently out of limits in your syst
 
 Easily send individual commands.
 
-![Command Sender](/img/v5/command_sender/command_sender.png)
+![Command Sender]({{site.baseurl}}/img/v5/command_sender/command_sender.png)
 
 - Select any command by target and command name and then fill out a form with the command parameters
 - Command history can be used to resend the same or slightly modified commands
@@ -42,7 +42,7 @@ Easily send individual commands.
 
 Develop and execute test procedures with line highlighting, syntax checking, and more. Also supports organization of scripts into repeatable scripts with an auto-generated report.
 
-![Script Runner](/img/v5/script_runner/script_runner.png)
+![Script Runner]({{site.baseurl}}/img/v5/script_runner/script_runner.png)
 
 - Simple API to send commands and check telemetry
 - Query the user for information
@@ -57,7 +57,7 @@ Develop and execute test procedures with line highlighting, syntax checking, and
 
 View any telemetry packet in the system with no extra configuration necessary.
 
-![Packet Viewer](/img/v5/packet_viewer/packet_viewer.png)
+![Packet Viewer]({{site.baseurl}}/img/v5/packet_viewer/packet_viewer.png)
 
 - Automatically contains all defined targets, packets, and telemetry items
 - Right click to get detailed item information
@@ -66,7 +66,7 @@ View any telemetry packet in the system with no extra configuration necessary.
 
 Easily create custom telemetry screens with simple configuration text files.
 
-![Telemetry Viewer](/img/v5/telemetry_viewer/telemetry_viewer.png)
+![Telemetry Viewer]({{site.baseurl}}/img/v5/telemetry_viewer/telemetry_viewer.png)
 
 - Advanced widgets available to display data
 - Modular to allow for creating your own custom widgets
@@ -75,7 +75,7 @@ Easily create custom telemetry screens with simple configuration text files.
 
 Realtime or offline graphing of any telemetry item.
 
-![Telemetry Grapher](/img/v5/telemetry_grapher/telemetry_grapher.png)
+![Telemetry Grapher]({{site.baseurl}}/img/v5/telemetry_grapher/telemetry_grapher.png)
 
 - One or more telemetry points per graph
 - Spread data across multiple graphs
@@ -85,7 +85,7 @@ Realtime or offline graphing of any telemetry item.
 
 Quickly extract command and telemetry into CSV files with just the data you care about.
 
-![Data Extractor](/img/v5/data_extractor/data_extractor.png)
+![Data Extractor]({{site.baseurl}}/img/v5/data_extractor/data_extractor.png)
 
 - Process items into CSV data for analysis in other tools (Excel, Matlab, etc)
 - Add individual items, whole packets, and every packet from a given target
@@ -94,7 +94,7 @@ Quickly extract command and telemetry into CSV files with just the data you care
 
 Quickly view the data you care about.
 
-![Data Viewer](/img/v5/data_viewer/data_viewer.png)
+![Data Viewer]({{site.baseurl}}/img/v5/data_viewer/data_viewer.png)
 
 - View both raw and decomed data.
 - Save and load configurations.
@@ -103,7 +103,7 @@ Quickly view the data you care about.
 
 Schedule commands and scripts to be run.
 
-![Timeline](/img/v5/timeline/timeline.png)
+![Timeline]({{site.baseurl}}/img/v5/timeline/timeline.png)
 
 - View activities and timelines
 - Set times for scripts or cmds to be run

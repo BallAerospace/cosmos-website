@@ -1,9 +1,8 @@
+baseurl: /cosmos-website
 markdown: kramdown
 highlighter: rouge
 permalink: /news/:year/:month/:day/:title/
 excerpt_separator: ""
-
-google_analytics_id: UA-60103689-1
 
 cosmos: https://github.com/BallAerospace/COSMOS
 repository: https://github.com/BallAerospace/cosmos-website
@@ -19,13 +18,13 @@ plugins:
 collections:
   docs_enterprise:
     output: true
-    permalink: /docs/enterprise/:name
+    permalink: docs/enterprise/:name
   docs_v5:
     output: true
-    permalink: /docs/v5/:name
+    permalink: docs/v5/:name
   docs_v4:
     output: true
-    permalink: /docs/v4/:name
+    permalink: docs/v4/:name
 
 # Default collection
 default: v5

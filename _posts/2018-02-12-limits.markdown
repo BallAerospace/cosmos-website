@@ -8,15 +8,15 @@ categories: [post]
 
 ## COSMOS Limits
 
-COSMOS allows you to [define limits](/docs/v4/telemetry#limits) for your telemetry items to provide feedback to users about how your telemetry is performing. If you define limits, COSMOS requires you to specify both red and yellow limits. Red limits are traditionally where damage may occur while yellow limits are set a certain percentage away from red to give the operator a chance to respond before the red limits are hit. COSMOS also allows the user to set "Operational" limits (blue limits) which specify a desired operational range inside the green limits. This is best illustrated in the COSMOS demo. Here is a partial screenshot of the INST HS screen in Telemetry Viewer.
+COSMOS allows you to [define limits]({{site.baseurl}}/docs/v4/telemetry#limits) for your telemetry items to provide feedback to users about how your telemetry is performing. If you define limits, COSMOS requires you to specify both red and yellow limits. Red limits are traditionally where damage may occur while yellow limits are set a certain percentage away from red to give the operator a chance to respond before the red limits are hit. COSMOS also allows the user to set "Operational" limits (blue limits) which specify a desired operational range inside the green limits. This is best illustrated in the COSMOS demo. Here is a partial screenshot of the INST HS screen in Telemetry Viewer.
 
-![Demo MetaData](/img/2018_02_12_temps.png)
+![Demo MetaData]({{site.baseurl}}/img/2018_02_12_temps.png)
 
 The TEMP1 telemetry point is using the LABELTRENDLIMITSBAR widget in the INST HS screen definition to display both the value (the temperature), the trend (how the data has been moving over the past 60s), as well as the limits bar. The TEMP2 telemetry point is simply using the LABELVALUELIMITSBAR widget so it shows just the value and the limits bar. Notice how the scale of the yellow regions are different for TEMP1 and TEMP2. The regions are scaled according to their defined value ranges.
 
 This type of limits bar is also used by the Limits Monitor tool to display out of limits items system wide.
 
-![Demo MetaData](/img/2018_02_12_limits_monitor.png)
+![Demo MetaData]({{site.baseurl}}/img/2018_02_12_limits_monitor.png)
 
 Here I've ignored various other items to focus on the INST HEALTH*STATUS packet containing TEMP1 and TEMP2. Notice that the overall limit is yellow since TEMP1 is yellow even though TEMP2 is green. The worst case limts item is reflected in the Monitored Limits State. Also note that TEMP2 appears above TEMP1 because it happened to go out of limits first while I was running the demo. Items appear in Limits Monitor as they go out of limits. Also note that even though TEMP2 is green it still shows up in Limits Monitor because it \_previously* went out of limits. If you switch to the Log tab you can see exactly when an item went out of limits and when it went back to green.
 
@@ -47,13 +47,13 @@ puts "TEMP1 limits enable:#{limits_enabled?("INST", "HEALTH_STATUS", "TEMP1")}"
 
 ## Limits Sets
 
-COSMOS requires the first item after the [LIMITS](/docs/v4/telemetry#limits) keyword to be the name of the limits set. Limits sets are system wide sets of limits which can be applied depending on the environment you're testing in. Perhaps you have a "Test" set of limits which are different from your "Operational" limits. At Ball Aerospace, we frequently define cyrogentic limits when testing spacecraft in a vacuum chamber at cyrogenic temperatures. COSMOS requires at least one limits definition to belong to "DEFAULT" which is used when COSMOS starts. If you forget to define a DEFAULT limits set, you'll get this error when you start the COSMOS Command and Telemetry Server.
+COSMOS requires the first item after the [LIMITS]({{site.baseurl}}/docs/v4/telemetry#limits) keyword to be the name of the limits set. Limits sets are system wide sets of limits which can be applied depending on the environment you're testing in. Perhaps you have a "Test" set of limits which are different from your "Operational" limits. At Ball Aerospace, we frequently define cyrogentic limits when testing spacecraft in a vacuum chamber at cyrogenic temperatures. COSMOS requires at least one limits definition to belong to "DEFAULT" which is used when COSMOS starts. If you forget to define a DEFAULT limits set, you'll get this error when you start the COSMOS Command and Telemetry Server.
 
-![Demo MetaData](/img/2018_02_12_limits_error.png)
+![Demo MetaData]({{site.baseurl}}/img/2018_02_12_limits_error.png)
 
 Once you've defined your limits sets how do you use them? The COSMOS Command and Telemetry Server has a Status tab which allows you to manually change the limits set using a drop down.
 
-![Demo MetaData](/img/2018_02_12_server_limits_set.png)
+![Demo MetaData]({{site.baseurl}}/img/2018_02_12_server_limits_set.png)
 
 Notice the log contains "INFO: Limits Set Changed to: TVAC". This happened immediately after I manually changed the Limits Set drop down from DEFAULT to TVAC. This message is automatically generated whenever the limits set is changed either manually or from the API.
 
@@ -72,9 +72,9 @@ set_limits_set("TVAC") # Change to TVAC
 
 COSMOS also has the concept of limits groups. Limits groups are used to group together telemetry items so they can be enabled and disabled together. For example, if you have several physical devices in your system, you can group together items from each device and enable their limits when they power on and disable them when they power off. This is useful to avoid limits violations on items which are currently off and returning zeros.
 
-Limits groups are defined by the [LIMITS_GROUP](/docs/v4/telemetry#limits_group) keyword. Typically this is a separate file in your target's cmd_tlm folder. If you're creating a group which combines items from multiple targets we recommend to define this in the SYSTEM target's cmd_tlm folder. This is how the COSMOS demo is configured with a limits_groups.txt file in SYSTEM/cmd_tlm.
+Limits groups are defined by the [LIMITS_GROUP]({{site.baseurl}}/docs/v4/telemetry#limits_group) keyword. Typically this is a separate file in your target's cmd_tlm folder. If you're creating a group which combines items from multiple targets we recommend to define this in the SYSTEM target's cmd_tlm folder. This is how the COSMOS demo is configured with a limits_groups.txt file in SYSTEM/cmd_tlm.
 
-Items are assigned to a group using the [LIMITS_GROUP_ITEM](/docs/v4/telemetry#limits_group_item) keyword. Here is the definition in the COSMOS demo.
+Items are assigned to a group using the [LIMITS_GROUP_ITEM]({{site.baseurl}}/docs/v4/telemetry#limits_group_item) keyword. Here is the definition in the COSMOS demo.
 
 ```bash
 LIMITS_GROUP INST2_TEMP2
@@ -154,7 +154,7 @@ First TEMP2 transitions to NaN (this is done on purpose for the demo) which is a
 
 There are a few other APIs which are provided to work with COSMOS limits.
 
-`get_stale` returns all the stale packets in the system. Stale packets are those which have not been received by the Command and Telemetry Server for the [STALENESS_SECONDS](/docs/v4/system#staleness_seconds) setting (by default 30s).
+`get_stale` returns all the stale packets in the system. Stale packets are those which have not been received by the Command and Telemetry Server for the [STALENESS_SECONDS]({{site.baseurl}}/docs/v4/system#staleness_seconds) setting (by default 30s).
 
 `get_limits(tgt, pkt, item)` returns the limits settings for a particular telemetry item. It returns an array of the group name, persistence setting, enable setting, red low, yellow low, yellow high, red high, blue low, and blue high limits values. If no blue operational limits were set those values are nil.
 

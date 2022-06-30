@@ -14,7 +14,7 @@
     {% for p in site[collection] %}
       {% if p.url == item_url %}
   <li class="{{ c }}">
-    <a href="{{ site.url }}{{ item_url }}">{{ p.title }}</a>
+    <a href="{{ site.baseurl}}{{ item_url }}">{{ p.title }}</a>
   </li>
   <!-- prettier-ignore -->
   {% break %}

@@ -16,11 +16,11 @@ COSMOS comes with a number of built-in protocols that are used directly with the
 INTERFACE INTERFACE_NAME tcpip_client_interface.rb localhost 8080 8081 10.0 nil LENGTH 0 16 0 1 BIG_ENDIAN 4 0xBA5EBA11
 ```
 
-The built-in protocols are fully described on the [Protocols](/docs/v4/protocols) page and also mentioned on the [Interfaces](/docs/v4/interfaces#protocols) page.
+The built-in protocols are fully described on the [Protocols]({{site.baseurl}}/docs/v4/protocols) page and also mentioned on the [Interfaces]({{site.baseurl}}/docs/v4/interfaces#protocols) page.
 
 ### Custom Protocols
 
-The built-in protocols are enough to support almost all of the data streams that you'll encounter from a target. However, sometimes you need to massage the data a little by stripping off data or adding headers. This is when you should create a custom protocol. Custom protocols have 4 methods they can override to modify the incoming telemetry data or outgoing command data. They are read_data(data), write_data(data) and read_packet(packet) write_packet(packet). The 'data' methods operate on the raw binary data and are used when adding or removing raw bytes from the stream. The 'packet' methods operate on the data after it has been identified and converted to a COSMOS [Packet](/docs/v4/packet-class/).
+The built-in protocols are enough to support almost all of the data streams that you'll encounter from a target. However, sometimes you need to massage the data a little by stripping off data or adding headers. This is when you should create a custom protocol. Custom protocols have 4 methods they can override to modify the incoming telemetry data or outgoing command data. They are read_data(data), write_data(data) and read_packet(packet) write_packet(packet). The 'data' methods operate on the raw binary data and are used when adding or removing raw bytes from the stream. The 'packet' methods operate on the data after it has been identified and converted to a COSMOS [Packet]({{site.baseurl}}/docs/v4/packet-class/).
 
 #### Removing Data
 

@@ -13,7 +13,7 @@ Autonomic allows for the simple execution of commands and scripts based on user-
 
 Autonomic operates with some basic building blocks: Trigger Groups, Triggers, and Reactions. Triggers are simply logical blocks which evaluate true or false. Reactions can be linked to one or many Triggers and specify an action to perform. Together they allow for an action to be taken based on anything going on in your system.
 
-![Autonomic](/img/v5/autonomic/autonomic.png)
+![Autonomic]({{site.baseurl}}/img/v5/autonomic/autonomic.png)
 
 ### TriggerGroups
 
@@ -29,7 +29,7 @@ Triggers are organized into groups, these groups are to ensure that we can scale
 
 Triggers are logical components that are evaluated to true or false.
 
-![Triggers](/img/v5/autonomic/triggers.png)
+![Triggers]({{site.baseurl}}/img/v5/autonomic/triggers.png)
 
 ```json
 {
@@ -54,7 +54,7 @@ Triggers are logical components that are evaluated to true or false.
 
 Reactions wait for triggers to be evaluated to true and perform actions such as sending a command or running a script.
 
-![Reactions](/img/v5/autonomic/reactions.png)
+![Reactions]({{site.baseurl}}/img/v5/autonomic/reactions.png)
 
 ```json
 {
@@ -80,4 +80,4 @@ Reactions wait for triggers to be evaluated to true and perform actions such as 
 
 > TODO
 
-![Autonomic Lifecycle](/img/v5/autonomic/autonomic_lifecycle.png)
+![Autonomic Lifecycle]({{site.baseurl}}/img/v5/autonomic/autonomic_lifecycle.png)

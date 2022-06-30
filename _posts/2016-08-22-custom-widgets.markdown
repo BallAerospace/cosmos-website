@@ -10,11 +10,11 @@ Sometimes we receive requests to make custom COSMOS widgets or to modify existin
 
 When asked to perform customizations like this I first bring up the COSMOS Demo. We try to include all the COSMOS features in the Demo so end users have concrete examples to follow instead of relying solely on the excellent documentation at [cosmosc2.com](http://cosmosc2.com/docs/v4). Obviously you must first have COSMOS installed so follow the [installation instructions](http://cosmosc2.com/docs/v4/installation/) and then launch the Demo by running the Launcher in the Demo folder. Here is how the server appears on my Windows machine:
 
-![COSMOS Demo Server](/img/2016_08_22_server.png)
+![COSMOS Demo Server]({{site.baseurl}}/img/2016_08_22_server.png)
 
 I'm going to create a custom widget in the INST target to display some of the Array data in a table. If you first launch the Telemetry Viewer and open the INST ARRAY screen you should see the following:
 
-![COSMOS Inst Array](/img/2016_08_22_inst_array.png)
+![COSMOS Inst Array]({{site.baseurl}}/img/2016_08_22_inst_array.png)
 
 This screen is already using the Array widget to display this data in a text box. We will add our new widget to the top of the screen which will display the data in a table. Let's add the line to the screen which will call our new widget. Edit `demo/config/targets/INST/screens/array.txt` and add the following line in the middle:
 
@@ -58,7 +58,7 @@ end
 
 Now if you stop and restart the Telemetry Viewer (so it can re-require the new widget code) it should display an empty table:
 
-![COSMOS Inst Array](/img/2016_08_22_inst_array2.png)
+![COSMOS Inst Array]({{site.baseurl}}/img/2016_08_22_inst_array2.png)
 
 To actually populate it with data we must follow the Cosmos Widget conventions. First of all by including Widget you include all the [Widget](https://github.com/BallAerospace/COSMOS/blob/cosmos4/lib/cosmos/tools/tlm_viewer/widgets/widget.rb) code which creates two key class methods: `layout_manager?` and `takes_value?`. These must be overridden to return true if your widget is either a layout or takes a value respectively. Since our widget will be taking the array data as a value we must override `takes_value?`:
 
@@ -87,7 +87,7 @@ end
 
 The data value passed to the method is the same target, packet, and item used in the screen definition. In our value= method we are using our stored instance variable `@rows` to index into the array data and create new [Qt::TableWidgetItem](http://doc.qt.io/qt-4.8/qtablewidgetitem.html) instances to store the data. TableWidgetItems expect Strings to be passed so I call to_s on the data item to ensure it is a String. If you now re-launch Telemetry Viewer you should see the values populated in the table:
 
-![COSMOS Inst Array](/img/2016_08_22_inst_array3.png)
+![COSMOS Inst Array]({{site.baseurl}}/img/2016_08_22_inst_array3.png)
 
 At this point you could be done. But wait! The Array widget below the table fades darker to implement "aging", showing the user the values haven't changed. How do we implement "aging" in our new widget? To start we require the aging_widget and include the AgingWidget module. Then we must call the setup_aging method in our initialize method as well as redefine the process_settings method:
 
@@ -133,7 +133,7 @@ end
 
 The end result is aging:
 
-![COSMOS Inst Array](/img/2016_08_22_inst_array4.png)
+![COSMOS Inst Array]({{site.baseurl}}/img/2016_08_22_inst_array4.png)
 
 Note that if you have a widget that implements aging and limits you'll want to keep the value returned by super and use it in your widget. If you don't want the aging routine to directly use your data value you can pass a string as the second parameter, e.g. super(data, text). This text string will be modified with the color blind settings. Basically that means that whatever the calculated `@foreground` color string is, a corresponding text character is added (R=Red, G=Green, etc) to aid people who can't distinguish colors. See [aging_widget.rb](https://github.com/BallAerospace/COSMOS/blob/cosmos4/lib/cosmos/tools/tlm_viewer/widgets/aging_widget.rb) for more details.
 

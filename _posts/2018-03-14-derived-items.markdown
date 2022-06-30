@@ -42,7 +42,7 @@ ITEM TEMP_AVERAGE 0 0 DERIVED "Average of TEMP1, TEMP2, TEMP3, TEMP4"
 
 The GENERIC_READ_CONVERSION_START keyword also takes two additional argument which describe the output of the conversion. Here we specify FLOAT 32 to indicate the conversion will return a 32 bit floating point value.
 
-In the code section, note the use of the built in variable called 'packet'. When you create a generic conversion you always have access to the 'packet' variable which references the packet the conversion is declared in. For more information about how to use 'packet' please see the [Packet](/docs/v4/packet-class/) documentation. You also have access to 'value' which is the raw value of the current item. In the case of a DERIVED item the value is nil. You can also access 'buffer' which is the raw buffer associated with the packet.
+In the code section, note the use of the built in variable called 'packet'. When you create a generic conversion you always have access to the 'packet' variable which references the packet the conversion is declared in. For more information about how to use 'packet' please see the [Packet]({{site.baseurl}}/docs/v4/packet-class/) documentation. You also have access to 'value' which is the raw value of the current item. In the case of a DERIVED item the value is nil. You can also access 'buffer' which is the raw buffer associated with the packet.
 
 ### Using a Conversion Class
 
@@ -87,8 +87,8 @@ REQUIRE average_conversion.rb
 
 Running this in the Demo with Telemetry Grapher shows our new average value pretty clearly.
 
-![Tlm Grapher Derived](/img/2018_03_14_tlm_grapher_derived.png)
+![Tlm Grapher Derived]({{site.baseurl}}/img/2018_03_14_tlm_grapher_derived.png)
 
-Conversions and DERIVED variables are powerful ways to add additional telemetry points based on existing data in your packet structure. Another way to add insight into your telemetry is to add [Packet Processors](/news/2017/05/08/packet_processors/) which I've previously blogged about.
+Conversions and DERIVED variables are powerful ways to add additional telemetry points based on existing data in your packet structure. Another way to add insight into your telemetry is to add [Packet Processors]({{site.baseurl}}/news/2017/05/08/packet_processors/) which I've previously blogged about.
 
 If you have a question which would benefit the community or find a possible bug please use our [Github Issues](https://github.com/BallAerospace/COSMOS/issues). If you would like more information about a COSMOS training or support contract please contact us at <cosmos@ballaerospace.com>.

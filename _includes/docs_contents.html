@@ -11,7 +11,7 @@
       <li>
         <!-- Only create links to collections which aren't our own  -->
         {% if page.collection != collection.label %}
-        <a href="{{ site.url }}/docs/v{{ col_version }}/">v{{ col_version }} Docs</a>
+        <a href="{{site.baseurl}}/docs/v{{ col_version }}/">v{{ col_version }} Docs</a>
         {% endif %}
       </li>
       {% endif %}

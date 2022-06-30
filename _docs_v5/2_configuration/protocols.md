@@ -80,7 +80,7 @@ The Terminated Protocol delineates packets using termination characters found at
 
 The Template Protocol works much like the Terminated Protocol except it is designed for text-based command and response type interfaces such as SCPI (Standard Commands for Programmable Instruments). It delineates packets in the same way as the Terminated Protocol except each packet is referred to as a line (because each usually contains a line of text). For outgoing packets, a CMD_TEMPLATE field is expected to exist in the packet. This field contains a template string with items to be filled in delineated within HTML tag style brackets `"<EXAMPLE>"`. The Template Protocol will read the named items from within the packet and fill in the CMD_TEMPLATE. This filled in string is then sent out rather than the originally passed in packet. Correspondingly, if a response is expected the outgoing packet should include a RSP_TEMPLATE and RSP_PACKET field. The RSP_TEMPLATE is used to extract data from the response string and build a corresponding RSP_PACKET. See the TEMPLATE target within the COSMOS Demo configuration for an example of usage.
 
-Check out this [Template Protocol](/news/2017/06/19/template_protocol) blog post for additional tips.
+Check out this [Template Protocol]({{site.baseurl}}/news/2017/06/19/template_protocol) blog post for additional tips.
 
 | Parameter                    | Description                                                                                                                                                                                                                                                  | Required | Default                  |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ------------------------ |
@@ -186,11 +186,11 @@ To really understand how Protocols work, you first must understand the logic wit
 
 Let's first discuss the read method.
 
-![Interface Read Logic](/img/interface_read_logic.png)
+![Interface Read Logic]({{site.baseurl}}/img/interface_read_logic.png)
 
 On EVERY call to read, an empty Ruby string "" is first passed down to each of the read Protocol's read_data() method BEFORE new raw data is attempted to be read using the Interface's read_interface() method. This is a signal to Protocols that have cached up more than one packet worth of data to output those cached packets before any new data is read from the Interface. Typically no data will be cached up and one of the Protocols read_data() methods will return :STOP in response to the empty string, indicating that more data is required to generate a packet. Each Protocol's read_data() method can return one of three things: data that will be passed down to any additional Protocols or turned into a Packet, :STOP which means more data is required from the Interface for the Protocol to continue, or :DISCONNECT which means that something has happened that requires disconnecting the Interface (and by default trying to reconnect). Each Protocol's read_data method is passed the data that will eventually be turned into a packet and returns a possibly modified set of data. If the data passes through all Protocol's read_data() methods it is then converted into a COSMOS packet using the Interface's convert_data_to_packet() method. This packet is then run in a similar fashion through each Read Protocol's read_packet() method. This method has essentially the same return possibilities: a Packet (instead of data as in read_data()), :STOP, or :DISCONNECT. If the Packet makes it through all read_packet() methods then the Interface packet read counter is incremented and the Packet is returned to the Interface.
 
-![Interface Write Logic](/img/interface_write_logic.png)
+![Interface Write Logic]({{site.baseurl}}/img/interface_write_logic.png)
 
 The Interface write() method works very similarly to read. (It should be mentioned that by default write protocols run in the reverse order of read protocols. This makes sense because when reading you're typically stripping layers of data and when writing you're typically adding on layers in reverse order.)
 

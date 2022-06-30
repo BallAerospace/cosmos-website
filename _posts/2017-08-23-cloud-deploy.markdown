@@ -15,28 +15,28 @@ AWS consists of a lot of different services. To deploy COSMOS you need to create
 ### Deploying to Windows Server
 
 Deploying to Windows Server is probably the easiest way to get COSMOS in the cloud. Simply create a Windows Server instance by selecting the following image:
-![Windows Image](/img/2017_08_23_aws_win_server.png)
+![Windows Image]({{site.baseurl}}/img/2017_08_23_aws_win_server.png)
 
 Then select the t2.micro Type which is marked "Free tier eligible". Launch the Instance and you should see the key pair dialog:
-![Key Pair Dialog](/img/2017_08_23_aws_key_pair.png)
+![Key Pair Dialog]({{site.baseurl}}/img/2017_08_23_aws_key_pair.png)
 
 Create a new key pair and give the name something generic because you can use the same key pair for all the EC2 instances you create. Create the instance and then View Instance which will show the instance status. Click the Connect button at top which will bring up the Connect dialog:
-![Connect Dialog](/img/2017_08_23_aws_win_connect.png)
+![Connect Dialog]({{site.baseurl}}/img/2017_08_23_aws_win_connect.png)
 
 Click the Download Remote Desktop File and open it in Remote Desktop to connect to the Windows Server instance. Note that it does take a while for the Windows instance to boot so this won't work until your Status Checks show a green check. Also note that many corporate firewalls may block doing a Remote Desktop outside your corporate network.
 
-You also need to click Get Password and locate your 'pem' file you saved earlier to Decrypt your password. Login to the instance as Administrator with the decrypted password. Once you've logged in you can change the password to something a little more reasonable. Then simply follow the usual [COSMOS installation ](/docs/v4/installation/) instructions.
+You also need to click Get Password and locate your 'pem' file you saved earlier to Decrypt your password. Login to the instance as Administrator with the decrypted password. Once you've logged in you can change the password to something a little more reasonable. Then simply follow the usual [COSMOS installation ]({{site.baseurl}}/docs/v4/installation/) instructions.
 
 Here is a screenshot of my successful COSMOS installation running on the AWS Microsoft Server instance:
-![COSMOS on Windows](/img/2017_08_23_aws_windows.png)
+![COSMOS on Windows]({{site.baseurl}}/img/2017_08_23_aws_windows.png)
 
 ### Deploying to Red Hat Linux (with X forwarding)
 
 Deploying to Red Hat Linux is similar to Windows. Create a Red Hat instance by selecting the following image:
-![Red Hat Image](/img/2017_08_23_aws_red_hat.png)
+![Red Hat Image]({{site.baseurl}}/img/2017_08_23_aws_red_hat.png)
 
 Use the same key pair when creating your Windows instance and create the instance. View Instance and click the Connect button which brings up the Connect dialog:
-![Connect Dialog](/img/2017_08_23_aws_red_hat_connect.png)
+![Connect Dialog]({{site.baseurl}}/img/2017_08_23_aws_red_hat_connect.png)
 
 SSH to the instance using the connection string provided making sure to specify the full path to your 'pem' file in the quoted path after the -i option. Install a GUI by issuing the following command:
 
@@ -67,18 +67,18 @@ X11UseLocalhost no
 Close your current SSH connection and reconnect with SSH adding the -X option to enable X11 forwarding and -Y to enable trusted X11 fowarding. If you host OS is Mac OS X you'll need to install [XQuartz](https://www.xquartz.org/). Linux has X11 forward support built-in. Windows should probably install Xming which is an exercise left to the reader.
 
 Now launch COSMOS and you should see the COSMOS windows appear on your own machine. While this approach works I found the performance to be significantly slower than VNC. Here is a screenshot of it running while I connected via a Mac OS X machine:
-![Red Hat X](/img/2017_08_23_aws_red_hat_x.png)
+![Red Hat X]({{site.baseurl}}/img/2017_08_23_aws_red_hat_x.png)
 
 ### Deploying on Ubuntu (with VNC)
 
 Deploying to Ubuntu Linux is very similar to Red Hat. Create an Ubuntu instance by selecting the following image:
-![Ubuntu Image](/img/2017_08_23_aws_ubuntu.png)
+![Ubuntu Image]({{site.baseurl}}/img/2017_08_23_aws_ubuntu.png)
 
 Use the same key pair as when creating your Windows or Red Hat instance and create the instance. View Instance and click the Connect button which brings up the Connect dialog:
-![Connect Dialog](/img/2017_08_23_aws_red_hat_connect.png)
+![Connect Dialog]({{site.baseurl}}/img/2017_08_23_aws_red_hat_connect.png)
 
 Click on the instance and click the Description tab which appears below the instance. Click the link next to Security groups to open the Security Groups configuration. Click the Inbound tab and create Edit to create a new Custom TCP Rule to enable TCP traffic on Ports 5900-5910 from Anywhere. Your rule should look like the following:
-![Security Group](/img/2017_08_23_aws_security_group.png)
+![Security Group]({{site.baseurl}}/img/2017_08_23_aws_security_group.png)
 
 SSH to the instance using the connection string provided making sure to specify the full path to your 'pem' file in the quoted path after the -i option. Install a GUI by issuing the following command:
 
@@ -127,6 +127,6 @@ bash <(\curl -sSL https://raw.githubusercontent.com/BallAerospace/COSMOS/cosmos4
 ```
 
 Chose the sudo option when asked how to install. On your local machine install a VNC viewer such as TightVNC and connect by entering the Public DNS address of your AWS instance in the Remote Host as well as the Port number of 5901. Typically this is added by appending it to the Remote Host address with a colon. Here is a screenshot of it running while I connected via TightVNC:
-![Red Hat X](/img/2017_08_23_aws_ubuntu_vnc.png)
+![Red Hat X]({{site.baseurl}}/img/2017_08_23_aws_ubuntu_vnc.png)
 
 If you have a question which would benefit the community or find a possible bug please use our [Github Issues](https://github.com/BallAerospace/COSMOS/issues). If you would like more information about a COSMOS training or support contract please contact us at <cosmos@ballaerospace.com>.

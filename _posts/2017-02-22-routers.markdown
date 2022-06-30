@@ -11,7 +11,7 @@ COSMOS Routers can be a confusing topic for people new and old alike to the COSM
 A COSMOS Router is first and foremost an interface like any other COSMOS interface. In fact if you look through the source code you won't even see a Router class because they are instances of the Interface class. As a reminder, an Interface provides the lowest level connection between COSMOS and a target (something you're trying to get COSMOS to talk to). Thus a Router is also providing a low level connection between COSMOS and something. So what's the difference? Normal Interfaces read the target and send data (telemetry) to COSMOS and send commands to the target. Routers do the exact opposite: they route telemetry out to clients connected to them and route commands sent to them back to a target. Thus they provide a conduit for other clients to communicate with a target.
 
 The COSMOS Command and Telemetry Server always starts a Router called the PREIDENTIFIED_ROUTER which appears in the Routers tab of the GUI:
-![Server Routers](/img/2017_02_22_router_tab.png)
+![Server Routers]({{site.baseurl}}/img/2017_02_22_router_tab.png)
 
 The Preidentified Router is controlled by the system.txt configuration file:
 

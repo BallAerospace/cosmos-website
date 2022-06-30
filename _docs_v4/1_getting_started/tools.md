@@ -8,7 +8,7 @@ toc: true
 
 Organize and launches all of the applications necessary to control your system.
 
-![Launcher](/img/tools/launcher.png)
+![Launcher]({{site.baseurl}}/img/tools/launcher.png)
 
 - Displays an icon, name, and button to launch each application
 - Launch multiple tools with one click
@@ -19,7 +19,7 @@ Organize and launches all of the applications necessary to control your system.
 
 Connects to everything that makes up your system, logs everything that happens, and shares the data with other tools.
 
-![Command and Telemetry Server](/img/tools/cmd_tlm_server.png)
+![Command and Telemetry Server]({{site.baseurl}}/img/tools/cmd_tlm_server.png)
 
 - Realtime hub for the system: connects to everything that needs to receive commands and send status
 - Logs all commands sent and telemetry received
@@ -31,7 +31,7 @@ Connects to everything that makes up your system, logs everything that happens, 
 
 Provides the same interfaces as the Command and Telemetry server but is used to replay telemetry log files. All other tools work as if they are receiving data in real time.
 
-![Replay](/img/tools/replay.png)
+![Replay]({{site.baseurl}}/img/tools/replay.png)
 
 - Play data sequentially or reverse
 - Quickly slide to specific points in time
@@ -40,7 +40,7 @@ Provides the same interfaces as the Command and Telemetry server but is used to 
 
 Situational awareness of everything that is currently out of limits in your system and everything that has temporarily gone out of limits since it was started.
 
-![Limits Monitor](/img/tools/limits_monitor.png)
+![Limits Monitor]({{site.baseurl}}/img/tools/limits_monitor.png)
 
 - Limits bar widget used to show where in the limits range you are
 - Packets and Items can be ignored
@@ -49,7 +49,7 @@ Situational awareness of everything that is currently out of limits in your syst
 
 Easily send individual commands.
 
-![Command Sender](/img/tools/cmd_sender.png)
+![Command Sender]({{site.baseurl}}/img/tools/cmd_sender.png)
 
 - Select any command by target and command name and then fill out a form with the command parameters
 - Command history can be used to resend the same or slightly modified commands
@@ -59,7 +59,7 @@ Easily send individual commands.
 
 Create and send command sequences.
 
-![Command Sequence](/img/tools/cmd_sequence.png)
+![Command Sequence]({{site.baseurl}}/img/tools/cmd_sequence.png)
 
 - Select any command by target and command name and then fill out a form with the command parameters
 - Absolute or relative time tagging
@@ -69,7 +69,7 @@ Create and send command sequences.
 
 Develop and execute test procedures with code completion, line highlighting, syntax checking, and more.
 
-![Script Runner](/img/tools/script_runner.png)
+![Script Runner]({{site.baseurl}}/img/tools/script_runner.png)
 
 - Simple API to send commands and check telemetry
 - Query the user for information
@@ -83,7 +83,7 @@ Develop and execute test procedures with code completion, line highlighting, syn
 
 Run test procedures as small repeatable test cases.
 
-![Test Runner](/img/tools/test_runner.png)
+![Test Runner]({{site.baseurl}}/img/tools/test_runner.png)
 
 - Develop system level tests much like unit tests
 - Automatic test report generation
@@ -95,7 +95,7 @@ Run test procedures as small repeatable test cases.
 
 View any telemetry packet in the system with no extra configuration necessary.
 
-![Packet Viewer](/img/tools/pkt_viewer.png)
+![Packet Viewer]({{site.baseurl}}/img/tools/pkt_viewer.png)
 
 - Automatically contains all defined targets, packets, and telemetry items
 - Search bar allows you to quickly jump to the packet containing any telemetry item in the system
@@ -104,7 +104,7 @@ View any telemetry packet in the system with no extra configuration necessary.
 
 Easily create custom telemetry screens with simple configuration text files.
 
-![Telemetry Viewer](/img/tools/tlm_viewer.png)
+![Telemetry Viewer]({{site.baseurl}}/img/tools/tlm_viewer.png)
 
 - Advanced widgets available to display data
 - Search bar allows you to quickly bring up the screen containing the telemetry item you are looking for
@@ -117,7 +117,7 @@ Easily create custom telemetry screens with simple configuration text files.
 
 Realtime or offline graphing of any telemetry item.
 
-![Telemetry Grapher](/img/tools/tlm_grapher.png)
+![Telemetry Grapher]({{site.baseurl}}/img/tools/tlm_grapher.png)
 
 - Line and x-y graphs
 - One or more telemetry points per plot
@@ -130,7 +130,7 @@ Realtime or offline graphing of any telemetry item.
 
 Text based data visualization of log files, memory dumps, and event messages.
 
-![Data Viewer](/img/tools/data_viewer.png)
+![Data Viewer]({{site.baseurl}}/img/tools/data_viewer.png)
 
 - Display data that does not fit the telemetry screen paradigm well
 - Great for log file visualization and for displaying raw memory dumps
@@ -139,7 +139,7 @@ Text based data visualization of log files, memory dumps, and event messages.
 
 Configuration file editor with contextual help for all the COSMOS configuration files.
 
-![Config Editor](/img/tools/config_editor.png)
+![Config Editor]({{site.baseurl}}/img/tools/config_editor.png)
 
 - Displays tree view of COSMOS Project
 - GUI help with descriptions and drop down options
@@ -148,7 +148,7 @@ Configuration file editor with contextual help for all the COSMOS configuration 
 
 Quickly extract telemetry log files into CSV files with just the data you care about.
 
-![Telemetry Extractor](/img/tools/tlm_extractor.png)
+![Telemetry Extractor]({{site.baseurl}}/img/tools/tlm_extractor.png)
 
 - Process any telemetry log file into CSV data for analysis in other tools (Excel, Matlab, etc)
 - Add individual items, whole packets, and every packet from a given target using a search bar or drop downs
@@ -158,7 +158,7 @@ Quickly extract telemetry log files into CSV files with just the data you care a
 
 Extract command log files into human readable text.
 
-![Command Extractor](/img/tools/cmd_extractor.png)
+![Command Extractor]({{site.baseurl}}/img/tools/cmd_extractor.png)
 
 - Select any binary command log and a human readable text file is created
 
@@ -166,7 +166,7 @@ Extract command log files into human readable text.
 
 Create easy to read HTML and PDF command and telemetry handbooks.
 
-![Handbook Generator](/img/tools/handbook_generator.png)
+![Handbook Generator]({{site.baseurl}}/img/tools/handbook_generator.png)
 
 - Takes the normal COSMOS config files and outputs them into beautifully formatted HTML and PDF handbooks
 - Easily configure output using HTML template files
@@ -175,7 +175,7 @@ Create easy to read HTML and PDF command and telemetry handbooks.
 
 Binary file editor.
 
-![Table Manager](/img/tools/table_manager.png)
+![Table Manager]({{site.baseurl}}/img/tools/table_manager.png)
 
 - Provides a simple GUI for editing binary configuration files
 - Provides range checking and overall table validity checks

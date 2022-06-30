@@ -130,7 +130,7 @@ Connect a web browser to http://localhost:2900.
 
 ### NEXT STEPS
 
-Continue to [Getting Started](/docs/v5/gettingstarted).
+Continue to [Getting Started]({{site.baseurl}}/docs/v5/gettingstarted).
 
 ---
 

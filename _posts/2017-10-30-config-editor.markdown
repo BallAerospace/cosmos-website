@@ -5,19 +5,19 @@ date: 2017-10-30 09:00:00 -0700
 author: jmthomas
 categories: [post]
 ---
-COSMOS gained a new tool in the [4.0.0 release](/news/2017/08/04/cosmos-4-0-0-released/) called Configuration Editor. This tool provides contextual help when editing COSMOS configuration files and thus should make configuring COSMOS much easier than in the past.
+COSMOS gained a new tool in the [4.0.0 release]({{site.baseurl}}/news/2017/08/04/cosmos-4-0-0-released/) called Configuration Editor. This tool provides contextual help when editing COSMOS configuration files and thus should make configuring COSMOS much easier than in the past.
 
 ### Configuration Editor Basics
 
 When creating a new project from from the Demo you'll notice a new icon in the Launcher under the Utilities label:
 
-![Demo Launcher](/img/2017_10_30_demo_launcher.png)
+![Demo Launcher]({{site.baseurl}}/img/2017_10_30_demo_launcher.png)
 
 Note that as of this post the Install Launcher does not have the new Configuration Editor or Command Sequence buttons but this will be addressed in the next release.
 
 Clicking the Config Editor button brings up the Configuration Editor tool:
 
-![Config Editor](/img/2017_10_30_config_editor.png)
+![Config Editor]({{site.baseurl}}/img/2017_10_30_config_editor.png)
 
 Configuration Editor has three vertical panes. The far left is a Windows Explorer type tree view which opens at the base of your COSMOS configuration. This makes it easy to see and navigate through all the COSMOS configuration files.
 
@@ -25,7 +25,7 @@ The middle pane is a file editor which opens files when they are clicked on in t
 
 The right pane is what Configuration Editor was created for. It provides contextual help for all the COSMOS keywords. As the editor cursor in the middle pane changes the contextual help changes to reflect current editor line. Here's an example of the right pane when the Demo's INST target's command definition is edited:
 
-![Config Editor](/img/2017_10_30_inst_cmds.png)
+![Config Editor]({{site.baseurl}}/img/2017_10_30_inst_cmds.png)
 
 The user can either edit the configuration file directly in the middle pane or use the configuration help in the right pane. Edits in the middle pane are immediately reflected in the right pane. Edits in the right pane are not reflected back in the configuration pane until the user tabs or clicks to another field. Note that tabbing through the fields is a quick way to transition from one parameter to another.
 

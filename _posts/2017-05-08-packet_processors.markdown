@@ -8,13 +8,13 @@ categories: [post]
 
 COSMOS Packet Processors are a powerful concept that allow you to run code each time a specified packet is received. COSMOS provides a few generic Packet Processors which allows you to include statistics about individual telemetry points in your defined packets. Let's break down how the COSMOS included processors are used and how you can implement your own Packet Processor.
 
-First [install](/docs/v4/installation) COSMOS and start up the demo application. You'll notice we declare a few targets of which one is called INST (for instrument). If you open up Packet Viewer and navigate to the INST target and the HEALTH_STATUS packet you can see a bunch of derived telemetry points at the top.
+First [install]({{site.baseurl}}/docs/v4/installation) COSMOS and start up the demo application. You'll notice we declare a few targets of which one is called INST (for instrument). If you open up Packet Viewer and navigate to the INST target and the HEALTH_STATUS packet you can see a bunch of derived telemetry points at the top.
 
-![Packet Viewer](/img/2017_05_08_packet_viewer.png)
+![Packet Viewer]({{site.baseurl}}/img/2017_05_08_packet_viewer.png)
 
 These points aren't immediately obvious in the GUI ([Ticket #441](https://github.com/BallAerospace/COSMOS/issues/441)) but here they include all the items down to and including TEMP1STDDEV. If you right click on one of them and choose "Details" you can see that Data Type is DERVIED.
 
-![Derived](/img/2017_05_08_details.png)
+![Derived]({{site.baseurl}}/img/2017_05_08_details.png)
 
 This is all controlled by the INST target's cmd/tlm definition files. If you open the INST/cmd_tlm/inst_tlm.txt file from the demo you'll see the following at the end of the HEALTH_STATUS packet definition:
 
@@ -35,7 +35,7 @@ This is all controlled by the INST target's cmd/tlm definition files. If you ope
   PROCESSOR TEMP1WATER watermark_processor.rb TEMP1
 ```
 
-These definitions create six new telemetry [ITEMs](/docs/v4/telemetry#item). The [READ_CONVERSION](/docs/v4/telemetry#read_conversion) line takes a conversion class and then variable parameters that are passed to the class. Here we're using the COSMOS provided processor_conversion.rb class which pulls a result calculated by a PROCESSOR. The last two lines define the two [PROCESSORs](/docs/v4/telemetry#processor).
+These definitions create six new telemetry [ITEMs]({{site.baseurl}}/docs/v4/telemetry#item). The [READ_CONVERSION]({{site.baseurl}}/docs/v4/telemetry#read_conversion) line takes a conversion class and then variable parameters that are passed to the class. Here we're using the COSMOS provided processor_conversion.rb class which pulls a result calculated by a PROCESSOR. The last two lines define the two [PROCESSORs]({{site.baseurl}}/docs/v4/telemetry#processor).
 
 Currently COSMOS provides the following three processors:
 
@@ -177,7 +177,7 @@ end
 
 This class introduces some new Ruby syntax. Since we want to accept any number of items to average we have to accept a variable number of arguments in our initialize method. The ruby splat operator (or star operator) does this and places the arguments into a Ruby array. We store these names and then use them in our call method to perform the mean. I'm using a cool feature of Ruby's Enumerable mixin, which is part of Array, to sum up the values (starting with 0) and then dividing by the number of values we have to get the mean. Note I'm also calling to_f to ensure the numerator is a floating point number so we do floating point math during the division. Integer division would truncate the value to an integer value.
 
-First to use this new processor you need to require it in your target's [target.txt](/docs/v4/system#targettxt-keywords) configuration file:
+First to use this new processor you need to require it in your target's [target.txt]({{site.baseurl}}/docs/v4/system#targettxt-keywords) configuration file:
 `REQUIRE mean_processor.rb`
 Then delcare the processing in your configuration definition as follows:
 
@@ -191,7 +191,7 @@ TELEMETRY INST HEALTH_STATUS BIG_ENDIAN "Health and status from the instrument"
 
 We define the processor on the INST HEALTH_STATUS packet and pass in 4 items to average. We also define a new derived item called TEMPS_MEAN which uses our previously described processor_conversion to pull out the MEAN value that we calculated. The result is shown in this PacketViewer screen shot:
 
-![Packet Viewer](/img/2017_05_08_packet_viewer2.png)
+![Packet Viewer]({{site.baseurl}}/img/2017_05_08_packet_viewer2.png)
 
 Creating a custom processor definitely requires you to dive into the COSMOS API and play with the underlying Ruby code. Hopefully the existing processor code and this blog post helps you to derive whatever telemetry points you need.
 

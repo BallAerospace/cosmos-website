@@ -10,6 +10,6 @@ Ball Aerospace COSMOS is being featured in three papers and presentations at thi
 
 The three papers presented are here:
 
-* <a href="/assets/Ball_Aerospaces_COSMOS_Open_Source_Test_System.pdf">Ball Aerospace's COSMOS Open Source Test System</a>
-* <a href="/assets/System_Level_Integration_And_Test_Leveraging_Software_Unit_Testing_Techniques.pdf">System Level Integration and Test Leveraging Software Unit Testing Techniques</a>
-* <a href="/assets/The_Hidden_Benefits_of_Automated_Testing.pdf">The Hidden Benefits of Automated Testing</a>
+* <a href="{{site.baseurl}}/assets/Ball_Aerospaces_COSMOS_Open_Source_Test_System.pdf">Ball Aerospace's COSMOS Open Source Test System</a>
+* <a href="{{site.baseurl}}/assets/System_Level_Integration_And_Test_Leveraging_Software_Unit_Testing_Techniques.pdf">System Level Integration and Test Leveraging Software Unit Testing Techniques</a>
+* <a href="{{site.baseurl}}/assets/The_Hidden_Benefits_of_Automated_Testing.pdf">The Hidden Benefits of Automated Testing</a>
