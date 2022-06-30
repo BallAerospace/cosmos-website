@@ -102,11 +102,11 @@ Playing with the COSMOS Demo is fun and all, but now you want to talk to your ow
 
     ```bash
     # Set VARIABLEs here to allow variation in your plugin
-    # See https://cosmosc2.com/docs/v5/plugins for more information
+    # See {{site.url}}{{site.baseurl}}/docs/v5/plugins for more information
     VARIABLE bob_target_name BOB
 
     # Modify this according to your actual target connection
-    # See https://cosmosc2.com/docs/v5/interfaces for more information
+    # See {{site.url}}{{site.baseurl}}/docs/v5/interfaces for more information
     TARGET BOB <%= bob_target_name %>
     INTERFACE <%= bob_target_name %>_INT tcpip_client_interface.rb host.docker.internal 8080 8081 10.0 nil BURST
       MAP_TARGET <%= bob_target_name %>
