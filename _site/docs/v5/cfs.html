@@ -190,7 +190,7 @@ match with the port number cFS is sending the telemetry on.</p>
 <h3 id="create-dockerfile-in-cfs-dir">
 <a class="anchor" href="#create-dockerfile-in-cfs-dir" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create Dockerfile in cFS dir</h3>
 
-<div class="language-docker highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> ubuntu:22.10 AS builder</span>
+<div class="language-docker highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:22.10</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">builder</span>
 
 <span class="k">ARG</span><span class="s"> DEBIAN_FRONTEND=noninteractive</span>
 <span class="k">ARG</span><span class="s"> SIMULATION=native</span>
