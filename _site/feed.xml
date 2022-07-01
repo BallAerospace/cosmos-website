@@ -11,8 +11,8 @@
     <title xml:lang="en">Ball Aerospace COSMOS News</title>
     <atom:link type="application/atom+xml" href="https://ballaerospace.github.io/cosmos-website/feed.xml" rel="self"/>
     <link>https://ballaerospace.github.io/cosmos-website/</link>
-    <pubDate>Fri, 01 Jul 2022 09:04:53 -0600</pubDate>
-    <lastBuildDate>Fri, 01 Jul 2022 09:04:53 -0600</lastBuildDate>
+    <pubDate>Fri, 01 Jul 2022 15:07:45 +0000</pubDate>
+    <lastBuildDate>Fri, 01 Jul 2022 15:07:45 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.2.2</generator>
     <description>The User Interface for Embedded Systems</description>
@@ -28,7 +28,7 @@
     <item>
       <title>Ball Aerospace COSMOS 5.0.4 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2022/05/24/cosmos-5-0-4-released/</link>
-      <pubDate>Tue, 24 May 2022 07:00:00 -0600</pubDate>
+      <pubDate>Tue, 24 May 2022 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -102,7 +102,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
     <item>
       <title>Ball Aerospace COSMOS 5.0.3 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2022/05/13/cosmos-5-0-3-released/</link>
-      <pubDate>Fri, 13 May 2022 07:00:00 -0600</pubDate>
+      <pubDate>Fri, 13 May 2022 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -167,7 +167,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
     <item>
       <title>Ball Aerospace COSMOS 5.0.2 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2022/04/28/cosmos-5-0-2-released/</link>
-      <pubDate>Thu, 28 Apr 2022 07:00:00 -0600</pubDate>
+      <pubDate>Thu, 28 Apr 2022 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -264,7 +264,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
     <item>
       <title>Ball Aerospace COSMOS 4.5.2 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2022/01/28/cosmos-4-5-2-released/</link>
-      <pubDate>Fri, 28 Jan 2022 12:00:00 -0700</pubDate>
+      <pubDate>Fri, 28 Jan 2022 19:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -307,7 +307,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
     <item>
       <title>Ball Aerospace COSMOS 5.0.1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2021/11/24/cosmos-5-0-1-released/</link>
-      <pubDate>Wed, 24 Nov 2021 06:00:00 -0700</pubDate>
+      <pubDate>Wed, 24 Nov 2021 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -367,7 +367,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
     <item>
       <title>Ball Aerospace COSMOS 4.5.1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2021/09/21/cosmos-4-5-1-released/</link>
-      <pubDate>Tue, 21 Sep 2021 04:00:00 -0600</pubDate>
+      <pubDate>Tue, 21 Sep 2021 10:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -429,7 +429,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
     <item>
       <title>Ball Aerospace COSMOS 5.0.0 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2021/08/14/cosmos-5-0-0-released/</link>
-      <pubDate>Sat, 14 Aug 2021 07:00:00 -0600</pubDate>
+      <pubDate>Sat, 14 Aug 2021 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -510,7 +510,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
     <item>
       <title>Ball Aerospace COSMOS 5.0.0 beta 2 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2021/04/12/cosmos-5-0-0-beta-2-released/</link>
-      <pubDate>Mon, 12 Apr 2021 07:00:00 -0600</pubDate>
+      <pubDate>Mon, 12 Apr 2021 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -605,7 +605,7 @@ https://github.com/BallAerospace/COSMOS/tags&lt;/li&gt;
     <item>
       <title>Ball Aerospace COSMOS 5.0.0 beta 1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2021/01/09/cosmos-5-0-0-beta-1-released/</link>
-      <pubDate>Sat, 09 Jan 2021 06:00:00 -0700</pubDate>
+      <pubDate>Sat, 09 Jan 2021 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -699,7 +699,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
     <item>
       <title>Ball Aerospace COSMOS 4.5.0 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2020/11/05/cosmos-4-5-0-released/</link>
-      <pubDate>Thu, 05 Nov 2020 06:00:00 -0700</pubDate>
+      <pubDate>Thu, 05 Nov 2020 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -762,7 +762,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
     <item>
       <title>Packet Time</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2020/09/23/packet-time/</link>
-      <pubDate>Wed, 23 Sep 2020 09:00:00 -0600</pubDate>
+      <pubDate>Wed, 23 Sep 2020 15:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -800,7 +800,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
     <item>
       <title>Ball Aerospace COSMOS 5.0.0 alpha 1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2020/08/31/cosmos-5-0-0-alpha-1-released/</link>
-      <pubDate>Mon, 31 Aug 2020 07:00:00 -0600</pubDate>
+      <pubDate>Mon, 31 Aug 2020 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -865,7 +865,7 @@ Recommended Resources allocated to Docker: 8GB RAM, 2+ CPUs, 100GB Disk&lt;/p&gt
     <item>
       <title>Identifying Packets</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2020/03/24/identifies-packets/</link>
-      <pubDate>Tue, 24 Mar 2020 09:00:00 -0600</pubDate>
+      <pubDate>Tue, 24 Mar 2020 15:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -920,7 +920,7 @@ end
     <item>
       <title>Protocol Rate</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2020/03/17/protocol-rate/</link>
-      <pubDate>Tue, 17 Mar 2020 09:00:00 -0600</pubDate>
+      <pubDate>Tue, 17 Mar 2020 15:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -1057,7 +1057,7 @@ SEND
     <item>
       <title>Ball Aerospace COSMOS 4.4.2 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2020/03/09/cosmos-4-4-2-released/</link>
-      <pubDate>Mon, 09 Mar 2020 07:00:00 -0600</pubDate>
+      <pubDate>Mon, 09 Mar 2020 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -1098,7 +1098,7 @@ SEND
     <item>
       <title>Ball Aerospace COSMOS 4.4.1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2019/12/30/cosmos-4-4-1-released/</link>
-      <pubDate>Mon, 30 Dec 2019 06:00:00 -0700</pubDate>
+      <pubDate>Mon, 30 Dec 2019 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -1166,7 +1166,7 @@ SEND
     <item>
       <title>AMOS 2019</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2019/10/21/cosmos-amos/</link>
-      <pubDate>Mon, 21 Oct 2019 01:00:00 -0600</pubDate>
+      <pubDate>Mon, 21 Oct 2019 07:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -1187,7 +1187,7 @@ SEND
     <item>
       <title>Ball Aerospace COSMOS 4.4.0 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2019/06/28/cosmos-4-4-0-released/</link>
-      <pubDate>Fri, 28 Jun 2019 07:00:00 -0600</pubDate>
+      <pubDate>Fri, 28 Jun 2019 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -1282,7 +1282,7 @@ SEND
     <item>
       <title>Protocols</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2019/06/05/protocols/</link>
-      <pubDate>Wed, 05 Jun 2019 09:00:00 -0600</pubDate>
+      <pubDate>Wed, 05 Jun 2019 15:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -1350,7 +1350,7 @@ end
     <item>
       <title>Little Endian Packet Data</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2018/12/24/little-endian/</link>
-      <pubDate>Mon, 24 Dec 2018 08:00:00 -0700</pubDate>
+      <pubDate>Mon, 24 Dec 2018 15:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -1396,7 +1396,7 @@ ITEM C 8 4 UINT &quot;struct item c&quot;
     <item>
       <title>Using system.txt and target.txt</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2018/10/05/system-target-txt/</link>
-      <pubDate>Fri, 05 Oct 2018 09:00:00 -0600</pubDate>
+      <pubDate>Fri, 05 Oct 2018 15:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -1507,7 +1507,7 @@ TELEMETRY inst2_tlm.txt
     <item>
       <title>COSMOS at DockerCon 2018</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2018/09/14/cosmos-dockercon/</link>
-      <pubDate>Fri, 14 Sep 2018 01:00:00 -0600</pubDate>
+      <pubDate>Fri, 14 Sep 2018 07:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -1521,7 +1521,7 @@ TELEMETRY inst2_tlm.txt
     <item>
       <title>Ball Aerospace COSMOS 4.3.0 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2018/08/30/cosmos-4-3-0-released/</link>
-      <pubDate>Thu, 30 Aug 2018 07:00:00 -0600</pubDate>
+      <pubDate>Thu, 30 Aug 2018 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -1584,7 +1584,7 @@ The COSMOS log file format and predentified protocol formats have changed to sup
     <item>
       <title>Ball Aerospace COSMOS 4.2.4 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2018/05/16/cosmos-4-2-4-released/</link>
-      <pubDate>Wed, 16 May 2018 07:00:00 -0600</pubDate>
+      <pubDate>Wed, 16 May 2018 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -1637,7 +1637,7 @@ rake db:seed
     <item>
       <title>Ball Aerospace COSMOS 4.2.3 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2018/04/17/cosmos-4-2-3-released/</link>
-      <pubDate>Tue, 17 Apr 2018 07:00:00 -0600</pubDate>
+      <pubDate>Tue, 17 Apr 2018 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -1679,7 +1679,7 @@ rake db:seed
     <item>
       <title>Ball Aerospace COSMOS 4.2.2 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2018/04/11/cosmos-4-2-2-released/</link>
-      <pubDate>Wed, 11 Apr 2018 07:00:00 -0600</pubDate>
+      <pubDate>Wed, 11 Apr 2018 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -1751,7 +1751,7 @@ rake db:seed
     <item>
       <title>Derived Items</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2018/03/14/derived-items/</link>
-      <pubDate>Wed, 14 Mar 2018 09:00:00 -0600</pubDate>
+      <pubDate>Wed, 14 Mar 2018 15:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -1845,7 +1845,7 @@ ITEM RECEIVED_COUNT 0 0 DERIVED &quot;COSMOS packet received count&quot;
     <item>
       <title>Limits</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2018/02/12/limits/</link>
-      <pubDate>Mon, 12 Feb 2018 08:00:00 -0700</pubDate>
+      <pubDate>Mon, 12 Feb 2018 15:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -2039,7 +2039,7 @@ LIMITS_GROUP INST2_GROUND
     <item>
       <title>Metadata</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2018/01/18/metadata/</link>
-      <pubDate>Thu, 18 Jan 2018 08:00:00 -0700</pubDate>
+      <pubDate>Thu, 18 Jan 2018 15:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -2125,7 +2125,7 @@ COLLECT_METADATA
     <item>
       <title>Ball Aerospace COSMOS 4.1.1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/12/07/cosmos-4-1-1-released/</link>
-      <pubDate>Thu, 07 Dec 2017 06:00:00 -0700</pubDate>
+      <pubDate>Thu, 07 Dec 2017 13:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -2165,7 +2165,7 @@ COLLECT_METADATA
     <item>
       <title>COSMOS 4.1.0 Release Notes</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/11/28/cosmos-4-1-0-release-notes/</link>
-      <pubDate>Tue, 28 Nov 2017 12:00:00 -0700</pubDate>
+      <pubDate>Tue, 28 Nov 2017 19:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -2225,7 +2225,7 @@ COLLECT_METADATA
     <item>
       <title>Ball Aerospace COSMOS 4.1.0 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/11/17/cosmos-4-1-0-released/</link>
-      <pubDate>Fri, 17 Nov 2017 12:00:00 -0700</pubDate>
+      <pubDate>Fri, 17 Nov 2017 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -2296,7 +2296,7 @@ COLLECT_METADATA
     <item>
       <title>Require vs Load</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/11/13/require_vs_load/</link>
-      <pubDate>Mon, 13 Nov 2017 09:00:00 -0700</pubDate>
+      <pubDate>Mon, 13 Nov 2017 16:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -2525,7 +2525,7 @@ C:/Ruby233p222-x64/lib/ruby/2.3.0/x64-mingw32
     <item>
       <title>Config Editor</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/10/30/config-editor/</link>
-      <pubDate>Mon, 30 Oct 2017 10:00:00 -0600</pubDate>
+      <pubDate>Mon, 30 Oct 2017 16:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -2583,7 +2583,7 @@ C:/Ruby233p222-x64/lib/ruby/2.3.0/x64-mingw32
     <item>
       <title>Ball Aerospace COSMOS 4.0.3 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/10/24/cosmos-4-0-3-released/</link>
-      <pubDate>Tue, 24 Oct 2017 13:00:00 -0600</pubDate>
+      <pubDate>Tue, 24 Oct 2017 19:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -2625,7 +2625,7 @@ C:/Ruby233p222-x64/lib/ruby/2.3.0/x64-mingw32
     <item>
       <title>Ball Aerospace COSMOS 4.0.2 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/09/29/cosmos-4-0-2-released/</link>
-      <pubDate>Fri, 29 Sep 2017 13:00:00 -0600</pubDate>
+      <pubDate>Fri, 29 Sep 2017 19:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -2675,7 +2675,7 @@ C:/Ruby233p222-x64/lib/ruby/2.3.0/x64-mingw32
     <item>
       <title>Deploying COSMOS to the Cloud</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/08/23/cloud-deploy/</link>
-      <pubDate>Wed, 23 Aug 2017 14:00:00 -0600</pubDate>
+      <pubDate>Wed, 23 Aug 2017 20:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -2803,7 +2803,7 @@ vncconfig -iconic &amp;amp;
     <item>
       <title>Ball Aerospace COSMOS 4.0.1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/08/23/cosmos-4-0-1-released/</link>
-      <pubDate>Wed, 23 Aug 2017 13:00:00 -0600</pubDate>
+      <pubDate>Wed, 23 Aug 2017 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -2853,7 +2853,7 @@ vncconfig -iconic &amp;amp;
     <item>
       <title>Ball Aerospace COSMOS 4.0.0 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/08/04/cosmos-4-0-0-released/</link>
-      <pubDate>Fri, 04 Aug 2017 13:00:00 -0600</pubDate>
+      <pubDate>Fri, 04 Aug 2017 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -2963,7 +2963,7 @@ vncconfig -iconic &amp;amp;
     <item>
       <title>Arduinos &amp; Battle Bots</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/07/05/arduino-battle-bots/</link>
-      <pubDate>Wed, 05 Jul 2017 01:00:00 -0600</pubDate>
+      <pubDate>Wed, 05 Jul 2017 07:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -2977,7 +2977,7 @@ vncconfig -iconic &amp;amp;
     <item>
       <title>Template Protocol</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/06/19/template_protocol/</link>
-      <pubDate>Mon, 19 Jun 2017 01:00:00 -0600</pubDate>
+      <pubDate>Mon, 19 Jun 2017 07:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -3049,7 +3049,7 @@ COMMAND POWER SET_VOLTAGE BIG_ENDIAN &quot;Set voltage&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.9.2 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/05/18/cosmos-3-9-2-released/</link>
-      <pubDate>Thu, 18 May 2017 13:00:00 -0600</pubDate>
+      <pubDate>Thu, 18 May 2017 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -3101,7 +3101,7 @@ Documentation will updated the first week of April.&lt;/p&gt;
     <item>
       <title>Packet Processors</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/05/08/packet_processors/</link>
-      <pubDate>Mon, 08 May 2017 01:00:00 -0600</pubDate>
+      <pubDate>Mon, 08 May 2017 07:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -3301,7 +3301,7 @@ Then delcare the processing in your configuration definition as follows:&lt;/p&g
     <item>
       <title>WIRED Article</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/04/24/wired/</link>
-      <pubDate>Mon, 24 Apr 2017 01:00:00 -0600</pubDate>
+      <pubDate>Mon, 24 Apr 2017 07:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -3315,7 +3315,7 @@ Then delcare the processing in your configuration definition as follows:&lt;/p&g
     <item>
       <title>Ball Aerospace COSMOS 3.9.1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/03/29/cosmos-3-9-1-released/</link>
-      <pubDate>Wed, 29 Mar 2017 13:00:00 -0600</pubDate>
+      <pubDate>Wed, 29 Mar 2017 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -3365,7 +3365,7 @@ Documentation will updated the first week of April.&lt;/p&gt;
     <item>
       <title>Routers</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2017/02/22/routers/</link>
-      <pubDate>Wed, 22 Feb 2017 00:00:00 -0700</pubDate>
+      <pubDate>Wed, 22 Feb 2017 07:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -3451,7 +3451,7 @@ ADCS
     <item>
       <title>Ball Aerospace COSMOS 3.8.3 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2016/12/06/cosmos-3-8-3-released/</link>
-      <pubDate>Tue, 06 Dec 2016 12:00:00 -0700</pubDate>
+      <pubDate>Tue, 06 Dec 2016 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -3507,7 +3507,7 @@ ADCS
     <item>
       <title>SmallSat Ops</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2016/10/13/cosmos-cubesat-ops/</link>
-      <pubDate>Thu, 13 Oct 2016 01:00:00 -0600</pubDate>
+      <pubDate>Thu, 13 Oct 2016 07:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -3531,7 +3531,7 @@ ADCS
     <item>
       <title>ERB Config Files</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2016/09/12/erb-config/</link>
-      <pubDate>Mon, 12 Sep 2016 01:00:00 -0600</pubDate>
+      <pubDate>Mon, 12 Sep 2016 07:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -3611,7 +3611,7 @@ COMMAND INST ABORT BIG_ENDIAN &quot;Aborts a collect on the instrument&quot;
     <item>
       <title>Custom Widgets</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2016/08/22/custom-widgets/</link>
-      <pubDate>Mon, 22 Aug 2016 01:00:00 -0600</pubDate>
+      <pubDate>Mon, 22 Aug 2016 07:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -3749,7 +3749,7 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
     <item>
       <title>Custom COSMOS Interface</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2016/08/04/custom-cosmos_interface/</link>
-      <pubDate>Thu, 04 Aug 2016 01:00:00 -0600</pubDate>
+      <pubDate>Thu, 04 Aug 2016 07:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -3814,14 +3814,14 @@ INTERFACE UART_INTERFACE  checksum_serial_interface.rb COM1  COM1 115200 NONE   
     
     <item>
       <title>COSMOS Cmd/Tlm Naming</title>
-      <link>https://ballaerospace.github.io/cosmos-website/news/2016/07/06/cosmos-cmd-tlm-names/</link>
-      <pubDate>Wed, 06 Jul 2016 18:00:00 -0600</pubDate>
+      <link>https://ballaerospace.github.io/cosmos-website/news/2016/07/07/cosmos-cmd-tlm-names/</link>
+      <pubDate>Thu, 07 Jul 2016 00:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
       <category>post</category>
       
-      <guid isPermaLink="true">https://ballaerospace.github.io/cosmos-website/news/2016/07/06/cosmos-cmd-tlm-names/</guid>
+      <guid isPermaLink="true">https://ballaerospace.github.io/cosmos-website/news/2016/07/07/cosmos-cmd-tlm-names/</guid>
       <description>&lt;p&gt;Recently a user asked if they could add exclamation points and question marks to their command and telemetry items. Absolutely! COSMOS provides great flexibility in command and telemetry naming conventions. (See &lt;a href=&quot;http://cosmosc2.com/docs/v4/command&quot;&gt;Command&lt;/a&gt;). For example, adding an exclamation point to a command to denote a more severe version of the same command:&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;COMMAND TGT ABORT BIG_ENDIAN &quot;Tries to abort a collect on the instrument&quot;
@@ -3848,7 +3848,7 @@ ITEM DEPLOYED? 0 0 DERIVED &quot;Deployed status&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.8.2 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2016/07/05/cosmos-3-8-2-released/</link>
-      <pubDate>Tue, 05 Jul 2016 13:00:00 -0600</pubDate>
+      <pubDate>Tue, 05 Jul 2016 19:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -3879,7 +3879,7 @@ ITEM DEPLOYED? 0 0 DERIVED &quot;Deployed status&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.8.1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2016/05/12/cosmos-3-8-1-released/</link>
-      <pubDate>Thu, 12 May 2016 13:00:00 -0600</pubDate>
+      <pubDate>Thu, 12 May 2016 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -3926,7 +3926,7 @@ ITEM DEPLOYED? 0 0 DERIVED &quot;Deployed status&quot;
     <item>
       <title>Sparkfun Blog Post</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2016/03/03/sparkfun/</link>
-      <pubDate>Thu, 03 Mar 2016 00:00:00 -0700</pubDate>
+      <pubDate>Thu, 03 Mar 2016 07:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -3942,7 +3942,7 @@ ITEM DEPLOYED? 0 0 DERIVED &quot;Deployed status&quot;
     <item>
       <title>XTCE Support</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2016/02/27/xtce-support/</link>
-      <pubDate>Sat, 27 Feb 2016 12:00:00 -0700</pubDate>
+      <pubDate>Sat, 27 Feb 2016 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -3959,7 +3959,7 @@ ITEM DEPLOYED? 0 0 DERIVED &quot;Deployed status&quot;
     <item>
       <title>Fukuoka Special Award Winner</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2016/02/27/fukuoka-award/</link>
-      <pubDate>Sat, 27 Feb 2016 00:00:00 -0700</pubDate>
+      <pubDate>Sat, 27 Feb 2016 07:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -3973,7 +3973,7 @@ ITEM DEPLOYED? 0 0 DERIVED &quot;Deployed status&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.8.0 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2016/02/26/cosmos-3-8-0-released/</link>
-      <pubDate>Fri, 26 Feb 2016 12:00:00 -0700</pubDate>
+      <pubDate>Fri, 26 Feb 2016 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4005,7 +4005,7 @@ ITEM DEPLOYED? 0 0 DERIVED &quot;Deployed status&quot;
     <item>
       <title>COSMOS Simulated Target</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2016/02/11/simulated-target/</link>
-      <pubDate>Thu, 11 Feb 2016 00:00:00 -0700</pubDate>
+      <pubDate>Thu, 11 Feb 2016 07:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -4184,7 +4184,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.7.1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/12/29/cosmos-3-7-1-released/</link>
-      <pubDate>Tue, 29 Dec 2015 12:00:00 -0700</pubDate>
+      <pubDate>Tue, 29 Dec 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4215,7 +4215,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.7.0 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/11/25/cosmos-3-7-0-released/</link>
-      <pubDate>Wed, 25 Nov 2015 12:00:00 -0700</pubDate>
+      <pubDate>Wed, 25 Nov 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4258,7 +4258,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.6.3 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/10/30/cosmos-3-6-3-released/</link>
-      <pubDate>Fri, 30 Oct 2015 13:00:00 -0600</pubDate>
+      <pubDate>Fri, 30 Oct 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4298,7 +4298,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>COSMOS at the ATS Conference</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/10/28/cosmos-at-ats-conference/</link>
-      <pubDate>Wed, 28 Oct 2015 13:00:00 -0600</pubDate>
+      <pubDate>Wed, 28 Oct 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4320,7 +4320,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.6.2 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/08/10/cosmos-3-6-2-released/</link>
-      <pubDate>Mon, 10 Aug 2015 17:00:00 -0600</pubDate>
+      <pubDate>Mon, 10 Aug 2015 23:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4344,7 +4344,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.6.1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/08/10/cosmos-3-6-1-released/</link>
-      <pubDate>Mon, 10 Aug 2015 13:00:00 -0600</pubDate>
+      <pubDate>Mon, 10 Aug 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4366,7 +4366,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.6.0 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/08/07/cosmos-3-6-0-released/</link>
-      <pubDate>Fri, 07 Aug 2015 13:00:00 -0600</pubDate>
+      <pubDate>Fri, 07 Aug 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4407,7 +4407,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.5.3 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/07/14/cosmos-3-5-3-released/</link>
-      <pubDate>Tue, 14 Jul 2015 13:00:00 -0600</pubDate>
+      <pubDate>Tue, 14 Jul 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4443,7 +4443,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.5.2 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/07/14/cosmos-3-5-2-released/</link>
-      <pubDate>Tue, 14 Jul 2015 13:00:00 -0600</pubDate>
+      <pubDate>Tue, 14 Jul 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4479,7 +4479,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.5.1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/07/08/cosmos-3-5-1-released/</link>
-      <pubDate>Wed, 08 Jul 2015 13:00:00 -0600</pubDate>
+      <pubDate>Wed, 08 Jul 2015 19:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -4517,7 +4517,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.5.0 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/06/22/cosmos-3-5-0-released/</link>
-      <pubDate>Mon, 22 Jun 2015 13:00:00 -0600</pubDate>
+      <pubDate>Mon, 22 Jun 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4570,7 +4570,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.4.2 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/05/08/cosmos-3-4-2-released/</link>
-      <pubDate>Fri, 08 May 2015 13:00:00 -0600</pubDate>
+      <pubDate>Fri, 08 May 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4594,7 +4594,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.4.1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/05/01/cosmos-3-4-1-released/</link>
-      <pubDate>Fri, 01 May 2015 13:00:00 -0600</pubDate>
+      <pubDate>Fri, 01 May 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4618,7 +4618,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.4.0 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/04/27/cosmos-3-4-0-released/</link>
-      <pubDate>Mon, 27 Apr 2015 13:00:00 -0600</pubDate>
+      <pubDate>Mon, 27 Apr 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4648,7 +4648,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>COSMOS BinaryAccessor#write C Extension</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/04/06/cosmos-c-extension/</link>
-      <pubDate>Mon, 06 Apr 2015 13:00:00 -0600</pubDate>
+      <pubDate>Mon, 06 Apr 2015 19:00:00 +0000</pubDate>
       <dc:creator>jmthomas</dc:creator>
       
       
@@ -4705,7 +4705,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.3.3 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/03/23/cosmos-3-3-3-released/</link>
-      <pubDate>Mon, 23 Mar 2015 13:00:00 -0600</pubDate>
+      <pubDate>Mon, 23 Mar 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4730,7 +4730,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.3.1 - Startup Cheetah</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/03/19/cosmos-3-3-1-released/</link>
-      <pubDate>Thu, 19 Mar 2015 13:00:00 -0600</pubDate>
+      <pubDate>Thu, 19 Mar 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4762,7 +4762,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>COSMOS at the GSAW Conference</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/02/27/cosmos-at-gsaw-conference/</link>
-      <pubDate>Fri, 27 Feb 2015 12:00:00 -0700</pubDate>
+      <pubDate>Fri, 27 Feb 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4778,7 +4778,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.2.1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/02/23/cosmos-3-2-1-released/</link>
-      <pubDate>Mon, 23 Feb 2015 12:00:00 -0700</pubDate>
+      <pubDate>Mon, 23 Feb 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4805,7 +4805,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.2.0 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/02/17/cosmos-3-2-0-released/</link>
-      <pubDate>Tue, 17 Feb 2015 12:00:00 -0700</pubDate>
+      <pubDate>Tue, 17 Feb 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4835,7 +4835,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.1.2 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/02/03/cosmos-3-1-2-released/</link>
-      <pubDate>Tue, 03 Feb 2015 12:00:00 -0700</pubDate>
+      <pubDate>Tue, 03 Feb 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4865,7 +4865,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS 3.1.1 Released</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/01/28/cosmos-3-1-1-released/</link>
-      <pubDate>Wed, 28 Jan 2015 12:00:00 -0700</pubDate>
+      <pubDate>Wed, 28 Jan 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
@@ -4892,7 +4892,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
     <item>
       <title>Ball Aerospace COSMOS Open Sourced</title>
       <link>https://ballaerospace.github.io/cosmos-website/news/2015/01/06/ball-aerospace-cosmos-open-sourced/</link>
-      <pubDate>Tue, 06 Jan 2015 12:00:00 -0700</pubDate>
+      <pubDate>Tue, 06 Jan 2015 19:00:00 +0000</pubDate>
       <dc:creator>ryanmelt</dc:creator>
       
       
