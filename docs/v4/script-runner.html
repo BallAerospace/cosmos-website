@@ -5,15 +5,15 @@
   <title>Script Runner</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v4.2.1">
-  <link rel="alternate" type="application/rss+xml" title="Ball Aerospace COSMOS News" href="/feed.xml">
+  <meta name="generator" content="Jekyll v4.2.2">
+  <link rel="alternate" type="application/rss+xml" title="Ball Aerospace COSMOS News" href="/cosmos-website/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="Recent commits to COSMOS's master branch" href="https://github.com/BallAerospace/COSMOS/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
-  <link rel="stylesheet" href="/css/screen.css">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/cosmos-website/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/cosmos-website/favicon.ico">
   <!--[if lt IE 9]>
-  <script src="/js/html5shiv.min.js"></script>
-  <script src="/js/respond.min.js"></script>
+  <script src="/cosmos-website/js/html5shiv.min.js"></script>
+  <script src="/cosmos-website/js/respond.min.js"></script>
   <![endif]-->
 </head>
 
@@ -23,26 +23,27 @@
   <nav class="mobile-nav show-on-mobiles">
     <ul>
   <li class="">
-    <a href="/">Home</a>
+    <a href="/cosmos-website/">Home</a>
   </li>
   <li class="">
-    <span class="hide-on-mobiles"><a href="/docs/enterprise/">Enterprise</a></span>
-    <span class="show-on-mobiles"><a href="/docs/enterprise/">EE</a></span>
+    <span class="hide-on-mobiles"><a href="/cosmos-website/docs/enterprise/">Enterprise</a></span>
+    <span class="show-on-mobiles"><a href="/cosmos-website/docs/enterprise/">EE</a></span>
   </li>
   <li class="current">
-    <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
-    <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
+    <span class="hide-on-mobiles"><a href="/cosmos-website/docs/v5/">Documentation</a></span>
+    <span class="show-on-mobiles"><a href="/cosmos-website/docs/v5/">Docs</a></span>
   </li>
   <li class="">
-    <a href="/news/">News</a>
+    <a href="/cosmos-website/news/">News</a>
   </li>
   <li class="">
-    <a href="/help/">Help</a>
+    <a href="/cosmos-website/help/">Help</a>
   </li>
   <li>
-    <a href="https://github.com/BallAerospace/COSMOS" target="_blank"
-      ><span class="hide-on-mobiles">View on </span>GitHub</a
-    >
+    <a href="https://github.com/BallAerospace/COSMOS" target="_blank">
+      <span class="hide-on-mobiles">View on </span>
+      GitHub
+    </a>
   </li>
 </ul>
 
@@ -50,35 +51,36 @@
   <div class="grid wider">
     <div class="unit one-fourth center-on-mobiles" style="margin-top:27px;">
       <h1>
-        <a href="/">
+        <a href="/cosmos-website/">
           <span class="sr-only">COSMOS</span>
-          <img src="/img/COSMOS.png" width="222" height="50" alt="COSMOS Logo">
+          <img src="/cosmos-website/img/COSMOS.png" width="222" height="50" alt="COSMOS Logo">
         </a>
       </h1>
     </div>
     <nav class="main-nav unit three-fourths hide-on-mobiles">
       <ul>
   <li class="">
-    <a href="/">Home</a>
+    <a href="/cosmos-website/">Home</a>
   </li>
   <li class="">
-    <span class="hide-on-mobiles"><a href="/docs/enterprise/">Enterprise</a></span>
-    <span class="show-on-mobiles"><a href="/docs/enterprise/">EE</a></span>
+    <span class="hide-on-mobiles"><a href="/cosmos-website/docs/enterprise/">Enterprise</a></span>
+    <span class="show-on-mobiles"><a href="/cosmos-website/docs/enterprise/">EE</a></span>
   </li>
   <li class="current">
-    <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
-    <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
+    <span class="hide-on-mobiles"><a href="/cosmos-website/docs/v5/">Documentation</a></span>
+    <span class="show-on-mobiles"><a href="/cosmos-website/docs/v5/">Docs</a></span>
   </li>
   <li class="">
-    <a href="/news/">News</a>
+    <a href="/cosmos-website/news/">News</a>
   </li>
   <li class="">
-    <a href="/help/">Help</a>
+    <a href="/cosmos-website/help/">Help</a>
   </li>
   <li>
-    <a href="https://github.com/BallAerospace/COSMOS" target="_blank"
-      ><span class="hide-on-mobiles">View on </span>GitHub</a
-    >
+    <a href="https://github.com/BallAerospace/COSMOS" target="_blank">
+      <span class="hide-on-mobiles">View on </span>
+      GitHub
+    </a>
   </li>
 </ul>
 
@@ -177,39 +179,7 @@ PAUSE_ON_RED</code></pre></figure>
 
 <h2 id="command-line-parameters">
 <a class="anchor" href="#command-line-parameters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command Line Parameters</h2>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Usage: ruby ScriptRunner [options]
-
-    -h, --help                       Show this message
-    -v, --version                    Show version
-        --system FILE                Use an alternative system.txt file
-    -c, --config FILE                Use the specified configuration file
-        --stylesheet FILE            Use the specified stylesheet
-
-Window Size Options:
-        --minimized                  Start the tool minimized
-        --maximized                  Start the tool maximized
-        --defaultsize                Start the tool in its default size
-        --stay-on-top                Force the tool to stay on top of all other windows
-
-Window X &amp; Y Position Options:
-  Positive values indicate a position from the top and left of the screen.
-  Negative values indicate a position from the bottom and right of the screen.
-  A value of -1 indicates to place the right or bottom side of the window
-  next to the right or bottom edge of the screen.
-    -x, --xpos VALUE                 Window X position
-    -y, --ypos VALUE                 Window Y position
-
-Window Width and Height Options:
-  Specifing width and height will force the specified dimension.
-  Otherwise the window will layout according to its defaults.
-    -w, --width VALUE                Window width
-    -t, --height VALUE               Window height
-
-Script Runner Specific Options:
-    -s, --server FILE                Use the specified server configuration file for disconnect mode
-    -r, --run FILE                   Open and run the specified procedure
-    -d, --disconnect                 Start in disconnect mode
-</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 
 
       </article>
@@ -243,7 +213,7 @@ Script Runner Specific Options:
       <li>
         <!-- Only create links to collections which aren't our own  -->
         
-        <a href="/docs/v5/">v5 Docs</a>
+        <a href="/cosmos-website/docs/v5/">v5 Docs</a>
         
       </li>
       
@@ -280,7 +250,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/tools">Tools</a>
+    <a href="/cosmos-website/docs/v4/tools">Tools</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -292,27 +262,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/installation">Installation</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v4/upgrading">Upgrading and the Gemfile</a>
+    <a href="/cosmos-website/docs/v4/installation">Installation</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -327,8 +277,28 @@ Script Runner Specific Options:
       
     
       
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v4/structure">Directory structure</a>
+    <a href="/cosmos-website/docs/v4/upgrading">Upgrading and the Gemfile</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/cosmos-website/docs/v4/structure">Directory structure</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -338,7 +308,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/gettingstarted">Getting Started</a>
+    <a href="/cosmos-website/docs/v4/gettingstarted">Getting Started</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -352,7 +322,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/requirements">Requirements and Design</a>
+    <a href="/cosmos-website/docs/v4/requirements">Requirements and Design</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -392,7 +362,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/system">System Configuration</a>
+    <a href="/cosmos-website/docs/v4/system">System Configuration</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -414,61 +384,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/command">Command Configuration</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v4/telemetry">Telemetry Configuration</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v4/interfaces">Interface Configuration</a>
+    <a href="/cosmos-website/docs/v4/command">Command Configuration</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -493,8 +409,62 @@ Script Runner Specific Options:
       
     
       
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v4/protocols">Protocol Configuration</a>
+    <a href="/cosmos-website/docs/v4/telemetry">Telemetry Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/cosmos-website/docs/v4/interfaces">Interface Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/cosmos-website/docs/v4/protocols">Protocol Configuration</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -538,7 +508,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/cmd-extractor">Command Extractor</a>
+    <a href="/cosmos-website/docs/v4/cmd-extractor">Command Extractor</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -572,43 +542,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/cmd-sender">Command Sender</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v4/cmd-sequence">Command Sequence</a>
+    <a href="/cosmos-website/docs/v4/cmd-sender">Command Sender</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -643,10 +577,8 @@ Script Runner Specific Options:
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/cmd-tlm-server">Command and Telemetry Server</a>
+    <a href="/cosmos-website/docs/v4/cmd-sequence">Command Sequence</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -683,10 +615,8 @@ Script Runner Specific Options:
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/config-editor">Config Editor</a>
+    <a href="/cosmos-website/docs/v4/cmd-tlm-server">Command and Telemetry Server</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -725,10 +655,8 @@ Script Runner Specific Options:
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/data-viewer">Data Viewer</a>
+    <a href="/cosmos-website/docs/v4/config-editor">Config Editor</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -769,10 +697,8 @@ Script Runner Specific Options:
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/handbook-creator">Handbook Creator</a>
+    <a href="/cosmos-website/docs/v4/data-viewer">Data Viewer</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -815,10 +741,8 @@ Script Runner Specific Options:
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/launcher">Launcher</a>
+    <a href="/cosmos-website/docs/v4/handbook-creator">Handbook Creator</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -863,10 +787,8 @@ Script Runner Specific Options:
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/limits-monitor">Limits Monitor</a>
+    <a href="/cosmos-website/docs/v4/launcher">Launcher</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -913,10 +835,8 @@ Script Runner Specific Options:
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/packet-viewer">Packet Viewer</a>
+    <a href="/cosmos-website/docs/v4/limits-monitor">Limits Monitor</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -965,10 +885,60 @@ Script Runner Specific Options:
       
     
       
+  <li class="">
+    <a href="/cosmos-website/docs/v4/packet-viewer">Packet Viewer</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
       
   <li class="">
-    <a href="/docs/v4/replay">Replay</a>
+    <a href="/cosmos-website/docs/v4/replay">Replay</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1024,7 +994,7 @@ Script Runner Specific Options:
     
       
   <li class="current">
-    <a href="/docs/v4/script-runner">Script Runner</a>
+    <a href="/cosmos-website/docs/v4/script-runner">Script Runner</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1082,67 +1052,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/table-manager">Table Manager</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v4/test-runner">Test Runner</a>
+    <a href="/cosmos-website/docs/v4/table-manager">Table Manager</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1201,10 +1111,8 @@ Script Runner Specific Options:
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/tlm-extractor">Telemetry Extractor</a>
+    <a href="/cosmos-website/docs/v4/test-runner">Test Runner</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1265,10 +1173,8 @@ Script Runner Specific Options:
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/tlm-grapher">Telemetry Grapher</a>
+    <a href="/cosmos-website/docs/v4/tlm-extractor">Telemetry Extractor</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1331,10 +1237,74 @@ Script Runner Specific Options:
       
     
       
+  <li class="">
+    <a href="/cosmos-website/docs/v4/tlm-grapher">Telemetry Grapher</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
       
   <li class="">
-    <a href="/docs/v4/tlm-viewer">Telemetry Viewer</a>
+    <a href="/cosmos-website/docs/v4/tlm-viewer">Telemetry Viewer</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1388,7 +1358,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/screens">Telemetry Screens</a>
+    <a href="/cosmos-website/docs/v4/screens">Telemetry Screens</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1472,7 +1442,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/dart-overview">DART Overview</a>
+    <a href="/cosmos-website/docs/v4/dart-overview">DART Overview</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1542,7 +1512,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/dart-install">DART Installation</a>
+    <a href="/cosmos-website/docs/v4/dart-install">DART Installation</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1610,7 +1580,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/dart-api">DART API</a>
+    <a href="/cosmos-website/docs/v4/dart-api">DART API</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1700,7 +1670,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/scripting">Scripting Guide</a>
+    <a href="/cosmos-website/docs/v4/scripting">Scripting Guide</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1780,7 +1750,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/scripting-best-practices">Scripting Best Practices</a>
+    <a href="/cosmos-website/docs/v4/scripting-best-practices">Scripting Best Practices</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1856,7 +1826,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/gemtargets">Gem Based Targets and Tools</a>
+    <a href="/cosmos-website/docs/v4/gemtargets">Gem Based Targets and Tools</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1930,7 +1900,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/chaining">Chaining CmdTlmServers</a>
+    <a href="/cosmos-website/docs/v4/chaining">Chaining CmdTlmServers</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2032,7 +2002,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/system-class">System Class</a>
+    <a href="/cosmos-website/docs/v4/system-class">System Class</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2118,7 +2088,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/packet-class">Packet Class</a>
+    <a href="/cosmos-website/docs/v4/packet-class">Packet Class</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2206,7 +2176,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/packet-item-class">PacketItem Class</a>
+    <a href="/cosmos-website/docs/v4/packet-item-class">PacketItem Class</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2288,7 +2258,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/json-api">JSON API</a>
+    <a href="/cosmos-website/docs/v4/json-api">JSON API</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2372,7 +2342,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/logging">Logging</a>
+    <a href="/cosmos-website/docs/v4/logging">Logging</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2476,7 +2446,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/contributing">Contributing</a>
+    <a href="/cosmos-website/docs/v4/contributing">Contributing</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2570,7 +2540,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/papers">Papers</a>
+    <a href="/cosmos-website/docs/v4/papers">Papers</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2666,7 +2636,7 @@ Script Runner Specific Options:
     
       
   <li class="">
-    <a href="/docs/v4/xtce">XTCE Support</a>
+    <a href="/cosmos-website/docs/v4/xtce">XTCE Support</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2705,7 +2675,7 @@ Script Runner Specific Options:
         <gcse:search></gcse:search>
         Proudly hosted by
         <a href="https://github.com" target="_blank">
-          <img src="/img/footer-logo.png" width="100" height="30" alt="GitHub Social coding">
+          <img src="/cosmos-website/img/footer-logo.png" width="100" height="30" alt="GitHub Social coding">
         </a>
       </p>
     </div>
@@ -2747,25 +2717,6 @@ Script Runner Specific Options:
 </script>
 
   
-<!-- Google Analytics (http://google.com/analytics) -->
-<script>
-  !(function (j, e, k, y, l, L) {
-    (j.GoogleAnalyticsObject = y),
-      j[y] ||
-        (j[y] = function () {
-          (j[y].q = j[y].q || []).push(arguments);
-        }),
-      (j[y].l = +new Date()),
-      (l = e.createElement(k)),
-      (L = e.getElementsByTagName(k)[0]),
-      (l.src = "//www.google-analytics.com/analytics.js"),
-      L.parentNode.insertBefore(l, L);
-  })(window, document, "script", "ga");
-
-  ga("create", "UA-60103689-1", "cosmosc2.com");
-  ga("send", "pageview");
-</script>
-
 
 
 </body>

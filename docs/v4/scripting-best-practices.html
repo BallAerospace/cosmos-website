@@ -5,15 +5,15 @@
   <title>Scripting Best Practices</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v4.2.1">
-  <link rel="alternate" type="application/rss+xml" title="Ball Aerospace COSMOS News" href="/feed.xml">
+  <meta name="generator" content="Jekyll v4.2.2">
+  <link rel="alternate" type="application/rss+xml" title="Ball Aerospace COSMOS News" href="/cosmos-website/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="Recent commits to COSMOS's master branch" href="https://github.com/BallAerospace/COSMOS/commits/master.atom">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
-  <link rel="stylesheet" href="/css/screen.css">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/cosmos-website/css/screen.css">
+  <link rel="icon" type="image/x-icon" href="/cosmos-website/favicon.ico">
   <!--[if lt IE 9]>
-  <script src="/js/html5shiv.min.js"></script>
-  <script src="/js/respond.min.js"></script>
+  <script src="/cosmos-website/js/html5shiv.min.js"></script>
+  <script src="/cosmos-website/js/respond.min.js"></script>
   <![endif]-->
 </head>
 
@@ -23,26 +23,27 @@
   <nav class="mobile-nav show-on-mobiles">
     <ul>
   <li class="">
-    <a href="/">Home</a>
+    <a href="/cosmos-website/">Home</a>
   </li>
   <li class="">
-    <span class="hide-on-mobiles"><a href="/docs/enterprise/">Enterprise</a></span>
-    <span class="show-on-mobiles"><a href="/docs/enterprise/">EE</a></span>
+    <span class="hide-on-mobiles"><a href="/cosmos-website/docs/enterprise/">Enterprise</a></span>
+    <span class="show-on-mobiles"><a href="/cosmos-website/docs/enterprise/">EE</a></span>
   </li>
   <li class="current">
-    <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
-    <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
+    <span class="hide-on-mobiles"><a href="/cosmos-website/docs/v5/">Documentation</a></span>
+    <span class="show-on-mobiles"><a href="/cosmos-website/docs/v5/">Docs</a></span>
   </li>
   <li class="">
-    <a href="/news/">News</a>
+    <a href="/cosmos-website/news/">News</a>
   </li>
   <li class="">
-    <a href="/help/">Help</a>
+    <a href="/cosmos-website/help/">Help</a>
   </li>
   <li>
-    <a href="https://github.com/BallAerospace/COSMOS" target="_blank"
-      ><span class="hide-on-mobiles">View on </span>GitHub</a
-    >
+    <a href="https://github.com/BallAerospace/COSMOS" target="_blank">
+      <span class="hide-on-mobiles">View on </span>
+      GitHub
+    </a>
   </li>
 </ul>
 
@@ -50,35 +51,36 @@
   <div class="grid wider">
     <div class="unit one-fourth center-on-mobiles" style="margin-top:27px;">
       <h1>
-        <a href="/">
+        <a href="/cosmos-website/">
           <span class="sr-only">COSMOS</span>
-          <img src="/img/COSMOS.png" width="222" height="50" alt="COSMOS Logo">
+          <img src="/cosmos-website/img/COSMOS.png" width="222" height="50" alt="COSMOS Logo">
         </a>
       </h1>
     </div>
     <nav class="main-nav unit three-fourths hide-on-mobiles">
       <ul>
   <li class="">
-    <a href="/">Home</a>
+    <a href="/cosmos-website/">Home</a>
   </li>
   <li class="">
-    <span class="hide-on-mobiles"><a href="/docs/enterprise/">Enterprise</a></span>
-    <span class="show-on-mobiles"><a href="/docs/enterprise/">EE</a></span>
+    <span class="hide-on-mobiles"><a href="/cosmos-website/docs/enterprise/">Enterprise</a></span>
+    <span class="show-on-mobiles"><a href="/cosmos-website/docs/enterprise/">EE</a></span>
   </li>
   <li class="current">
-    <span class="hide-on-mobiles"><a href="/docs/v5/">Documentation</a></span>
-    <span class="show-on-mobiles"><a href="/docs/v5/">Docs</a></span>
+    <span class="hide-on-mobiles"><a href="/cosmos-website/docs/v5/">Documentation</a></span>
+    <span class="show-on-mobiles"><a href="/cosmos-website/docs/v5/">Docs</a></span>
   </li>
   <li class="">
-    <a href="/news/">News</a>
+    <a href="/cosmos-website/news/">News</a>
   </li>
   <li class="">
-    <a href="/help/">Help</a>
+    <a href="/cosmos-website/help/">Help</a>
   </li>
   <li>
-    <a href="https://github.com/BallAerospace/COSMOS" target="_blank"
-      ><span class="hide-on-mobiles">View on </span>GitHub</a
-    >
+    <a href="https://github.com/BallAerospace/COSMOS" target="_blank">
+      <span class="hide-on-mobiles">View on </span>
+      GitHub
+    </a>
   </li>
 </ul>
 
@@ -424,7 +426,7 @@
 
 <p>Disconnect mode is a feature of ScriptRunner and TestRunner that allows testing scripts in an environment without real hardware in the loop. Disconnect mode is started by selecting Script -&gt; Toggle Disconnect. Once selected, the user is prompted to select which targets to disconnect. By default, all targets are disconnected, which allows for testing scripts without any real hardware. Optionally, only a subset of targets can be selected which can be useful for trying out scripts in partially integrated environments.</p>
 
-<p>While in disconnect mode, commands to the disconnected targets always succeed. Additionally, all checks of disconnected targets’ telemetry are immediately successful. This allows for a quick run-through of procedures for logic errors and other script specific errors without having to worry about the behavior and proper functioning of hardware.</p>
+<p>While in disconnect mode, commands to the disconnected targets always succeed. Additionally, all checks of disconnected target telemetry are immediately successful. This allows for a quick run-through of procedures for logic errors and other script specific errors without having to worry about the behavior and proper functioning of hardware.</p>
 
 <h3 id="auditing-your-scripts">
 <a class="anchor" href="#auditing-your-scripts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Auditing your Scripts</h3>
@@ -436,14 +438,14 @@
 
 <p>The Ruby Syntax Check tool is found under the Script Menu. This tool uses the ruby executable with the -c flag to run a syntax check on your script. If any syntax errors are found the exact message presented by the Ruby interpreter is shown to the user. These can be cryptic, but the most common faults are not closing a quoted string, forgetting an “end” keyword, or using a block but forgetting the proceeding “do” keyword.</p>
 
-<p><img src="/img/syntax_check.png" alt="Syntax Check"></p>
+<p><img src="/cosmos-website/img/syntax_check.png" alt="Syntax Check"></p>
 
 <h4 id="mnemonic-check">
 <a class="anchor" href="#mnemonic-check" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mnemonic Check</h4>
 
 <p>The mnemonic check uses an algorithm to scan through your script for command and telemetry mnemonics and make sure they are known to COSMOS.</p>
 
-<p><img src="/img/mnemonic_check.png" alt="Mnemonic Check"></p>
+<p><img src="/cosmos-website/img/mnemonic_check.png" alt="Mnemonic Check"></p>
 
 <h4 id="generate-cmdtlm-audit">
 <a class="anchor" href="#generate-cmdtlm-audit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generate Cmd/Tlm Audit</h4>
@@ -499,7 +501,7 @@
 
 <p>In TestRunner, there is a checkbox at the top of the tool called “Manual” that affects this $manual variable directly. In ScriptRunner you can also use the $manual pattern, but will need to build in an ask() at the top of your script to ask if the user wants to run manual steps, and then set the $manual variable appropriately.</p>
 
-<p><img src="/img/test_runner_checkboxes.png" alt="TestRunner Checkboxes"></p>
+<p><img src="/cosmos-website/img/test_runner_checkboxes.png" alt="TestRunner Checkboxes"></p>
 
 <h3 id="outputing-extra-information-to-a-testrunner-test-report">
 <a class="anchor" href="#outputing-extra-information-to-a-testrunner-test-report" aria-hidden="true"><span class="octicon octicon-link"></span></a>Outputing Extra Information to a TestRunner Test Report</h3>
@@ -520,7 +522,7 @@
 <h3 id="getting-the-most-recent-value-of-a-telemetry-point-from-multiple-packets">
 <a class="anchor" href="#getting-the-most-recent-value-of-a-telemetry-point-from-multiple-packets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting the Most Recent Value of a Telemetry Point from Multiple Packets</h3>
 
-<p>Some systems include high rate data points with the same name in every packet. COSMOS supports getting the most recent value of a telemetry point that is in multiple packets using a special packet name of LATEST. Let’s pretend that our target INST has two packets, PACKET1 and PACKET2. Both packets have a telemetry point called TEMP.</p>
+<p>Some systems include high rate data points with the same name in every packet. COSMOS supports getting the most recent value of a telemetry point that is in multiple packets using a special packet name of LATEST. Assume our target INST has two packets, PACKET1 and PACKET2. Both packets have a telemetry point called TEMP.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Get the value of TEMP from the most recently received PACKET1</span>
 <span class="n">value</span> <span class="o">=</span> <span class="n">tlm</span><span class="p">(</span><span class="s2">"INST PACKET1 TEMP"</span><span class="p">)</span>
@@ -533,7 +535,7 @@
 <h3 id="checking-every-single-sample-of-a-telemetry-point">
 <a class="anchor" href="#checking-every-single-sample-of-a-telemetry-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>Checking Every Single Sample of a Telemetry Point</h3>
 
-<p>When writing COSMOS scripts, checking the most recent value of a telemetry point normally gets the job done. The tlm(), tlm_raw(), etc methods all retrieve the most recent value of a telemetry point. Sometimes you need to perform analysis on every single sample of a telemetry point. This can be done using COSMOS’s packet subscription system. The packet subscription system lets you choose one or more packets and receive them all from a queue. You can then pick out the specific telemetry points you care about from each packet.</p>
+<p>When writing COSMOS scripts, checking the most recent value of a telemetry point normally gets the job done. The tlm(), tlm_raw(), etc methods all retrieve the most recent value of a telemetry point. Sometimes you need to perform analysis on every single sample of a telemetry point. This can be done using the COSMOS packet subscription system. The packet subscription system lets you choose one or more packets and receive them all from a queue. You can then pick out the specific telemetry points you care about from each packet.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">id</span> <span class="o">=</span> <span class="n">subscribe_packet_data</span><span class="p">([[</span><span class="s2">"INST"</span><span class="p">,</span> <span class="s2">"HEALTH_STATUS"</span><span class="p">]])</span>
 <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
@@ -557,12 +559,12 @@
 <span class="k">end</span>
 </code></pre></div></div>
 
-<p>This can also be useful when looping through a numbered set of telemetry points but be considerate of the downsides of looping as discussed in the <a href="/docs/v4/scripting_best_practices#looping-vs-unrolled-loops">Looping vs Unrolled Loops</a> section.</p>
+<p>This can also be useful when looping through a numbered set of telemetry points but be considerate of the downsides of looping as discussed in the <a href="/cosmos-website/docs/v4/scripting_best_practices#looping-vs-unrolled-loops">Looping vs Unrolled Loops</a> section.</p>
 
 <h3 id="using-custom-wait_check_expression">
 <a class="anchor" href="#using-custom-wait_check_expression" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using Custom wait_check_expression</h3>
 
-<p>COSMOS’s wait_check_expression (and check_expression) allow you to perform more complicated checks and still stop the script with a CHECK error message if something goes wrong. For example, you can check variables against each other or check a telemetry point against a range. The exact string of text passed to wait_check_expression is repeatedly evaled in Ruby until it passes, or a timeout occurs. It is important to not use Ruby string interpolation #{} within the actual expression or the values inside of the Ruby interpolation syntax #{} will only be evaluated once when it is converted into a string. PROTIP: Using #{} inside a comment inside the expression can give more insight if the expression fails, but be careful as it will show the first evaluation of the values when the check passes which can be confusing if they go from failing to passing after waiting a few seconds.</p>
+<p>The COSMOS wait_check_expression (and check_expression) allow you to perform more complicated checks and still stop the script with a CHECK error message if something goes wrong. For example, you can check variables against each other or check a telemetry point against a range. The exact string of text passed to wait_check_expression is repeatedly evaled in Ruby until it passes, or a timeout occurs. It is important to not use Ruby string interpolation #{} within the actual expression or the values inside of the Ruby interpolation syntax #{} will only be evaluated once when it is converted into a string. PROTIP: Using #{} inside a comment inside the expression can give more insight if the expression fails, but be careful as it will show the first evaluation of the values when the check passes which can be confusing if they go from failing to passing after waiting a few seconds.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">one</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">two</span> <span class="o">=</span> <span class="mi">2</span>
@@ -715,7 +717,7 @@
 <h3 id="script-specific-screens">
 <a class="anchor" href="#script-specific-screens" aria-hidden="true"><span class="octicon octicon-link"></span></a>Script specific screens</h3>
 
-<p>Starting with COSMOS 4.3, script writers can include temporary screens in their COSMOS scripts that show just the specific values relative to the script. They can even display local variables as shown below. This can be a fantastic way to display just the telemetry that is specifically relevant to what you are operating or testing. Screen definitions take the same format as normal COSMOS screens with the addition of using target name LOCAL and packet name LOCAL to gain access to script local variables. See the <a href="/docs/v4/scripting#local_screen-since-430">local_screen</a> documentation in the <a href="/docs/v4/scripting">Scripting Guide</a>.</p>
+<p>Starting with COSMOS 4.3, script writers can include temporary screens in their COSMOS scripts that show just the specific values relative to the script. They can even display local variables as shown below. This can be a fantastic way to display just the telemetry that is specifically relevant to what you are operating or testing. Screen definitions take the same format as normal COSMOS screens with the addition of using target name LOCAL and packet name LOCAL to gain access to script local variables. See the <a href="/cosmos-website/docs/v4/scripting#local_screen-since-430">local_screen</a> documentation in the <a href="/cosmos-website/docs/v4/scripting">Scripting Guide</a>.</p>
 
 <h3 id="when-to-use-modules">
 <a class="anchor" href="#when-to-use-modules" aria-hidden="true"><span class="octicon octicon-link"></span></a>When to use Modules</h3>
@@ -739,7 +741,7 @@
 <h2 id="further-reading">
 <a class="anchor" href="#further-reading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Further Reading</h2>
 
-<p>Please see the <a href="/docs/v4/scripting">Scripting Guide</a> for the full list of available scripting methods provided by COSMOS.</p>
+<p>Please see the <a href="/cosmos-website/docs/v4/scripting">Scripting Guide</a> for the full list of available scripting methods provided by COSMOS.</p>
 
       </article>
     </div>
@@ -772,7 +774,7 @@
       <li>
         <!-- Only create links to collections which aren't our own  -->
         
-        <a href="/docs/v5/">v5 Docs</a>
+        <a href="/cosmos-website/docs/v5/">v5 Docs</a>
         
       </li>
       
@@ -809,7 +811,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/tools">Tools</a>
+    <a href="/cosmos-website/docs/v4/tools">Tools</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -821,27 +823,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/installation">Installation</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v4/upgrading">Upgrading and the Gemfile</a>
+    <a href="/cosmos-website/docs/v4/installation">Installation</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -856,8 +838,28 @@
       
     
       
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v4/structure">Directory structure</a>
+    <a href="/cosmos-website/docs/v4/upgrading">Upgrading and the Gemfile</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/cosmos-website/docs/v4/structure">Directory structure</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -867,7 +869,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/gettingstarted">Getting Started</a>
+    <a href="/cosmos-website/docs/v4/gettingstarted">Getting Started</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -881,7 +883,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/requirements">Requirements and Design</a>
+    <a href="/cosmos-website/docs/v4/requirements">Requirements and Design</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -921,7 +923,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/system">System Configuration</a>
+    <a href="/cosmos-website/docs/v4/system">System Configuration</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -943,61 +945,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/command">Command Configuration</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v4/telemetry">Telemetry Configuration</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v4/interfaces">Interface Configuration</a>
+    <a href="/cosmos-website/docs/v4/command">Command Configuration</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1022,8 +970,62 @@
       
     
       
+    
+      
+    
+      
   <li class="">
-    <a href="/docs/v4/protocols">Protocol Configuration</a>
+    <a href="/cosmos-website/docs/v4/telemetry">Telemetry Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/cosmos-website/docs/v4/interfaces">Interface Configuration</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+  <li class="">
+    <a href="/cosmos-website/docs/v4/protocols">Protocol Configuration</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1067,7 +1069,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/cmd-extractor">Command Extractor</a>
+    <a href="/cosmos-website/docs/v4/cmd-extractor">Command Extractor</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1101,43 +1103,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/cmd-sender">Command Sender</a>
-  </li>
-  <!-- prettier-ignore -->
-  
-  
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-  <li class="">
-    <a href="/docs/v4/cmd-sequence">Command Sequence</a>
+    <a href="/cosmos-website/docs/v4/cmd-sender">Command Sender</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1172,10 +1138,8 @@
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/cmd-tlm-server">Command and Telemetry Server</a>
+    <a href="/cosmos-website/docs/v4/cmd-sequence">Command Sequence</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1212,10 +1176,8 @@
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/config-editor">Config Editor</a>
+    <a href="/cosmos-website/docs/v4/cmd-tlm-server">Command and Telemetry Server</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1254,10 +1216,8 @@
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/data-viewer">Data Viewer</a>
+    <a href="/cosmos-website/docs/v4/config-editor">Config Editor</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1298,10 +1258,8 @@
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/handbook-creator">Handbook Creator</a>
+    <a href="/cosmos-website/docs/v4/data-viewer">Data Viewer</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1344,10 +1302,8 @@
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/launcher">Launcher</a>
+    <a href="/cosmos-website/docs/v4/handbook-creator">Handbook Creator</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1392,10 +1348,8 @@
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/limits-monitor">Limits Monitor</a>
+    <a href="/cosmos-website/docs/v4/launcher">Launcher</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1442,10 +1396,8 @@
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/packet-viewer">Packet Viewer</a>
+    <a href="/cosmos-website/docs/v4/limits-monitor">Limits Monitor</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1494,10 +1446,8 @@
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/replay">Replay</a>
+    <a href="/cosmos-website/docs/v4/packet-viewer">Packet Viewer</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1548,12 +1498,8 @@
       
     
       
-    
-      
-    
-      
   <li class="">
-    <a href="/docs/v4/script-runner">Script Runner</a>
+    <a href="/cosmos-website/docs/v4/replay">Replay</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1608,10 +1554,8 @@
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/table-manager">Table Manager</a>
+    <a href="/cosmos-website/docs/v4/script-runner">Script Runner</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1668,10 +1612,8 @@
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/test-runner">Test Runner</a>
+    <a href="/cosmos-website/docs/v4/table-manager">Table Manager</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1730,10 +1672,8 @@
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/tlm-extractor">Telemetry Extractor</a>
+    <a href="/cosmos-website/docs/v4/test-runner">Test Runner</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1794,10 +1734,8 @@
       
     
       
-    
-      
   <li class="">
-    <a href="/docs/v4/tlm-grapher">Telemetry Grapher</a>
+    <a href="/cosmos-website/docs/v4/tlm-extractor">Telemetry Extractor</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1860,10 +1798,74 @@
       
     
       
+  <li class="">
+    <a href="/cosmos-website/docs/v4/tlm-grapher">Telemetry Grapher</a>
+  </li>
+  <!-- prettier-ignore -->
+  
+  
+    
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
       
   <li class="">
-    <a href="/docs/v4/tlm-viewer">Telemetry Viewer</a>
+    <a href="/cosmos-website/docs/v4/tlm-viewer">Telemetry Viewer</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -1917,7 +1919,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/screens">Telemetry Screens</a>
+    <a href="/cosmos-website/docs/v4/screens">Telemetry Screens</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2001,7 +2003,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/dart-overview">DART Overview</a>
+    <a href="/cosmos-website/docs/v4/dart-overview">DART Overview</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2071,7 +2073,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/dart-install">DART Installation</a>
+    <a href="/cosmos-website/docs/v4/dart-install">DART Installation</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2139,7 +2141,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/dart-api">DART API</a>
+    <a href="/cosmos-website/docs/v4/dart-api">DART API</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2229,7 +2231,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/scripting">Scripting Guide</a>
+    <a href="/cosmos-website/docs/v4/scripting">Scripting Guide</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2309,7 +2311,7 @@
     
       
   <li class="current">
-    <a href="/docs/v4/scripting-best-practices">Scripting Best Practices</a>
+    <a href="/cosmos-website/docs/v4/scripting-best-practices">Scripting Best Practices</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2385,7 +2387,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/gemtargets">Gem Based Targets and Tools</a>
+    <a href="/cosmos-website/docs/v4/gemtargets">Gem Based Targets and Tools</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2459,7 +2461,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/chaining">Chaining CmdTlmServers</a>
+    <a href="/cosmos-website/docs/v4/chaining">Chaining CmdTlmServers</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2561,7 +2563,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/system-class">System Class</a>
+    <a href="/cosmos-website/docs/v4/system-class">System Class</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2647,7 +2649,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/packet-class">Packet Class</a>
+    <a href="/cosmos-website/docs/v4/packet-class">Packet Class</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2735,7 +2737,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/packet-item-class">PacketItem Class</a>
+    <a href="/cosmos-website/docs/v4/packet-item-class">PacketItem Class</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2817,7 +2819,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/json-api">JSON API</a>
+    <a href="/cosmos-website/docs/v4/json-api">JSON API</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -2901,7 +2903,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/logging">Logging</a>
+    <a href="/cosmos-website/docs/v4/logging">Logging</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -3005,7 +3007,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/contributing">Contributing</a>
+    <a href="/cosmos-website/docs/v4/contributing">Contributing</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -3099,7 +3101,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/papers">Papers</a>
+    <a href="/cosmos-website/docs/v4/papers">Papers</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -3195,7 +3197,7 @@
     
       
   <li class="">
-    <a href="/docs/v4/xtce">XTCE Support</a>
+    <a href="/cosmos-website/docs/v4/xtce">XTCE Support</a>
   </li>
   <!-- prettier-ignore -->
   
@@ -3234,7 +3236,7 @@
         <gcse:search></gcse:search>
         Proudly hosted by
         <a href="https://github.com" target="_blank">
-          <img src="/img/footer-logo.png" width="100" height="30" alt="GitHub Social coding">
+          <img src="/cosmos-website/img/footer-logo.png" width="100" height="30" alt="GitHub Social coding">
         </a>
       </p>
     </div>
@@ -3276,25 +3278,6 @@
 </script>
 
   
-<!-- Google Analytics (http://google.com/analytics) -->
-<script>
-  !(function (j, e, k, y, l, L) {
-    (j.GoogleAnalyticsObject = y),
-      j[y] ||
-        (j[y] = function () {
-          (j[y].q = j[y].q || []).push(arguments);
-        }),
-      (j[y].l = +new Date()),
-      (l = e.createElement(k)),
-      (L = e.getElementsByTagName(k)[0]),
-      (l.src = "//www.google-analytics.com/analytics.js"),
-      L.parentNode.insertBefore(l, L);
-  })(window, document, "script", "ga");
-
-  ga("create", "UA-60103689-1", "cosmosc2.com");
-  ga("send", "pageview");
-</script>
-
 
 
 </body>
