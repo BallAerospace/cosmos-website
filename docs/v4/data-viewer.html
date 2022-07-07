@@ -25,10 +25,6 @@
   <li class="">
     <a href="/cosmos-website/">Home</a>
   </li>
-  <li class="">
-    <span class="hide-on-mobiles"><a href="/cosmos-website/docs/enterprise/">Enterprise</a></span>
-    <span class="show-on-mobiles"><a href="/cosmos-website/docs/enterprise/">EE</a></span>
-  </li>
   <li class="current">
     <span class="hide-on-mobiles"><a href="/cosmos-website/docs/v5/">Documentation</a></span>
     <span class="show-on-mobiles"><a href="/cosmos-website/docs/v5/">Docs</a></span>
@@ -61,10 +57,6 @@
       <ul>
   <li class="">
     <a href="/cosmos-website/">Home</a>
-  </li>
-  <li class="">
-    <span class="hide-on-mobiles"><a href="/cosmos-website/docs/enterprise/">Enterprise</a></span>
-    <span class="show-on-mobiles"><a href="/cosmos-website/docs/enterprise/">EE</a></span>
   </li>
   <li class="current">
     <span class="hide-on-mobiles"><a href="/cosmos-website/docs/v5/">Documentation</a></span>
@@ -216,7 +208,38 @@
 
 <h2 id="command-line-parameters">
 <a class="anchor" href="#command-line-parameters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command Line Parameters</h2>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Usage: ruby DataViewer [options]
+
+    -h, --help                       Show this message
+    -v, --version                    Show version
+        --system FILE                Use an alternative system.txt file
+    -c, --config FILE                Use the specified configuration file
+        --stylesheet FILE            Use the specified stylesheet
+
+Window Size Options:
+        --minimized                  Start the tool minimized
+        --maximized                  Start the tool maximized
+        --defaultsize                Start the tool in its default size
+        --stay-on-top                Force the tool to stay on top of all other windows
+
+Window X &amp; Y Position Options:
+  Positive values indicate a position from the top and left of the screen.
+  Negative values indicate a position from the bottom and right of the screen.
+  A value of -1 indicates to place the right or bottom side of the window
+  next to the right or bottom edge of the screen.
+    -x, --xpos VALUE                 Window X position
+    -y, --ypos VALUE                 Window Y position
+
+Window Width and Height Options:
+  Specifing width and height will force the specified dimension.
+  Otherwise the window will layout according to its defaults.
+    -w, --width VALUE                Window width
+    -t, --height VALUE               Window height
+
+Data Viewer Specific Options:
+    -s, --start                      Start processing immediately
+        --replay                     Start Data Viewer in Replay mode
+</code></pre></div></div>
 
 
       </article>
@@ -227,11 +250,6 @@
     <!-- Only display the version links for versioned content -->
     
     <ul>
-      
-      <!-- Versioned collections are labeled docs_v4, docs_v5, etc -->
-      <!-- prettier-ignore -->
-      
-      
       
       <!-- Versioned collections are labeled docs_v4, docs_v5, etc -->
       <!-- prettier-ignore -->
