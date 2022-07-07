@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Tools</title>
+  <title>Philosophy</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="generator" content="Jekyll v4.2.2">
@@ -93,155 +93,44 @@
           <span class="version-badge">v5</span>
         </div>
          
-        <div class="toc"><ul id="toc" class="section-nav">
-<li class="toc-entry toc-h2"><a href="#navigation">Navigation</a></li>
-<li class="toc-entry toc-h2"><a href="#command-and-telemetry-server">Command and Telemetry Server</a></li>
-<li class="toc-entry toc-h2"><a href="#limits-monitor">Limits Monitor</a></li>
-<li class="toc-entry toc-h2"><a href="#command-sender">Command Sender</a></li>
-<li class="toc-entry toc-h2"><a href="#script-runner">Script Runner</a></li>
-<li class="toc-entry toc-h2"><a href="#packet-viewer">Packet Viewer</a></li>
-<li class="toc-entry toc-h2"><a href="#telemetry-viewer">Telemetry Viewer</a></li>
-<li class="toc-entry toc-h2"><a href="#telemetry-grapher">Telemetry Grapher</a></li>
-<li class="toc-entry toc-h2"><a href="#data-extractor">Data Extractor</a></li>
-<li class="toc-entry toc-h2"><a href="#data-viewer">Data Viewer</a></li>
-<li class="toc-entry toc-h2"><a href="#timeline">Timeline</a></li>
-</ul></div>
-        
-        <h1>Tools</h1>
-        <h2 id="navigation">
-<a class="anchor" href="#navigation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Navigation</h2>
+        <h1>Philosophy</h1>
+        <p>COSMOS is a C2 (Command and Control) system with the following primary goals:</p>
 
-<p>The left side of every COSMOS web page can be opened up to display the available tools.
-This list is updated when new COSMOS gems are installed which add tools.</p>
+<ol>
+  <li>Interface with Anything</li>
+</ol>
 
-<p><img src="/cosmos-website/img/v5/navigation.png" alt="Launcher"></p>
+<p>COSMOS should be able to communicate with anything that provides a computer-to-computer interface, regardless of what the interface is.   This means that COSMOS adapts to what other systems are doing and evolves over time.   It does not publish an API that hardware must adhere to if it wants to communicate with COSMOS.</p>
 
-<h2 id="command-and-telemetry-server">
-<a class="anchor" href="#command-and-telemetry-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command and Telemetry Server</h2>
+<ol>
+  <li>Log Everything</li>
+</ol>
 
-<p>Displays information about the active targets and interfaces.</p>
+<p>All data that flows into and out of COSMOS is logged. This provides history as well as attribution for what happened when and why.  Keeping accurate logs is an essential and critical aspect of COSMOS.</p>
 
-<p><img src="/cosmos-website/img/v5/cmd_tlm_server/cmd_tlm_server.png" alt="Command and Telemetry Server"></p>
+<ol>
+  <li>Open Architecture and Source</li>
+</ol>
 
-<ul>
-  <li>Displays interfaces and associated counters</li>
-  <li>Displays raw versions of commands/telemetry packets</li>
-</ul>
+<p>Nothing about how COSMOS is implemented is meant to be secret or hidden, even in Enterprise Edition.  In all editions, the source code for everything in COSMOS is provided and available for users to inspect or modify as needed.  Never worry about an unsolvable problem or having to accept some detail that you don’t like.   This also opens the world to integrate anything they need into COSMOS without restriction or limitation.</p>
 
-<h2 id="limits-monitor">
-<a class="anchor" href="#limits-monitor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limits Monitor</h2>
+<ol>
+  <li>Be Modular</li>
+</ol>
 
-<p>Situational awareness of everything that is currently out of limits in your system and everything that has temporarily gone out of limits since it was started.</p>
+<p>There are infinite number of things for COSMOS to connect to, but it is impossible to ship COSMOS with all the code it would need to talk to everything.  For this reason, COSMOS is designed to be modular in all the places that matter.</p>
 
-<p><img src="/cosmos-website/img/v5/limits_monitor/limits_monitor.png" alt="Limits Monitor"></p>
+<ol>
+  <li>Use Configuration when Possible, and Code When Logic Is Needed</li>
+</ol>
 
-<ul>
-  <li>Limits bar widget used to show where in the limits range you are</li>
-  <li>Packets and Items can be ignored</li>
-</ul>
+<p>Configuration is great for making COSMOS as usable as possible by non-software engineers.  It also shows where common patterns exist.  However, configuration is horrible when logic or custom math are needed.</p>
 
-<h2 id="command-sender">
-<a class="anchor" href="#command-sender" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command Sender</h2>
+<ol>
+  <li>Empower Developers</li>
+</ol>
 
-<p>Easily send individual commands.</p>
-
-<p><img src="/cosmos-website/img/v5/command_sender/command_sender.png" alt="Command Sender"></p>
-
-<ul>
-  <li>Select any command by target and command name and then fill out a form with the command parameters</li>
-  <li>Command history can be used to resend the same or slightly modified commands</li>
-</ul>
-
-<h2 id="script-runner">
-<a class="anchor" href="#script-runner" aria-hidden="true"><span class="octicon octicon-link"></span></a>Script Runner</h2>
-
-<p>Develop and execute test procedures with line highlighting, syntax checking, and more. Also supports organization of scripts into repeatable scripts with an auto-generated report.</p>
-
-<p><img src="/cosmos-website/img/v5/script_runner/script_runner.png" alt="Script Runner"></p>
-
-<ul>
-  <li>Simple API to send commands and check telemetry</li>
-  <li>Query the user for information</li>
-  <li>Currently executing line is highlighted</li>
-  <li>Full power of the Ruby programming language available</li>
-  <li>Disconnect mode for offline testing</li>
-  <li>Debugger for step execution</li>
-  <li>Script organization by Script, Group, Suite</li>
-  <li>Automatic report generation</li>
-</ul>
-
-<h2 id="packet-viewer">
-<a class="anchor" href="#packet-viewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Packet Viewer</h2>
-
-<p>View any telemetry packet in the system with no extra configuration necessary.</p>
-
-<p><img src="/cosmos-website/img/v5/packet_viewer/packet_viewer.png" alt="Packet Viewer"></p>
-
-<ul>
-  <li>Automatically contains all defined targets, packets, and telemetry items</li>
-  <li>Right click to get detailed item information</li>
-</ul>
-
-<h2 id="telemetry-viewer">
-<a class="anchor" href="#telemetry-viewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Telemetry Viewer</h2>
-
-<p>Easily create custom telemetry screens with simple configuration text files.</p>
-
-<p><img src="/cosmos-website/img/v5/telemetry_viewer/telemetry_viewer.png" alt="Telemetry Viewer"></p>
-
-<ul>
-  <li>Advanced widgets available to display data</li>
-  <li>Modular to allow for creating your own custom widgets</li>
-</ul>
-
-<h2 id="telemetry-grapher">
-<a class="anchor" href="#telemetry-grapher" aria-hidden="true"><span class="octicon octicon-link"></span></a>Telemetry Grapher</h2>
-
-<p>Realtime or offline graphing of any telemetry item.</p>
-
-<p><img src="/cosmos-website/img/v5/telemetry_grapher/telemetry_grapher.png" alt="Telemetry Grapher"></p>
-
-<ul>
-  <li>One or more telemetry points per graph</li>
-  <li>Spread data across multiple graphs</li>
-  <li>Easily save and restore configurations</li>
-</ul>
-
-<h2 id="data-extractor">
-<a class="anchor" href="#data-extractor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Extractor</h2>
-
-<p>Quickly extract command and telemetry into CSV files with just the data you care about.</p>
-
-<p><img src="/cosmos-website/img/v5/data_extractor/data_extractor.png" alt="Data Extractor"></p>
-
-<ul>
-  <li>Process items into CSV data for analysis in other tools (Excel, Matlab, etc)</li>
-  <li>Add individual items, whole packets, and every packet from a given target</li>
-</ul>
-
-<h2 id="data-viewer">
-<a class="anchor" href="#data-viewer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Viewer</h2>
-
-<p>Quickly view the data you care about.</p>
-
-<p><img src="/cosmos-website/img/v5/data_viewer/data_viewer.png" alt="Data Viewer"></p>
-
-<ul>
-  <li>View both raw and decomed data.</li>
-  <li>Save and load configurations.</li>
-</ul>
-
-<h2 id="timeline">
-<a class="anchor" href="#timeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Timeline</h2>
-
-<p>Schedule commands and scripts to be run.</p>
-
-<p><img src="/cosmos-website/img/v5/timeline/timeline.png" alt="Timeline"></p>
-
-<ul>
-  <li>View activities and timelines</li>
-  <li>Set times for scripts or cmds to be run</li>
-</ul>
+<p>COSMOS is meant to be easy enough to be used by everyone, not just C2 software experts.</p>
 
       </article>
     </div>
@@ -305,7 +194,7 @@ This list is updated when new COSMOS gems are installed which add tools.</p>
       
     
       
-  <li class="current">
+  <li class="">
     <a href="/cosmos-website/docs/v5/tools">Tools</a>
   </li>
   <!-- prettier-ignore -->
@@ -2309,7 +2198,7 @@ This list is updated when new COSMOS gems are installed which add tools.</p>
       
     
       
-  <li class="">
+  <li class="current">
     <a href="/cosmos-website/docs/v5/philosophy">Philosophy</a>
   </li>
   <!-- prettier-ignore -->

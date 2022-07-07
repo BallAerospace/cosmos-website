@@ -16,9 +16,6 @@ plugins:
 # Note the collection name is available from the page, e.g. page.collection
 # Thus you can do site[page.collection] to access the collection
 collections:
-  docs_enterprise:
-    output: true
-    permalink: docs/enterprise/:name
   docs_v5:
     output: true
     permalink: docs/v5/:name

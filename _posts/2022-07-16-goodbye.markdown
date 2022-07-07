@@ -1,0 +1,20 @@
+---
+layout: news_item
+title: "Goodbye"
+date: 2022-7-16 08:00:00 -0700
+author: ryanmelt
+categories: [post]
+---
+
+16 years ago we started on the journey of creating this product with a five year goal of becoming
+the standard C2 solution for the aerospace industry.  It's taken a bit longer than that, but COSMOS
+has gone from supporting a single program at a single company, to supporting hundreds of programs
+at hundreds of companies around the world. It has been a great experience.
+
+As of today, July 16th, 2022, the two creators of COSMOS are no longer employed by Ball and have moved on
+to create a new company.
+
+Thanks to all of the COSMOS users everywhere, and we look forward to continuing to work with you in
+the future.
+
+Ryan Melton and Jason Thomas
