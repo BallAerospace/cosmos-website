@@ -16,4 +16,3 @@ I recently googled for "COSMOS Command and Control" and came across a [LinkedIn 
 ![Stakem Screenshot]({{site.baseurl}}/img/2016_10_13_stakem_screenshot.png)
 *Screenshot showing COSMOS in action*
 
-Since COSMOS is open source, we don't always hear about what people are doing with it. If you have a COSMOS success story you'd like to share with us please contact us at <cosmos@ballaerospace.com>.
