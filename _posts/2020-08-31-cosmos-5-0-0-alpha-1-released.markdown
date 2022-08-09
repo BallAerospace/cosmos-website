@@ -46,8 +46,3 @@ Recommended Resources allocated to Docker: 8GB RAM, 2+ CPUs, 100GB Disk
 6. Connect a web browser to http://localhost:8080
 7. Have fun trying out COSMOS 5!
 
-Please try it out and let us know what you think!  Please submit any issues as Github tickets, or any generic feedback to cosmos@ballaerospace.com.  
-
-Note that this release is not ready for production use.  We will have a more beta ready release in a few months.
-
-Thanks!
