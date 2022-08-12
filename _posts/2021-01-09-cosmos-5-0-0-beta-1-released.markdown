@@ -73,7 +73,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk
 
 We will be actively updating documentation on cosmosc2.com throughout the month of January. So if it isn't documented yet, we're getting there!
 
-Please try it out and let us know what you think! Please submit any issues as Github tickets, or any generic feedback to cosmos@ballaerospace.com.
+Please try it out and let us know what you think! Please submit any issues as Github tickets.
 
 Note that this release is not recommended for production use. We will have a release candidate release in a few months.
 

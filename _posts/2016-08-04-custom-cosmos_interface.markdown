@@ -60,4 +60,4 @@ I added a comment line above the definition which describes the settings. For mo
 
 This same technique can obviously be used to extend the the other TCPIP interfaces and can be used with all the various [Streams]({{site.baseurl}}/docs/v4/interfaces#streams) COSMOS defines.
 
-If you have a question which would benefit the community or find a possible bug please use our [Github Issues](https://github.com/BallAerospace/COSMOS/issues). If you would like more information about a COSMOS training or support contract please contact us at <cosmos@ballaerospace.com>.
+If you have a question which would benefit the community or find a possible bug please use our [Github Issues](https://github.com/BallAerospace/COSMOS/issues). 

@@ -13,4 +13,4 @@ Ryan recently attended the Advanced Maui Optical and Space Surveillance Technolo
 
 Jason atteneded the conference back in 2017 and was able to present a talk about COSMOS based on another paper entitled ["A Cloud-based, Open-Source, Command-and-Control Software Paradigm for Space Situational Awareness (SSA)"]({{site.baseurl}}/assets/2017_AMOS_Paper.pdf).
 
-If you have a question, find a bug, or want a feature please use our [Github Issues](https://github.com/BallAerospace/COSMOS/issues). If you would like more information about a COSMOS training or support contract please contact us at <cosmos@ballaerospace.com>.
+If you have a question, find a bug, or want a feature please use our [Github Issues](https://github.com/BallAerospace/COSMOS/issues). 

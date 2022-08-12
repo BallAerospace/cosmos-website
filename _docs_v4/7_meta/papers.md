@@ -17,9 +17,3 @@ title: Papers
 - <a href="{{site.baseurl}}/assets/System_Level_Integration_And_Test_Leveraging_Software_Unit_Testing_Techniques.pdf">System Level Integration and Test Leveraging Software Unit Testing Techniques</a>
 - <a href="{{site.baseurl}}/assets/The_Hidden_Benefits_of_Automated_Testing.pdf">The Hidden Benefits of Automated Testing</a>
 
-<div class="note">
-  <h5>Giving a presentation on COSMOS? Please let us know!</h5>
-  <p>
-    We love seeing how people are using Ball Aerospace COSMOS to solve their problems.  Please email <a href="mailto:COSMOS@ballaerospace.com">COSMOS@ballaerospace.com</a> and let us know about your presentation.
-  </p>
-</div>
