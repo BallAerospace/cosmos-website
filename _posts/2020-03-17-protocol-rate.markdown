@@ -136,4 +136,4 @@ INTERFACE CHAININT tcpip_client_interface.rb localhost 7779 7779 10 5 PREIDENTIF
   PROTOCOL READ DropProtocol INST2 ADCS 9 # Drop 9 ADCS packets to force 1Hz
 ```
 
-If you have a question, find a bug, or want a feature please use our [Github Issues](https://github.com/BallAerospace/COSMOS/issues). If you would like more information about a COSMOS training or support contract please contact us at <cosmos@ballaerospace.com>.
+If you have a question, find a bug, or want a feature please use our [Github Issues](https://github.com/BallAerospace/COSMOS/issues). 

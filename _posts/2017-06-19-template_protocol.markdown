@@ -68,4 +68,4 @@ The RSP_TEMPLATE expects to have three values delimited by the comma character. 
 
 Using the TEMPLATE processor can be complex but makes working with with string based command / response protocols like SCPI much easier.
 
-If you have a question which would benefit the community or find a possible bug please use our [Github Issues](https://github.com/BallAerospace/COSMOS/issues). If you would like more information about a COSMOS training or support contract please contact us at <cosmos@ballaerospace.com>.
+If you have a question which would benefit the community or find a possible bug please use our [Github Issues](https://github.com/BallAerospace/COSMOS/issues). 
