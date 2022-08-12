@@ -11,8 +11,8 @@
     <title xml:lang="en">Ball Aerospace COSMOS News</title>
     <atom:link type="application/atom+xml" href="https://ballaerospace.github.io/cosmos-website/feed.xml" rel="self"/>
     <link>https://ballaerospace.github.io/cosmos-website/</link>
-    <pubDate>Tue, 09 Aug 2022 20:57:50 +0000</pubDate>
-    <lastBuildDate>Tue, 09 Aug 2022 20:57:50 +0000</lastBuildDate>
+    <pubDate>Fri, 12 Aug 2022 20:56:00 +0000</pubDate>
+    <lastBuildDate>Fri, 12 Aug 2022 20:56:00 +0000</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v4.2.2</generator>
     <description>The User Interface for Embedded Systems</description>
@@ -889,7 +889,7 @@ Recommended Resources allocated to Docker: 16GB RAM, 2+ CPUs, 100GB Disk&lt;/p&g
 
 &lt;p&gt;Definining PACKET_TIME allows the PACKET_TIMESECONDS and PACKET_TIMEFORMATTED to be calculated against an internal Packet time rather than the time that COSMOS receives the packet.&lt;/p&gt;
 
-&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -950,11 +950,6 @@ Recommended Resources allocated to Docker: 8GB RAM, 2+ CPUs, 100GB Disk&lt;/p&gt
   &lt;li&gt;Have fun trying out COSMOS 5!&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Please try it out and let us know what you think!  Please submit any issues as Github tickets.&lt;/p&gt;
-
-&lt;p&gt;Note that this release is not ready for production use.  We will have a more beta ready release in a few months.&lt;/p&gt;
-
-&lt;p&gt;Thanks!&lt;/p&gt;
 </description>
     </item>
     
@@ -1009,7 +1004,7 @@ end
 
 &lt;p&gt;At this point the interface thread will receive an identified packet and can quickly update the current value table with the packet data.&lt;/p&gt;
 
-&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;
+&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1146,7 +1141,7 @@ SEND
   PROTOCOL READ DropProtocol INST2 ADCS 9 # Drop 9 ADCS packets to force 1Hz
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1276,7 +1271,7 @@ SEND
 
 &lt;p&gt;Jason atteneded the conference back in 2017 and was able to present a talk about COSMOS based on another paper entitled &lt;a href=&quot;/cosmos-website/assets/2017_AMOS_Paper.pdf&quot;&gt;“A Cloud-based, Open-Source, Command-and-Control Software Paradigm for Space Situational Awareness (SSA)”&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1439,7 +1434,7 @@ class FramingProtocol &amp;lt; Protocol
 end
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1596,7 +1591,7 @@ TELEMETRY inst2_tlm.txt
 
 &lt;p&gt;Note that you can include these override files as needed based on the target.txt file as described above.&lt;/p&gt;
 
-&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question, find a bug, or want a feature please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1934,7 +1929,7 @@ ITEM RECEIVED_COUNT 0 0 DERIVED &quot;COSMOS packet received count&quot;
 
 &lt;p&gt;Conversions and DERIVED variables are powerful ways to add additional telemetry points based on existing data in your packet structure. Another way to add insight into your telemetry is to add &lt;a href=&quot;/cosmos-website/news/2017/05/08/packet_processors/&quot;&gt;Packet Processors&lt;/a&gt; which I’ve previously blogged about.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -2128,7 +2123,7 @@ LIMITS_GROUP INST2_GROUND
 
 &lt;p&gt;Limits are a powerful concept in COSMOS. Sets provide for a system wide setting that affects all limits items. Groups allow limits items to be grouped to typically enable and disable them together. APIs allow the user to query and set limits across the system while subscriptions provide notifications for every limits event action.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -2214,7 +2209,7 @@ COLLECT_METADATA
 
 &lt;p&gt;Metadata is a useful way to add information which can’t be determined by the available hardware targets. The OPERATOR_NAME in the demo is an obvious example. Start using metadata to your advantage to help you distinguish your telemetry.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -2614,7 +2609,7 @@ C:/Ruby233p222-x64/lib/ruby/2.3.0/x64-mingw32
 
 &lt;p&gt;Just for completeness note that there is also a Ruby keyword called &lt;a href=&quot;https://ruby-doc.org/core-2.4.2/Kernel.html#method-i-require_relative&quot;&gt;require_relative&lt;/a&gt;. This works similar to require but instead of using the LOAD_PATH as described above, it looks relative to the current executing file. This should rarely be needed in COSMOS except perhaps in test files.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -2672,7 +2667,7 @@ C:/Ruby233p222-x64/lib/ruby/2.3.0/x64-mingw32
 
 &lt;p&gt;Enjoy these new COSMOS 4.0 tools!&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -2892,7 +2887,7 @@ vncconfig -iconic &amp;amp;
 &lt;p&gt;Chose the sudo option when asked how to install. On your local machine install a VNC viewer such as TightVNC and connect by entering the Public DNS address of your AWS instance in the Remote Host as well as the Port number of 5901. Typically this is added by appending it to the Remote Host address with a colon. Here is a screenshot of it running while I connected via TightVNC:
 &lt;img src=&quot;/cosmos-website/img/2017_08_23_aws_ubuntu_vnc.png&quot; alt=&quot;Red Hat X&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -3138,7 +3133,7 @@ COMMAND POWER SET_VOLTAGE BIG_ENDIAN &quot;Set voltage&quot;
 
 &lt;p&gt;Using the TEMPLATE processor can be complex but makes working with with string based command / response protocols like SCPI much easier.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -3390,7 +3385,7 @@ Then delcare the processing in your configuration definition as follows:&lt;/p&g
 
 &lt;p&gt;Creating a custom processor definitely requires you to dive into the COSMOS API and play with the underlying Ruby code. Hopefully the existing processor code and this blog post helps you to derive whatever telemetry points you need.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -3540,7 +3535,7 @@ ADCS
 
 &lt;p&gt;This time you should see some LIMITS_CHANGE packet names sprinkled in with the output from before. That’s because we’re accessing the ENTIRE COSMOS telemetry stream and not just the stream from the INST interface. Keep this in mind if you have performance issues when trying to process the entire telemetry stream.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -3619,7 +3614,6 @@ ADCS
 
 &lt;p&gt;&lt;img src=&quot;/cosmos-website/img/2016_10_13_stakem_screenshot.png&quot; alt=&quot;Stakem Screenshot&quot; /&gt;
 &lt;em&gt;Screenshot showing COSMOS in action&lt;/em&gt;&lt;/p&gt;
-
 
 </description>
     </item>
@@ -3700,7 +3694,7 @@ COMMAND INST ABORT BIG_ENDIAN &quot;Aborts a collect on the instrument&quot;
 
 &lt;p&gt;ERB is incredibly powerful and a great way to avoid WET (Write Each Time) command and telemetry definitions. Now go DRY (Don’t Repeat Yourself) up your COSMOS configuration!&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -3838,7 +3832,7 @@ ARRAY INST HEALTH_STATUS ARY 300 50 nil 8 FORMATTED
 
 &lt;p&gt;Note that if you have a widget that implements aging and limits you’ll want to keep the value returned by super and use it in your widget. If you don’t want the aging routine to directly use your data value you can pass a string as the second parameter, e.g. super(data, text). This text string will be modified with the color blind settings. Basically that means that whatever the calculated &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@foreground&lt;/code&gt; color string is, a corresponding text character is added (R=Red, G=Green, etc) to aid people who can’t distinguish colors. See &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/blob/cosmos4/lib/cosmos/tools/tlm_viewer/widgets/aging_widget.rb&quot;&gt;aging_widget.rb&lt;/a&gt; for more details.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -3904,7 +3898,7 @@ INTERFACE UART_INTERFACE  checksum_serial_interface.rb COM1  COM1 115200 NONE   
 
 &lt;p&gt;This same technique can obviously be used to extend the the other TCPIP interfaces and can be used with all the various &lt;a href=&quot;/cosmos-website/docs/v4/interfaces#streams&quot;&gt;Streams&lt;/a&gt; COSMOS defines.&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -4273,7 +4267,7 @@ TELEMETRY INST DATA BIG_ENDIAN &quot;Data from the instrument&quot;
 
 &lt;p&gt;Happy simulated target programming!&lt;/p&gt;
 
-&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;. 
+&lt;p&gt;If you have a question which would benefit the community or find a possible bug please use our &lt;a href=&quot;https://github.com/BallAerospace/COSMOS/issues&quot;&gt;Github Issues&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
